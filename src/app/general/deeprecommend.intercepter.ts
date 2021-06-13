@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeepRecommendLocalStorageService } from './services/local-strage.service';
+import { accessTokenKey } from './utilities/api';
 
 @Injectable()
 export class DeepRecommendInterceptor implements HttpInterceptor {
@@ -15,7 +16,7 @@ export class DeepRecommendInterceptor implements HttpInterceptor {
             headers = headers.set('Content-Type', 'application/json');
         }
 
-        const getToken = localStorage.getItem('アプリ名_access_token');
+        const getToken = localStorage.getItem(accessTokenKey);
 
         if (getToken) {
             headers = headers.set('Authorization', `Bearer <${getToken}>`);
@@ -29,8 +30,8 @@ export class DeepRecommendInterceptor implements HttpInterceptor {
             catchError((err) => {
                 switch (err.status) {
                     case 401:
-                        this.localStorage.removeItem('アプリ名_access_token');
-                        this.router.navigate(['/login']);
+                        this.localStorage.removeItem(accessTokenKey);
+                        this.router.navigate(['/sign-in']);
 
                         return throwError(err);
                 }
