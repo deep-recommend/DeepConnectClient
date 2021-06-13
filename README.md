@@ -13,6 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   $ npm i lodash
 -   $ npm i ts-custom-error
 -   $ npm i perfect-scrollbar
+-   $ npm i payjp
 -   .prettierrc の設定
 
 ## TOTO

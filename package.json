@@ -34,6 +34,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "ngx-logger": "^4.2.2",
+    "payjp": "^2.0.8",
     "perfect-scrollbar": "^1.5.1",
     "rxjs": "~6.6.0",
     "to-lower-case": "^1.0.1",

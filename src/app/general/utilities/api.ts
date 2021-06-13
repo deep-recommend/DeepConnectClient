@@ -10,3 +10,6 @@ export const httpHeaders = {
         'Content-Type': 'application/json',
     }),
 };
+
+export const skTest: string = '';
+export const pkTest: string = '';
