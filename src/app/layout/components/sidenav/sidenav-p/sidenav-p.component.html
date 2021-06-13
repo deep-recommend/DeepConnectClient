@@ -1,0 +1,31 @@
+<mat-nav-list>
+    <ng-container *ngFor="let item of sideNavMenus; let i = index">
+        <ng-container *ngIf="item.routerLink">
+            <a
+                tablindex="0"
+                mat-list-item
+                matRipple
+                [routerLink]="item.routerLink"
+                [ngClass]="{ 'border-top-gray': item.isVisibleTopBorder }"
+            >
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <h4 mat-line>{{ item.label }}</h4>
+            </a>
+        </ng-container>
+
+        <ng-container *ngIf="item.hrefLink">
+            <a
+                tablindex="0"
+                mat-list-item
+                matRipple
+                [href]="item.hrefLink"
+                tartget="_blank"
+                rel="noopener noreferrer"
+                [ngClass]="{ 'border-top-gray': item.isVisibleTopBorder }"
+            >
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <h4 mat-line>{{ item.label }}</h4>
+            </a>
+        </ng-container>
+    </ng-container>
+</mat-nav-list>

@@ -2,27 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
-## Development server
+## Done
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-   akita のエラーは node_module を確認すること
+-   $ ng add @datorama/akita
+-   $ ng add @angular/material
+-   $ npm i typescript eslint @typescript-eslint/eslint-plugin
+-   $ npm install @datorama/akita-ng-entity-service
+-   $ npm i -s @angular/flex-layout @angular/cdk
+-   $ npm i lodash
+-   $ npm i ts-custom-error
+-   $ npm i perfect-scrollbar
+-   .prettierrc の設定
 
-## Code scaffolding
+## TOTO
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-   $ git clone git@github.com:deep-recommend/angular-template.git
+-   $ npm i
+-   $ ng s
+-   「authentication.service.ts」の token の書き換え
+-   「index.html」の title タグの書き換え
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 # angular-template

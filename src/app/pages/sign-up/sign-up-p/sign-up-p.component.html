@@ -1,0 +1,53 @@
+<mat-card>
+    <form [formGroup]="signUpForm" (ngSubmit)="onClickSignUp()">
+        <mat-card-content fxLayoutAlign="center">サインアップ</mat-card-content>
+        <mat-card-content fxLayout="column">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required />
+                <mat-error *ngIf="signUpForm.get('name')?.hasError('required')">・必須項目です</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required />
+                <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">・必須項目です</mat-error>
+            </mat-form-field>
+            <mat-form-field fxLayout="row">
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    [type]="hide ? 'password' : 'tel'"
+                    formControlName="password"
+                    [attr.aria-pressed]="hide"
+                    required
+                />
+                <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">・必須項目です</mat-error>
+            </mat-form-field>
+            <mat-form-field fxLayout="row">
+                <mat-label>Password confirmation</mat-label>
+                <input
+                    matInput
+                    [type]="hide2 ? 'password' : 'tel'"
+                    formControlName="password"
+                    [attr.aria-pressed]="hide2"
+                    required
+                />
+                <button mat-icon-button matSuffix type="button" (click)="hide2 = !hide2">
+                    <mat-icon>{{ hide2 ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="signUpForm.get('passwordConfirmation')?.hasError('required')"
+                    >・必須項目です</mat-error
+                >
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+            <button mat-raised-button [disabled]="signUpForm.invalid" style="background-color: #00ff00">
+                サインアップ
+            </button>
+            <a routerLink="/sign-in">サインイン</a>
+        </mat-card-actions>
+    </form>
+</mat-card>

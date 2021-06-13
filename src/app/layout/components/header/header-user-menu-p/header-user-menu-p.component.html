@@ -1,0 +1,20 @@
+<div class="account-menu">
+    <button mat-button matTooltip="アカウント" [matMenuTriggerFor]="accountMenu">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+            <img class="avatar" src="{{ 'assets/images/png/default-avatar.png' }}" style="width: 44px; height: 44px" />
+            <span fxHide.xs>{{ 'ユーザー名' }}</span>
+            <mat-icon>expand_more</mat-icon>
+        </div>
+    </button>
+</div>
+
+<mat-menu #accountMenu="matMenu">
+    <ng-container *ngFor="let item of headerAccountMenus; let i = index">
+        <ng-container *ngIf="item.routerLink">
+            <a mat-menu-item [routerLink]="item.routerLink">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                <span>{{ item.label }}</span>
+            </a>
+        </ng-container>
+    </ng-container>
+</mat-menu>

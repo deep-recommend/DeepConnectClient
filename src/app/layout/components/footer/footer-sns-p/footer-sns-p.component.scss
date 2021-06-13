@@ -1,0 +1,20 @@
+:host {
+    ul {
+        width: 256px;
+        li {
+            list-style: none;
+            a {
+                mat-icon {
+                    font-size: 12px;
+                }
+                text-decoration: none;
+                span {
+                    font-size: 12px;
+                    &:hover {
+                        color: #00c300;
+                    }
+                }
+            }
+        }
+    }
+}

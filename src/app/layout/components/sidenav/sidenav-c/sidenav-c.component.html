@@ -1,0 +1,15 @@
+<div
+    *ngIf="existsSideNavElement$ | async"
+    class="sidenav"
+    [ngClass]="{
+        'full-menu-open': isSideNavFullMenuVisible$ | async
+    }"
+>
+    <div [perfectScrollbar] style="position: relative; height: 100%">
+        <app-sidenav-p
+            [sideNavMenus]="sideNavMenus$ | async"
+            [lockSideNav$]="lockSideNav$"
+            (clickSideNavMenu)="onReceivedClickSideNav($event.index, $event.item)"
+        ></app-sidenav-p>
+    </div>
+</div>
