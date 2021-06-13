@@ -1,0 +1,8 @@
+:host {
+    .account-menu {
+        height: 45px;
+        & > button {
+            height: inherit;
+        }
+    }
+}

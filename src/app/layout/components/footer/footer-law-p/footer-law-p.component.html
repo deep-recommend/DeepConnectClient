@@ -1,0 +1,13 @@
+<ul *ngFor="let item of footerLawItem; let i = index">
+    <li *ngIf="item.routerLink">
+        <a [routerLink]="item.routerLink" style="color: #00ff00">
+            <span>{{ item.label }}</span>
+        </a>
+    </li>
+
+    <li *ngIf="item.hrefLink">
+        <a [href]="item.hrefLink" target="_blank" rel="noopener noreferrer" style="color: #00ff00">
+            <span>{{ item.label }}</span>
+        </a>
+    </li>
+</ul>

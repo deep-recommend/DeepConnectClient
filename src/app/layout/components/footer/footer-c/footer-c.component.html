@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="4vw">
+    <app-footer-law-p
+        [footerLawItem]="footerLawItem$ | async"
+        style="border-right: 1px solid #505050"
+    ></app-footer-law-p>
+    <app-footer-logo-p></app-footer-logo-p>
+    <app-footer-sns-p
+        [footerSnsItem]="footerSnsItem$ | async"
+        style="border-left: 1px solid #505050"
+    ></app-footer-sns-p>
+</div>

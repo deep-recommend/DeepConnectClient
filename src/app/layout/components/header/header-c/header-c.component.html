@@ -1,0 +1,23 @@
+<mat-toolbar
+    class="mat-toolbar"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    style="background-color: #000; color: #00ff00"
+>
+    <app-header-hamburger-menu-p (clickMenuButton)="onReceivedClickMenuButton()"></app-header-hamburger-menu-p>
+    <app-header-logo-p (clickHeaderLogo)="onReceivedClickHeaderLogo()"></app-header-logo-p>
+    <app-header-title-p (clickHeaderTitle)="onReceivedClickHeaderTitle()"></app-header-title-p>
+    <div *ngIf="isChangingAccountMenuPerPath(); then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock>
+        <app-header-user-menu-p
+            [headerAccountMenus]="headerAccountMenus$ | async"
+            (clickAccountMenu)="onReceivedClickAccountMenu($event.index, $event.item)"
+        ></app-header-user-menu-p>
+    </ng-template>
+    <ng-template #elseBlock>
+        <div class="button" fxLayout="row" fxLayoutGap="16px">
+            <app-header-sign-in-p (clickSignIn)="onReceivedClickSignIn()"></app-header-sign-in-p>
+            <app-header-sign-up-p (clickSignUp)="onReceivedClickSignUp()"></app-header-sign-up-p>
+        </div>
+    </ng-template>
+</mat-toolbar>
