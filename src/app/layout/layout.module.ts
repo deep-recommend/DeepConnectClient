@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LayoutComponent } from './layout.component';
 import { HeaderCComponent } from './components/header/header-c/header-c.component';
 import { ContentComponent } from './components/content/content.component';
@@ -20,21 +20,25 @@ import { HeaderSignUpPComponent } from './components/header/header-sign-up-p/hea
 @NgModule({
     declarations: [
         LayoutComponent,
+
         HeaderCComponent,
-        ContentComponent,
         HeaderHamburgerMenuPComponent,
         HeaderUserMenuPComponent,
-        SidenavCComponent,
-        SidenavPComponent,
         HeaderTitlePComponent,
-        FooterCComponent,
-        FooterLogoPComponent,
-        FooterLawPComponent,
-        FooterSnsPComponent,
         HeaderLogoPComponent,
         HeaderHamburgerMenuPComponent,
         HeaderSignInPComponent,
         HeaderSignUpPComponent,
+
+        ContentComponent,
+
+        SidenavCComponent,
+        SidenavPComponent,
+
+        FooterCComponent,
+        FooterLogoPComponent,
+        FooterLawPComponent,
+        FooterSnsPComponent,
     ],
     imports: [DeepRecommendSharedModule, DirectiveModule],
     exports: [LayoutComponent],

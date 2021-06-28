@@ -8,7 +8,16 @@ import { accessTokenKey } from './utilities/api';
 
 @Injectable()
 export class DeepRecommendInterceptor implements HttpInterceptor {
-    constructor(private readonly localStorage: DeepRecommendLocalStorageService, private readonly router: Router) {}
+    constructor(private readonly localStorage: DeepRecommendLocalStorageService, private readonly router: Router) {
+        const currentPath = location.pathname;
+        if (currentPath === '/sign-in') {
+            return;
+        } else if (currentPath === '/sign-up') {
+            return;
+        } else {
+            return;
+        }
+    }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let headers = request.headers;
 
@@ -19,7 +28,7 @@ export class DeepRecommendInterceptor implements HttpInterceptor {
         const getToken = localStorage.getItem(accessTokenKey);
 
         if (getToken) {
-            headers = headers.set('Authorization', `Bearer <${getToken}>`);
+            headers = headers.set('Authorization', `Bearer ${getToken}`);
         }
 
         const req: HttpRequest<any> = request.clone({

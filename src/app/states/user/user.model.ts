@@ -1,11 +1,33 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
-
 export interface UserProps {
-    name: string;
+    realLastName: string;
+    realFirstName: string;
+    stageName: string | null;
+    gender: string;
+    birthYear: number;
+    birthMonth: number;
+    birthDay: number;
+    birthPlace: string;
+    agency: string | null;
+    profilePicture: string | null;
     email: string;
+    password: string;
+    passwordConfirmation: string;
 }
 
-export interface UserFormProps {
-    name: (string | ((control: AbstractControl) => ValidationErrors | null)[])[];
-    email: (string | ((control: AbstractControl) => ValidationErrors | null)[])[];
+export interface ProfileProps {
+    user: {
+        realLastName: string;
+        realFirstName: string;
+        stageName: string | null;
+        gender: string;
+        birthYear: number;
+        birthMonth: number;
+        birthDay: number;
+        birthPlace: string;
+        agency: string | null;
+        profilePicture: string | null;
+        email: string;
+        password: string;
+        passwordConfirmation: string;
+    };
 }

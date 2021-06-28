@@ -2,8 +2,23 @@ import { createSideNavMenu, SideNavMenu } from '../../domains/layout/sidenav-men
 
 export const sideNavMenu: SideNavMenu[] = [
     createSideNavMenu({
-        icon: 'apps',
-        label: 'dashboard',
+        icon: 'search',
+        label: 'さがす',
+        routerLink: '/',
+    }),
+    createSideNavMenu({
+        icon: 'thumb_up',
+        label: 'いいね',
+        routerLink: '/',
+    }),
+    createSideNavMenu({
+        icon: 'message',
+        label: 'メッセージ',
+        routerLink: '/',
+    }),
+    createSideNavMenu({
+        icon: 'account_circle',
+        label: 'マイページ',
         routerLink: '/',
     }),
     createSideNavMenu({

@@ -3,6 +3,7 @@ import { HeaderAccountMenu } from 'src/app/general/domains/layout/header-user-me
 import { MediaObserver } from '@angular/flex-layout';
 import { mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { UserProps } from 'src/app/states/user';
 
 @Component({
     selector: 'app-header-user-menu-p',
@@ -10,6 +11,7 @@ import { of } from 'rxjs';
     styleUrls: ['./header-user-menu-p.component.scss'],
 })
 export class HeaderUserMenuPComponent implements OnInit {
+    @Input() profile!: UserProps | null;
     @Input() headerAccountMenus!: HeaderAccountMenu[] | null;
     @Output() clickAccountMenu: EventEmitter<{ index: number; item: HeaderAccountMenu }> = new EventEmitter<{
         index: number;
@@ -23,4 +25,8 @@ export class HeaderUserMenuPComponent implements OnInit {
     constructor(public readonly mediaObserver: MediaObserver) {}
 
     ngOnInit(): void {}
+
+    onClickAccountMenu(index: number, item: HeaderAccountMenu): void {
+        this.clickAccountMenu.emit({ index, item });
+    }
 }

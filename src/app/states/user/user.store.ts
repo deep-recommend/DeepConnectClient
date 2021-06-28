@@ -1,8 +1,31 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { DAY, MONTH, YEAR } from 'src/app/general/utilities/date';
+import { GENDER } from 'src/app/general/utilities/gender';
+import { PREFECTURE } from 'src/app/general/utilities/prefecture';
 import { UserProps } from './user.model';
 
-export interface UserState extends EntityState<UserProps> {}
+export interface UserState extends EntityState<UserProps> {
+    ui: {
+        genders: string[];
+        years: number[];
+        months: number[];
+        days: number[];
+        birthPlaces: string[];
+    };
+    profile: UserProps;
+}
+
+const initialState = {
+    ui: {
+        genders: GENDER,
+        years: YEAR,
+        months: MONTH,
+        days: DAY,
+        birthPlaces: PREFECTURE,
+    },
+    profile: undefined,
+};
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
@@ -10,10 +33,17 @@ export interface UserState extends EntityState<UserProps> {}
 })
 export class UserStore extends EntityStore<UserState> {
     constructor() {
-        super();
+        super(initialState);
     }
 
     setUsers(users: UserProps[]): void {
         this.set(users);
+    }
+
+    updateProfile(profile: UserProps): void {
+        this.update({
+            ...this.getValue().profile,
+            profile,
+        });
     }
 }

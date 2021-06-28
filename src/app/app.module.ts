@@ -5,11 +5,12 @@ import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
             provide: NG_ENTITY_SERVICE_CONFIG,
             useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
         },
+        { provide: HTTP_INTERCEPTORS, useClass: DeepRecommendInterceptor, multi: true },
     ],
     bootstrap: [AppComponent],
 })
