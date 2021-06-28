@@ -2,14 +2,33 @@ import { Validators } from '@angular/forms';
 import { SignUpFormProps, SignUpProps } from '../interfaces/sign-up.interface';
 
 export class SignUpModel implements SignUpProps {
-    name: string = '';
-    email: string = '';
-    password: string = '';
-    passwordConfirmation: string = '';
+    realLastName!: string;
+    realFirstName!: string;
+    stageName?: string = '';
+    gender!: string;
+    birthYear!: number;
+    birthMonth!: number;
+    birthDay!: number;
+    birthPlace!: string;
+    agency?: string = '';
+    profilePicture?: string = '';
+    email!: string;
+    password!: string;
+    passwordConfirmation!: string;
 
     constructor(value?: SignUpProps) {
         if (value) {
-            this.name = value.name;
+            this.realLastName = value.realLastName;
+            this.realFirstName = value.realFirstName;
+            this.stageName = value.stageName;
+            this.gender = value.gender;
+            this.birthYear = value.birthYear;
+            this.birthMonth = value.birthMonth;
+            this.birthDay = value.birthDay;
+            this.birthYear = value.birthYear;
+            this.birthPlace = value.birthPlace;
+            this.agency = value.agency;
+            this.profilePicture = value.profilePicture;
             this.email = value.email;
             this.password = value.password;
             this.passwordConfirmation = value.passwordConfirmation;
@@ -18,7 +37,16 @@ export class SignUpModel implements SignUpProps {
 
     get value(): SignUpProps {
         return {
-            name: this.name,
+            realLastName: this.realLastName,
+            realFirstName: this.realFirstName,
+            stageName: this.stageName,
+            gender: this.gender,
+            birthYear: this.birthYear,
+            birthMonth: this.birthMonth,
+            birthDay: this.birthDay,
+            birthPlace: this.birthPlace,
+            agency: this.agency,
+            profilePicture: this.profilePicture,
             email: this.email,
             password: this.password,
             passwordConfirmation: this.passwordConfirmation,
@@ -27,7 +55,16 @@ export class SignUpModel implements SignUpProps {
 
     get formGroupValue(): SignUpFormProps {
         return {
-            name: [this.name, [Validators.required]],
+            realLastName: [this.realLastName, [Validators.required]],
+            realFirstName: [this.realLastName, [Validators.required]],
+            stageName: [this.stageName],
+            gender: [this.gender, [Validators.required]],
+            birthYear: [this.birthYear, [Validators.required]],
+            birthMonth: [this.birthMonth, [Validators.required]],
+            birthDay: [this.birthDay, [Validators.required]],
+            birthPlace: [this.birthPlace, [Validators.required]],
+            agency: [this.agency],
+            profilePicture: [this.profilePicture],
             email: [this.email, [Validators.required, Validators.email]],
             password: [this.password, [Validators.required]],
             passwordConfirmation: [this.passwordConfirmation, [Validators.required]],

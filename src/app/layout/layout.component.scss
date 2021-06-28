@@ -1,6 +1,10 @@
 :host {
-    app-footer-c {
-        position: absolute;
-        bottom: -320px;
+    .contents {
+        width: 700px;
+        margin: 0 auto;
+    }
+    app-content {
+        height: 100vh;
+        overflow: scroll;
     }
 }

@@ -1,7 +1,10 @@
 :host {
-    width: 100vw;
     background-color: #000;
-
+    width: 700px;
+    app-footer-logo-p {
+        width: 256px;
+        height: 256pxs;
+    }
     app-footer-logo-p:hover {
         animation: 5s linear infinite rotation;
     }

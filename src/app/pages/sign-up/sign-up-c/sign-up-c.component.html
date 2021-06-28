@@ -1,3 +1,10 @@
-<div fxLayout="row" fxLayoutAlign="center center" style="width: 100vw; height: 100vh">
-    <app-sign-up-p (signUp)="onReceivedClickSignUp($event)"></app-sign-up-p>
+<div fxLayout="row" fxLayoutAlign="center center" style="width: 700px; height: 100vh">
+    <app-sign-up-p
+        [genders]="genders$ | async"
+        [years]="years$ | async"
+        [months]="months$ | async"
+        [days]="days$ | async"
+        [birthPlaces]="birthPlaces$ | async"
+        (signUp)="onReceivedClickSignUp($event)"
+    ></app-sign-up-p>
 </div>

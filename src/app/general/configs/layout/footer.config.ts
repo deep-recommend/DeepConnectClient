@@ -4,7 +4,7 @@ export const footerLawItem: FooterItem[] = [
     createFooterItem({
         icon: 'settings',
         label: '事業概要',
-        routerLink: '/',
+        hrefLink: '/',
     }),
     createFooterItem({
         icon: 'settings',
@@ -30,11 +30,10 @@ export const footerLawItem: FooterItem[] = [
 
 export const footerSnsItem: FooterItem[] = [
     createFooterItem({
-        icon: 'facebook',
+        icon: 'public',
         label: 'FaceBook',
         hrefLink: 'https://www.facebook.com/recommend.deep/',
     }),
-    // TODO FaceBook以外のマテリアルアイコンない
     createFooterItem({
         icon: 'public',
         label: 'Twitter',

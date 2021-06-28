@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, Store, StoreConfig } from '@datorama/akita';
+import { Store, StoreConfig } from '@datorama/akita';
 import { footerLawItem, footerSnsItem } from 'src/app/general/configs/layout/footer.config';
 import { headerAccountMenu } from 'src/app/general/configs/layout/header.config';
 import { sideNavMenu } from 'src/app/general/configs/layout/sidenav.config';

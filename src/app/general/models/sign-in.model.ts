@@ -2,8 +2,8 @@ import { Validators } from '@angular/forms';
 import { SignInFormProps, SignInProps } from '../interfaces/sign-in.interface';
 
 export class SignInModel implements SignInProps {
-    email: string = '';
-    password: string = '';
+    email!: string;
+    password!: string;
 
     constructor(value?: SignInProps) {
         if (value) {

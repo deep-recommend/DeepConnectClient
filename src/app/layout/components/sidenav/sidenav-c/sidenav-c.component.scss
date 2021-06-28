@@ -1,11 +1,13 @@
 :host {
+    overflow: hidden;
     .sidenav {
-        position: fixed;
+        position: absolute;
         top: 64px;
         bottom: 0;
-        left: 0;
+        left: calc((100vw - 700px) / 2);
 
         width: 320px;
+        height: calc(100vh + 64px);
         overflow: hidden;
         border-right: 1px solid #eee;
         background-color: #fff;
@@ -16,6 +18,16 @@
         &.full-menu-open {
             transform: translateX(0);
             width: 320px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .sidenav {
+            left: 0;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .sidenav {
+            top: 58px;
         }
     }
 }
