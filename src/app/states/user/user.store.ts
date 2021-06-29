@@ -14,6 +14,7 @@ export interface UserState extends EntityState<UserProps> {
         birthPlaces: string[];
     };
     profile: UserProps;
+    companion: UserProps;
 }
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
         birthPlaces: PREFECTURE,
     },
     profile: undefined,
+    companion: undefined,
 };
 
 @Injectable({ providedIn: 'root' })
@@ -44,6 +46,13 @@ export class UserStore extends EntityStore<UserState> {
         this.update({
             ...this.getValue().profile,
             profile,
+        });
+    }
+
+    updateCompanion(companion: UserProps): void {
+        this.update({
+            ...this.getValue().companion,
+            companion,
         });
     }
 }

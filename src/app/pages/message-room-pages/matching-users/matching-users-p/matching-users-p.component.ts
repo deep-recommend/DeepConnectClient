@@ -9,7 +9,7 @@ import { UserProps } from 'src/app/states/user';
 })
 export class MatchingUsersPComponent implements OnInit {
     @Input() users!: UserProps[] | null;
-    @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>();
+    @Output() clickUserToMessage: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
 
@@ -17,7 +17,7 @@ export class MatchingUsersPComponent implements OnInit {
 
     birthDayToAge = birthDayToAge;
 
-    onClickUserToMessage(userId: number): void {
+    onClickUserToMessage(userId: string): void {
         this.clickUserToMessage.emit(userId);
     }
 }

@@ -38,13 +38,29 @@ export class DeepRecommendInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError((err) => {
                 switch (err.status) {
+                    case 400:
+                        console.log('400');
+                        break;
                     case 401:
                         this.localStorage.removeItem(accessTokenKey);
                         this.router.navigate(['/sign-in']);
-
-                        return throwError(err);
+                        break;
+                    case 403:
+                        console.log('403');
+                        break;
+                    case 404:
+                        console.log('404');
+                        break;
+                    case 422:
+                        console.log('422');
+                        break;
+                    case 500:
+                        console.log('500');
+                        break;
+                    default:
+                        break;
                 }
-                return throwError(err);
+                return throwError('Ctrl + R');
             })
         );
     }

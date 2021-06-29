@@ -25,6 +25,18 @@ export class UserService {
             .pipe(tap((data) => this.userStore.setUsers(data)));
     }
 
+    getOnlyUserRequest(userId: string): Observable<UserProps> {
+        const url = `${this._apiUserUrl}/${userId}`;
+        return this.http.get<UserProps>(url, this._httpHeaders);
+    }
+
+    getCompanionRequest(userId: string): Observable<UserProps> {
+        const url = `${this._apiUserUrl}/${userId}`;
+        return this.http
+            .get<UserProps>(url, this._httpHeaders)
+            .pipe(tap((data) => this.userStore.updateCompanion(data)));
+    }
+
     postUserRequest(user: SignInProps): Observable<SignInProps> {
         console.log('Sign up user', user);
         return this.httpService.post(this._apiUserUrl, user, this._httpHeaders);

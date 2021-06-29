@@ -1,0 +1,18 @@
+:host {
+    .message-room-header {
+        width: 700px;
+        position: absolute;
+        top: 64px;
+    }
+    .account-menu {
+        height: 45px;
+        & > button {
+            height: inherit;
+        }
+    }
+    .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 100%;
+    }
+}

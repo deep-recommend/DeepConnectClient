@@ -8,6 +8,8 @@ export class UserQuery extends QueryEntity<UserState> {
 
     profile$ = this.select('profile');
 
+    companion$ = this.select('companion');
+
     ui$ = this.select('ui');
     genders$ = this.select((state) => state.ui.genders);
     years$ = this.select((state) => state.ui.years);

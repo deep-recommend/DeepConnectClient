@@ -1,5 +1,5 @@
 export interface UserProps {
-    id: number;
+    id: string;
     realLastName: string;
     realFirstName: string;
     stageName: string | null;
@@ -17,7 +17,7 @@ export interface UserProps {
 
 export interface ProfileProps {
     user: {
-        id: number;
+        id: string;
         realLastName: string;
         realFirstName: string;
         stageName: string | null;

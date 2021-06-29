@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { InteractionService } from 'src/app/general/services/interaction.service';
 import { UserProps, UserService, UserQuery } from 'src/app/states/user';
 
 @Component({
@@ -21,8 +22,9 @@ export class MatchingUsersCComponent implements OnInit {
         this.userService.getUsersRequest().subscribe();
     }
 
-    onReceivedClickUserToMessage(userId: number): void {
-        console.log('userId', userId);
-        this.router.navigate(['/message-room']);
+    onReceivedClickUserToMessage(userId: string): void {
+        this.userService.getCompanionRequest(userId).subscribe(() => {
+            this.router.navigate(['/message-room']);
+        });
     }
 }
