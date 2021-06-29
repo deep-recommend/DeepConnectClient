@@ -1,0 +1,4 @@
+<app-matching-users-p
+    [users]="users$ | async"
+    (clickUserToMessage)="onReceivedClickUserToMessage($event)"
+></app-matching-users-p>

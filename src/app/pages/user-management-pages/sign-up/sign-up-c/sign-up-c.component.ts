@@ -11,17 +11,17 @@ import { UserQuery, UserService } from 'src/app/states/user';
     styleUrls: ['./sign-up-c.component.scss'],
 })
 export class SignUpCComponent implements OnInit {
-    constructor(
-        private readonly userService: UserService,
-        private readonly router: Router,
-        private readonly userQuery: UserQuery
-    ) {}
-
     genders$: Observable<string[]> = this.userQuery.genders$;
     years$: Observable<number[]> = this.userQuery.years$;
     months$: Observable<number[]> = this.userQuery.months$;
     days$: Observable<number[]> = this.userQuery.days$;
     birthPlaces$: Observable<string[]> = this.userQuery.birthPlaces$;
+
+    constructor(
+        private readonly userService: UserService,
+        private readonly router: Router,
+        private readonly userQuery: UserQuery
+    ) {}
 
     ngOnInit(): void {}
 

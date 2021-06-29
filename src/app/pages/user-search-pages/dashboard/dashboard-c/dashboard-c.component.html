@@ -1,0 +1,6 @@
+<app-dashboard-to-search-page-button-p
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    (clickSearchField)="onReceivedClickSearchField()"
+></app-dashboard-to-search-page-button-p>
+<app-dashboard-user-list-p class="user-list" [users]="users$ | async"></app-dashboard-user-list-p>
