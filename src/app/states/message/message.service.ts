@@ -28,8 +28,6 @@ export class MessageService {
     }
 
     postMessageRequest(message: CreateMessageProps): Observable<MessageProps> {
-        return this.http
-            .post<MessageProps>(this._apiMessageUrl, message, this._httpHeaders)
-            .pipe(tap((data) => this.messageStore.addMessage(data)));
+        return this.http.post<MessageProps>(this._apiMessageUrl, message, this._httpHeaders);
     }
 }

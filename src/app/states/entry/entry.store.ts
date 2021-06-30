@@ -11,8 +11,8 @@ export interface EntryState extends EntityState<EntryProps> {
 
 const initialState = {
     ui: {},
-    profileEntries: undefined,
-    companionEntries: undefined,
+    profileEntries: [],
+    companionEntries: [],
 };
 
 @Injectable({ providedIn: 'root' })
