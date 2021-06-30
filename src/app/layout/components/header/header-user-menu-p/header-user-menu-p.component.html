@@ -1,14 +1,14 @@
 <div class="account-menu">
     <button mat-button matTooltip="アカウント" [matMenuTriggerFor]="accountMenu">
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
-            <div *ngIf="profile?.profilePicture; then thenBlock; else elseBlock"></div>
+            <div *ngIf="profile?.user?.profilePicture; then thenBlock; else elseBlock"></div>
             <ng-template #thenBlock>
-                <img class="avatar" src="{{ profile?.profilePicture }}" />
+                <img class="avatar" src="{{ profile?.user?.profilePicture }}" />
             </ng-template>
             <ng-template #elseBlock>
                 <img class="avatar" src="/assets/images/png/default-avatar.png" />
             </ng-template>
-            <span fxHide.xs>{{ profile?.realLastName }}{{ profile?.realFirstName }}</span>
+            <span fxHide.xs>{{ profile?.user?.realLastName }}{{ profile?.user?.realFirstName }}</span>
             <mat-icon>expand_more</mat-icon>
         </div>
     </button>

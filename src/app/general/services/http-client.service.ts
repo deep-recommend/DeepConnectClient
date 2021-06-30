@@ -3,27 +3,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClientOptions } from '../interfaces/http-client-options.interface';
-import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class HttpClientService {
-    constructor(public http: HttpClient, public err: ErrorHandlerService) {}
+    constructor(public http: HttpClient) {}
 
     get(url: string, options?: HttpClientOptions): Observable<any> {
-        return this.http.get(url, options).pipe(catchError(this.err.handleError));
+        return this.http.get(url, options);
     }
 
     post(url: string, body: any, options?: HttpClientOptions): Observable<any> {
-        return this.http.post(url, body, options).pipe(catchError(this.err.handleError));
+        return this.http.post(url, body, options);
     }
 
     put(url: string, body: any, options?: HttpClientOptions): Observable<any> {
-        return this.http.put(url, body, options).pipe(catchError(this.err.handleError));
+        return this.http.put(url, body, options);
     }
 
     delete(url: string, options?: HttpClientOptions): Observable<any> {
-        return this.http.delete(url, options).pipe(catchError(this.err.handleError));
+        return this.http.delete(url, options);
     }
 }

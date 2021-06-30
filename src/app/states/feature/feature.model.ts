@@ -1,4 +1,5 @@
 export interface FeatureProps {
+    _id: string;
     smoke: boolean;
     alcohol: boolean;
     gamble: boolean;

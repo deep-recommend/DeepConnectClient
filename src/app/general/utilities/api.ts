@@ -1,4 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 export const accessTokenKey: string = 'CmCn_access_token';
 
@@ -15,6 +15,22 @@ export const httpHeaders = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
     }),
+};
+
+export const httpOptions = (paramsKeys: string[], paramsValues: string[]) => {
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.set('Content-Type', 'application/json');
+
+    let arrIndex = 0;
+    let httpParams = new HttpParams();
+    for (let param of paramsValues) {
+        if (param) {
+            httpParams = httpParams.set(paramsKeys[arrIndex], param);
+        }
+        arrIndex += 1;
+    }
+
+    return { headers: httpHeaders, params: httpParams };
 };
 
 export const skTest: string = '';

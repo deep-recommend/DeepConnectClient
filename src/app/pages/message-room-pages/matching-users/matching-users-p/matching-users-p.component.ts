@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { birthDayToAge } from 'src/app/general/functions/birthday-to-age';
-import { UserProps } from 'src/app/states/user';
+import { ProfileProps, UserProps } from 'src/app/states/user';
 
 @Component({
     selector: 'app-matching-users-p',
@@ -9,6 +9,7 @@ import { UserProps } from 'src/app/states/user';
 })
 export class MatchingUsersPComponent implements OnInit {
     @Input() users!: UserProps[] | null;
+    @Input() profile!: ProfileProps | null;
     @Output() clickUserToMessage: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}

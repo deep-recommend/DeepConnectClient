@@ -1,4 +1,4 @@
 export interface RoomProps {
-    id: string;
+    _id: string;
     createdAt: string;
 }

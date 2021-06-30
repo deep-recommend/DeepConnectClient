@@ -1,4 +1,18 @@
 <div class="message-screen">
-    <!-- ルームのIDを持ってきて -->
-    <!--  -->
+    <div *ngFor="let message of messages; let i = index">
+        <div *ngIf="profile?.user?._id === message._id; then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>
+            <div class="message-by-profile">
+                {{ message.message }}
+            </div>
+        </ng-template>
+        <ng-template #elseBlock>
+            <div class="message-by-companion">
+                {{ message.message }}
+            </div>
+        </ng-template>
+    </div>
+    <div *ngFor="let message of messages; let i = index">
+        {{ message.message }}
+    </div>
 </div>

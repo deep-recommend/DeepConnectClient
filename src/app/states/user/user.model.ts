@@ -17,7 +17,7 @@ export interface UserProps {
 
 export interface ProfileProps {
     user: {
-        id: string;
+        _id: string;
         realLastName: string;
         realFirstName: string;
         stageName: string | null;

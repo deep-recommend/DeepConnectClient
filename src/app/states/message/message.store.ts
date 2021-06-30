@@ -18,4 +18,12 @@ export class MessageStore extends EntityStore<MessageState> {
     constructor() {
         super(initialState);
     }
+
+    setMessages(messages: MessageProps[]): void {
+        this.set(messages);
+    }
+
+    addMessage(message: MessageProps): void {
+        this.add(message);
+    }
 }

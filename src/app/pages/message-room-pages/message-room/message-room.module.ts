@@ -8,9 +8,10 @@ import { MessageRoomCComponent } from './message-room-c/message-room-c.component
 import { MessageRoomHeaderPComponent } from './message-room-header-p/message-room-header-p.component';
 import { MessageRoomScreenPComponent } from './message-room-screen-p/message-room-screen-p.component';
 import { MessageRoomMessageSenderPComponent } from './message-room-message-sender-p/message-room-message-sender-p.component';
+import { MessageRoomIsFalsePComponent } from './message-room-is-false-p/message-room-is-false-p.component';
 
 @NgModule({
-    declarations: [MessageRoomComponent, MessageRoomCComponent, MessageRoomHeaderPComponent, MessageRoomScreenPComponent, MessageRoomMessageSenderPComponent],
+    declarations: [MessageRoomComponent, MessageRoomCComponent, MessageRoomHeaderPComponent, MessageRoomScreenPComponent, MessageRoomMessageSenderPComponent, MessageRoomIsFalsePComponent],
     imports: [DeepRecommendSharedModule, MessageRoomRoutingModule],
 })
 export class MessageRoomModule {}

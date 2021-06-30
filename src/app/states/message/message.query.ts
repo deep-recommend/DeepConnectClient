@@ -4,9 +4,9 @@ import { MessageStore, MessageState } from './message.store';
 
 @Injectable({ providedIn: 'root' })
 export class MessageQuery extends QueryEntity<MessageState> {
+    messages$ = this.selectAll();
 
-  constructor(protected store: MessageStore) {
-    super(store);
-  }
-
+    constructor(protected store: MessageStore) {
+        super(store);
+    }
 }

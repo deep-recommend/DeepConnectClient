@@ -18,6 +18,6 @@ export class RoomService {
     }
 
     postRoomRequest(): Observable<RoomProps> {
-        return this.http.post<RoomProps>(this._apiRoomUrl, this._httpHeaders);
+        return this.http.post<RoomProps>(this._apiRoomUrl, this._httpHeaders).pipe();
     }
 }
