@@ -40,6 +40,6 @@ export class AuthenticationService {
     getProfile(): Observable<ProfileProps> {
         return this.http
             .get<ProfileProps>(this._apiProfileUrl, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateProfile(data.user)));
+            .pipe(tap((data) => this.userStore.updateProfile(data)));
     }
 }

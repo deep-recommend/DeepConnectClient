@@ -3,7 +3,7 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { DAY, MONTH, YEAR } from 'src/app/general/utilities/date';
 import { GENDER } from 'src/app/general/utilities/gender';
 import { PREFECTURE } from 'src/app/general/utilities/prefecture';
-import { UserProps } from './user.model';
+import { ProfileProps, UserProps } from './user.model';
 
 export interface UserState extends EntityState<UserProps> {
     ui: {
@@ -13,7 +13,12 @@ export interface UserState extends EntityState<UserProps> {
         days: number[];
         birthPlaces: string[];
     };
-    profile: UserProps;
+    params: {
+        roomId: string;
+        userId: string;
+    };
+    profile: ProfileProps;
+    companion: UserProps;
 }
 
 const initialState = {
@@ -24,7 +29,12 @@ const initialState = {
         days: DAY,
         birthPlaces: PREFECTURE,
     },
+    params: {
+        roomId: '',
+        userId: '',
+    },
     profile: undefined,
+    companion: undefined,
 };
 
 @Injectable({ providedIn: 'root' })
@@ -40,10 +50,17 @@ export class UserStore extends EntityStore<UserState> {
         this.set(users);
     }
 
-    updateProfile(profile: UserProps): void {
+    updateProfile(profile: ProfileProps): void {
         this.update({
             ...this.getValue().profile,
             profile,
+        });
+    }
+
+    updateCompanion(companion: UserProps): void {
+        this.update({
+            ...this.getValue().companion,
+            companion,
         });
     }
 }

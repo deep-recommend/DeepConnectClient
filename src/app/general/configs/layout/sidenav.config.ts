@@ -14,12 +14,12 @@ export const sideNavMenu: SideNavMenu[] = [
     createSideNavMenu({
         icon: 'message',
         label: 'メッセージ',
-        routerLink: '/',
+        routerLink: '/matching-users',
     }),
     createSideNavMenu({
         icon: 'account_circle',
         label: 'マイページ',
-        routerLink: '/',
+        routerLink: '/my-page',
     }),
     createSideNavMenu({
         icon: 'public',

@@ -1,4 +1,4 @@
-# AngularTemplate
+# comedian-matching-front
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
@@ -16,13 +16,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   $ npm i payjp
 -   .prettierrc の設定
 
-## TOTO
+## TODO
 
 -   $ git clone git@github.com:deep-recommend/angular-template.git
 -   $ npm i
 -   $ ng s
 -   「authentication.service.ts」の token の書き換え
 -   「index.html」の title タグの書き換え
-
-# angular-template
-# comedian-matching-front

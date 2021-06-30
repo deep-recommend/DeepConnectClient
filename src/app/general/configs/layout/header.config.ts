@@ -4,7 +4,7 @@ export const headerAccountMenu: HeaderAccountMenu[] = [
     createHeaderAccountMenu({
         icon: 'settings',
         label: '設定',
-        routerLink: '/',
+        routerLink: '/my-page',
     }),
     createHeaderAccountMenu({
         icon: 'logout',

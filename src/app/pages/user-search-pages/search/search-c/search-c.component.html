@@ -1,0 +1,8 @@
+<app-search-form-p
+    [genders]="genders$ | async"
+    [years]="years$ | async"
+    [months]="months$ | async"
+    [days]="days$ | async"
+    [birthPlaces]="birthPlaces$ | async"
+    (submitUserSearch)="onReceivedSubmitUserSearch($event)"
+></app-search-form-p>

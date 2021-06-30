@@ -1,0 +1,12 @@
+<div *ngIf="isRoom$ | async; then thenBlock; else elseBlock"></div>
+<ng-template #thenBlock>
+    <app-message-room-header-p [companion]="companion$ | async"></app-message-room-header-p>
+    <app-message-room-screen-p [messages]="messages$ | async" [profile]="profile$ | async"></app-message-room-screen-p>
+    <app-message-room-message-sender-p
+        fxLayoutAlign="center"
+        (sendMessage)="onReceivedSendMessage($event)"
+    ></app-message-room-message-sender-p>
+</ng-template>
+<ng-template #elseBlock>
+    <app-message-room-is-false-p></app-message-room-is-false-p>
+</ng-template>
