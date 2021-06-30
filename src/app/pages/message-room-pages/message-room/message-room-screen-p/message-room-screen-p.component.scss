@@ -1,7 +1,13 @@
 :host {
     .message-screen {
+        position: absolute;
+        top: 128px;
         width: 100%;
         height: 100%;
         background-color: #fff;
+    }
+    .message-by-profile {
+    }
+    .message-by-companion {
     }
 }

@@ -45,7 +45,12 @@ const routes: Routes = [
             import('./pages/message-room-pages/message-room/message-room.module').then((m) => m.MessageRoomModule),
         canActivate: [DeepRecommendGuard],
     },
-    { path: 'user-detail', loadChildren: () => import('./pages/user-search-pages/user-detail/user-detail.module').then(m => m.UserDetailModule) },
+    {
+        path: 'user-detail',
+        loadChildren: () =>
+            import('./pages/user-search-pages/user-detail/user-detail.module').then((m) => m.UserDetailModule),
+        canActivate: [DeepRecommendGuard],
+    },
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

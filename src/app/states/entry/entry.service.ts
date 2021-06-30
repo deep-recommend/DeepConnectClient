@@ -36,6 +36,26 @@ export class EntryService {
             .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)));
     }
 
+    getEntriesRequestByProfileNotObservable(): Promise<EntryProps[]> {
+        const paramKeys: string[] = ['userId'];
+        const paramValues: string[] = [this.userQuery.profileGetter.user._id];
+
+        return this.http
+            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .pipe(tap((data) => this.entryStore.updateProfileEntries(data)))
+            .toPromise();
+    }
+
+    getEntriesRequestByCompanionNotObservable(): Promise<EntryProps[]> {
+        const paramKeys: string[] = ['userId'];
+        const paramValues: string[] = [this.userQuery.companionGetter.id];
+
+        return this.http
+            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)))
+            .toPromise();
+    }
+
     postEntryRequest(entry: CreateEntryProps): Observable<EntryProps> {
         return this.http.post<EntryProps>(this._apiEntryUrl, entry, this._httpHeaders);
     }

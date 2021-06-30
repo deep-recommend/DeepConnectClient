@@ -24,9 +24,11 @@ export const httpOptions = (paramsKeys: string[], paramsValues: string[]) => {
     let arrIndex = 0;
     let httpParams = new HttpParams();
     for (let param of paramsValues) {
-        if (param) {
-            httpParams = httpParams.set(paramsKeys[arrIndex], param);
+        if (!param) {
+            return;
         }
+        httpParams = httpParams.set(paramsKeys[arrIndex], param);
+        console.log(paramsKeys[arrIndex], param);
         arrIndex += 1;
     }
 
