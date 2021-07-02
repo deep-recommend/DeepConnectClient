@@ -1,35 +1,30 @@
 import { Injectable } from '@angular/core';
-import { accessTokenKey, apiUrl } from '../../utilities/api';
-import io from 'socket.io-client';
-import * as R from 'ramda';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { apiHostPort } from '../../utilities/api';
+import { io } from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { Socket, SocketIoConfig } from 'ngx-socket-io';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SocketService {
     private _socket: any;
-    private _apiUrl = apiUrl;
-    private _accessTokenKey = accessTokenKey;
+    private _apiHostPort = apiHostPort;
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-        this.connect(String(localStorage.getItem(this._accessTokenKey)));
+    constructor() {
+        this.connect()
     }
-
-    constructor() {}
 
     /**
      * Socket.ioに接続
-     * @param token
      */
-    connect(token: string): void {
-        this._socket = io(this._apiUrl, { query: { token: token } });
+    connect(): void {
+        console.log('connect works!')
+        this._socket = io(this._apiHostPort);
     }
 
     /**
      * Socket.ioの接続を止める
-     * @param token
      */
     disconnect(): void {
         if (!this._socket) {
@@ -45,14 +40,7 @@ export class SocketService {
      * @param callBack
      */
     emit(emitName: string, data?: any, callBack?: any): void {
-        if (!R.prop(this._accessTokenKey)(data)) {
-            data = R.assoc(accessTokenKey, localStorage.getItem(accessTokenKey))(data);
-        }
-        if (callBack) {
-            this._socket.emit(emitName, data, callBack);
-        } else {
-            this._socket.emit(emitName, data);
-        }
+        this._socket.emit(emitName, data, callBack);
     }
 
     /**
@@ -70,4 +58,16 @@ export class SocketService {
         });
         return observable;
     }
+}
+
+
+const config: SocketIoConfig = {
+  url: 'http://localhost:3500', options: {}
+};
+
+@Injectable({providedIn: 'root'})
+export class CustomSocket extends Socket {
+  constructor() {
+    super(config)
+  }
 }

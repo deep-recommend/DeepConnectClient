@@ -2,12 +2,20 @@
     .message-screen {
         position: absolute;
         top: 128px;
-        width: 100%;
-        height: 100%;
+        width: 700px;
+        height: calc(100vh - 128px);
+        overflow: scroll;
         background-color: #fff;
+        .message-by-profile {
+            margin: 0 auto;
+        }
+        .message-by-companion {
+        }
     }
-    .message-by-profile {
-    }
-    .message-by-companion {
+
+    .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 100%;
     }
 }

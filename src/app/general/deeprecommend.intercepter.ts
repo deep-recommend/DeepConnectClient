@@ -46,6 +46,7 @@ export class DeepRecommendInterceptor implements HttpInterceptor {
                             break;
                         case 401:
                             console.warn('トークン認証エラー');
+                            this.router.navigate(['/sign-in']);
                             break;
                         case 403:
                             console.warn('アクセス権限なし');

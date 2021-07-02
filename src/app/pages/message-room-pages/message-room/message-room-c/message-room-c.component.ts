@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { companionIdKey } from 'src/app/general/utilities/local-strage';
-import { HALF_WIDTH_ALPHA_NUM_REGEX } from 'src/app/general/utilities/regex';
-import { EntryQuery, EntryService } from 'src/app/states/entry';
-import { CreateMessageProps, MessageQuery, MessageService } from 'src/app/states/message';
+import { EntryService } from 'src/app/states/entry';
+import { CreateMessageProps, MessageQuery, MessageService, MessageStore } from 'src/app/states/message';
 import { RoomQuery, RoomService, RoomStore } from 'src/app/states/room';
 import { UserQuery, UserService } from 'src/app/states/user';
+import { EmitterService } from 'src/app/general/services/socket/socket-emitter.service';
+import { ReceiverService } from 'src/app/general/services/socket/socket-receiver.service';
 
 @Component({
     selector: 'app-message-room-c',
@@ -17,6 +19,7 @@ export class MessageRoomCComponent implements OnInit {
     companion$ = this.userQuery.companion$;
     isRoom$ = this.roomQuery.isRoom$;
     messages$ = this.messageQuery.messages$;
+    currentRoomId$ = this.roomQuery.currentRoomId$;
 
     profile = this.userQuery.profileGetter;
     companion = this.userQuery.companionGetter;
@@ -25,17 +28,21 @@ export class MessageRoomCComponent implements OnInit {
         private readonly userQuery: UserQuery,
         private readonly userService: UserService,
         private readonly entryService: EntryService,
-        private readonly entryQuery: EntryQuery,
         private readonly roomService: RoomService,
         private readonly authService: AuthenticationService,
         private readonly roomStore: RoomStore,
         private readonly roomQuery: RoomQuery,
         private readonly messageService: MessageService,
-        private readonly messageQuery: MessageQuery
+        private readonly messageQuery: MessageQuery,
+        private readonly router: Router,
+        private readonly emitter: EmitterService,
+        private readonly receiver: ReceiverService,
+        private readonly messageStore: MessageStore
     ) {}
 
     ngOnInit(): void {
         this.roomInitializer();
+        this.messages$.subscribe(console.log);
     }
 
     async roomInitializer(): Promise<void> {
@@ -49,7 +56,7 @@ export class MessageRoomCComponent implements OnInit {
         console.log('companionEntries', companionEntries);
 
         if (profileEntries.length === 0 || companionEntries.length === 0) {
-            console.log('then');
+            console.log('Create room');
             this.roomService.postRoomRequest().subscribe((roomData) => {
                 const profileEntryValue = {
                     userId: this.profile.user._id,
@@ -67,7 +74,7 @@ export class MessageRoomCComponent implements OnInit {
                 return;
             });
         } else {
-            console.log('else');
+            console.log('Exist room');
             profileEntries.forEach((profileEntry) => {
                 companionEntries.forEach((companionEntry) => {
                     if (profileEntry.roomId === companionEntry.roomId) {
@@ -82,15 +89,32 @@ export class MessageRoomCComponent implements OnInit {
     }
 
     onReceivedSendMessage(message: string): void {
-        console.log();
         const value: CreateMessageProps = {
             userId: this.profile.user._id,
             roomId: this.roomQuery.currentRoomIdGetter,
             message: message,
         };
-        console.log(value);
-        this.messageService.postMessageRequest(value).subscribe(() => {
-            this.messageService.getMessagesRequest().subscribe();
-        });
+        this.emitter.emitMessage(value);
+        this.receiver.receiveMessage().subscribe(data => {
+            console.warn('data',data)
+            this.messageService.getMessagesRequest().subscribe()
+        })
+
+        this.emitter.sendMessage(value)
+        this.receiver.getMessage().pipe(
+        ).subscribe(data => {
+            console.warn('data', data)
+            this.messageService.getMessagesRequest().subscribe()
+        })
+        this.messageService.getMessagesRequest().subscribe(data => {
+            console.warn(data)
+        })
+        // this.messageService.postMessageRequest(value).subscribe(() => {
+        //     this.messageService.getMessagesRequest().subscribe();
+        // });
+    }
+
+    onReceivedClickAccount(userId: string | undefined): void {
+        this.router.navigate([`user-detail/${userId}`]);
     }
 }

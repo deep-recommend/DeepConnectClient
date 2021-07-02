@@ -24,4 +24,8 @@ export class DashboardCComponent implements OnInit {
     onReceivedClickSearchField(): void {
         this.router.navigate(['/search']);
     }
+
+    onReceivedClickUsersToDetail(userId: string): void {
+        this.router.navigate([`user-detail/${userId}`]);
+    }
 }

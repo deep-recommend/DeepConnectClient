@@ -11,6 +11,7 @@ import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
+import { SocketIoModule } from 'ngx-socket-io';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -18,6 +19,7 @@ import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
         HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
+        SocketIoModule,
         DeepRecommendSharedModule,
 
         environment.production ? [] : AkitaNgDevtools.forRoot(),

@@ -1,15 +1,35 @@
 <div class="message-screen">
     <div *ngFor="let message of messages; let i = index">
-        <div *ngIf="profile?.user?._id === message._id; then thenBlock; else elseBlock"></div>
-        <ng-template #thenBlock>
-            <div class="message-by-profile">
-                {{ message.message }}
-            </div>
-        </ng-template>
-        <ng-template #elseBlock>
-            <div class="message-by-companion">
-                {{ message.message }}
-            </div>
-        </ng-template>
+        <div *ngIf="currentRoomId === message.roomId">
+            <div *ngIf="profile?.user?._id === message.userId; then thenBlock; else elseBlock"></div>
+            <ng-template #thenBlock>
+                <div>
+                    <div fxLayout="row">
+                        <img class="avatar" src="{{ profile?.user?.profilePicture }}" />
+                        <div fxLayout="column">
+                            <p>
+                                {{ profile?.user?.realLastName }}{{ profile?.user?.realFirstName
+                                }}{{ relativeTime(message.createdAt) }}
+                            </p>
+                            <p>{{ message.message }}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #elseBlock>
+                <div fxLayout="row" fxLayoutAlign="end">
+                    <div fxLayout="row">
+                        <div fxLayout="column">
+                            <p>
+                                {{ companion?.realLastName }}{{ companion?.realFirstName
+                                }}{{ relativeTime(message.createdAt) }}
+                            </p>
+                            <p>{{ message.message }}</p>
+                        </div>
+                        <img class="avatar" src="{{ companion?.profilePicture }}" />
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>

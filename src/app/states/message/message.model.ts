@@ -3,6 +3,7 @@ export interface MessageProps {
     userId: string;
     roomId: string;
     message: string;
+    createdAt: Date;
 }
 
 export interface CreateMessageProps {

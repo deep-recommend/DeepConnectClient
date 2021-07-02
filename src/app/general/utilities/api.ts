@@ -2,7 +2,8 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 
 export const accessTokenKey: string = 'CmCn_access_token';
 
-export const apiUrl: string = 'http://localhost:3500/api';
+export const apiHostPort: string = 'http://localhost:3500';
+export const apiUrl: string = `${apiHostPort}/api`;
 export const apiUserUrl: string = `${apiUrl}/users`;
 export const apiAuthUrl: string = `${apiUrl}/auth/login`;
 export const apiProfileUrl: string = `${apiUrl}/auth/profile`;
