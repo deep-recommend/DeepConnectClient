@@ -2,24 +2,22 @@ import { Injectable } from '@angular/core';
 import { apiHostPort } from '../../utilities/api';
 import { io } from 'socket.io-client';
 import { Observable } from 'rxjs';
-import { Socket, SocketIoConfig } from 'ngx-socket-io';
-
 @Injectable({
     providedIn: 'root',
 })
 export class SocketService {
     private _socket: any;
-    private _apiHostPort = apiHostPort;
+    private _apiHostPort = 'http://localhost:3501';
 
     constructor() {
-        this.connect()
+        this.connect();
     }
 
     /**
      * Socket.ioに接続
      */
     connect(): void {
-        console.log('connect works!')
+        console.log('Socket connect');
         this._socket = io(this._apiHostPort);
     }
 
@@ -30,6 +28,7 @@ export class SocketService {
         if (!this._socket) {
             return;
         }
+        console.log('Socket disconnect');
         this._socket.disconnect();
     }
 
@@ -39,8 +38,9 @@ export class SocketService {
      * @param data
      * @param callBack
      */
-    emit(emitName: string, data?: any, callBack?: any): void {
-        this._socket.emit(emitName, data, callBack);
+    emit(emitName: string, data?: any): void {
+        this.connect();
+        this._socket.emit(emitName, data);
     }
 
     /**
@@ -58,16 +58,4 @@ export class SocketService {
         });
         return observable;
     }
-}
-
-
-const config: SocketIoConfig = {
-  url: 'http://localhost:3500', options: {}
-};
-
-@Injectable({providedIn: 'root'})
-export class CustomSocket extends Socket {
-  constructor() {
-    super(config)
-  }
 }

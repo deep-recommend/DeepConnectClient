@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { MessageStore } from 'src/app/states/message';
-import { CustomSocket, SocketService } from './socket.config.service';
+import { MessageService } from 'src/app/states/message';
+import { SocketService } from './socket.config.service';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ReceiverService {
-    constructor(private readonly socketService: SocketService, private readonly socket: CustomSocket) {}
+export class SocketReceiverService {
+    constructor(private readonly socketService: SocketService, private messageService: MessageService) {}
 
     receiveMessage(): Observable<any> {
-        return this.socketService.on('message');
-    }
-
-    getMessage() {
-        return this.socket.fromEvent('message')
+        console.log('Receive');
+        return this.socketService.on('chat message');
     }
 }

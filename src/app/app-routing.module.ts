@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DeepRecommendGuard } from './general/deeprecommend.guard';
+import { WebsocketComponent } from './websocket/websocket.component';
 
 const routes: Routes = [
     {
@@ -51,6 +52,7 @@ const routes: Routes = [
             import('./pages/user-search-pages/user-detail/user-detail.module').then((m) => m.UserDetailModule),
         canActivate: [DeepRecommendGuard],
     },
+    { path: 'websocket', component: WebsocketComponent }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
