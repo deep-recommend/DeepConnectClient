@@ -6,6 +6,7 @@ import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
 import { mergeMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UiQuery, UiStore } from 'src/app/states/ui';
+import { SocketService } from 'src/app/general/services/socket/socket.config.service';
 
 @Component({
     selector: 'app-sign-in-c',

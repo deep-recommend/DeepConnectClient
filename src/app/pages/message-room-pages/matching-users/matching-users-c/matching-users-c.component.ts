@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { companionIdKey } from 'src/app/general/utilities/local-strage';
+import { RoomService } from 'src/app/states/room';
 import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/user';
 
 @Component({
@@ -29,7 +30,7 @@ export class MatchingUsersCComponent implements OnInit {
     onReceivedClickUserToMessage(userId: string): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {
             localStorage.setItem(companionIdKey, userId);
-            this.router.navigate(['/message-room']);
+            this.router.navigate([`/message-room/${userId}`]);
         });
     }
 }

@@ -1,5 +1,5 @@
 <div *ngFor="let user of users" class="user">
-    <mat-card>
+    <mat-card (click)="onClickUsersToDetail(user.id)">
         <mat-card-header>
             <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
             <mat-card-subtitle>{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle>

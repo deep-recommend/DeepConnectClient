@@ -13,6 +13,7 @@ const initialState = {
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'message',
+    idKey: '_id',
 })
 export class MessageStore extends EntityStore<MessageState> {
     constructor() {
@@ -21,9 +22,5 @@ export class MessageStore extends EntityStore<MessageState> {
 
     setMessages(messages: MessageProps[]): void {
         this.set(messages);
-    }
-
-    addMessage(message: MessageProps): void {
-        this.add(message);
     }
 }

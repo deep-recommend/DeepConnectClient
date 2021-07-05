@@ -1,4 +1,6 @@
 <mat-form-field class="message-sender" (keydown)="onSendMessage($event)">
     <textarea matInput [formControl]="message"></textarea>
-    <button mat-icon-button (click)="onSendMessage($event)" matSuffix><mat-icon>send</mat-icon></button>
+    <button mat-icon-button [disabled]="message.invalid" (click)="onSendMessage($event)" matSuffix>
+        <mat-icon>send</mat-icon>
+    </button>
 </mat-form-field>

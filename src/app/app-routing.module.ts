@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DeepRecommendGuard } from './general/deeprecommend.guard';
+import { WebsocketComponent } from './websocket/websocket.component';
 
 const routes: Routes = [
     {
@@ -40,17 +41,18 @@ const routes: Routes = [
         canActivate: [DeepRecommendGuard],
     },
     {
-        path: 'message-room',
+        path: 'message-room/:id',
         loadChildren: () =>
             import('./pages/message-room-pages/message-room/message-room.module').then((m) => m.MessageRoomModule),
         canActivate: [DeepRecommendGuard],
     },
     {
-        path: 'user-detail',
+        path: 'user-detail/:id',
         loadChildren: () =>
             import('./pages/user-search-pages/user-detail/user-detail.module').then((m) => m.UserDetailModule),
         canActivate: [DeepRecommendGuard],
     },
+    { path: 'websocket', component: WebsocketComponent }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

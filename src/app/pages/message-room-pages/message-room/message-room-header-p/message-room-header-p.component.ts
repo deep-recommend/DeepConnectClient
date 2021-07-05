@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserProps } from 'src/app/states/user';
 
 @Component({
@@ -8,8 +8,13 @@ import { UserProps } from 'src/app/states/user';
 })
 export class MessageRoomHeaderPComponent implements OnInit {
     @Input() companion!: UserProps | null;
+    @Output() clickAccount: EventEmitter<string | undefined> = new EventEmitter<string | undefined>();
 
     constructor() {}
 
     ngOnInit(): void {}
+
+    onClickAccount(userId: string | undefined): void {
+        this.clickAccount.emit(userId);
+    }
 }
