@@ -25,6 +25,10 @@ export class DashboardCComponent implements OnInit {
         this.router.navigate(['/search']);
     }
 
+    onReceivedClickLikeButton(userId: string): void {
+        console.log('like', userId);
+    }
+
     onReceivedClickUsersToDetail(userId: string): void {
         this.router.navigate([`user-detail/${userId}`]);
     }

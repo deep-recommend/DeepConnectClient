@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { data } from 'jquery';
-import { SocketService } from './socket.config.service';
-
+import { Socket } from 'ngx-socket-io';
 @Injectable({
     providedIn: 'root',
 })
 export class SocketEmitterService {
-    constructor(private readonly socketService: SocketService) {}
+    constructor(private readonly socket: Socket) {}
 
-    emitMessage(message: any): void {
-        console.log('emit', message);
-        this.socketService.emit('chat message', message);
+    emitAddMessage(message: any): void {
+        this.socket.emit('sendMessage', message);
     }
 }

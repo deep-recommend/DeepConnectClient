@@ -34,9 +34,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SocketService } from './services/socket/socket.config.service';
-import { SocketEmitterService } from './services/socket/socket-emitter.service';
-import { SocketReceiverService } from './services/socket/socket-receiver.service';
 
 @NgModule({
     imports: [
@@ -117,8 +114,6 @@ import { SocketReceiverService } from './services/socket/socket-receiver.service
         MatToolbarModule,
         MatTooltipModule,
     ],
-    providers: [
-        
-    ]
+    providers: [],
 })
 export class DeepRecommendSharedModule {}

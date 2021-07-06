@@ -14,7 +14,7 @@ export class InteractionService {
     /*------------------------------------------------*/
 
     /**
-     * 送りたいID
+     * 送りたい値
      * @param id
      */
     nextExampleId(id: string): void {
