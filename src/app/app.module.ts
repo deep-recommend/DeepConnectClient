@@ -11,15 +11,11 @@ import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
-import { SocketService } from './general/services/socket/socket.config.service';
-import { SocketEmitterService } from './general/services/socket/socket-emitter.service';
-import { SocketReceiverService } from './general/services/socket/socket-receiver.service';
-import { WebsocketComponent } from './websocket/websocket.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketIoModule } from 'ngx-socket-io';
+import { apiHostPort } from './general/utilities/api';
 
-const config: SocketIoConfig = { url: 'http://localhost:3501', options: {} };
 @NgModule({
-    declarations: [AppComponent, WebsocketComponent],
+    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         HttpClientModule,
@@ -30,7 +26,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3501', options: {} };
         environment.production ? [] : AkitaNgDevtools.forRoot(),
         AkitaNgRouterStoreModule,
 
-        SocketIoModule.forRoot(config),
+        SocketIoModule.forRoot({ url: apiHostPort }),
 
         LayoutModule,
     ],
@@ -40,9 +36,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3501', options: {} };
             useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
         },
         { provide: HTTP_INTERCEPTORS, useClass: DeepRecommendInterceptor, multi: true },
-        SocketService,
-        SocketEmitterService,
-        SocketReceiverService,
     ],
     bootstrap: [AppComponent],
 })

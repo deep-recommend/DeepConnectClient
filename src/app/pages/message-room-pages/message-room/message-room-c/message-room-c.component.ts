@@ -8,15 +8,13 @@ import { RoomQuery, RoomService, RoomStore } from 'src/app/states/room';
 import { UserQuery, UserService } from 'src/app/states/user';
 import { SocketEmitterService } from 'src/app/general/services/socket/socket-emitter.service';
 import { SocketReceiverService } from 'src/app/general/services/socket/socket-receiver.service';
-import { data } from 'jquery';
-import { SocketService } from 'src/app/general/services/socket/socket.config.service';
 
 @Component({
     selector: 'app-message-room-c',
     templateUrl: './message-room-c.component.html',
     styleUrls: ['./message-room-c.component.scss'],
 })
-export class MessageRoomCComponent implements OnInit {
+export class MessageRoomCComponent implements OnInit, OnDestroy {
     profile$ = this.userQuery.profile$;
     companion$ = this.userQuery.companion$;
     isRoom$ = this.roomQuery.isRoom$;
@@ -38,16 +36,17 @@ export class MessageRoomCComponent implements OnInit {
         private readonly messageQuery: MessageQuery,
         private readonly router: Router,
         private readonly emitter: SocketEmitterService,
-        private readonly receiver: SocketReceiverService,
+        private readonly receiver: SocketReceiverService
     ) {}
 
     ngOnInit(): void {
         this.roomInitializer();
-        this.receiver.receiveMessage().subscribe(data => {
-            console.log('messageであってくれ',data)
-        })
     }
-   
+
+    ngOnDestroy(): void {
+        localStorage.removeItem(companionIdKey);
+    }
+
     async roomInitializer(): Promise<void> {
         this.authService.getProfile().subscribe();
         this.userService.getCompanionRequest(String(localStorage.getItem(companionIdKey))).subscribe();
@@ -94,9 +93,8 @@ export class MessageRoomCComponent implements OnInit {
             roomId: this.roomQuery.currentRoomIdGetter,
             message: message,
         };
-        this.emitter.emitMessage(value.message)
-        
-        this.messageService.getMessagesRequest().subscribe()
+        this.emitter.emitAddMessage(value);
+        this.receiver.receiveAddMessage();
     }
 
     onReceivedClickAccount(userId: string | undefined): void {

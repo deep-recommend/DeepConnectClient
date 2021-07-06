@@ -1,3 +1,4 @@
+{{ isRoom$ | async }}
 <div *ngIf="isRoom$ | async; then thenBlock; else elseBlock"></div>
 <ng-template #thenBlock>
     <app-message-room-header-p

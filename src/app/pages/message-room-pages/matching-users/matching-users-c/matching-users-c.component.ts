@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
+import { InteractionService } from 'src/app/general/services/interaction.service';
 import { companionIdKey } from 'src/app/general/utilities/local-strage';
 import { RoomService } from 'src/app/states/room';
 import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/user';

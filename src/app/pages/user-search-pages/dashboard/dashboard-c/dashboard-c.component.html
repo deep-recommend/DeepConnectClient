@@ -6,5 +6,6 @@
 <app-dashboard-user-list-p
     class="user-list"
     [users]="users$ | async"
+    (clickLikeButton)="onReceivedClickLikeButton($event)"
     (clickUsersToDetails)="onReceivedClickUsersToDetail($event)"
 ></app-dashboard-user-list-p>

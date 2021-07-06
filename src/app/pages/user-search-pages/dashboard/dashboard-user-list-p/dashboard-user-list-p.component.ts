@@ -9,6 +9,7 @@ import { UserProps } from 'src/app/states/user';
 })
 export class DashboardUserListPComponent implements OnInit {
     @Input() users: UserProps[] | null = [];
+    @Output() clickLikeButton: EventEmitter<string> = new EventEmitter<string>();
     @Output() clickUsersToDetails: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
@@ -16,6 +17,10 @@ export class DashboardUserListPComponent implements OnInit {
     ngOnInit() {}
 
     birthDayToAge = birthDayToAge;
+
+    onClickLikeButton(userId: string): void {
+        this.clickLikeButton.emit(userId);
+    }
 
     onClickUsersToDetail(userId: string): void {
         this.clickUsersToDetails.emit(userId);
