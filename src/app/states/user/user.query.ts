@@ -8,6 +8,7 @@ export class UserQuery extends QueryEntity<UserState> {
     users$ = this.selectAll()
 
     profile$ = this.select('profile')
+    currentUserId$ = this.select((state) => state.profile.user._id)
 
     companion$ = this.select('companion')
 

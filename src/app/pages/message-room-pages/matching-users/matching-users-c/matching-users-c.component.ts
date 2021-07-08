@@ -12,6 +12,7 @@ import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/
     styleUrls: ['./matching-users-c.component.scss'],
 })
 export class MatchingUsersCComponent implements OnInit {
+    currentUserId$: Observable<string> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
     profile$: Observable<ProfileProps> = this.userQuery.profile$
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$

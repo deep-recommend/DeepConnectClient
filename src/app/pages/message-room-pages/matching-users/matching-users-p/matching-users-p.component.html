@@ -1,4 +1,5 @@
 <div *ngFor="let user of users" class="user">
+  <div *ngIf="isMatching(user.id)">
     <div *ngIf="profile?.user?._id !== user.id">
         <mat-card (click)="onClickUserToMessage(user.id)" fxLayout="row">
             <div *ngIf="user.profilePicture; then thenBlock; else elseBlock"></div>
@@ -16,4 +17,5 @@
             </mat-card-header>
         </mat-card>
     </div>
+  </div>
 </div>

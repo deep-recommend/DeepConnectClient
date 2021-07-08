@@ -14,9 +14,9 @@ import { ProfileProps, UserProps, UserQuery, UserService } from 'src/app/states/
 })
 export class DashboardCComponent implements OnInit {
     profile: ProfileProps = this.userQuery.profileGetter
-    currentUserId: string = this.userQuery.currentUserId
 
     profile$: Observable<ProfileProps> = this.userQuery.profile$
+    currentUserId$: Observable<string> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$
 

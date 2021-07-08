@@ -23,3 +23,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   $ ng s
 -   「authentication.service.ts」の token の書き換え
 -   「index.html」の title タグの書き換え
+-
+-   自分を消す
+-
+-
+-
+-
+-
+-
+-
+-
+-

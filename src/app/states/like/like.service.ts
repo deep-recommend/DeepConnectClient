@@ -5,7 +5,6 @@ import { tap } from 'rxjs/operators'
 import { apiLikeUrl, httpHeaders, httpOptions } from 'src/app/general/utilities/api'
 import { CreateLikeProps, LikeProps } from './like.model'
 import { LikeStore } from './like.store'
-import { LikeQuery } from '../like'
 
 @Injectable({ providedIn: 'root' })
 export class LikeService {

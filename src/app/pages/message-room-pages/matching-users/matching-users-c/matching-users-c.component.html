@@ -1,4 +1,5 @@
 <app-matching-users-p
+    [currentUserId]="currentUserId$ | async"
     [users]="users$ | async"
     [profile]="profile$ | async"
     [likes]="likes$ | async"
