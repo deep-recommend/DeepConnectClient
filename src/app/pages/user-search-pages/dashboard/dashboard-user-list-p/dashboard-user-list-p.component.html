@@ -1,20 +1,30 @@
-<div *ngFor="let user of users" class="user">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
-            <mat-card-subtitle>{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle>
-        </mat-card-header>
-        <div *ngIf="user.profilePicture; then thenBlock; else elseBlock"></div>
-        <ng-template #thenBlock>
-            <img src="{{ user.profilePicture }}" class="image" />
-        </ng-template>
-        <ng-template #elseBlock>
-            <img src="/assets/images/png/default-avatar.png" class="image" />
-        </ng-template>
-        <mat-card-content>一言を入れる</mat-card-content>
-        <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
-            <button mat-button (click)="onClickLikeButton(user.id)">いいね<mat-icon>thumb_up</mat-icon></button>
-            <button mat-raised-button (click)="onClickUsersToDetail(user.id)">詳細を見る</button>
-        </mat-card-actions>
-    </mat-card>
+<div *ngFor="let user of users; let i = index" class="user">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
+                <mat-card-subtitle
+                    >{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle
+                >
+            </mat-card-header>
+            <div *ngIf="user.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
+            <ng-template #profilePictureIsTrue><img src="{{ user.profilePicture }}" class="image" /></ng-template>
+            <ng-template #profilePictureIsFalse
+                ><img src="/assets/images/png/default-avatar.png" class="image"
+            /></ng-template>
+            <mat-card-content>一言を入れる</mat-card-content>
+            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
+                <div *ngIf="alreadyLiked(user.id); then unlike else like"></div>
+                <ng-template #unlike
+                    ><button mat-button (click)="onClickUnlikeButton(user.id)">
+                        <p style="color: blue">いいね<mat-icon>thumb_up</mat-icon></p>
+                    </button></ng-template
+                >
+                <ng-template #like
+                    ><button mat-button (click)="onClickLikeButton(user.id)">
+                        <p>いいね<mat-icon>thumb_up</mat-icon></p>
+                    </button></ng-template
+                >
+                <button mat-raised-button (click)="onClickUsersToDetail(user.id)">詳細を見る</button>
+            </mat-card-actions>
+        </mat-card>
 </div>
