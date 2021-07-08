@@ -31,7 +31,10 @@ export class SignInCComponent implements OnInit, OnDestroy {
     onReceivedClickSignIn(signIn: SignInProps): void {
         this.authService
             .signInRequest(signIn)
-            .pipe(mergeMap(() => this.router.navigate(['/'])))
+            .pipe(
+                mergeMap(() => this.router.navigate(['/'])),
+                mergeMap(async () => location.reload())
+            )
             .subscribe();
     }
 }

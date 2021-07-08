@@ -25,7 +25,7 @@ export class RoomStore extends EntityStore<RoomState> {
         super(initialState);
     }
 
-    updateRoomIsTrue(): void {
+    updateRoomToTrue(): void {
         this.update({
             ui: {
                 ...this.getValue().ui,
@@ -34,7 +34,7 @@ export class RoomStore extends EntityStore<RoomState> {
         });
     }
 
-    updateRoomIsFalse(): void {
+    updateRoomToFalse(): void {
         this.update({
             ui: {
                 ...this.getValue().ui,

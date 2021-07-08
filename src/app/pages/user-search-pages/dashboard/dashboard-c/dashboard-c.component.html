@@ -5,7 +5,11 @@
 ></app-dashboard-to-search-page-button-p>
 <app-dashboard-user-list-p
     class="user-list"
+    [currentUserId]="currentUserId"
+    [profile]="profile$ | async"
     [users]="users$ | async"
+    [likes]="likes$ | async"
     (clickLikeButton)="onReceivedClickLikeButton($event)"
+    (clickUnlikeButton)="onReceivedClickUnlikeButton($event)"
     (clickUsersToDetails)="onReceivedClickUsersToDetail($event)"
 ></app-dashboard-user-list-p>

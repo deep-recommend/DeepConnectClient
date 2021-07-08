@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from 'src/app/general/services/authentication.service';
-import { InteractionService } from 'src/app/general/services/interaction.service';
-import { companionIdKey } from 'src/app/general/utilities/local-strage';
-import { RoomService } from 'src/app/states/room';
-import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/user';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable } from 'rxjs'
+import { AuthenticationService } from 'src/app/general/services/authentication.service'
+import { companionIdKey } from 'src/app/general/utilities/local-strage'
+import { LikeProps, LikeQuery, LikeService } from 'src/app/states/like'
+import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/user'
 
 @Component({
     selector: 'app-matching-users-c',
@@ -13,25 +12,29 @@ import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/
     styleUrls: ['./matching-users-c.component.scss'],
 })
 export class MatchingUsersCComponent implements OnInit {
-    users$: Observable<UserProps[]> = this.userQuery.users$;
-    profile$: Observable<ProfileProps> = this.userQuery.profile$;
+    users$: Observable<UserProps[]> = this.userQuery.users$
+    profile$: Observable<ProfileProps> = this.userQuery.profile$
+    likes$: Observable<LikeProps[]> = this.likeQuery.likes$
 
     constructor(
         private readonly userService: UserService,
         private readonly userQuery: UserQuery,
         private readonly router: Router,
-        private readonly authenticationService: AuthenticationService
+        private readonly authenticationService: AuthenticationService,
+        private readonly likeService: LikeService,
+        private readonly likeQuery: LikeQuery
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe();
-        this.authenticationService.getProfile().subscribe();
+        this.userService.getUsersRequest().subscribe()
+        this.authenticationService.getProfile().subscribe()
+        this.likeService.getLikes().subscribe()
     }
 
     onReceivedClickUserToMessage(userId: string): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {
-            localStorage.setItem(companionIdKey, userId);
-            this.router.navigate([`/message-room/${userId}`]);
-        });
+            localStorage.setItem(companionIdKey, userId)
+            this.router.navigate([`/message-room/${userId}`])
+        })
     }
 }
