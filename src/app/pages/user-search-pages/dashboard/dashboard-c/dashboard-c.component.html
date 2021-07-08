@@ -5,7 +5,7 @@
 ></app-dashboard-to-search-page-button-p>
 <app-dashboard-user-list-p
     class="user-list"
-    [currentUserId]="currentUserId"
+    [currentUserId]="currentUserId$ | async"
     [profile]="profile$ | async"
     [users]="users$ | async"
     [likes]="likes$ | async"

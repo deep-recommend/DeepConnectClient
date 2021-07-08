@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { includes } from 'lodash'
+import { includes, intersection } from 'lodash'
 import { LikeQuery } from '../like'
 
 @Injectable({
@@ -18,5 +18,28 @@ export class UiService {
         })
         isLike = includes(likeUserIds, userId)
         return isLike
+    }
+
+    // TODO 自分をいいねしているユーザー
+    // likedByOtherUsers()
+
+    isMatching(currentUserId: string, userId: string): boolean {
+        let likeEachOther!: any[]
+        let likeByCurrentUserIds: string[] = []
+        let likeByUserIds: string[] = []
+        this.likeQuery.likeAll.forEach((data) => {
+            if (data.currentUserId === currentUserId) {
+                likeByCurrentUserIds.push(data.userId)
+            } else if (data.currentUserId === userId) {
+                likeByUserIds.push(data.currentUserId)
+            } else {
+                return
+            }
+        })
+        likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds)
+        if (likeEachOther.length === 0) {
+            return false
+        }
+        return true
     }
 }
