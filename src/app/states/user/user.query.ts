@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { QueryEntity } from '@datorama/akita'
-import { ProfileProps, UserProps } from './user.model'
+import { UserProps } from './user.model'
 import { UserStore, UserState } from './user.store'
 
 @Injectable({ providedIn: 'root' })
@@ -8,9 +8,10 @@ export class UserQuery extends QueryEntity<UserState> {
     users$ = this.selectAll()
 
     profile$ = this.select('profile')
-    currentUserId$ = this.select((state) => state.profile.user._id)
+    currentUserId$ = this.select((state) => state.profile._id)
 
     companion$ = this.select('companion')
+    detailUser$ = this.select('detailUser')
 
     ui$ = this.select('ui')
     genders$ = this.select((state) => state.ui.genders)
@@ -19,19 +20,29 @@ export class UserQuery extends QueryEntity<UserState> {
     days$ = this.select((state) => state.ui.days)
     birthPlaces$ = this.select((state) => state.ui.birthPlaces)
 
+    search$ = this.select('search')
+
     constructor(protected store: UserStore) {
         super(store)
     }
 
-    get profileGetter(): ProfileProps {
+    get profileGetter(): UserProps {
         return this.getValue().profile
     }
 
     get currentUserId(): string {
-        return this.getValue().profile.user._id
+        return this.getValue().profile._id
     }
 
     get companionGetter(): UserProps {
         return this.getValue().companion
+    }
+
+    get detailUserGetter(): UserProps {
+        return this.getValue().detailUser
+    }
+
+    get searchGetter(): any {
+        return this.getValue().search
     }
 }

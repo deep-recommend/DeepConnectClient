@@ -1,20 +1,22 @@
 <div class="message-screen">
     <div *ngFor="let message of messages; let i = index">
         <div *ngIf="currentRoomId === message.roomId">
-            <div *ngIf="profile?.user?._id === message.userId; then thenBlock; else elseBlock"></div>
+            <div *ngIf="profile?._id === message.userId; then thenBlock; else elseBlock"></div>
             <ng-template #thenBlock>
                 <div>
                     <div fxLayout="row">
-                        <div *ngIf="profile?.user?.profilePicture; then thenBlock; else elseBlock"></div>
-                        <ng-template #thenBlock>
-                            <img class="avatar" src="{{ profile?.user?.profilePicture }}" />
-                        </ng-template>
-                        <ng-template #elseBlock>
-                            <img class="avatar" src="/assets/images/png/default-avatar.png" />
-                        </ng-template>
+                        <div (click)="onClickMyProfilePicture()">
+                            <div *ngIf="profile?.profilePicture; then thenBlock; else elseBlock"></div>
+                            <ng-template #thenBlock>
+                                <img class="avatar" src="{{ profile?.profilePicture }}" />
+                            </ng-template>
+                            <ng-template #elseBlock>
+                                <img class="avatar" src="/assets/images/png/default-avatar.png" />
+                            </ng-template>
+                        </div>
                         <div fxLayout="column">
                             <p>
-                                {{ profile?.user?.realLastName }}{{ profile?.user?.realFirstName
+                                {{ profile?.realLastName }}{{ profile?.realFirstName
                                 }}{{ relativeTime(message.createdAt) }}
                             </p>
                             <p>{{ message.message }}</p>
@@ -32,13 +34,15 @@
                             </p>
                             <p>{{ message.message }}</p>
                         </div>
-                        <div *ngIf="companion?.profilePicture; then thenBlock; else elseBlock"></div>
-                        <ng-template #thenBlock>
-                            <img class="avatar" src="{{ companion?.profilePicture }}" />
-                        </ng-template>
-                        <ng-template #elseBlock>
-                            <img class="avatar" src="/assets/images/png/default-avatar.png" />
-                        </ng-template>
+                        <div (click)="onClickCompanionProfilePicture(companion?._id)">
+                            <div *ngIf="companion?.profilePicture; then thenBlock; else elseBlock"></div>
+                            <ng-template #thenBlock>
+                                <img class="avatar" src="{{ companion?.profilePicture }}" />
+                            </ng-template>
+                            <ng-template #elseBlock>
+                                <img class="avatar" src="/assets/images/png/default-avatar.png" />
+                            </ng-template>
+                        </div>
                     </div>
                 </div>
             </ng-template>

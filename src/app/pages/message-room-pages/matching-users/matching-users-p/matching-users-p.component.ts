@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { birthDayToAge } from 'src/app/general/functions/birthday-to-age'
 import { LikeProps } from 'src/app/states/like'
 import { UiService } from 'src/app/states/ui/ui.service'
-import { ProfileProps, UserProps } from 'src/app/states/user'
+import { UserProps } from 'src/app/states/user'
 @Component({
     selector: 'app-matching-users-p',
     templateUrl: './matching-users-p.component.html',
@@ -11,7 +11,7 @@ import { ProfileProps, UserProps } from 'src/app/states/user'
 export class MatchingUsersPComponent implements OnInit {
     @Input() currentUserId!: string | null
     @Input() users!: UserProps[] | null
-    @Input() profile!: ProfileProps | null
+    @Input() profile!: UserProps | null
     @Input() likes!: LikeProps[] | null
     @Output() clickUserToMessage: EventEmitter<string> = new EventEmitter<string>()
 

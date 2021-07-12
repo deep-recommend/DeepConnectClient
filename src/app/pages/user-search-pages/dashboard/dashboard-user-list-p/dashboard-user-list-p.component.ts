@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { birthDayToAge } from 'src/app/general/functions/birthday-to-age'
-import { CreateLikeProps, LikeProps } from 'src/app/states/like'
-import { ProfileProps, UserProps, UserQuery } from 'src/app/states/user'
-import { values, zip } from 'lodash-es'
+import { LikeProps } from 'src/app/states/like'
+import { UserProps } from 'src/app/states/user'
+import { zip } from 'lodash-es'
 import { UiService } from 'src/app/states/ui/ui.service'
 @Component({
     selector: 'app-dashboard-user-list-p',
@@ -10,7 +10,7 @@ import { UiService } from 'src/app/states/ui/ui.service'
     styleUrls: ['./dashboard-user-list-p.component.scss'],
 })
 export class DashboardUserListPComponent implements OnInit {
-    @Input() profile!: ProfileProps | null
+    @Input() profile!: UserProps | null
     @Input() currentUserId!: string | null
     @Input() users: UserProps[] | null = []
     @Input() likes: LikeProps[] | null = []

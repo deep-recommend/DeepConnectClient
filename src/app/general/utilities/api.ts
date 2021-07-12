@@ -19,18 +19,17 @@ export const httpHeaders = {
     }),
 }
 
-export const httpOptions = (paramsKeys: string[], paramsValues: string[]) => {
+export const httpOptions = (paramKeys: string[], paramValues: string[]) => {
     let httpHeaders = new HttpHeaders()
     httpHeaders = httpHeaders.set('Content-Type', 'application/json')
 
     let arrIndex = 0
     let httpParams = new HttpParams()
-    for (let param of paramsValues) {
-        if (!param) {
-            return
+    for (let param of paramValues) {
+        if (param) {
+            httpParams = httpParams.set(paramKeys[arrIndex], param)
+            console.log(paramKeys[arrIndex], param)
         }
-        httpParams = httpParams.set(paramsKeys[arrIndex], param)
-        console.log(paramsKeys[arrIndex], param)
         arrIndex += 1
     }
 

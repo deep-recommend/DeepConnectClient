@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { companionIdKey } from 'src/app/general/utilities/local-strage'
 import { LikeProps, LikeQuery, LikeService } from 'src/app/states/like'
-import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/user'
+import { UserProps, UserService, UserQuery } from 'src/app/states/user'
 
 @Component({
     selector: 'app-matching-users-c',
@@ -14,7 +14,7 @@ import { UserProps, UserService, UserQuery, ProfileProps } from 'src/app/states/
 export class MatchingUsersCComponent implements OnInit {
     currentUserId$: Observable<string> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
-    profile$: Observable<ProfileProps> = this.userQuery.profile$
+    profile$: Observable<UserProps> = this.userQuery.profile$
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$
 
     constructor(

@@ -1,9 +1,10 @@
-<div *ngFor="let user of users; let i = index" class="user">
+<ng-container *ngFor="let user of users; let i = index" class="user">
+    <div *ngIf="profile?._id !== user._id">
         <mat-card>
             <mat-card-header>
                 <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
                 <mat-card-subtitle
-                    >{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle
+                    >{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳：{{ user.gender }}</mat-card-subtitle
                 >
             </mat-card-header>
             <div *ngIf="user.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
@@ -11,20 +12,21 @@
             <ng-template #profilePictureIsFalse
                 ><img src="/assets/images/png/default-avatar.png" class="image"
             /></ng-template>
-            <mat-card-content>一言を入れる</mat-card-content>
+            <mat-card-content>{{user.description ? user.description: 'こんにちは'}}</mat-card-content>
             <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
-                <div *ngIf="alreadyLiked(user.id); then unlike else like"></div>
+                <div *ngIf="alreadyLiked(user._id); then unlike else like"></div>
                 <ng-template #unlike
-                    ><button mat-button (click)="onClickUnlikeButton(user.id)">
+                    ><button mat-button (click)="onClickUnlikeButton(user._id)">
                         <p style="color: blue">いいね<mat-icon>thumb_up</mat-icon></p>
                     </button></ng-template
                 >
                 <ng-template #like
-                    ><button mat-button (click)="onClickLikeButton(user.id)">
+                    ><button mat-button (click)="onClickLikeButton(user._id)">
                         <p>いいね<mat-icon>thumb_up</mat-icon></p>
                     </button></ng-template
                 >
-                <button mat-raised-button (click)="onClickUsersToDetail(user.id)">詳細を見る</button>
+                <button mat-raised-button (click)="onClickUsersToDetail(user._id)">詳細を見る</button>
             </mat-card-actions>
         </mat-card>
-</div>
+    </div>
+</ng-container>

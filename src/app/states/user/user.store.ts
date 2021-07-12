@@ -1,24 +1,31 @@
-import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { DAY, MONTH, YEAR } from 'src/app/general/utilities/date';
-import { GENDER } from 'src/app/general/utilities/gender';
-import { PREFECTURE } from 'src/app/general/utilities/prefecture';
-import { ProfileProps, UserProps } from './user.model';
+import { Injectable } from '@angular/core'
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
+import { DAY, MONTH, YEAR } from 'src/app/general/utilities/date'
+import { GENDER } from 'src/app/general/utilities/gender'
+import { PREFECTURE } from 'src/app/general/utilities/prefecture'
+import { UserProps } from './user.model'
 
 export interface UserState extends EntityState<UserProps> {
     ui: {
-        genders: string[];
-        years: number[];
-        months: number[];
-        days: number[];
-        birthPlaces: string[];
-    };
+        genders: string[]
+        years: number[]
+        months: number[]
+        days: number[]
+        birthPlaces: string[]
+    }
+    search: {
+        gender: string
+        birthYear: string
+        birthPlace: string
+        agency: string
+    }
     params: {
-        roomId: string;
-        userId: string;
-    };
-    profile: ProfileProps;
-    companion: UserProps;
+        roomId: string
+        userId: string
+    }
+    profile: UserProps
+    companion: UserProps
+    detailUser: UserProps
 }
 
 const initialState = {
@@ -29,38 +36,62 @@ const initialState = {
         days: DAY,
         birthPlaces: PREFECTURE,
     },
+    search: {
+        gender: '',
+        birthYear: '',
+        birthPlace: '',
+        agency: '',
+    },
     params: {
         roomId: '',
         userId: '',
     },
     profile: undefined,
     companion: undefined,
-};
+    detailUser: undefined,
+}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'user',
+    idKey: '_id',
 })
 export class UserStore extends EntityStore<UserState> {
     constructor() {
-        super(initialState);
+        super(initialState)
     }
 
     setUsers(users: UserProps[]): void {
-        this.set(users);
+        this.set(users)
     }
 
-    updateProfile(profile: ProfileProps): void {
+    updateSearch(search: any): void {
+        this.update((state) => ({
+            search: {
+                ...state.search,
+                ...search,
+            },
+        }))
+    }
+
+    updateProfile(profile: UserProps): void {
         this.update({
             ...this.getValue().profile,
             profile,
-        });
+        })
     }
 
     updateCompanion(companion: UserProps): void {
         this.update({
             ...this.getValue().companion,
             companion,
-        });
+        })
+    }
+
+    updateDetailUser(detailUser: UserProps): void {
+        this.update({
+            ...this.getValue().detailUser,
+            detailUser,
+        })
     }
 }

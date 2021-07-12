@@ -1,0 +1,13 @@
+<div>
+  <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
+  <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
+  <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
+    {{ user?.realLastName }}
+    {{ user?.realFirstName }}
+    {{ user?.stageName }}
+    {{ user?.gender }}
+    {{ birthDayToAge(user!.birthYear, user!.birthMonth, user!.birthDay) }}歳
+    {{ user?.agency }}
+    {{ user?.description }}
+    {{ user?.email }}
+</div>

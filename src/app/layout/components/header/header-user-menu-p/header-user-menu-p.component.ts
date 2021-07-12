@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { HeaderAccountMenu } from 'src/app/general/domains/layout/header-user-menu.domain';
-import { MediaObserver } from '@angular/flex-layout';
-import { mergeMap } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { ProfileProps } from 'src/app/states/user';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core'
+import { HeaderAccountMenu } from 'src/app/general/domains/layout/header-user-menu.domain'
+import { MediaObserver } from '@angular/flex-layout'
+import { mergeMap } from 'rxjs/operators'
+import { of } from 'rxjs'
 
 @Component({
     selector: 'app-header-user-menu-p',
@@ -11,22 +10,22 @@ import { ProfileProps } from 'src/app/states/user';
     styleUrls: ['./header-user-menu-p.component.scss'],
 })
 export class HeaderUserMenuPComponent implements OnInit {
-    @Input() profile!: ProfileProps | null;
-    @Input() headerAccountMenus!: HeaderAccountMenu[] | null;
+    @Input() profile!: any | null
+    @Input() headerAccountMenus!: HeaderAccountMenu[] | null
     @Output() clickAccountMenu: EventEmitter<{ index: number; item: HeaderAccountMenu }> = new EventEmitter<{
-        index: number;
-        item: HeaderAccountMenu;
-    }>();
+        index: number
+        item: HeaderAccountMenu
+    }>()
 
     enableHideMenuItem$ = this.mediaObserver
         .asObservable()
-        .pipe(mergeMap(() => of(this.mediaObserver.isActive('gt-sm'))));
+        .pipe(mergeMap(() => of(this.mediaObserver.isActive('gt-sm'))))
 
     constructor(public readonly mediaObserver: MediaObserver) {}
 
     ngOnInit(): void {}
 
     onClickAccountMenu(index: number, item: HeaderAccountMenu): void {
-        this.clickAccountMenu.emit({ index, item });
+        this.clickAccountMenu.emit({ index, item })
     }
 }

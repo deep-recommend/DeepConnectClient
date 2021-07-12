@@ -1,0 +1,77 @@
+<form [formGroup]="updateUserForm" (ngSubmit)="onClickUpdate()">
+    <mat-card-content fxLayoutAlign="center">ユーザー編集</mat-card-content>
+    <mat-card-content fxLayout="column">
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="realLastName" required />
+            <mat-error *ngIf="updateUserForm.get('realLastName')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="realFirstName" required />
+            <mat-error *ngIf="updateUserForm.get('realFirstName')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Stage Name</mat-label>
+            <input matInput formControlName="stageName" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" required>
+                <mat-option *ngFor="let gender of genders" [value]="gender">
+                    {{ gender }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateUserForm.get('gender')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Birth year</mat-label>
+            <mat-select formControlName="birthYear" required>
+                <mat-option *ngFor="let year of years" [value]="year">
+                    {{ year }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateUserForm.get('birthYear')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Birth month</mat-label>
+            <mat-select formControlName="birthMonth" required>
+                <mat-option *ngFor="let month of months" [value]="month">
+                    {{ month }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateUserForm.get('birthMonth')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Birth day</mat-label>
+            <mat-select formControlName="birthDay" required>
+                <mat-option *ngFor="let day of days" [value]="day">
+                    {{ day }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateUserForm.get('birthDay')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Birth Place</mat-label>
+            <mat-select formControlName="birthPlace" required>
+                <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
+                    {{ birthPlace }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateUserForm.get('birthPlace')?.hasError('required')">・必須項目です</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Agency</mat-label>
+            <input matInput formControlName="agency" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description" />
+        </mat-form-field>
+        <mat-label>プロフィール画像</mat-label>
+        <input type="file" accept="image/*" id="customImage" (input)="inputProfilePicture($event)" />
+    </mat-card-content>
+    <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <button mat-raised-button style="background-color: #00ff00">アップデート</button>
+    </mat-card-actions>
+</form>

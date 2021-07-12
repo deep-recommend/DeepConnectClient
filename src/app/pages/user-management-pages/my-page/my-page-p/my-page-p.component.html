@@ -1,0 +1,17 @@
+<div>
+    <div *ngIf="profile?.profilePicture; then profilePictureIsTrue; else profilePictureIsFalse"></div>
+    <ng-template #profilePictureIsTrue><img src="{{ profile?.profilePicture }}" class="image" /></ng-template>
+    <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
+    <button mat-raised-button (click)="onClickToProfileSetting()">プロフィールを編集する</button>
+    <div>
+        {{ profile?.realLastName }}
+        {{ profile?.realFirstName }}
+        {{ profile?.stageName }}
+        {{ profile?.gender }}
+        {{ birthDayToAge(profile!.birthYear, profile!.birthMonth, profile!.birthDay) }}歳
+        {{ profile?.birthPlace }}
+        {{ profile?.agency }}
+        {{ profile?.description }}
+        {{ profile?.email }}
+    </div>
+</div>

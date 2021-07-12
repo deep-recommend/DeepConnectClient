@@ -1,4 +1,4 @@
-import { createSideNavMenu, SideNavMenu } from '../../domains/layout/sidenav-menu.domain';
+import { createSideNavMenu, SideNavMenu } from '../../domains/layout/sidenav-menu.domain'
 
 export const sideNavMenu: SideNavMenu[] = [
     createSideNavMenu({
@@ -22,8 +22,13 @@ export const sideNavMenu: SideNavMenu[] = [
         routerLink: '/my-page',
     }),
     createSideNavMenu({
+        icon: 'foot',
+        label: '足跡',
+        routerLink: '/',
+    }),
+    createSideNavMenu({
         icon: 'public',
         label: 'DeepRecommend Museum',
         hrefLink: 'https://deep-recommend.com/',
     }),
-];
+]

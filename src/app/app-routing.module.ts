@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DeepRecommendGuard } from './general/deeprecommend.guard';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { DeepRecommendGuard } from './general/deeprecommend.guard'
 
 const routes: Routes = [
     {
@@ -51,7 +51,17 @@ const routes: Routes = [
             import('./pages/user-search-pages/user-detail/user-detail.module').then((m) => m.UserDetailModule),
         canActivate: [DeepRecommendGuard],
     },
-];
+    {
+        path: 'my-page-setting',
+        loadChildren: () =>
+            import('./pages/user-management-pages/my-page-setting/my-page-setting.module').then(
+                (m) => m.MyPageSettingModule
+            ),
+        canActivate: [DeepRecommendGuard],
+    },
+    { path: 'like-from-me', loadChildren: () => import('./pages/like-pages/like-from-me/like-from-me.module').then(m => m.LikeFromMeModule) },
+    { path: 'like-from-others', loadChildren: () => import('./pages/like-pages/like-from-others/like-from-others.module').then(m => m.LikeFromOthersModule) },
+]
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],

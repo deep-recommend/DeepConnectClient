@@ -9,6 +9,9 @@
                 [ngClass]="{ 'border-top-gray': item.isVisibleTopBorder }"
             >
                 <mat-icon>{{ item.icon }}</mat-icon>
+                <ng-container *ngIf="item.label === '足跡'">
+                    <i class="fas fa-shoe-prints"></i>
+                </ng-container>
                 <h4 mat-line>{{ item.label }}</h4>
             </a>
         </ng-container>
