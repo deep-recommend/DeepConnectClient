@@ -1,0 +1,11 @@
+:host {
+    .routing-tabs {
+        padding: 4px 0;
+    }
+    .mat-tab-link {
+        min-width: 20vw;
+        .router-link-label {
+            font-size: 8px;
+        }
+    }
+}

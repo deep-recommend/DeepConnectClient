@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
+import { accessTokenKey } from 'src/app/general/utilities/api'
 import { UserProps, UserQuery, UserService } from 'src/app/states/user'
 
 @Component({
@@ -23,5 +24,10 @@ export class MyPageCComponent implements OnInit {
 
     onReceivedClickToProfileSetting(): void {
         this.router.navigate(['my-page-setting'])
+    }
+
+    onReceivedClickSignOut(): void {
+        localStorage.removeItem(accessTokenKey)
+        this.router.navigate(['/sign-in'])
     }
 }

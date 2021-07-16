@@ -10,6 +10,7 @@ import { UserProps } from 'src/app/states/user'
 export class MyPagePComponent implements OnInit {
     @Input() profile!: UserProps | null
     @Output() clickToProfileSetting: EventEmitter<void> = new EventEmitter<void>()
+    @Output() clickSignOut: EventEmitter<void> = new EventEmitter()
 
     constructor() {}
 
@@ -19,5 +20,9 @@ export class MyPagePComponent implements OnInit {
 
     onClickToProfileSetting(): void {
         this.clickToProfileSetting.emit()
+    }
+
+    signOut(): void {
+        this.clickSignOut.emit()
     }
 }

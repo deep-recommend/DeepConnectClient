@@ -3,6 +3,7 @@
     <ng-template #profilePictureIsTrue><img src="{{ profile?.profilePicture }}" class="image" /></ng-template>
     <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
     <button mat-raised-button (click)="onClickToProfileSetting()">プロフィールを編集する</button>
+    <button mat-raised-button (click)="signOut()">サインアウト</button>
     <div>
         {{ profile?.realLastName }}
         {{ profile?.realFirstName }}

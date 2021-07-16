@@ -59,8 +59,28 @@ const routes: Routes = [
             ),
         canActivate: [DeepRecommendGuard],
     },
-    { path: 'like-from-me', loadChildren: () => import('./pages/like-pages/like-from-me/like-from-me.module').then(m => m.LikeFromMeModule) },
-    { path: 'like-from-others', loadChildren: () => import('./pages/like-pages/like-from-others/like-from-others.module').then(m => m.LikeFromOthersModule) },
+    {
+        path: 'like-from-me',
+        loadChildren: () =>
+            import('./pages/like-pages/like-from-me/like-from-me.module').then((m) => m.LikeFromMeModule),
+        canActivate: [DeepRecommendGuard],
+    },
+    {
+        path: 'like-from-others',
+        loadChildren: () =>
+            import('./pages/like-pages/like-from-others/like-from-others.module').then((m) => m.LikeFromOthersModule),
+        canActivate: [DeepRecommendGuard],
+    },
+    {
+        path: 'matched',
+        loadChildren: () => import('./pages/like-pages/matched/matched.module').then((m) => m.MatchedModule),
+        canActivate: [DeepRecommendGuard],
+    },
+    {
+        path: 'footprint',
+        loadChildren: () => import('./pages/footprint-pages/footprint/footprint.module').then((m) => m.FootprintModule),
+        canActivate: [DeepRecommendGuard],
+    },
 ]
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

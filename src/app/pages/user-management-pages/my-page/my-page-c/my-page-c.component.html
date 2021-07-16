@@ -1,1 +1,5 @@
-<app-my-page-p [profile]="profile$ | async" (clickToProfileSetting)="onReceivedClickToProfileSetting()"></app-my-page-p>
+<app-my-page-p
+    [profile]="profile$ | async"
+    (clickToProfileSetting)="onReceivedClickToProfileSetting()"
+    (clickSignOut)="onReceivedClickSignOut()"
+></app-my-page-p>

@@ -9,7 +9,7 @@ export const sideNavMenu: SideNavMenu[] = [
     createSideNavMenu({
         icon: 'thumb_up',
         label: 'いいね',
-        routerLink: '/',
+        routerLink: '/like-from-me',
     }),
     createSideNavMenu({
         icon: 'message',
