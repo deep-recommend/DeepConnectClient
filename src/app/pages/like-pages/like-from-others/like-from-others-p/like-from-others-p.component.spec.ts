@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyPageComponent } from './my-page.component';
+import { LikeFromOthersPComponent } from './like-from-others-p.component';
 
-describe('MyPageComponent', () => {
-  let component: MyPageComponent;
-  let fixture: ComponentFixture<MyPageComponent>;
+describe('LikeFromOthersPComponent', () => {
+  let component: LikeFromOthersPComponent;
+  let fixture: ComponentFixture<LikeFromOthersPComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyPageComponent ]
+      declarations: [ LikeFromOthersPComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyPageComponent);
+    fixture = TestBed.createComponent(LikeFromOthersPComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

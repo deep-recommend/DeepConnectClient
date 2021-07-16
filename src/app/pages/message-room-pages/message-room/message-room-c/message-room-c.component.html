@@ -11,6 +11,8 @@
         [messages]="messages$ | async"
         [profile]="profile$ | async"
         [companion]="companion$ | async"
+        (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
+        (clickCompanionProfilePicture)="onReceivedClickCompanionProfilePicture($event)"
     ></app-message-room-screen-p>
     <app-message-room-message-sender-p
         fxLayoutAlign="center"

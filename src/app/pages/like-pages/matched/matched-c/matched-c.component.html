@@ -1,0 +1,8 @@
+<app-like-routing-tabs></app-like-routing-tabs>
+<app-matched-p
+    [currentUserId]="currentUserId$ | async"
+    [users]="users$ | async"
+    [profile]="profile$ | async"
+    [likes]="likes$ | async"
+    (clickUserToMessage)="onReceivedClickUserToMessage($event)"
+></app-matched-p>

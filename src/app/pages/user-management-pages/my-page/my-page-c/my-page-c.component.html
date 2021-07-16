@@ -1,1 +1,5 @@
-<p>my-page-c works!</p>
+<app-my-page-p
+    [profile]="profile$ | async"
+    (clickToProfileSetting)="onReceivedClickToProfileSetting()"
+    (clickSignOut)="onReceivedClickSignOut()"
+></app-my-page-p>

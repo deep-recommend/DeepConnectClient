@@ -1,9 +1,9 @@
-import { createHeaderAccountMenu, HeaderAccountMenu } from '../../domains/layout/header-user-menu.domain';
+import { createHeaderAccountMenu, HeaderAccountMenu } from '../../domains/layout/header-user-menu.domain'
 
 export const headerAccountMenu: HeaderAccountMenu[] = [
     createHeaderAccountMenu({
         icon: 'settings',
-        label: '設定',
+        label: 'マイページ',
         routerLink: '/my-page',
     }),
     createHeaderAccountMenu({
@@ -11,4 +11,4 @@ export const headerAccountMenu: HeaderAccountMenu[] = [
         label: 'サインアウト',
         routerLink: '/sign-in',
     }),
-];
+]

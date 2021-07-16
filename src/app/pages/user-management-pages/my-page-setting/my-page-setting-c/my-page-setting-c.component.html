@@ -1,0 +1,9 @@
+<app-my-page-setting-p
+    [genders]="genders$ | async"
+    [years]="years$ | async"
+    [months]="months$ | async"
+    [days]="days$ | async"
+    [birthPlaces]="birthPlaces$ | async"
+    [profile]="profile$ | async"
+    (update)="onReceivedClickProfileUpdate($event)"
+></app-my-page-setting-p>

@@ -20,8 +20,17 @@ export class UiService {
         return isLike
     }
 
-    // TODO 自分をいいねしているユーザー
-    // likedByOtherUsers()
+    alreadyLikedByOthers(currentUserId: string, userId: string): boolean {
+        let isLike!: boolean
+        let likeUserIds: string[] = []
+        this.likeQuery.likeAll.forEach((data) => {
+            if (data.currentUserId === userId) {
+                likeUserIds.push(data.userId)
+            }
+        })
+        isLike = includes(likeUserIds, currentUserId)
+        return isLike
+    }
 
     isMatching(currentUserId: string, userId: string): boolean {
         let likeEachOther!: any[]

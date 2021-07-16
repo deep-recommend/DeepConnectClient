@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { companionIdKey } from 'src/app/general/utilities/local-strage'
+import { companionIdKey, userDetailIdKey } from 'src/app/general/utilities/local-strage'
 import { EntryService } from 'src/app/states/entry'
 import { CreateMessageProps, MessageQuery, MessageService } from 'src/app/states/message'
 import { RoomQuery, RoomService, RoomStore } from 'src/app/states/room'
@@ -54,11 +54,11 @@ export class MessageRoomCComponent implements OnInit {
             console.log('Create room')
             this.roomService.postRoomRequest().subscribe((roomData) => {
                 const profileEntryValue = {
-                    userId: this.profile.user._id,
+                    userId: this.profile._id,
                     roomId: roomData._id,
                 }
                 const companionEntryValue = {
-                    userId: this.companion.id,
+                    userId: this.companion._id,
                     roomId: roomData._id,
                 }
                 this.entryService.postEntryRequest(profileEntryValue).subscribe()
@@ -85,7 +85,7 @@ export class MessageRoomCComponent implements OnInit {
 
     onReceivedSendMessage(message: string): void {
         const value: CreateMessageProps = {
-            userId: this.profile.user._id,
+            userId: this.profile._id,
             roomId: this.roomQuery.currentRoomIdGetter,
             message: message,
         }
@@ -94,6 +94,16 @@ export class MessageRoomCComponent implements OnInit {
     }
 
     onReceivedClickAccount(userId: string | undefined): void {
+        localStorage.setItem(userDetailIdKey, String(userId))
+        this.router.navigate([`user-detail/${userId}`])
+    }
+
+    onReceivedClickMyProfilePicture(): void {
+        this.router.navigate(['my-page'])
+    }
+
+    onReceivedClickCompanionProfilePicture(userId: string | undefined): void {
+        localStorage.setItem(userDetailIdKey, String(userId))
         this.router.navigate([`user-detail/${userId}`])
     }
 }

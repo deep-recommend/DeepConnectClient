@@ -1,0 +1,18 @@
+<nav mat-tab-nav-bar mat-align-tabs="center" class="routing-tabs">
+    <a
+        mat-tab-link
+        class="mat-tab-link"
+        *ngFor="let routeLink of routeLinks; let i = index"
+        [routerLink]="routeLink.link"
+        [active]="activeLinkIndex === i"
+        (click)="activeLinkIndex = i"
+    >
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon *ngIf="routeLink.label !== '足あと'" class="router-link-icon">{{ routeLink.icon }}</mat-icon>
+            <ng-container *ngIf="routeLink.label === '足あと'">
+                <i class="fas fa-shoe-prints"></i>
+            </ng-container>
+            <div class="router-link-label">{{ routeLink.label }}</div>
+        </div>
+    </a>
+</nav>

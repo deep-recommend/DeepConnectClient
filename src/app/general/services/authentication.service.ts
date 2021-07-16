@@ -1,20 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { UiStore } from 'src/app/states/ui';
-import { ProfileProps, UserStore } from 'src/app/states/user';
-import { SignInProps } from '../interfaces/sign-in.interface';
-import { accessTokenKey, apiAuthUrl, apiProfileUrl, httpHeaders } from '../utilities/api';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable, throwError } from 'rxjs'
+import { catchError, map, tap } from 'rxjs/operators'
+import { UiStore } from 'src/app/states/ui'
+import { UserProps, UserStore } from 'src/app/states/user'
+import { SignInProps } from '../interfaces/sign-in.interface'
+import { UpdateProfileProps } from '../interfaces/update-profile.interface'
+import { accessTokenKey, apiAuthUrl, apiProfileUrl, httpHeaders } from '../utilities/api'
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthenticationService {
-    private readonly _apiAuthUrl = apiAuthUrl;
-    private readonly _apiProfileUrl = apiProfileUrl;
-    private readonly _httpHeaders = httpHeaders;
-    private readonly _accessTokenKey = accessTokenKey;
+    private readonly _apiAuthUrl = apiAuthUrl
+    private readonly _apiProfileUrl = apiProfileUrl
+    private readonly _httpHeaders = httpHeaders
+    private readonly _accessTokenKey = accessTokenKey
 
     constructor(
         private readonly http: HttpClient,
@@ -25,21 +26,28 @@ export class AuthenticationService {
     signInRequest(signIn: SignInProps): Observable<void> {
         return this.http.post(this._apiAuthUrl, signIn, this._httpHeaders).pipe(
             map((token: any) => {
-                localStorage.setItem(this._accessTokenKey, String(token.CmCn_access_token));
+                localStorage.setItem(this._accessTokenKey, String(token.CmCn_access_token))
             }),
             catchError((err) => {
-                console.log(err);
+                console.log(err)
                 if (err) {
-                    this.uiStore.displayErrMsg('Emailまたはパスワードが正しくありません');
+                    this.uiStore.displayErrMsg('Emailまたはパスワードが正しくありません')
                 }
-                return throwError(undefined);
+                return throwError(undefined)
             })
-        );
+        )
     }
 
-    getProfile(): Observable<ProfileProps> {
+    getProfile(): Observable<UserProps> {
         return this.http
-            .get<ProfileProps>(this._apiProfileUrl, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateProfile(data)));
+            .get<UserProps>(this._apiProfileUrl, this._httpHeaders)
+            .pipe(tap((data) => this.userStore.updateProfile(data)))
+    }
+
+    updateProfile(userId: string, updateUser: UpdateProfileProps): Observable<UserProps> {
+        const url = `${this._apiProfileUrl}/${userId}`
+        return this.http
+            .put<UserProps>(url, updateUser, this._httpHeaders)
+            .pipe(tap((data) => this.userStore.updateProfile(data)))
     }
 }

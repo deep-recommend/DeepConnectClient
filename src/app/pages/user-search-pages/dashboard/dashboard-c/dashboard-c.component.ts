@@ -4,8 +4,9 @@ import { Observable } from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { SocketEmitterService } from 'src/app/general/services/socket/socket-emitter.service'
 import { SocketReceiverService } from 'src/app/general/services/socket/socket-receiver.service'
+import { userDetailIdKey } from 'src/app/general/utilities/local-strage'
 import { LikeProps, LikeQuery, LikeService } from 'src/app/states/like'
-import { ProfileProps, UserProps, UserQuery, UserService } from 'src/app/states/user'
+import { UserProps, UserQuery, UserService } from 'src/app/states/user'
 
 @Component({
     selector: 'app-dashboard-c',
@@ -13,9 +14,9 @@ import { ProfileProps, UserProps, UserQuery, UserService } from 'src/app/states/
     styleUrls: ['./dashboard-c.component.scss'],
 })
 export class DashboardCComponent implements OnInit {
-    profile: ProfileProps = this.userQuery.profileGetter
+    profile: UserProps = this.userQuery.profileGetter
 
-    profile$: Observable<ProfileProps> = this.userQuery.profile$
+    profile$: Observable<UserProps> = this.userQuery.profile$
     currentUserId$: Observable<string> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$
@@ -32,7 +33,9 @@ export class DashboardCComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe()
+        this.userService.getUsersRequest().subscribe((data) => {
+            console.log('user', data)
+        })
         this.likeService.getLikes().subscribe()
         this.authenticationService.getProfile().subscribe()
     }
@@ -44,7 +47,7 @@ export class DashboardCComponent implements OnInit {
     onReceivedClickLikeButton(userId: string): void {
         console.log('like to ' + userId)
         const value = {
-            currentUserId: this.profile.user._id,
+            currentUserId: this.profile._id,
             userId: userId,
         }
         this.socketEmitter.emitLike(value)
@@ -54,7 +57,7 @@ export class DashboardCComponent implements OnInit {
     onReceivedClickUnlikeButton(userId: string): void {
         console.log('unlike to ' + userId)
         const query = {
-            currentUserId: this.profile.user._id,
+            currentUserId: this.profile._id,
             userId: userId,
         }
         this.socketEmitter.emitUnlike(query)
@@ -62,6 +65,7 @@ export class DashboardCComponent implements OnInit {
     }
 
     onReceivedClickUsersToDetail(userId: string): void {
+        localStorage.setItem(userDetailIdKey, String(userId))
         this.router.navigate([`user-detail/${userId}`])
     }
 }

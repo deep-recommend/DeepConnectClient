@@ -1,8 +1,11 @@
 :host {
+    .user-search {
+        margin: 48px 0;
+    }
     .user-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 48px;
-        margin: 48px;
+        margin: 0 48px 48px;
     }
 }

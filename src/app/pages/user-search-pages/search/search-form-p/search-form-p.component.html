@@ -1,18 +1,6 @@
 <form [formGroup]="userSearchForm" (ngSubmit)="onSubmitUserSearch()">
     <mat-card-content fxLayout="column">
         <mat-form-field>
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="realLastName" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="realFirstName" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Stage Name</mat-label>
-            <input matInput formControlName="stageName" />
-        </mat-form-field>
-        <mat-form-field>
             <mat-label>Gender</mat-label>
             <mat-select formControlName="gender">
                 <mat-option *ngFor="let gender of genders" [value]="gender">
@@ -25,22 +13,6 @@
             <mat-select formControlName="birthYear">
                 <mat-option *ngFor="let year of years" [value]="year">
                     {{ year }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Birth month</mat-label>
-            <mat-select formControlName="birthMonth">
-                <mat-option *ngFor="let month of months" [value]="month">
-                    {{ month }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Birth day</mat-label>
-            <mat-select formControlName="birthDay">
-                <mat-option *ngFor="let day of days" [value]="day">
-                    {{ day }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
