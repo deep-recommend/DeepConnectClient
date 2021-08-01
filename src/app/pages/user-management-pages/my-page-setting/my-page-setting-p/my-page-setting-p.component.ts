@@ -17,6 +17,7 @@ export class MyPageSettingPComponent implements OnInit {
     updateUserFormInstance = new UpdateProfileModel()
     updateUserForm: FormGroup = this.fb.group(this.updateUserFormInstance.formGroupValue)
 
+    @Input() positions!: string[] | null
     @Input() genders!: string[] | null
     @Input() years!: number[] | null
     @Input() months!: number[] | null
@@ -33,7 +34,6 @@ export class MyPageSettingPComponent implements OnInit {
     }
 
     onClickUpdate(): void {
-        console.log(this.updateUserForm.valid)
         if (this.updateUserForm.valid) {
             this.update.emit(this.updateUserForm.value)
         }
@@ -45,6 +45,7 @@ export class MyPageSettingPComponent implements OnInit {
         form.realLastName.patchValue(me?.realLastName)
         form.realFirstName.patchValue(me?.realFirstName)
         form.stageName.patchValue(me?.stageName)
+        form.position.patchValue(me?.position)
         form.gender.patchValue(me?.gender)
         form.birthYear.patchValue(me?.birthYear)
         form.birthMonth.patchValue(me?.birthMonth)

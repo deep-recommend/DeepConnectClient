@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
-import { DAY, MONTH, YEAR } from 'src/app/general/utilities/date'
-import { GENDER } from 'src/app/general/utilities/gender'
-import { PREFECTURE } from 'src/app/general/utilities/prefecture'
+import { DAY, MONTH, YEAR } from 'src/app/general/utilities/select/date'
+import { GENDER } from 'src/app/general/utilities/select/gender'
+import { POSITION } from 'src/app/general/utilities/select/position'
+import { PREFECTURE } from 'src/app/general/utilities/select/prefecture'
 import { UserProps } from './user.model'
 
 export interface UserState extends EntityState<UserProps> {
     ui: {
+        positions: string[]
         genders: string[]
         years: number[]
         months: number[]
@@ -14,6 +16,7 @@ export interface UserState extends EntityState<UserProps> {
         birthPlaces: string[]
     }
     search: {
+        position: string
         gender: string
         birthYear: string
         birthPlace: string
@@ -30,6 +33,7 @@ export interface UserState extends EntityState<UserProps> {
 
 const initialState = {
     ui: {
+        positions: POSITION,
         genders: GENDER,
         years: YEAR,
         months: MONTH,
@@ -37,6 +41,7 @@ const initialState = {
         birthPlaces: PREFECTURE,
     },
     search: {
+        position: '',
         gender: '',
         birthYear: '',
         birthPlace: '',

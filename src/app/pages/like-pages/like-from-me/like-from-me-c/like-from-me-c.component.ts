@@ -35,7 +35,7 @@ export class LikeFromMeCComponent implements OnInit {
     onReceivedClickUserToMessage(userId: string): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {
             localStorage.setItem(companionIdKey, userId)
-            this.router.navigate([`/message-room/${userId}`])
+            this.router.navigate([`/user-detail/${userId}`])
         })
     }
 }

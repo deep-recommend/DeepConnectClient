@@ -35,9 +35,10 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { LikeRoutingTabsComponent } from './components/like-routing-tabs/like-routing-tabs.component'
+import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pre-page.component'
 
 @NgModule({
-    declarations: [LikeRoutingTabsComponent],
+    declarations: [LikeRoutingTabsComponent, BackToPrePageComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -79,6 +80,7 @@ import { LikeRoutingTabsComponent } from './components/like-routing-tabs/like-ro
     ],
     exports: [
         LikeRoutingTabsComponent,
+        BackToPrePageComponent,
 
         CommonModule,
         FormsModule,

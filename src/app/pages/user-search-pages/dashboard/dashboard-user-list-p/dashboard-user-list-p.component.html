@@ -16,13 +16,13 @@
             <mat-card-actions fxLayout="row" fxLayoutAlign="space-between">
                 <div *ngIf="alreadyLiked(user._id); then unlike else like"></div>
                 <ng-template #unlike
-                    ><button mat-button (click)="onClickUnlikeButton(user._id)">
-                        <p style="color: blue">いいね<mat-icon>thumb_up</mat-icon></p>
+                    ><button mat-button  (click)="onClickUnlikeButton(user._id)">
+                        <p style="color: orange">組みたい<mat-icon>thumb_up</mat-icon></p>
                     </button></ng-template
                 >
                 <ng-template #like
                     ><button mat-button (click)="onClickLikeButton(user._id)">
-                        <p>いいね<mat-icon>thumb_up</mat-icon></p>
+                        <p>組みたい<mat-icon>thumb_up</mat-icon></p>
                     </button></ng-template
                 >
                 <button mat-raised-button (click)="onClickUsersToDetail(user._id)">詳細を見る</button>

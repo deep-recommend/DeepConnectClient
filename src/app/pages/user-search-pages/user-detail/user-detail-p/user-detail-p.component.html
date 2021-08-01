@@ -1,13 +1,37 @@
-<div>
+<mat-card class="card">
+  <mat-card-header>
+      <mat-card-title>
+          {{ user?.realLastName }}{{ user?.realFirstName }}：{{ user?.position }}</mat-card-title
+      >
+      <mat-card-subtitle
+          >{{ age }}歳：{{
+              user?.gender
+          }}</mat-card-subtitle
+      >
+  </mat-card-header>
   <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
   <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
   <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
-    {{ user?.realLastName }}
-    {{ user?.realFirstName }}
-    {{ user?.stageName }}
-    {{ user?.gender }}
-    {{ birthDayToAge(user!.birthYear, user!.birthMonth, user!.birthDay) }}歳
-    {{ user?.agency }}
-    {{ user?.description }}
-    {{ user?.email }}
-</div>
+  <mat-card-content>
+      <div>{{ user?.description ? user?.description : 'こんにちは' }}</div>
+      <ul>
+          <li>{{ user?.stageName }}</li>
+          <li>{{ user?.birthPlace }}</li>
+          <li>{{ user?.agency }}</li>
+          <li>{{ user?.email }}</li>
+      </ul>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end">
+    <div *ngIf="alreadyLiked(user!._id); then unlike else like"></div>
+    <ng-template #unlike
+        ><button mat-button (click)="onClickUnlikeButton(user!._id)">
+            <p style="color: orange">組みたい<mat-icon>thumb_up</mat-icon></p>
+        </button></ng-template
+    >
+    <ng-template #like
+        ><button mat-button (click)="onClickLikeButton(user!._id)">
+            <p>組みたい<mat-icon>thumb_up</mat-icon></p>
+        </button></ng-template
+    >
+  </mat-card-actions>
+</mat-card>

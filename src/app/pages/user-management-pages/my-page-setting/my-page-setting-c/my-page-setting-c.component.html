@@ -1,4 +1,6 @@
+<app-back-to-pre-page (clickBackToPrePage)="onReceivedClickBackToPrePage()"></app-back-to-pre-page>
 <app-my-page-setting-p
+    [positions]="positions$ | async"
     [genders]="genders$ | async"
     [years]="years$ | async"
     [months]="months$ | async"

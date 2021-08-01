@@ -17,11 +17,6 @@ const routes: Routes = [
         loadChildren: () => import('./pages/user-management-pages/sign-up/sign-up.module').then((m) => m.SignUpModule),
     },
     {
-        path: 'settlement',
-        loadChildren: () => import('./pages/other-pages/settlement/settlement.module').then((m) => m.SettlementModule),
-        canActivate: [DeepRecommendGuard],
-    },
-    {
         path: 'my-page',
         loadChildren: () => import('./pages/user-management-pages/my-page/my-page.module').then((m) => m.MyPageModule),
         canActivate: [DeepRecommendGuard],
@@ -77,8 +72,14 @@ const routes: Routes = [
         canActivate: [DeepRecommendGuard],
     },
     {
-        path: 'footprint',
-        loadChildren: () => import('./pages/footprint-pages/footprint/footprint.module').then((m) => m.FootprintModule),
+        path: 'feature',
+        loadChildren: () => import('./pages/feature-pages/feature/feature.module').then((m) => m.FeatureModule),
+        canActivate: [DeepRecommendGuard],
+    },
+    {
+        path: 'notification',
+        loadChildren: () =>
+            import('./pages/notification-pages/notification/notification.module').then((m) => m.NotificationModule),
         canActivate: [DeepRecommendGuard],
     },
 ]

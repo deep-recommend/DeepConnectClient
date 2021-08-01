@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { tap } from 'lodash'
 import { Observable } from 'rxjs'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
@@ -12,6 +11,7 @@ import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/use
     styleUrls: ['./my-page-setting-c.component.scss'],
 })
 export class MyPageSettingCComponent implements OnInit {
+    positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
     months$: Observable<number[]> = this.userQuery.months$
@@ -24,7 +24,8 @@ export class MyPageSettingCComponent implements OnInit {
     constructor(
         private readonly userQuery: UserQuery,
         private readonly userService: UserService,
-        private readonly authenticationService: AuthenticationService
+        private readonly authenticationService: AuthenticationService,
+        private readonly router: Router
     ) {}
 
     ngOnInit(): void {
@@ -37,5 +38,9 @@ export class MyPageSettingCComponent implements OnInit {
         this.userService.updateUserRequest(this.currentUserId, user).subscribe(() => {
             location.reload()
         })
+    }
+
+    onReceivedClickBackToPrePage(): void {
+        this.router.navigate(['/my-page'])
     }
 }

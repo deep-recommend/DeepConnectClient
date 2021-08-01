@@ -8,10 +8,7 @@
         (click)="activeLinkIndex = i"
     >
         <div fxLayout="column" fxLayoutAlign="center center">
-            <mat-icon *ngIf="routeLink.label !== '足あと'" class="router-link-icon">{{ routeLink.icon }}</mat-icon>
-            <ng-container *ngIf="routeLink.label === '足あと'">
-                <i class="fas fa-shoe-prints"></i>
-            </ng-container>
+            <mat-icon class="router-link-icon">{{ routeLink.icon }}</mat-icon>
             <div class="router-link-label">{{ routeLink.label }}</div>
         </div>
     </a>

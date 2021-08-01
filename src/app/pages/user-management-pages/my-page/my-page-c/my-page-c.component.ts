@@ -27,7 +27,9 @@ export class MyPageCComponent implements OnInit {
     }
 
     onReceivedClickSignOut(): void {
-        localStorage.removeItem(accessTokenKey)
-        this.router.navigate(['/sign-in'])
+        if (localStorage.getItem(accessTokenKey)) {
+            localStorage.removeItem(accessTokenKey)
+            this.router.navigate(['/sign-in'])
+        }
     }
 }

@@ -5,6 +5,7 @@ export class UpdateProfileModel implements UpdateProfileProps {
     realLastName!: string
     realFirstName!: string
     stageName?: string = ''
+    position?: string = '未選択'
     gender!: string
     birthYear!: number
     birthMonth!: number
@@ -22,6 +23,7 @@ export class UpdateProfileModel implements UpdateProfileProps {
             this.realLastName = value.realLastName
             this.realFirstName = value.realFirstName
             this.stageName = value.stageName
+            this.position = value.position
             this.gender = value.gender
             this.birthYear = value.birthYear
             this.birthMonth = value.birthMonth
@@ -39,6 +41,7 @@ export class UpdateProfileModel implements UpdateProfileProps {
             realLastName: this.realLastName,
             realFirstName: this.realFirstName,
             stageName: this.stageName,
+            position: this.position,
             gender: this.gender,
             birthYear: this.birthYear,
             birthMonth: this.birthMonth,
@@ -55,6 +58,7 @@ export class UpdateProfileModel implements UpdateProfileProps {
             realLastName: [this.realLastName, [Validators.required]],
             realFirstName: [this.realLastName, [Validators.required]],
             stageName: [this.stageName],
+            position: [this.position],
             gender: [this.gender, [Validators.required]],
             birthYear: [this.birthYear, [Validators.required]],
             birthMonth: [this.birthMonth, [Validators.required]],

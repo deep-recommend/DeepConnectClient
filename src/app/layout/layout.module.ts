@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { NgModule } from '@angular/core'
 import { LayoutComponent } from './layout.component'
 import { HeaderCComponent } from './components/header/header-c/header-c.component'
 import { ContentComponent } from './components/content/content.component'

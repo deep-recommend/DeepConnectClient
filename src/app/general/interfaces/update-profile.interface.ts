@@ -4,6 +4,7 @@ export interface UpdateProfileProps {
     realLastName: string
     realFirstName: string
     stageName?: string
+    position?: string
     gender: string
     birthYear: number
     birthMonth: number
@@ -18,6 +19,7 @@ export interface UpdateProfileFormProps {
     realLastName: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
     realFirstName: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
     stageName: (string | null | undefined)[]
+    position: (string | null | undefined)[]
     gender: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
     birthYear: (number | ((control: AbstractControl) => ValidationErrors | null)[])[]
     birthMonth: (number | ((control: AbstractControl) => ValidationErrors | null)[])[]

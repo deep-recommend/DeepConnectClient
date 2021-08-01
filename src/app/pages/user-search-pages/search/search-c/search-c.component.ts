@@ -10,6 +10,7 @@ import { UserQuery, UserService, UserStore } from 'src/app/states/user'
     styleUrls: ['./search-c.component.scss'],
 })
 export class SearchCComponent implements OnInit {
+    positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
     months$: Observable<number[]> = this.userQuery.months$
@@ -34,7 +35,7 @@ export class SearchCComponent implements OnInit {
             birthPlace: searchFormValue.birthPlace ?? '',
             agency: searchFormValue.agency ?? '',
         })
-        this.userService.getUsersRequest().subscribe((data) => {
+        this.userService.getUsersRequest().subscribe(() => {
             this.router.navigate(['/'])
         })
     }
