@@ -14,6 +14,7 @@ export class UserQuery extends QueryEntity<UserState> {
     detailUser$ = this.select('detailUser')
 
     ui$ = this.select('ui')
+    positions$ = this.select((state) => state.ui.positions)
     genders$ = this.select((state) => state.ui.genders)
     years$ = this.select((state) => state.ui.years)
     months$ = this.select((state) => state.ui.months)

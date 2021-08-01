@@ -23,17 +23,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   $ ng s
 -   「authentication.service.ts」の token の書き換え
 -   「index.html」の title タグの書き換え
--
--   マイページ
--   デザイン
--   年齢を年に変更する関数
--   ユーザー特徴
--   ユーザー特徴検索
--   年齢などの規定関連
--   current_user がいいねしたユーザー一覧
--   current_user をいいねしたユーザー一覧
--   足跡
--
--
--
--
+
+## WIllDO
+
+-   今はユーザーにいっぱいカラム付け足すしかない
+-   特徴機能

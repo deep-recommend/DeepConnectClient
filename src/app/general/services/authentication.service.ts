@@ -7,6 +7,7 @@ import { UserProps, UserStore } from 'src/app/states/user'
 import { SignInProps } from '../interfaces/sign-in.interface'
 import { UpdateProfileProps } from '../interfaces/update-profile.interface'
 import { accessTokenKey, apiAuthUrl, apiProfileUrl, httpHeaders } from '../utilities/api'
+import { DeepRecommendLocalStorageService } from './local-strage.service'
 
 @Injectable({
     providedIn: 'root',
@@ -15,7 +16,6 @@ export class AuthenticationService {
     private readonly _apiAuthUrl = apiAuthUrl
     private readonly _apiProfileUrl = apiProfileUrl
     private readonly _httpHeaders = httpHeaders
-    private readonly _accessTokenKey = accessTokenKey
 
     constructor(
         private readonly http: HttpClient,
@@ -26,7 +26,7 @@ export class AuthenticationService {
     signInRequest(signIn: SignInProps): Observable<void> {
         return this.http.post(this._apiAuthUrl, signIn, this._httpHeaders).pipe(
             map((token: any) => {
-                localStorage.setItem(this._accessTokenKey, String(token.CmCn_access_token))
+                localStorage.setItem(accessTokenKey, token.CmCn_access_token)
             }),
             catchError((err) => {
                 console.log(err)

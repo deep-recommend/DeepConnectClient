@@ -38,6 +38,6 @@ export class DashboardUserListPComponent implements OnInit {
     }
 
     alreadyLiked(userId: string): boolean {
-        return this.uiService.alreadyLiked(String(this.currentUserId), userId)
+        return this.uiService.alreadyLikedByMyself(String(this.currentUserId), userId)
     }
 }

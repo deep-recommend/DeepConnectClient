@@ -1,7 +1,7 @@
-<form [formGroup]="userSearchForm" (ngSubmit)="onSubmitUserSearch()">
+<form [formGroup]="userSearchForm" (ngSubmit)="onSubmitUserSearch()" class="form">
     <mat-card-content fxLayout="column">
         <mat-form-field>
-            <mat-label>Gender</mat-label>
+            <mat-label>性別</mat-label>
             <mat-select formControlName="gender">
                 <mat-option *ngFor="let gender of genders" [value]="gender">
                     {{ gender }}
@@ -9,7 +9,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Birth year</mat-label>
+            <mat-label>誕生年</mat-label>
             <mat-select formControlName="birthYear">
                 <mat-option *ngFor="let year of years" [value]="year">
                     {{ year }}
@@ -17,7 +17,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Birth Place</mat-label>
+            <mat-label>地元</mat-label>
             <mat-select formControlName="birthPlace">
                 <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
                     {{ birthPlace }}
@@ -25,11 +25,11 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Agency</mat-label>
+            <mat-label>事務所</mat-label>
             <input matInput formControlName="agency" />
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
-        <button mat-raised-button style="background-color: #00ff00">検索する</button>
+        <button mat-raised-button style="background-color: orange">検索する</button>
     </mat-card-actions>
 </form>

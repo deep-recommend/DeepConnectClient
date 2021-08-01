@@ -1,1 +1,7 @@
-<app-user-detail-p [user]="detailUser$ | async"></app-user-detail-p>
+<app-back-to-pre-page></app-back-to-pre-page>
+<app-user-detail-p
+    [user]="detailUser$ | async"
+    [currentUserId]="currentUserId$ | async"
+    (clickLikeButton)="onReceivedClickLikeButton($event)"
+    (clickUnlikeButton)="onReceivedClickUnlikeButton($event)"
+></app-user-detail-p>

@@ -33,9 +33,7 @@ export class DashboardCComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe((data) => {
-            console.log('user', data)
-        })
+        this.userService.getUsersRequest().subscribe()
         this.likeService.getLikes().subscribe()
         this.authenticationService.getProfile().subscribe()
     }

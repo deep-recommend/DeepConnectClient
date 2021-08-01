@@ -8,7 +8,7 @@ import { LikeQuery } from '../like'
 export class UiService {
     constructor(private readonly likeQuery: LikeQuery) {}
 
-    alreadyLiked(currentUserId: string, userId: string): boolean {
+    alreadyLikedByMyself(currentUserId: string, userId: string): boolean {
         let isLike!: boolean
         let likeUserIds: string[] = []
         this.likeQuery.likeAll.forEach((data) => {

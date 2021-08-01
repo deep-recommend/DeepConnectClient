@@ -17,7 +17,7 @@ export class HeaderRoutingTabsComponent implements OnInit {
             { icon: 'search', label: 'さがす', link: '/' },
             { icon: 'thumb_up', label: 'いいね', link: '/like-from-me' },
             { icon: 'message', label: 'メッセージ', link: '/matching-users' },
-            { icon: 'foot', label: '足あと', link: '/footprint' },
+            { icon: 'portrait', label: '特徴', link: '/feature' },
             { icon: 'account_circle', label: 'マイページ', link: '/my-page' },
         ]
 

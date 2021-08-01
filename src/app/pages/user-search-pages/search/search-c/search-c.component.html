@@ -1,4 +1,6 @@
+<app-back-to-pre-page></app-back-to-pre-page>
 <app-search-form-p
+    [positions]="positions$ | async"
     [genders]="genders$ | async"
     [years]="years$ | async"
     [months]="months$ | async"

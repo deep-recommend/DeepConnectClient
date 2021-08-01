@@ -8,13 +8,16 @@ import { UserProps } from 'src/app/states/user'
     styleUrls: ['./my-page-p.component.scss'],
 })
 export class MyPagePComponent implements OnInit {
+    age!: number
     @Input() profile!: UserProps | null
     @Output() clickToProfileSetting: EventEmitter<void> = new EventEmitter<void>()
     @Output() clickSignOut: EventEmitter<void> = new EventEmitter()
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.setBirthdayToAge()
+    }
 
     birthDayToAge = birthDayToAge
 
@@ -24,5 +27,13 @@ export class MyPagePComponent implements OnInit {
 
     signOut(): void {
         this.clickSignOut.emit()
+    }
+
+    setBirthdayToAge(): void {
+        this.age = this.birthDayToAge(
+            Number(this.profile?.birthYear),
+            Number(this.profile?.birthMonth),
+            Number(this.profile?.birthDay)
+        )
     }
 }
