@@ -1,4 +1,8 @@
-<mat-form-field class="search-form" style="border-radius: 16px" appearance="fill" (click)="onClickSearchField()">
-    <input matInput fxLayoutAlign="center" placeholder="検索条件を指定する" disabled />
-    <mat-icon matSuffix>search</mat-icon>
-</mat-form-field>
+<div class="search-container" fxLayout="row" fxLayoutAlign="center center">
+    <button mat-button class="search-form" (click)="onClickSearchField()">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+            <div class="input" fxLayoutAlign="center">検索条件を指定する</div>
+            <mat-icon class="icon" fxLayoutAlign="center">search</mat-icon>
+        </div>
+    </button>
+</div>

@@ -1,3 +1,7 @@
+<app-title-header [pageName]="pageName"></app-title-header>
+<div *ngIf="!existsMatchingUsers">
+    <app-no-matching-users-p></app-no-matching-users-p>
+</div>
 <app-matching-users-p
     [currentUserId]="currentUserId$ | async"
     [users]="users$ | async"

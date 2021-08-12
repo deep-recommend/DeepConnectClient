@@ -1,10 +1,19 @@
 :host {
     .contents {
         width: 700px;
-        margin: 0 auto;
-    }
-    app-content {
         height: 100vh;
         overflow: scroll;
+        margin: 0 auto;
+        .content {
+            margin-top: 69px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .contents {
+            width: 100vw;
+            .content {
+                margin-top: 0;
+            }
+        }
     }
 }

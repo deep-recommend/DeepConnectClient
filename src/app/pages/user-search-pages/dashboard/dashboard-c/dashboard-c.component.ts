@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subscription } from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { SocketEmitterService } from 'src/app/general/services/socket/socket-emitter.service'
-import { SocketReceiverService } from 'src/app/general/services/socket/socket-receiver.service'
-import { userDetailIdKey } from 'src/app/general/utilities/local-strage'
+import { SocketService } from 'src/app/general/services/socket/socket.service'
 import { LikeProps, LikeQuery, LikeService } from 'src/app/states/like'
-import { UserProps, UserQuery, UserService } from 'src/app/states/user'
+import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/user'
 
 @Component({
     selector: 'app-dashboard-c',
     templateUrl: './dashboard-c.component.html',
     styleUrls: ['./dashboard-c.component.scss'],
 })
-export class DashboardCComponent implements OnInit {
+export class DashboardCComponent implements OnInit, OnDestroy {
+    subscriptions: Subscription[] = []
+
     profile: UserProps = this.userQuery.profileGetter
 
     profile$: Observable<UserProps> = this.userQuery.profile$
@@ -27,15 +27,19 @@ export class DashboardCComponent implements OnInit {
         private readonly router: Router,
         private readonly likeService: LikeService,
         private readonly likeQuery: LikeQuery,
-        private readonly socketEmitter: SocketEmitterService,
-        private readonly socketReceiver: SocketReceiverService,
-        private readonly authenticationService: AuthenticationService
+        private readonly socket: SocketService,
+        private readonly authenticationService: AuthenticationService,
+        private readonly userStore: UserStore
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe()
-        this.likeService.getLikes().subscribe()
-        this.authenticationService.getProfile().subscribe()
+        this.subscriptions.push(this.userService.getUsersRequest().subscribe())
+        this.subscriptions.push(this.likeService.getLikes().subscribe())
+        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe())
     }
 
     onReceivedClickSearchField(): void {
@@ -43,27 +47,42 @@ export class DashboardCComponent implements OnInit {
     }
 
     onReceivedClickLikeButton(userId: string): void {
-        console.log('like to ' + userId)
-        const value = {
-            currentUserId: this.profile._id,
-            userId: userId,
-        }
-        this.socketEmitter.emitLike(value)
-        this.socketReceiver.receivedLike()
+        console.log('like to ' + '& ' + 'notification increase ' + userId)
+        this._setLike(userId)
+        this._setNotificationIncrease(userId)
     }
 
     onReceivedClickUnlikeButton(userId: string): void {
         console.log('unlike to ' + userId)
+        this._setUnlike(userId)
+    }
+
+    onReceivedClickUsersToDetail(userId: string): void {
+        this.userStore.updateUserId(userId)
+        this.router.navigate([`user-detail/${userId}`])
+    }
+
+    private _setLike(userId: string): void {
+        const value = {
+            currentUserId: this.profile._id,
+            userId: userId,
+        }
+        this.socket.like(value)
+    }
+
+    private _setUnlike(userId: string): void {
         const query = {
             currentUserId: this.profile._id,
             userId: userId,
         }
-        this.socketEmitter.emitUnlike(query)
-        this.socketReceiver.receivedUnlike()
+        this.socket.unlike(query)
     }
 
-    onReceivedClickUsersToDetail(userId: string): void {
-        localStorage.setItem(userDetailIdKey, String(userId))
-        this.router.navigate([`user-detail/${userId}`])
+    private _setNotificationIncrease(userId: string): void {
+        const value = {
+            currentUserId: this.profile._id,
+            userId: userId,
+        }
+        this.socket.notificationIncrease(value)
     }
 }

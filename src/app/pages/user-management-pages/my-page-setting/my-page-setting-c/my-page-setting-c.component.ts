@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subscription } from 'rxjs'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/user'
@@ -10,7 +10,9 @@ import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/use
     templateUrl: './my-page-setting-c.component.html',
     styleUrls: ['./my-page-setting-c.component.scss'],
 })
-export class MyPageSettingCComponent implements OnInit {
+export class MyPageSettingCComponent implements OnInit, OnDestroy {
+    subscriptions: Subscription[] = []
+
     positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
@@ -29,9 +31,11 @@ export class MyPageSettingCComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.authenticationService.getProfile().subscribe((data) => {
-            console.log('profile', data)
-        })
+        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe())
     }
 
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {

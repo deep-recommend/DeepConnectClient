@@ -29,7 +29,6 @@ export class AuthenticationService {
                 localStorage.setItem(accessTokenKey, token.CmCn_access_token)
             }),
             catchError((err) => {
-                console.log(err)
                 if (err) {
                     this.uiStore.displayErrMsg('Emailまたはパスワードが正しくありません')
                 }

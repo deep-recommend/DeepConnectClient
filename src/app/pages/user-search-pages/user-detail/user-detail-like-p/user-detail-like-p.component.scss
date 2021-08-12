@@ -1,0 +1,43 @@
+:host {
+    .action {
+        max-width: 100%;
+        .already-like-button {
+            align-items: center;
+            background-color: orange;
+            color: white;
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 630px;
+            z-index: 2;
+        }
+        .still-liked-button {
+            background-color: #ececec;
+            color: #7a7a7a;
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 630px;
+            z-index: 2;
+        }
+    }
+    .icon {
+        font-size: 20px;
+    }
+    @media screen and (max-width: 700px) {
+        .action {
+            .already-like-button {
+                bottom: 64px;
+                width: 90vw;
+            }
+            .still-liked-button {
+                bottom: 64px;
+                width: 630px;
+            }
+        }
+    }
+}

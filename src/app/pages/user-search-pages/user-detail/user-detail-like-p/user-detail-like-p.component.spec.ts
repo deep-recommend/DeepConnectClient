@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderSignInPComponent } from './header-sign-in-p.component';
+import { UserDetailLikePComponent } from './user-detail-like-p.component';
 
-describe('HeaderSignInPComponent', () => {
-  let component: HeaderSignInPComponent;
-  let fixture: ComponentFixture<HeaderSignInPComponent>;
+describe('UserDetailLikePComponent', () => {
+  let component: UserDetailLikePComponent;
+  let fixture: ComponentFixture<UserDetailLikePComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderSignInPComponent ]
+      declarations: [ UserDetailLikePComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderSignInPComponent);
+    fixture = TestBed.createComponent(UserDetailLikePComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,37 +1,44 @@
-<mat-card class="card">
-  <mat-card-header>
-      <mat-card-title>
-          {{ user?.realLastName }}{{ user?.realFirstName }}：{{ user?.position }}</mat-card-title
-      >
-      <mat-card-subtitle
-          >{{ age }}歳：{{
-              user?.gender
-          }}</mat-card-subtitle
-      >
-  </mat-card-header>
-  <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
-  <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
-  <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
-  <mat-card-content>
-      <div>{{ user?.description ? user?.description : 'こんにちは' }}</div>
-      <ul>
-          <li>{{ user?.stageName }}</li>
-          <li>{{ user?.birthPlace }}</li>
-          <li>{{ user?.agency }}</li>
-          <li>{{ user?.email }}</li>
-      </ul>
-  </mat-card-content>
-  <mat-card-actions fxLayoutAlign="end">
-    <div *ngIf="alreadyLiked(user!._id); then unlike else like"></div>
-    <ng-template #unlike
-        ><button mat-button (click)="onClickUnlikeButton(user!._id)">
-            <p style="color: orange">組みたい<mat-icon>thumb_up</mat-icon></p>
-        </button></ng-template
-    >
-    <ng-template #like
-        ><button mat-button (click)="onClickLikeButton(user!._id)">
-            <p>組みたい<mat-icon>thumb_up</mat-icon></p>
-        </button></ng-template
-    >
-  </mat-card-actions>
-</mat-card>
+<ng-container>
+  <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
+    <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
+    <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
+  </div>
+  <div class="card">
+    <mat-card-header fxLayoutAlign="start">
+        <mat-card-title>{{ user?.stageName }}&nbsp;&nbsp;{{ user?.position }}
+            <button mat-icon-button *ngIf="isMatching(user!._id)" (click)="onClickUserToMessage(user!._id)">
+                <mat-icon class="icon">forward_to_inbox</mat-icon>
+            </button>
+        <br/></mat-card-title>
+        <mat-card-subtitle>{{ age }}歳&nbsp;&nbsp;{{ user?.gender }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="section">
+            <p><strong>自己紹介</strong></p>
+            <p>{{ user?.description }}</p>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center" class="section">
+            <p><strong>基本情報</strong></p>
+            <div fxLayout="row" fxLayoutAlign="start">
+                <ul>
+                    <li>本名</li>
+                    <li>年齢</li>
+                    <li>性別</li>
+                    <li>芸名</li>
+                    <li>出身</li>
+                    <li>所属事務所</li>
+                </ul>
+                <ul class="value">
+                    <li>{{ user?.realLastName }}{{ user?.realFirstName }}</li>
+                    <li>{{ age }}歳</li>
+                    <li>{{ user?.gender }}</li>
+                    <li>{{ user?.stageName }}</li>
+                    <li>{{ user?.birthPlace }}</li>
+                    <li>{{ user?.agency }}</li>
+                </ul>
+            </div>
+        </div>
+    </mat-card-content>
+  </div>
+</ng-container>

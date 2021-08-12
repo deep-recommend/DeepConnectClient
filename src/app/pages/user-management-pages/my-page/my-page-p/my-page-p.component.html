@@ -1,24 +1,33 @@
-<mat-card class="card">
-    <mat-card-header>
-        <mat-card-title>
-            {{ profile?.realLastName }}{{ profile?.realFirstName }}：{{ profile?.position }}</mat-card-title
-        >
-        <mat-card-subtitle>{{ age }}歳：{{ profile?.gender }}</mat-card-subtitle>
-    </mat-card-header>
+<div class="card">
     <div *ngIf="profile?.profilePicture; then profilePictureIsTrue; else profilePictureIsFalse"></div>
     <ng-template #profilePictureIsTrue><img src="{{ profile?.profilePicture }}" class="image" /></ng-template>
     <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
+    <mat-card-header>
+        <mat-card-title>{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br/></mat-card-title>
+    </mat-card-header>
     <mat-card-content>
         <div>{{ profile?.description ? profile?.description : 'こんにちは' }}</div>
-        <ul>
-            <li>{{ profile?.stageName }}</li>
-            <li>{{ profile?.birthPlace }}</li>
-            <li>{{ profile?.agency }}</li>
-            <li>{{ profile?.email }}</li>
-        </ul>
+        <div fxLayout="row" fxLayoutAlign="start">
+            <ul>
+                <li>本名</li>
+                <li>年齢</li>
+                <li>性別</li>
+                <li>芸名</li>
+                <li>出身</li>
+                <li>所属事務所</li>
+            </ul>
+            <ul class="value">
+                <li>{{ profile?.realLastName }}{{ profile?.realFirstName }}</li>
+                <li>{{ age }}歳</li>
+                <li>{{ profile?.gender }}</li>
+                <li>{{ profile?.stageName }}</li>
+                <li>{{ profile?.birthPlace }}</li>
+                <li>{{ profile?.agency }}</li>
+            </ul>
+        </div>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="end">
         <button mat-raised-button (click)="onClickToProfileSetting()">プロフィールを編集する</button>
         <button mat-raised-button (click)="signOut()">サインアウト</button>
     </mat-card-actions>
-</mat-card>
+</div>

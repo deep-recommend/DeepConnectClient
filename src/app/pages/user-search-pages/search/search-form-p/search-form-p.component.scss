@@ -1,5 +1,22 @@
 :host {
     .form {
-        margin: 0 48px;
+        margin: 24px 8px 0;
+        .search-button {
+            align-items: center;
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 630px;
+            z-index: 2;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .form {
+            .search-button {
+                width: 90vw;
+            }
+        }
     }
 }

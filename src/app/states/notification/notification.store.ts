@@ -3,27 +3,24 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
 import { NotificationProps } from './notification.model'
 
 export interface NotificationState extends EntityState<NotificationProps> {
-    ui: {
-        alert: string[]
-    }
+    ui: {}
 }
 
 const initialState = {
-    ui: {
-        alert: [],
-    },
+    ui: {},
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'notification',
+    idKey: '_id',
 })
 export class NotificationStore extends EntityStore<NotificationState> {
     constructor() {
         super(initialState)
     }
 
-    increaseAlert(): void {}
-
-    decreaseAlert(): void {}
+    setNotification(notifications: NotificationProps[]): void {
+        this.set(notifications)
+    }
 }

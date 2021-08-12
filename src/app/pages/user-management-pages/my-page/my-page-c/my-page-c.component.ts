@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subscription } from 'rxjs'
 import { accessTokenKey } from 'src/app/general/utilities/api'
 import { UserProps, UserQuery, UserService } from 'src/app/states/user'
 
@@ -9,7 +9,11 @@ import { UserProps, UserQuery, UserService } from 'src/app/states/user'
     templateUrl: './my-page-c.component.html',
     styleUrls: ['./my-page-c.component.scss'],
 })
-export class MyPageCComponent implements OnInit {
+export class MyPageCComponent implements OnInit, OnDestroy {
+    pageName: string | null | undefined
+
+    subscriptions: Subscription[] = []
+
     profile$: Observable<UserProps> = this.userQuery.profile$
 
     constructor(
@@ -19,7 +23,12 @@ export class MyPageCComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe()
+        this.pageName = 'マイページ'
+        this.subscriptions.push(this.userService.getUsersRequest().subscribe())
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe())
     }
 
     onReceivedClickToProfileSetting(): void {

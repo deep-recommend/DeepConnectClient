@@ -10,34 +10,29 @@ import { UserProps } from 'src/app/states/user'
 })
 export class UserDetailPComponent implements OnInit, OnChanges {
     age!: number
-    @Input() user!: UserProps | null
-    @Input() currentUserId!: string | null
-    @Output() clickLikeButton: EventEmitter<string> = new EventEmitter<string>()
-    @Output() clickUnlikeButton: EventEmitter<string> = new EventEmitter<string>()
+    @Input() user!: UserProps | null | undefined
+    @Input() currentUserId!: string | null | undefined
+    @Output() clickUserToMessage: EventEmitter<string> = new EventEmitter<string>()
 
     constructor(private readonly uiService: UiService) {}
 
     ngOnInit(): void {}
 
     ngOnChanges(): void {
-        this.setBirthdayToAge()
+        this._setBirthdayToAge()
     }
 
     birthDayToAge = birthDayToAge
 
-    onClickLikeButton(userId: string): void {
-        this.clickLikeButton.emit(userId)
+    onClickUserToMessage(userId: string): void {
+        this.clickUserToMessage.emit(userId)
     }
 
-    onClickUnlikeButton(userId: string): void {
-        this.clickUnlikeButton.emit(userId)
+    isMatching(userId: string): boolean {
+        return this.uiService.isMatching(String(this.currentUserId), userId)
     }
 
-    alreadyLiked(userId: string): boolean {
-        return this.uiService.alreadyLikedByMyself(String(this.currentUserId), userId)
-    }
-
-    setBirthdayToAge(): void {
+    private _setBirthdayToAge(): void {
         this.age = this.birthDayToAge(
             Number(this.user?.birthYear),
             Number(this.user?.birthMonth),

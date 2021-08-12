@@ -1,11 +1,38 @@
 :host {
     .routing-tabs {
-        padding: 4px 0;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        width: 700px;
     }
     .mat-tab-link {
-        min-width: 20vw;
+        height: 64px;
+        min-width: 64px;
+        padding: 0 48px;
+        margin: 0 auto;
         .router-link-label {
             font-size: 8px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .routing-tabs {
+            top: auto;
+            bottom: 0;
+            width: 100vw;
+        }
+        .mat-tab-link {
+            height: 48px;
+            min-width: 0;
+            width: 20vw;
+            padding: 0;
+            .router-link-label {
+                display: none;
+            }
+        }
+        .mat-tab-header,
+        .mat-tab-nav-bar {
+            border-top: 1px solid #0000001f;
+            border-bottom: 0;
         }
     }
 }

@@ -33,6 +33,7 @@ export class UiService {
     }
 
     isMatching(currentUserId: string, userId: string): boolean {
+        let isMatching!: boolean
         let likeEachOther!: any[]
         let likeByCurrentUserIds: string[] = []
         let likeByUserIds: string[] = []
@@ -46,9 +47,7 @@ export class UiService {
             }
         })
         likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds)
-        if (likeEachOther.length === 0) {
-            return false
-        }
-        return true
+        isMatching = likeEachOther.length !== 0
+        return isMatching
     }
 }

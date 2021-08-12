@@ -5,7 +5,13 @@
     .user-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 48px;
-        margin: 0 48px 48px;
+        gap: 64px;
+        margin: 64px;
+    }
+    @media screen and (max-width: 700px) {
+        .user-list {
+            gap: 24px;
+            margin: 24px 24px 48px;
+        }
     }
 }

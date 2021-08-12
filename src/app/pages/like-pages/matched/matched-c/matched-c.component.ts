@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, Subscription } from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { companionIdKey } from 'src/app/general/utilities/local-strage'
 import { LikeProps, LikeService, LikeQuery } from 'src/app/states/like'
-import { UserProps, UserService, UserQuery } from 'src/app/states/user'
+import { UserProps, UserService, UserQuery, UserStore } from 'src/app/states/user'
 
 @Component({
     selector: 'app-matched-c',
     templateUrl: './matched-c.component.html',
     styleUrls: ['./matched-c.component.scss'],
 })
-export class MatchedCComponent implements OnInit {
+export class MatchedCComponent implements OnInit, OnDestroy {
+    subscriptions: Subscription[] = []
+
     currentUserId$: Observable<string> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
     profile$: Observable<UserProps> = this.userQuery.profile$
@@ -23,18 +24,23 @@ export class MatchedCComponent implements OnInit {
         private readonly router: Router,
         private readonly authenticationService: AuthenticationService,
         private readonly likeService: LikeService,
-        private readonly likeQuery: LikeQuery
+        private readonly likeQuery: LikeQuery,
+        private readonly userStore: UserStore
     ) {}
 
     ngOnInit(): void {
-        this.userService.getUsersRequest().subscribe()
-        this.authenticationService.getProfile().subscribe()
-        this.likeService.getLikes().subscribe()
+        this.subscriptions.push(this.userService.getUsersRequest().subscribe())
+        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
+        this.subscriptions.push(this.likeService.getLikes().subscribe())
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe())
     }
 
     onReceivedClickUserToMessage(userId: string): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {
-            localStorage.setItem(companionIdKey, userId)
+            this.userStore.updateUserId(userId)
             this.router.navigate([`/user-detail/${userId}`])
         })
     }

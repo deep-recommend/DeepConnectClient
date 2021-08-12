@@ -46,4 +46,12 @@ export class UserQuery extends QueryEntity<UserState> {
     get searchGetter(): any {
         return this.getValue().search
     }
+
+    get userIdGetter(): any {
+        return this.getValue().userId
+    }
+
+    getUserById(userId: string): UserProps | undefined {
+        return this.getEntity(userId)
+    }
 }

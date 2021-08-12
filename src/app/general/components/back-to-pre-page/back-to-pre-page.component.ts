@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
     selector: 'app-back-to-pre-page',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
     styleUrls: ['./back-to-pre-page.component.scss'],
 })
 export class BackToPrePageComponent implements OnInit {
+    @Input() pageName!: string | null | undefined
+
     constructor() {}
 
     ngOnInit(): void {}

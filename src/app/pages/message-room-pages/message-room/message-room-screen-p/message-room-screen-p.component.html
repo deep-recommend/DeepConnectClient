@@ -1,39 +1,21 @@
 <div class="message-screen">
     <div *ngFor="let message of messages; let i = index">
         <div *ngIf="currentRoomId === message.roomId">
-            <div *ngIf="profile?._id === message.userId; then thenBlock; else elseBlock"></div>
+            <div *ngIf="profile?._id === message.userId; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-                <div>
-                    <div fxLayout="row">
-                        <div (click)="onClickMyProfilePicture()">
-                            <div *ngIf="profile?.profilePicture; then thenBlock; else elseBlock"></div>
-                            <ng-template #thenBlock>
-                                <img class="avatar" src="{{ profile?.profilePicture }}" />
-                            </ng-template>
-                            <ng-template #elseBlock>
-                                <img class="avatar" src="/assets/images/png/default-avatar.png" />
-                            </ng-template>
-                        </div>
+                <div class="message-content">
+                    <div fxLayout="row" fxLayoutAlign="end">
                         <div fxLayout="column">
-                            <p>
-                                {{ profile?.realLastName }}{{ profile?.realFirstName
-                                }}{{ relativeTime(message.createdAt) }}
-                            </p>
-                            <p>{{ message.message }}</p>
+                            <p fxLayoutAlign="end" class="message-name">{{ profile?.realLastName }}{{ profile?.realFirstName}}</p>
+                            <mat-card class="my-message">{{ message.message }}</mat-card>
+                            <p fxLayoutAlign="end" class="message-time">{{ relativeTime(message.createdAt) }}</p>
                         </div>
                     </div>
                 </div>
             </ng-template>
             <ng-template #elseBlock>
-                <div fxLayout="row" fxLayoutAlign="end">
-                    <div fxLayout="row">
-                        <div fxLayout="column">
-                            <p>
-                                {{ companion?.realLastName }}{{ companion?.realFirstName
-                                }}{{ relativeTime(message.createdAt) }}
-                            </p>
-                            <p>{{ message.message }}</p>
-                        </div>
+                <div fxLayout="row" fxLayoutAlign="start" class="message-content">
+                    <div class="message-content">
                         <div (click)="onClickCompanionProfilePicture(companion?._id)">
                             <div *ngIf="companion?.profilePicture; then thenBlock; else elseBlock"></div>
                             <ng-template #thenBlock>
@@ -43,6 +25,11 @@
                                 <img class="avatar" src="/assets/images/png/default-avatar.png" />
                             </ng-template>
                         </div>
+                    </div>
+                    <div fxLayout="column">
+                        <p class="message-name">{{ companion?.realLastName }}{{ companion?.realFirstName}}</p>
+                        <mat-card class="your-message"> {{ message.message }}</mat-card>
+                        <p class="message-time">{{ relativeTime(message.createdAt) }}</p>
                     </div>
                 </div>
             </ng-template>

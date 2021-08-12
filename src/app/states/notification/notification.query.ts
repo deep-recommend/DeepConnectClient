@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { QueryEntity } from '@datorama/akita';
-import { NotificationStore, NotificationState } from './notification.store';
+import { Injectable } from '@angular/core'
+import { QueryEntity } from '@datorama/akita'
+import { NotificationStore, NotificationState } from './notification.store'
 
 @Injectable({ providedIn: 'root' })
 export class NotificationQuery extends QueryEntity<NotificationState> {
+    notifications$ = this.selectAll()
 
-  constructor(protected store: NotificationStore) {
-    super(store);
-  }
-
+    constructor(protected store: NotificationStore) {
+        super(store)
+    }
 }

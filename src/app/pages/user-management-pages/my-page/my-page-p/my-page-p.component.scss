@@ -8,4 +8,14 @@
         border-radius: 16px;
         margin: 24px auto;
     }
+    ul {
+        width: 50%;
+        padding: 0;
+        li {
+            list-style: none;
+        }
+        &.value {
+            color: orange;
+        }
+    }
 }
