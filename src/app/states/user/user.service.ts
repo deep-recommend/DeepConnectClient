@@ -12,9 +12,6 @@ import { UserStore } from './user.store'
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    private readonly _apiUserUrl = apiUserUrl
-    private readonly _httpHeaders = httpHeaders
-
     constructor(
         private readonly http: HttpClient,
         private readonly httpService: HttpClientService,
@@ -33,45 +30,39 @@ export class UserService {
             search.agency,
         ]
         return this.http
-            .get<UserProps[]>(this._apiUserUrl, httpOptions(paramKeys, paramValues))
+            .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.userStore.setUsers(data)))
     }
 
     getOnlyUserRequest(userId: string): Observable<UserProps> {
-        const url = `${this._apiUserUrl}/${userId}`
-        return this.http
-            .get<UserProps>(url, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateDetailUser(data)))
+        const url = `${apiUserUrl}/${userId}`
+        return this.http.get<UserProps>(url, httpHeaders).pipe(tap((data) => this.userStore.updateDetailUser(data)))
     }
 
     getCompanionRequest(userId: string): Observable<UserProps> {
-        const url = `${this._apiUserUrl}/${userId}`
-        return this.http
-            .get<UserProps>(url, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateCompanion(data)))
+        const url = `${apiUserUrl}/${userId}`
+        return this.http.get<UserProps>(url, httpHeaders).pipe(tap((data) => this.userStore.updateCompanion(data)))
     }
 
     postUserRequest(user: SignInProps): Observable<SignInProps> {
         console.log('Sign up user', user)
-        return this.httpService.post(this._apiUserUrl, user, this._httpHeaders)
+        return this.httpService.post(apiUserUrl, user, httpHeaders)
     }
 
     updateUserRequest(id: string, user: UpdateProfileProps): Observable<UserProps> {
-        const url = `${this._apiUserUrl}/${id}`
+        const url = `${apiUserUrl}/${id}`
         console.log(user)
-        return this.httpService.put(url, user, this._httpHeaders)
+        return this.httpService.put(url, user, httpHeaders)
     }
 
     updateProfileRequest(id: string, user: UpdateProfileProps): Observable<UserProps> {
-        const url = `${this._apiUserUrl}/${id}`
+        const url = `${apiUserUrl}/${id}`
         console.log(user)
-        return this.httpService
-            .put(url, user, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateProfile(data)))
+        return this.httpService.put(url, user, httpHeaders).pipe(tap((data) => this.userStore.updateProfile(data)))
     }
 
     deleteUserRequest(id: string): Observable<void> {
-        const url = `${this._apiUserUrl}/${id}`
-        return this.httpService.delete(url, this._httpHeaders)
+        const url = `${apiUserUrl}/${id}`
+        return this.httpService.delete(url, httpHeaders)
     }
 }

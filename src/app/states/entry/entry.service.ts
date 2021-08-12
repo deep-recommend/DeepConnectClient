@@ -9,9 +9,6 @@ import { EntryStore } from './entry.store'
 
 @Injectable({ providedIn: 'root' })
 export class EntryService {
-    private readonly _apiEntryUrl = apiEntryUrl
-    private readonly _httpHeaders = httpHeaders
-
     constructor(
         private readonly entryStore: EntryStore,
         private readonly http: HttpClient,
@@ -23,7 +20,7 @@ export class EntryService {
         const paramValues: string[] = [this.userQuery.profileGetter._id]
 
         return this.http
-            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.entryStore.updateProfileEntries(data)))
     }
 
@@ -32,7 +29,7 @@ export class EntryService {
         const paramValues: string[] = [this.userQuery.companionGetter._id]
 
         return this.http
-            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)))
     }
 
@@ -41,7 +38,7 @@ export class EntryService {
         const paramValues: string[] = [this.userQuery.profileGetter._id]
 
         return this.http
-            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.entryStore.updateProfileEntries(data)))
             .toPromise()
     }
@@ -51,12 +48,12 @@ export class EntryService {
         const paramValues: string[] = [this.userQuery.companionGetter._id]
 
         return this.http
-            .get<EntryProps[]>(this._apiEntryUrl, httpOptions(paramKeys, paramValues))
+            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)))
             .toPromise()
     }
 
     postEntryRequest(entry: CreateEntryProps): Observable<EntryProps> {
-        return this.http.post<EntryProps>(this._apiEntryUrl, entry, this._httpHeaders)
+        return this.http.post<EntryProps>(apiEntryUrl, entry, httpHeaders)
     }
 }

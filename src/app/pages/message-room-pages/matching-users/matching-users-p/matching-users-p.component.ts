@@ -14,6 +14,7 @@ export class MatchingUsersPComponent implements OnInit {
     @Input() profile!: UserProps | null
     @Input() likes!: LikeProps[] | null
     @Output() clickUserToMessage: EventEmitter<string> = new EventEmitter<string>()
+    @Output() outputUsers: EventEmitter<UserProps> = new EventEmitter<UserProps>()
 
     constructor(private readonly uiService: UiService) {}
 

@@ -1,6 +1,8 @@
-<mat-form-field class="message-sender" (keydown)="onSendMessage($event)">
-    <textarea matInput [formControl]="message"></textarea>
-    <button mat-icon-button [disabled]="message.invalid" (click)="onSendMessage($event)" matSuffix>
-        <mat-icon>send</mat-icon>
-    </button>
-</mat-form-field>
+<mat-card class="message-sender-container" fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field class="message-sender" (keydown)="onSendMessage($event)" appearance="outline">
+        <input matInput placeholder="メッセージ入力" [formControl]="message" class="input" autocomplete="off">
+        <button mat-icon-button [disabled]="message.invalid" (click)="onSendMessage($event)" matSuffix>
+            <mat-icon>send</mat-icon>
+        </button>
+    </mat-form-field>
+</mat-card>

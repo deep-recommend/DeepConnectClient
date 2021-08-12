@@ -7,6 +7,7 @@ export interface CharacterState extends EntityState<CharacterProps> {}
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'character',
+    idKey: '_id',
 })
 export class CharacterStore extends EntityStore<CharacterState> {
     constructor() {

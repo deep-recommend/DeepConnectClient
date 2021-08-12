@@ -1,19 +1,21 @@
 <ng-container *ngFor="let user of users" class="user">
-    <div *ngIf="profile?._id !== user._id && isMatching(user._id)" >
-        <mat-card (click)="onClickUserToMessage(user._id)" fxLayout="row">
-            <div *ngIf="user.profilePicture; then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>
-                <img src="{{ user.profilePicture }}" class="image" />
-            </ng-template>
-            <ng-template #elseBlock>
-                <img src="/assets/images/png/default-avatar.png" class="image" />
-            </ng-template>
-            <mat-card-header>
-                <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
-                <mat-card-subtitle
-                    >{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle
-                >
-            </mat-card-header>
+    <div *ngIf="profile?._id !== user._id && isMatching(user._id)">
+        <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card" (click)="onClickUserToMessage(user._id)">
+            <div fxLayout="row">
+                <div *ngIf="user.profilePicture; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <img src="{{ user.profilePicture }}" class="image" />
+                </ng-template>
+                <ng-template #elseBlock>
+                    <img src="/assets/images/png/default-avatar.png" class="image" />
+                </ng-template>
+                <mat-card-header>
+                    <mat-card-title> {{ user.realLastName }}{{ user.realFirstName }}</mat-card-title>
+                    <mat-card-subtitle
+                        >{{ birthDayToAge(user.birthYear, user.birthMonth, user.birthDay) }}歳</mat-card-subtitle
+                    >
+                </mat-card-header>
+            </div>
         </mat-card>
     </div>
 </ng-container>

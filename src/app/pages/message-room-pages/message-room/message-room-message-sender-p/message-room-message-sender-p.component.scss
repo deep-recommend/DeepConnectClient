@@ -1,7 +1,10 @@
 :host {
-    .message-sender {
-        position: absolute;
-        bottom: 0;
-        width: 500px;
+    .message-sender-container {
+        width: 700px;
+        padding: 16px 0;
+        .message-sender {
+            margin: 0 auto;
+            width: 90%;
+        }
     }
 }

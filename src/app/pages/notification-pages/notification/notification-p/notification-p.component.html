@@ -1,1 +1,7 @@
-<p>notification-p works!</p>
+<ng-container *ngFor="let notification of notifications">
+  <mat-card (click)="onClickNotificationsToUserDetail(notification.currentUserId, notification._id, notification.isMessage)">
+    <mat-card-content>
+      {{ getUserName(notification.currentUserId)}}{{ notification.message }}
+    </mat-card-content>
+  </mat-card>
+</ng-container>

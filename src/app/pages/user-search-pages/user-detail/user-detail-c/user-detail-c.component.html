@@ -1,7 +1,11 @@
-<app-back-to-pre-page></app-back-to-pre-page>
+<app-back-to-pre-page [pageName]="(detailUser$ | async)?.stageName"></app-back-to-pre-page>
 <app-user-detail-p
     [user]="detailUser$ | async"
     [currentUserId]="currentUserId$ | async"
+    (clickUserToMessage)="onReceivedClickUserToMessage($event)"
+></app-user-detail-p>
+<app-user-detail-like-p 
+    [user]="detailUser$ | async"
     (clickLikeButton)="onReceivedClickLikeButton($event)"
     (clickUnlikeButton)="onReceivedClickUnlikeButton($event)"
-></app-user-detail-p>
+></app-user-detail-like-p>

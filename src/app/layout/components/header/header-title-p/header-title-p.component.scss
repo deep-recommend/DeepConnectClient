@@ -1,0 +1,13 @@
+:host {
+    .title-container {
+        padding: 4px 24px;
+        .page-name {
+            margin: 0;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .title-container {
+            border-bottom: 1px solid #0000001f;
+        }
+    }
+}

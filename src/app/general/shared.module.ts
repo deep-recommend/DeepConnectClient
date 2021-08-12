@@ -1,4 +1,5 @@
 import { MatButtonModule } from '@angular/material/button'
+import { MatBadgeModule } from '@angular/material/badge'
 import { MatCardModule } from '@angular/material/card'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatChipsModule } from '@angular/material/chips'
@@ -36,9 +37,10 @@ import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { LikeRoutingTabsComponent } from './components/like-routing-tabs/like-routing-tabs.component'
 import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pre-page.component'
+import { TitleHeaderComponent } from './components/title-header/title-header.component'
 
 @NgModule({
-    declarations: [LikeRoutingTabsComponent, BackToPrePageComponent],
+    declarations: [LikeRoutingTabsComponent, BackToPrePageComponent, TitleHeaderComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -47,6 +49,7 @@ import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pr
         RouterModule,
 
         MatButtonModule,
+        MatBadgeModule,
         MatCardModule,
         MatCheckboxModule,
         MatChipsModule,
@@ -81,6 +84,7 @@ import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pr
     exports: [
         LikeRoutingTabsComponent,
         BackToPrePageComponent,
+        TitleHeaderComponent,
 
         CommonModule,
         FormsModule,
@@ -89,6 +93,7 @@ import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pr
         RouterModule,
 
         MatButtonModule,
+        MatBadgeModule,
         MatCardModule,
         MatCheckboxModule,
         MatChipsModule,

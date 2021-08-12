@@ -1,24 +1,21 @@
-{{ isRoom$ | async }}
-<div *ngIf="isRoom$ | async; then thenBlock; else elseBlock"></div>
-<ng-template #thenBlock>
-    <app-message-room-header-p
+<div *ngIf="!(isRoom$ | async)">
+    <app-message-room-is-false-p></app-message-room-is-false-p>
+</div>
+<app-message-room-header-p
         [companion]="companion$ | async"
         (clickAccount)="onReceivedClickAccount($event)"
-    ></app-message-room-header-p>
-    <app-message-room-screen-p
-        class="message-room"
-        [currentRoomId]="currentRoomId$ | async"
-        [messages]="messages$ | async"
-        [profile]="profile$ | async"
-        [companion]="companion$ | async"
-        (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
-        (clickCompanionProfilePicture)="onReceivedClickCompanionProfilePicture($event)"
-    ></app-message-room-screen-p>
-    <app-message-room-message-sender-p
-        fxLayoutAlign="center"
-        (sendMessage)="onReceivedSendMessage($event)"
-    ></app-message-room-message-sender-p>
-</ng-template>
-<ng-template #elseBlock>
-    <app-message-room-is-false-p></app-message-room-is-false-p>
-</ng-template>
+></app-message-room-header-p>
+<app-message-room-screen-p
+    [currentRoomId]="currentRoomId$ | async"
+    [messages]="messages$ | async"
+    [profile]="profile$ | async"
+    [companion]="companion$ | async"
+    (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
+    (clickCompanionProfilePicture)="onReceivedClickCompanionProfilePicture($event)"
+></app-message-room-screen-p>
+<app-message-room-message-sender-p
+    class="message-sender"
+    fxLayoutAlign="center center"
+    (sendMessage)="onReceivedSendMessage($event)"
+></app-message-room-message-sender-p>
+

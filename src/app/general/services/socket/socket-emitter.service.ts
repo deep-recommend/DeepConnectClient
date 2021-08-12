@@ -6,7 +6,7 @@ import { Socket } from 'ngx-socket-io'
 export class SocketEmitterService {
     constructor(private readonly socket: Socket) {}
 
-    emitAddMessage(message: any): void {
+    emitMessageSending(message: any): void {
         this.socket.emit('sendMessage', message)
     }
 
@@ -16,5 +16,13 @@ export class SocketEmitterService {
 
     emitUnlike(unlike: any): void {
         this.socket.emit('unlike', unlike)
+    }
+
+    emitNotificationIncrease(notification: any): void {
+        this.socket.emit('notificationIncrease', notification)
+    }
+
+    emitNotificationDecrease(notificationId: any): void {
+        this.socket.emit('notificationDecrease', notificationId)
     }
 }

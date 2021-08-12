@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderSignUpPComponent } from './header-sign-up-p.component';
+import { NoNotificationsPComponent } from './no-notifications-p.component';
 
-describe('HeaderSignUpPComponent', () => {
-  let component: HeaderSignUpPComponent;
-  let fixture: ComponentFixture<HeaderSignUpPComponent>;
+describe('NoNotificationsPComponent', () => {
+  let component: NoNotificationsPComponent;
+  let fixture: ComponentFixture<NoNotificationsPComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderSignUpPComponent ]
+      declarations: [ NoNotificationsPComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderSignUpPComponent);
+    fixture = TestBed.createComponent(NoNotificationsPComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

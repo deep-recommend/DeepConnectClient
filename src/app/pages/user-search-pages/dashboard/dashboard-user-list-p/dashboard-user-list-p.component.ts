@@ -12,8 +12,8 @@ import { UiService } from 'src/app/states/ui/ui.service'
 export class DashboardUserListPComponent implements OnInit {
     @Input() profile!: UserProps | null
     @Input() currentUserId!: string | null
-    @Input() users: UserProps[] | null = []
-    @Input() likes: LikeProps[] | null = []
+    @Input() users!: UserProps[] | null
+    @Input() likes!: LikeProps[] | null
     @Output() clickLikeButton: EventEmitter<string> = new EventEmitter<string>()
     @Output() clickUnlikeButton: EventEmitter<string> = new EventEmitter<string>()
     @Output() clickUsersToDetails: EventEmitter<string> = new EventEmitter<string>()

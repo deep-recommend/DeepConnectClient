@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
 @Component({
     selector: 'app-header-title-p',
@@ -6,13 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./header-title-p.component.scss'],
 })
 export class HeaderTitlePComponent implements OnInit {
-    @Output() clickHeaderTitle: EventEmitter<void> = new EventEmitter<void>();
-
     constructor() {}
 
     ngOnInit(): void {}
-
-    onClickHeaderTitle(): void {
-        this.clickHeaderTitle.emit();
-    }
 }

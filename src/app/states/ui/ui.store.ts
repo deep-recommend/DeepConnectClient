@@ -25,10 +25,7 @@ export const initialState: () => UiState = () => ({
 })
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({
-    name: 'ui',
-    idKey: '_id',
-})
+@StoreConfig({ name: 'ui' })
 export class UiStore extends Store<UiState> {
     constructor() {
         super(initialState())

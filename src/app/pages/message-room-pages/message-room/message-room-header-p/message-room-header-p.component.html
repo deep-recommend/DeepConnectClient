@@ -2,7 +2,7 @@
     <div class="account-menu" (click)="onClickAccount(companion?._id)">
         <button mat-button>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
-                <div *ngIf="companion?.profilePicture; then thenBlock; else elseBlock"></div>
+                <div *ngIf="companion?.profilePicture; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock>
                     <img class="avatar" src="{{ companion?.profilePicture }}" />
                 </ng-template>

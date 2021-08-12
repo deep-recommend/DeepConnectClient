@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core'
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
+import { userIdKey } from 'src/app/general/utilities/local-strage'
 import { DAY, MONTH, YEAR } from 'src/app/general/utilities/select/date'
 import { GENDER } from 'src/app/general/utilities/select/gender'
 import { POSITION } from 'src/app/general/utilities/select/position'
 import { PREFECTURE } from 'src/app/general/utilities/select/prefecture'
+import { UserQuery } from '.'
 import { UserProps } from './user.model'
 
 export interface UserState extends EntityState<UserProps> {
@@ -29,6 +31,7 @@ export interface UserState extends EntityState<UserProps> {
     profile: UserProps
     companion: UserProps
     detailUser: UserProps
+    userId: string
 }
 
 const initialState = {
@@ -54,6 +57,7 @@ const initialState = {
     profile: undefined,
     companion: undefined,
     detailUser: undefined,
+    userDetailId: '',
 }
 
 @Injectable({ providedIn: 'root' })
@@ -98,5 +102,23 @@ export class UserStore extends EntityStore<UserState> {
             ...this.getValue().detailUser,
             detailUser,
         })
+    }
+
+    updateUserId(userId: string): void {
+        localStorage.setItem(userIdKey, userId)
+        this.update({ userId: userId })
+    }
+
+    resetSearch(): void {
+        this.update((state) => ({
+            search: {
+                ...state.search,
+                position: '',
+                gender: '',
+                birthYear: '',
+                birthPlace: '',
+                agency: '',
+            },
+        }))
     }
 }

@@ -1,6 +1,18 @@
 :host {
-    .search-form {
+    .search-container {
         width: 100vw;
-        margin: 0 48px;
+        border-bottom: 1px solid #0000001f;
+        .search-form {
+            width: 90%;
+            margin: -12px auto 12px;
+            background-color: #0000000a;
+            .input {
+                color: #00000061;
+            }
+            .icon {
+                color: #00000061;
+                line-height: inherit;
+            }
+        }
     }
 }

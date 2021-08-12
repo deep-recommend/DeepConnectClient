@@ -10,6 +10,8 @@ import { UserQuery, UserService, UserStore } from 'src/app/states/user'
     styleUrls: ['./search-c.component.scss'],
 })
 export class SearchCComponent implements OnInit {
+    pageName!: string | null | undefined
+
     positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
@@ -19,15 +21,15 @@ export class SearchCComponent implements OnInit {
 
     constructor(
         private readonly userQuery: UserQuery,
-        private readonly userService: UserService,
         private readonly router: Router,
         private readonly userStore: UserStore
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.pageName = '検索'
+    }
 
     onReceivedSubmitUserSearch(searchFormValue: UserSearchProps): void {
-        console.log(searchFormValue)
         this.userStore.updateSearch({
             ...this.userQuery.searchGetter,
             gender: searchFormValue.gender ?? '',
@@ -35,8 +37,6 @@ export class SearchCComponent implements OnInit {
             birthPlace: searchFormValue.birthPlace ?? '',
             agency: searchFormValue.agency ?? '',
         })
-        this.userService.getUsersRequest().subscribe(() => {
-            this.router.navigate(['/'])
-        })
+        this.router.navigate(['/'])
     }
 }

@@ -5,8 +5,5 @@ import { FeatureStore } from './feature.store'
 
 @Injectable({ providedIn: 'root' })
 export class FeatureService {
-    private readonly _apiFeatureUrl = apiFeatureUrl
-    private readonly _httpHeaders = httpHeaders
-
     constructor(private readonly featureStore: FeatureStore, private readonly http: HttpClient) {}
 }

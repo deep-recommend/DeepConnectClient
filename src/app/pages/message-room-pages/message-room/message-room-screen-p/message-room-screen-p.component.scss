@@ -1,21 +1,40 @@
 :host {
     .message-screen {
-        position: absolute;
-        top: 128px;
+        padding: 12px 0;
         width: 700px;
-        height: calc(100vh - 128px);
+        height: calc(100vh - 240px);
         overflow: scroll;
         background-color: #fff;
-        .message-by-profile {
-            margin: 0 auto;
+        .message-content {
+            padding: 0 12px;
+            margin: 8px 0;
+            &:active {
+                background-color: #fafafa;
+            }
         }
-        .message-by-companion {
+        .message-name {
+            margin-bottom: -8px;
+        }
+        .message-name,
+        .message-time {
+            font-size: 8px;
+            color: #888;
+        }
+        .my-message {
+            border-radius: 24px 24px 0 24px;
+            max-width: 50vw;
+            overflow-wrap: break-word;
+        }
+        .your-message {
+            border-radius: 24px 24px 24px 0;
+            max-width: 50vw;
+            overflow-wrap: break-word;
         }
     }
-
     .avatar {
         width: 44px;
         height: 44px;
         border-radius: 100%;
+        margin: 24px 0 0;
     }
 }

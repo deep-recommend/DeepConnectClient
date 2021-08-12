@@ -1,1 +1,9 @@
-<app-notification-p></app-notification-p>
+<app-title-header [pageName]="pageName"></app-title-header>
+<div *ngIf="!existsNotifications">
+  <app-no-notifications-p></app-no-notifications-p>
+</div>
+<app-notification-p
+  [notifications]="notifications$ | async"
+  (clickNotificationsToUserDetail)="onReceivedClickNotificationsToUserDetail($event)"
+>
+</app-notification-p>

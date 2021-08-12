@@ -13,6 +13,7 @@ export const apiMessageUrl: string = `${apiUrl}/messages`
 export const apiEntryUrl: string = `${apiUrl}/entries`
 export const apiLikeUrl: string = `${apiUrl}/like`
 export const apiCharacterUrl: string = `${apiUrl}/characters`
+export const apiNotificationUrl: string = `${apiUrl}/notifications`
 
 export const httpHeaders = {
     headers: new HttpHeaders({

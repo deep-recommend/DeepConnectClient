@@ -11,7 +11,7 @@ export interface RoomState extends EntityState<RoomProps> {
 
 const initialState = {
     ui: {
-        isRoom: false,
+        isRoom: true,
         currentRoomId: '',
     },
 }
