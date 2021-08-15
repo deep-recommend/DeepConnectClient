@@ -1,33 +1,64 @@
-<div class="card">
-    <div *ngIf="profile?.profilePicture; then profilePictureIsTrue; else profilePictureIsFalse"></div>
+<ng-container>
+    <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="profile?.profilePicture; then profilePictureIsTrue; else profilePictureIsFalse"></div>
     <ng-template #profilePictureIsTrue><img src="{{ profile?.profilePicture }}" class="image" /></ng-template>
     <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
-    <mat-card-header>
-        <mat-card-title>{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br/></mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div>{{ profile?.description ? profile?.description : 'こんにちは' }}</div>
-        <div fxLayout="row" fxLayoutAlign="start">
-            <ul>
-                <li>本名</li>
-                <li>年齢</li>
-                <li>性別</li>
-                <li>芸名</li>
-                <li>出身</li>
-                <li>所属事務所</li>
-            </ul>
-            <ul class="value">
-                <li>{{ profile?.realLastName }}{{ profile?.realFirstName }}</li>
-                <li>{{ age }}歳</li>
-                <li>{{ profile?.gender }}</li>
-                <li>{{ profile?.stageName }}</li>
-                <li>{{ profile?.birthPlace }}</li>
-                <li>{{ profile?.agency }}</li>
-            </ul>
-        </div>
-    </mat-card-content>
-    <mat-card-actions fxLayoutAlign="end">
-        <button mat-raised-button (click)="onClickToProfileSetting()">プロフィールを編集する</button>
-        <button mat-raised-button (click)="signOut()">サインアウト</button>
-    </mat-card-actions>
-</div>
+    </div>
+    <div class="card">
+        <mat-card-header fxLayoutAlign="start">
+            <mat-card-title>{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br/></mat-card-title>
+            <mat-card-subtitle>{{ age }}歳&nbsp;&nbsp;{{ profile?.gender }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="section">
+                <p><strong>自己紹介</strong></p>
+                <p>{{ profile?.description }}</p>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center" class="section">
+                <p><strong>基本情報</strong></p>
+                <div fxLayout="row" fxLayoutAlign="start">
+                    <ul>
+                        <li>本名</li>
+                        <li>年齢</li>
+                        <li>身長</li>
+                        <li>性別</li>
+                        <li>出身</li>
+                        <li>所属事務所</li>
+                        <li>仕事</li>
+                        <li>趣味</li>
+                        <li>兄弟姉妹</li>
+                        <li>学歴</li>
+                        <li>第二言語</li>
+                        <li>休日</li>
+                        <li>楽器</li>
+                        <li>スポーツ</li>
+                        <li>酒</li>
+                        <li>タバコ</li>
+                        <li>ペット</li>
+                        <li>結婚</li>
+                    </ul>
+                    <ul class="value">
+                        <li>{{ profile?.realLastName }}{{ profile?.realFirstName }}</li>
+                        <li>{{ age }}歳</li>
+                        <li>{{ profile?.height ? profile?.height : '未設定' }}cm</li>
+                        <li>{{ profile?.gender }}</li>
+                        <li>{{ profile?.birthPlace }}</li>
+                        <li>{{ profile?.agency ? profile?.agency : '未設定' }}</li>
+                        <li>{{ profile?.work ? profile?.work : '未設定' }}</li>
+                        <li>{{ profile?.hobby ? profile?.hobby : '未設定' }}</li>
+                        <li>{{ profile?.brothersAndSisters ? profile?.brothersAndSisters : '未設定' }}</li>
+                        <li>{{ profile?.educationalBackground ? profile?.educationalBackground : '未設定' }}</li>
+                        <li>{{ profile?.secondLanguage ? profile?.secondLanguage : '未設定' }}</li>
+                        <li>{{ profile?.holiday ? profile?.holiday : '未設定' }}</li>
+                        <li>{{ profile?.instrument ? profile?.instrument : '未設定' }}</li>
+                        <li>{{ profile?.sport ? profile?.sport : '未設定' }}</li>
+                        <li>{{ profile?.isDrinking ? '飲む' : '飲まない' }}</li>
+                        <li>{{ profile?.isSmoking ? '吸う' : '吸わない' }}</li>
+                        <li>{{ profile?.hasPet ? 'いる' : 'いない' }}</li>
+                        <li>{{ profile?.isMarried ? 'している' : 'していない' }}</li>
+                    </ul>
+                </div>
+            </div>
+        </mat-card-content>
+    </div>
+</ng-container>

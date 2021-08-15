@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { NotificationProps } from 'src/app/states/notification'
-
+import { Component, OnInit } from '@angular/core'
 @Component({
     selector: 'app-no-notifications-p',
     templateUrl: './no-notifications-p.component.html',

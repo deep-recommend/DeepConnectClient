@@ -1,7 +1,16 @@
-<ng-container *ngFor="let notification of notifications">
-  <mat-card (click)="onClickNotificationsToUserDetail(notification.currentUserId, notification._id, notification.isMessage)">
-    <mat-card-content>
-      {{ getUserName(notification.currentUserId)}}{{ notification.message }}
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<div class="container">
+  <ng-container *ngFor="let notification of notifications">
+    <mat-card class="card" (click)="onClickNotificationsToUserDetail(notification.currentUserId, notification._id, notification.isMessage)">
+      <div fxLayout="row">
+        <div *ngIf="getProfilePicture(notification.currentUserId); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <img src="{{ getProfilePicture(notification.currentUserId) }}" class="image" />
+        </ng-template>
+        <ng-template #elseBlock>
+            <img src="/assets/images/png/default-avatar.png" class="image" />
+        </ng-template>
+        {{ getUserName(notification.currentUserId)}}{{ notification.message }}
+      </div>
+    </mat-card>
+  </ng-container>
+</div>

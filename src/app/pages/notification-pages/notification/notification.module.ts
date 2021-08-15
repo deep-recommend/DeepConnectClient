@@ -6,8 +6,15 @@ import { NotificationCComponent } from './notification-c/notification-c.componen
 import { NotificationPComponent } from './notification-p/notification-p.component'
 import { DeepRecommendSharedModule } from 'src/app/general/shared.module'
 import { NoNotificationsPComponent } from './no-notifications-p/no-notifications-p.component'
+import { NotificationBulkDeletionButtonPComponent } from './notification-bulk-deletion-button-p/notification-bulk-deletion-button-p.component'
 @NgModule({
-    declarations: [NotificationComponent, NotificationCComponent, NotificationPComponent, NoNotificationsPComponent],
+    declarations: [
+        NotificationComponent,
+        NotificationCComponent,
+        NotificationPComponent,
+        NoNotificationsPComponent,
+        NotificationBulkDeletionButtonPComponent,
+    ],
     imports: [DeepRecommendSharedModule, NotificationRoutingModule],
 })
 export class NotificationModule {}

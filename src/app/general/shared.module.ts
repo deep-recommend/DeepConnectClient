@@ -38,9 +38,16 @@ import { RouterModule } from '@angular/router'
 import { LikeRoutingTabsComponent } from './components/like-routing-tabs/like-routing-tabs.component'
 import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pre-page.component'
 import { TitleHeaderComponent } from './components/title-header/title-header.component'
-
+import { ActionBarComponent } from './components/action-bar/action-bar.component'
+import { WaveComponent } from './components/wave/wave.component'
 @NgModule({
-    declarations: [LikeRoutingTabsComponent, BackToPrePageComponent, TitleHeaderComponent],
+    declarations: [
+        LikeRoutingTabsComponent,
+        BackToPrePageComponent,
+        TitleHeaderComponent,
+        ActionBarComponent,
+        WaveComponent,
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -85,6 +92,8 @@ import { TitleHeaderComponent } from './components/title-header/title-header.com
         LikeRoutingTabsComponent,
         BackToPrePageComponent,
         TitleHeaderComponent,
+        ActionBarComponent,
+        WaveComponent,
 
         CommonModule,
         FormsModule,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { NotificationProps } from 'src/app/states/notification'
-import { UserProps, UserQuery } from 'src/app/states/user'
+import { UserQuery } from 'src/app/states/user'
 
 @Component({
     selector: 'app-notification-p',
@@ -31,5 +31,10 @@ export class NotificationPComponent implements OnInit {
     getUserName(userId: string): string | undefined {
         const user = this.userQuery.getUserById(userId)
         return user ? `${user?.realLastName}${user?.realFirstName}` : undefined
+    }
+
+    getProfilePicture(userId: string) {
+        const user = this.userQuery.getUserById(userId)
+        return user ? user?.profilePicture : undefined
     }
 }

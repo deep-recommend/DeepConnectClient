@@ -1,0 +1,17 @@
+:host {
+    div {
+        margin: 4px 0;
+        .icon {
+            width: 48px;
+            height: 48px;
+            font-size: 48px;
+        }
+        .close {
+            background-color: #ececec;
+            color: #7a7a7a;
+        }
+    }
+    .action {
+        margin-left: 8px;
+    }
+}

@@ -23,6 +23,8 @@ export class MyPageSettingPComponent implements OnInit {
     @Input() months!: number[] | null
     @Input() days!: number[] | null
     @Input() birthPlaces!: string[] | null
+    @Input() brothersAndSisters!: string[] | null
+    @Input() holiday!: string[] | null
     @Input() profile!: UserProps | null
 
     @Output() update: EventEmitter<UpdateProfileProps> = new EventEmitter<UpdateProfileProps>()
@@ -54,6 +56,19 @@ export class MyPageSettingPComponent implements OnInit {
         form.agency.patchValue(me?.agency)
         form.description.patchValue(me?.description)
         form.profilePicture.patchValue(me?.profilePicture)
+        form.work.patchValue(me?.work)
+        form.hobby.patchValue(me?.hobby)
+        form.brothersAndSisters.patchValue(me?.brothersAndSisters)
+        form.educationalBackground.patchValue(me?.educationalBackground)
+        form.height.patchValue(me?.height)
+        form.secondLanguage.patchValue(me?.secondLanguage)
+        form.holiday.patchValue(me?.holiday)
+        form.instrument.patchValue(me?.instrument)
+        form.sport.patchValue(me?.sport)
+        form.isDrinking.patchValue(Boolean(me?.isDrinking))
+        form.isSmoking.patchValue(Boolean(me?.isSmoking))
+        form.hasPet.patchValue(Boolean(me?.hasPet))
+        form.isMarried.patchValue(Boolean(me?.isMarried))
     }
 
     async inputProfilePicture(event?: any): Promise<void> {

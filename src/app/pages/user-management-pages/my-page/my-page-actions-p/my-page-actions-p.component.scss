@@ -1,0 +1,42 @@
+:host {
+    .action {
+        max-width: 100%;
+        .edit-profile {
+            align-items: center;
+            background-color: orange;
+            color: white;
+            position: fixed;
+            bottom: 24px;
+            left: calc(((100vw - 700px) / 2) + 35px);
+            right: auto;
+            margin: auto;
+            width: 406px;
+            z-index: 2;
+        }
+        .sign-out {
+            background-color: #ececec;
+            color: #7a7a7a;
+            position: fixed;
+            bottom: 24px;
+            left: auto;
+            right: calc(((100vw - 700px) / 2) + 35px);
+            margin: auto;
+            width: 154px;
+            z-index: 2;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .action {
+            .edit-profile {
+                left: 5vw;
+                bottom: 64px;
+                width: 57vw;
+            }
+            .sign-out {
+                right: 5vw;
+                bottom: 64px;
+                width: 28vw;
+            }
+        }
+    }
+}

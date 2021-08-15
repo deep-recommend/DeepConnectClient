@@ -18,6 +18,8 @@ export class SearchFormPComponent implements OnInit {
     @Input() months!: number[] | null
     @Input() days!: number[] | null
     @Input() birthPlaces!: string[] | null
+    @Input() brothersAndSisters!: string[] | null
+    @Input() holiday!: string[] | null
 
     @Output() submitUserSearch: EventEmitter<UserSearchProps> = new EventEmitter<UserSearchProps>()
 

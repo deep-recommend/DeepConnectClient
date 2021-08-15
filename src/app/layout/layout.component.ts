@@ -1,25 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core'
+import { NotificationService } from '../states/notification'
+import { UiQuery } from '../states/ui'
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-    constructor() {}
+    isVisibleHeaders$ = this.uiQuery.isVisibleHeaders$
 
-    ngOnInit(): void {}
+    constructor(private readonly uiQuery: UiQuery, private readonly notificationService: NotificationService) {}
 
-    isVisibleLayout(): boolean {
-        let bool: boolean;
-        const currentPath = location.pathname;
-        if (currentPath === '/sign-in') {
-            bool = false;
-        } else if (currentPath === '/sign-up') {
-            bool = false;
-        } else {
-            bool = true;
-        }
-        return bool;
+    ngOnInit(): void {
+        this.notificationService.getNotifications().subscribe()
     }
 }

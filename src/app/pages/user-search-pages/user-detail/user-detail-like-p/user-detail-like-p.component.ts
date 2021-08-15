@@ -25,7 +25,7 @@ export class UserDetailLikePComponent implements OnInit {
         this.clickUnlikeButton.emit(userId)
     }
 
-    alreadyLiked(userId: string): boolean {
-        return this.uiService.alreadyLikedByMyself(String(this.currentUserId), userId)
+    alreadyLiked(): boolean {
+        return this.uiService.alreadyLikedByMyself(String(this.currentUserId), String(this.user?._id))
     }
 }

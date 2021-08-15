@@ -51,6 +51,10 @@ $angular-template-theme: mat-light-theme(
     margin: 0;
 }
 
+.mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
 html,
 body {
     height: 100vh;
@@ -130,6 +134,10 @@ select {
 .mat-raised-button {
     color: white;
     background-color: orange;
+}
+
+.mat-card:not([class*='mat-elevation-z']) {
+    box-shadow: 0 0 0 0 white, 0 0 0 0 white, 0 0 0 0 white;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */

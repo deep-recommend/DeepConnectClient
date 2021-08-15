@@ -1,6 +1,6 @@
-<div class="message-screen">
+<div class="message-screen" #scroll>
     <div *ngFor="let message of messages; let i = index">
-        <div *ngIf="currentRoomId === message.roomId">
+        <div *ngIf="currentRoomId === message.roomId" >
             <div *ngIf="profile?._id === message.userId; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
                 <div class="message-content">

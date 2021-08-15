@@ -1,6 +1,4 @@
 <div fxLayout="column" class="contents">
-    <app-header-c style="z-index: 2" *ngIf="isVisibleLayout()"></app-header-c>
+    <app-header-c style="z-index: 2" *ngIf="isVisibleHeaders$|async"></app-header-c>
     <app-content style="z-index: 0" class="content"></app-content>
 </div>
-
-<app-sidenav-c style="z-index: 1" *ngIf="isVisibleLayout()"></app-sidenav-c>

@@ -1,13 +1,13 @@
 <div class="action" fxLayoutAlign="end">
-  <div *ngIf="alreadyLiked(user!._id); then unlike else like"></div>
-  <ng-template #unlike><button mat-raised-button fxLayout="row" fxLayoutAlign="center center" class="still-liked-button" (click)="onClickUnlikeButton(user!._id)">
-          組みたい済
-          <mat-icon class="icon">thumb_up</mat-icon>
-  </button></ng-template>
+  <div *ngIf="alreadyLiked(); then unlike else like"></div>
+  <ng-template #unlike>
+    <button mat-raised-button fxLayout="row" fxLayoutAlign="center center" class="still-liked-button" (click)="onClickUnlikeButton(user!._id)">
+          組みたい済<mat-icon class="icon">thumb_up</mat-icon>
+    </button>
+  </ng-template>
   <ng-template #like>
       <button mat-raised-button fxLayout="row" fxLayoutAlign="center center" class="already-like-button" (click)="onClickLikeButton(user!._id)">
-          組みたい
-          <mat-icon class="icon">thumb_up</mat-icon>
+          組みたい<mat-icon class="icon">thumb_up</mat-icon>
       </button>
   </ng-template>
 </div>

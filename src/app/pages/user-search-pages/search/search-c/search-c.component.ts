@@ -18,6 +18,8 @@ export class SearchCComponent implements OnInit {
     months$: Observable<number[]> = this.userQuery.months$
     days$: Observable<number[]> = this.userQuery.days$
     birthPlaces$: Observable<string[]> = this.userQuery.birthPlaces$
+    brothersAndSisters$: Observable<string[]> = this.userQuery.brothersAndSisters$
+    holiday$: Observable<string[]> = this.userQuery.holiday$
 
     constructor(
         private readonly userQuery: UserQuery,
@@ -34,8 +36,21 @@ export class SearchCComponent implements OnInit {
             ...this.userQuery.searchGetter,
             gender: searchFormValue.gender ?? '',
             birthYear: searchFormValue.birthYear ?? '',
+            height: searchFormValue.height ?? '',
             birthPlace: searchFormValue.birthPlace ?? '',
             agency: searchFormValue.agency ?? '',
+            work: searchFormValue.work ?? '',
+            hobby: searchFormValue.hobby ?? '',
+            brothersAndSisters: searchFormValue.brothersAndSisters ?? '',
+            educationalBackground: searchFormValue.educationalBackground ?? '',
+            secondLanguage: searchFormValue.secondLanguage ?? '',
+            holiday: searchFormValue.holiday ?? '',
+            instrument: searchFormValue.instrument ?? '',
+            sport: searchFormValue.sport ?? '',
+            isDrinking: searchFormValue.isDrinking ?? null,
+            isSmoking: searchFormValue.isSmoking ?? null,
+            hasPet: searchFormValue.hasPet ?? null,
+            isMarried: searchFormValue.isMarried ?? null,
         })
         this.router.navigate(['/'])
     }

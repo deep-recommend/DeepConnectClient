@@ -3,7 +3,8 @@ import { Router } from '@angular/router'
 import { Observable, Subscription } from 'rxjs'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/user'
+import { SnackBarService } from 'src/app/general/services/snack-bar.service'
+import { UserProps, UserQuery, UserService } from 'src/app/states/user'
 
 @Component({
     selector: 'app-my-page-setting-c',
@@ -11,6 +12,7 @@ import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/use
     styleUrls: ['./my-page-setting-c.component.scss'],
 })
 export class MyPageSettingCComponent implements OnInit, OnDestroy {
+    pageName: string | null | undefined
     subscriptions: Subscription[] = []
 
     positions$: Observable<string[]> = this.userQuery.positions$
@@ -19,6 +21,8 @@ export class MyPageSettingCComponent implements OnInit, OnDestroy {
     months$: Observable<number[]> = this.userQuery.months$
     days$: Observable<number[]> = this.userQuery.days$
     birthPlaces$: Observable<string[]> = this.userQuery.birthPlaces$
+    brothersAndSisters$: Observable<string[]> = this.userQuery.brothersAndSisters$
+    holiday$: Observable<string[]> = this.userQuery.holiday$
     profile$: Observable<UserProps> = this.userQuery.profile$
 
     currentUserId: string = this.userQuery.currentUserId
@@ -27,10 +31,12 @@ export class MyPageSettingCComponent implements OnInit, OnDestroy {
         private readonly userQuery: UserQuery,
         private readonly userService: UserService,
         private readonly authenticationService: AuthenticationService,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly snackBar: SnackBarService
     ) {}
 
     ngOnInit(): void {
+        this.pageName = 'プロフィール編集'
         this.subscriptions.push(this.authenticationService.getProfile().subscribe())
     }
 
@@ -39,8 +45,9 @@ export class MyPageSettingCComponent implements OnInit, OnDestroy {
     }
 
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {
+        this.snackBar.open('プロフィールを編集しました')
         this.userService.updateUserRequest(this.currentUserId, user).subscribe(() => {
-            location.reload()
+            this.authenticationService.getProfile().subscribe()
         })
     }
 

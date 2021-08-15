@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as _ from 'lodash';
-import { AuthenticationService } from 'src/app/general/services/authentication.service';
-import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
-import { mergeMap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { UiQuery, UiStore } from 'src/app/states/ui';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
+import { AuthenticationService } from 'src/app/general/services/authentication.service'
+import { SignInProps } from 'src/app/general/interfaces/sign-in.interface'
+import { mergeMap } from 'rxjs/operators'
+import { Router } from '@angular/router'
+import { UiQuery, UiStore } from 'src/app/states/ui'
 
 @Component({
     selector: 'app-sign-in-c',
@@ -13,7 +12,7 @@ import { UiQuery, UiStore } from 'src/app/states/ui';
     styleUrls: ['./sign-in-c.component.scss'],
 })
 export class SignInCComponent implements OnInit, OnDestroy {
-    errMsg$: Observable<string> = this.uiQuery.authErrMsg$;
+    errMsg$: Observable<string> = this.uiQuery.authErrMsg$
 
     constructor(
         private readonly authService: AuthenticationService,
@@ -22,10 +21,12 @@ export class SignInCComponent implements OnInit, OnDestroy {
         private readonly uiStore: UiStore
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.uiStore.hideRoutingTab()
+    }
 
     ngOnDestroy(): void {
-        this.uiStore.destroy();
+        this.uiStore.destroy()
     }
 
     onReceivedClickSignIn(signIn: SignInProps): void {
@@ -33,8 +34,9 @@ export class SignInCComponent implements OnInit, OnDestroy {
             .signInRequest(signIn)
             .pipe(
                 mergeMap(() => this.router.navigate(['/'])),
+                mergeMap(async () => this.uiStore.displayRoutingTab()),
                 mergeMap(async () => location.reload())
             )
-            .subscribe();
+            .subscribe()
     }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { UiStore } from 'src/app/states/ui'
 
 @Component({
     selector: 'app-back-to-pre-page',
@@ -8,11 +9,14 @@ import { Component, Input, OnInit } from '@angular/core'
 export class BackToPrePageComponent implements OnInit {
     @Input() pageName!: string | null | undefined
 
-    constructor() {}
+    constructor(private uiStore: UiStore) {}
 
     ngOnInit(): void {}
 
     onClickBackToPrePage(): void {
+        if (this.pageName === 'メッセージ中') {
+            this.uiStore.displayRoutingTab()
+        }
         history.back()
     }
 }

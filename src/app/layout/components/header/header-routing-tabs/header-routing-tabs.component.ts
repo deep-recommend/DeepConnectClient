@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
 import { NotificationProps } from 'src/app/states/notification'
+import { UiStore } from 'src/app/states/ui'
 import { UserQuery, UserStore } from 'src/app/states/user'
 
 @Component({

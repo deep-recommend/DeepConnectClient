@@ -14,6 +14,19 @@ export class UpdateProfileModel implements UpdateProfileProps {
     agency?: string = ''
     description?: string = ''
     profilePicture?: string = ''
+    work?: string = ''
+    hobby?: string = ''
+    brothersAndSisters?: string = ''
+    educationalBackground?: string = ''
+    height?: string = ''
+    secondLanguage?: string = ''
+    holiday?: string = ''
+    instrument?: string = ''
+    sport?: string = ''
+    isDrinking?: boolean
+    isSmoking?: boolean
+    hasPet?: boolean
+    isMarried?: boolean
     email!: string
     password!: string
     passwordConfirmation!: string
@@ -33,6 +46,19 @@ export class UpdateProfileModel implements UpdateProfileProps {
             this.agency = value.agency
             this.description = value.description
             this.profilePicture = value.profilePicture
+            this.work = value.work
+            this.hobby = value.hobby
+            this.brothersAndSisters = value.brothersAndSisters
+            this.educationalBackground = value.educationalBackground
+            this.height = value.height
+            this.secondLanguage = value.secondLanguage
+            this.holiday = value.holiday
+            this.instrument = value.instrument
+            this.sport = value.sport
+            this.isDrinking = value.isDrinking
+            this.isSmoking = value.isSmoking
+            this.hasPet = value.hasPet
+            this.isMarried = value.isMarried
         }
     }
 
@@ -50,6 +76,19 @@ export class UpdateProfileModel implements UpdateProfileProps {
             agency: this.agency,
             description: this.description,
             profilePicture: this.profilePicture,
+            work: this.work,
+            hobby: this.hobby,
+            brothersAndSisters: this.brothersAndSisters,
+            educationalBackground: this.educationalBackground,
+            height: this.height,
+            secondLanguage: this.secondLanguage,
+            holiday: this.holiday,
+            instrument: this.instrument,
+            sport: this.sport,
+            isDrinking: this.isDrinking,
+            isSmoking: this.isSmoking,
+            hasPet: this.hasPet,
+            isMarried: this.isMarried,
         }
     }
 
@@ -67,6 +106,19 @@ export class UpdateProfileModel implements UpdateProfileProps {
             agency: [this.agency],
             description: [this.description],
             profilePicture: [this.profilePicture],
+            work: [this.work],
+            hobby: [this.hobby],
+            brothersAndSisters: [this.brothersAndSisters],
+            educationalBackground: [this.educationalBackground],
+            height: [this.height],
+            secondLanguage: [this.secondLanguage],
+            holiday: [this.holiday],
+            instrument: [this.instrument],
+            sport: [this.sport],
+            isDrinking: [this.isDrinking],
+            isSmoking: [this.isSmoking],
+            hasPet: [this.hasPet],
+            isMarried: [this.isMarried],
         }
     }
 }

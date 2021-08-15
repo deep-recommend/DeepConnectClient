@@ -51,6 +51,14 @@ export class UiStore extends Store<UiState> {
         this._configureSideNavLock(false)
     }
 
+    displayRoutingTab(): void {
+        this._configRoutingTabDisplay(true)
+    }
+
+    hideRoutingTab(): void {
+        this._configRoutingTabDisplay(false)
+    }
+
     private _configureErrMsg(errMsg: string): void {
         this.update({
             ui: {
@@ -78,6 +86,15 @@ export class UiStore extends Store<UiState> {
             sideNav: {
                 ...this.getValue().sideNav,
                 isLocked: bool,
+            },
+        })
+    }
+
+    private _configRoutingTabDisplay(bool: boolean): void {
+        this.update({
+            header: {
+                ...this.getValue().header,
+                isVisible: bool,
             },
         })
     }

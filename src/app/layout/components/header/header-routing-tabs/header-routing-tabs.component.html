@@ -9,13 +9,13 @@
     >
         <div fxLayout="column" fxLayoutAlign="center center">
             <mat-icon class="router-link-icon">
-                {{ routeLink.icon }}
-                <span
+                <div
                     *ngIf="routeLink.icon === 'notifications' && notifications?.length !== 0"
-                    matBadge="{{notifications?.length}}"
+                    matBadge="{{ notifications?.length }}"
                     matBadgeSize="small"
                     matBadgeColor="warn"
-                ></span>
+                ></div>
+                {{ routeLink.icon }}
             </mat-icon>
             <div class="router-link-label">{{ routeLink.label }}</div>
         </div>

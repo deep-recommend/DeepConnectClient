@@ -20,6 +20,8 @@ export class UserQuery extends QueryEntity<UserState> {
     months$ = this.select((state) => state.ui.months)
     days$ = this.select((state) => state.ui.days)
     birthPlaces$ = this.select((state) => state.ui.birthPlaces)
+    brothersAndSisters$ = this.select((state) => state.ui.brothersAndSisters)
+    holiday$ = this.select((state) => state.ui.holiday)
 
     search$ = this.select('search')
 

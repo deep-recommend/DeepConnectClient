@@ -1,0 +1,21 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  [@flyInOut]="'in'"
+  class="action-bar px-24 w-100-p"
+  [ngClass]="barColor === 'ACCENT' ? 'accent-400-bg' : 'warn-400-bg' "
+>
+  <span *ngIf="counter">{{counter.count}}{{counter.label}}</span>
+
+  <div fxLayout fxLayoutGap="24px">
+    <button
+      mat-button
+      *ngIf="btn"
+      [disabled]="btn.disabled"
+      (click)="onAction()"
+    >
+      <mat-icon *ngIf="btn.icon">{{btn.icon}}</mat-icon>
+      {{btn.label}}
+    </button>
+  </div>
+</div>
