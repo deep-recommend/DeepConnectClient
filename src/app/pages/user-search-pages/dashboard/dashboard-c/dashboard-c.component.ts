@@ -12,6 +12,8 @@ import { UserProps, UserQuery, UserService, UserStore } from 'src/app/states/use
     styleUrls: ['./dashboard-c.component.scss'],
 })
 export class DashboardCComponent implements OnInit, OnDestroy {
+    pageName: string | null | undefined
+
     subscriptions: Subscription[] = []
 
     profile: UserProps = this.userQuery.profileGetter
@@ -33,6 +35,7 @@ export class DashboardCComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.pageName = 'CmCn'
         this.subscriptions.push(this.userService.getUsersRequest().subscribe())
         this.subscriptions.push(this.likeService.getLikes().subscribe())
         this.subscriptions.push(this.authenticationService.getProfile().subscribe())

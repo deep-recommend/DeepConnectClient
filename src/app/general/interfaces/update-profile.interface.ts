@@ -13,6 +13,19 @@ export interface UpdateProfileProps {
     agency?: string
     description?: string
     profilePicture?: string
+    work?: string;
+    hobby?: string;
+    brothersAndSisters?: string;
+    educationalBackground?: string;
+    height?: string;
+    secondLanguage?: string;
+    holiday?: string;
+    instrument?: string;
+    sport?: string;
+    isDrinking?: boolean;
+    isSmoking?: boolean;
+    hasPet?: boolean;
+    isMarried?: boolean;
 }
 
 export interface UpdateProfileFormProps {
@@ -20,6 +33,19 @@ export interface UpdateProfileFormProps {
     realFirstName: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
     stageName: (string | null | undefined)[]
     position: (string | null | undefined)[]
+    work: (string | null | undefined)[]
+    hobby: (string | null | undefined)[];
+    brothersAndSisters: (string | null | undefined)[];
+    educationalBackground: (string | null | undefined)[]
+    height: (string | null | undefined)[]
+    secondLanguage: (string | null | undefined)[]
+    holiday: (string | null | undefined)[]
+    instrument: (string | null | undefined)[]
+    sport: (string | null | undefined)[]
+    isDrinking: (boolean | null | undefined)[]
+    isSmoking: (boolean | null | undefined)[]
+    hasPet: (boolean | null | undefined)[]
+    isMarried: (boolean | null | undefined)[]
     gender: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
     birthYear: (number | ((control: AbstractControl) => ValidationErrors | null)[])[]
     birthMonth: (number | ((control: AbstractControl) => ValidationErrors | null)[])[]

@@ -1,3 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" style="width: 700px; height: 100vh">
+<div class="container">
+    <app-wave></app-wave>
     <app-sign-in-p [error]="errMsg$ | async" (signIn)="onReceivedClickSignIn($event)"></app-sign-in-p>
 </div>

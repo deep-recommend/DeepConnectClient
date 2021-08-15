@@ -1,0 +1,17 @@
+:host {
+    .action-bar {
+        height: 55px;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+}
+
+span {
+    padding-left: calc(64px - 24px);
+}
+
+button {
+    padding-right: calc(64px - 24px);
+}

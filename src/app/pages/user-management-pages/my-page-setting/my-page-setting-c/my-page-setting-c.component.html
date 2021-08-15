@@ -1,4 +1,4 @@
-<app-back-to-pre-page (clickBackToPrePage)="onReceivedClickBackToPrePage()"></app-back-to-pre-page>
+<app-back-to-pre-page [pageName]="pageName"></app-back-to-pre-page>
 <app-my-page-setting-p
     [positions]="positions$ | async"
     [genders]="genders$ | async"
@@ -6,6 +6,8 @@
     [months]="months$ | async"
     [days]="days$ | async"
     [birthPlaces]="birthPlaces$ | async"
+    [brothersAndSisters]="brothersAndSisters$ | async"
+    [holiday]="holiday$ | async"
     [profile]="profile$ | async"
     (update)="onReceivedClickProfileUpdate($event)"
 ></app-my-page-setting-p>

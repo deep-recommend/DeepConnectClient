@@ -1,6 +1,8 @@
+<app-my-page-actions-p
+    (clickToProfileSetting)="onReceivedClickToProfileSetting()"
+    (clickSignOut)="onReceivedClickSignOut()"
+></app-my-page-actions-p>
 <app-title-header [pageName]="pageName"></app-title-header>
 <app-my-page-p
     [profile]="profile$ | async"
-    (clickToProfileSetting)="onReceivedClickToProfileSetting()"
-    (clickSignOut)="onReceivedClickSignOut()"
 ></app-my-page-p>

@@ -8,6 +8,7 @@ import { RoomQuery, RoomService, RoomStore } from 'src/app/states/room'
 import { UserQuery, UserService, UserStore } from 'src/app/states/user'
 import { SocketService } from 'src/app/general/services/socket/socket.service'
 import { Subscription } from 'rxjs'
+import { UiStore } from 'src/app/states/ui'
 
 @Component({
     selector: 'app-message-room-c',
@@ -15,6 +16,8 @@ import { Subscription } from 'rxjs'
     styleUrls: ['./message-room-c.component.scss'],
 })
 export class MessageRoomCComponent implements OnInit, OnDestroy {
+    pageName: string | null | undefined
+
     subscriptions: Subscription[] = []
 
     profile$ = this.userQuery.profile$
@@ -38,10 +41,13 @@ export class MessageRoomCComponent implements OnInit, OnDestroy {
         private readonly messageQuery: MessageQuery,
         private readonly router: Router,
         private readonly socket: SocketService,
-        private readonly userStore: UserStore
+        private readonly userStore: UserStore,
+        private readonly uiStore: UiStore
     ) {}
 
     async ngOnInit(): Promise<void> {
+        this.pageName = 'メッセージ中'
+        this.uiStore.hideRoutingTab()
         await this.roomInitializer()
     }
 

@@ -9,7 +9,9 @@ export class SocketService {
     constructor(
         private readonly socketEmitter: SocketEmitterService,
         private readonly socketReceiver: SocketReceiverService
-    ) {}
+    ) {
+        this._connect()
+    }
 
     sendMessage(data: any): void {
         this.socketEmitter.emitMessageSending(data)
@@ -33,6 +35,18 @@ export class SocketService {
 
     notificationDecrease(id: any): void {
         this.socketEmitter.emitNotificationDecrease(id)
+        this.socketReceiver.receiveNotificationDecrease()
+    }
+
+    notificationDecreaseWithoutReceive(id: any): void {
+        this.socketEmitter.emitNotificationDecrease(id)
+    }
+
+    private _connect(): void {
+        this.socketReceiver.receiveMessage()
+        this.socketReceiver.receiveLike()
+        this.socketReceiver.receiveUnlike()
+        this.socketReceiver.receiveNotificationIncrease()
         this.socketReceiver.receiveNotificationDecrease()
     }
 }

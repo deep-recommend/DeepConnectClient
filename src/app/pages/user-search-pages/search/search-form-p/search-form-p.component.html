@@ -17,7 +17,11 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>地元</mat-label>
+            <mat-label>身長(cm)</mat-label>
+            <input matInput formControlName="height">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>出身</mat-label>
             <mat-select formControlName="birthPlace">
                 <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
                     {{ birthPlace }}
@@ -27,6 +31,74 @@
         <mat-form-field>
             <mat-label>事務所</mat-label>
             <input matInput formControlName="agency" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>仕事</mat-label>
+            <input matInput formControlName="work" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>趣味</mat-label>
+            <input matInput formControlName="hobby" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>兄弟姉妹</mat-label>
+            <mat-select formControlName="brothersAndSisters">
+                <mat-option *ngFor="let brotherAndSister of brothersAndSisters" [value]="brotherAndSister">
+                    {{ brotherAndSister }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>学歴</mat-label>
+            <input matInput formControlName="educationalBackground" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>第二言語</mat-label>
+            <input matInput formControlName="secondLanguage" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>休日</mat-label>
+            <mat-select formControlName="holiday">
+                <mat-option *ngFor="let day of holiday" [value]="day">
+                    {{ day }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>楽器</mat-label>
+            <input matInput formControlName="instrument" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>スポーツ</mat-label>
+            <input matInput formControlName="sport" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>酒</mat-label>
+            <mat-select formControlName="isDrinking">
+                <mat-option [value]="true">飲む</mat-option>
+                <mat-option [value]="false">飲まない</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>タバコ</mat-label>
+            <mat-select formControlName="isSmoking">
+                <mat-option [value]="true">吸う</mat-option>
+                <mat-option [value]="false">吸わない</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>ペット</mat-label>
+            <mat-select formControlName="hasPet">
+                <mat-option [value]="true">いる</mat-option>
+                <mat-option [value]="false">いない</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>結婚</mat-label>
+            <mat-select formControlName="isMarried">
+                <mat-option [value]="true">している</mat-option>
+                <mat-option [value]="false">していない</mat-option>
+            </mat-select>
         </mat-form-field>
     </mat-card-content>
     <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">

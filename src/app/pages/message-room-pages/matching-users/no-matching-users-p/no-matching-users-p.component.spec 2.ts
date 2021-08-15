@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignUpPComponent } from './sign-up-p.component';
+import { NoMatchingUsersPComponent } from './no-matching-users-p.component';
 
-describe('SignUpPComponent', () => {
-  let component: SignUpPComponent;
-  let fixture: ComponentFixture<SignUpPComponent>;
+describe('NoMatchingUsersPComponent', () => {
+  let component: NoMatchingUsersPComponent;
+  let fixture: ComponentFixture<NoMatchingUsersPComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignUpPComponent ]
+      declarations: [ NoMatchingUsersPComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignUpPComponent);
+    fixture = TestBed.createComponent(NoMatchingUsersPComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

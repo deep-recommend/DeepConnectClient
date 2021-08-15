@@ -30,8 +30,8 @@ export class LikeFromMeCComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subscriptions.push(this.userService.getUsersRequest().subscribe())
-        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
         this.subscriptions.push(this.likeService.getLikes().subscribe())
+        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
     }
 
     ngOnDestroy(): void {

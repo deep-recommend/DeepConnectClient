@@ -1,6 +1,5 @@
-<mat-card>
+<div class="card" fxLayout="row" fxLayoutAlign="center center">
     <form [formGroup]="signInForm" (ngSubmit)="onClickSignIn()">
-        <mat-card-content fxLayoutAlign="center">サインイン</mat-card-content>
         <mat-error *ngIf="error">{{ error }}</mat-error>
         <mat-card-content fxLayout="column">
             <mat-form-field>
@@ -8,7 +7,7 @@
                 <input matInput formControlName="email" required />
                 <mat-error *ngIf="signInForm.get('email')?.hasError('required')">・必須項目です</mat-error>
             </mat-form-field>
-            <mat-form-field fxLayout="row">
+            <mat-form-field>
                 <mat-label>Password</mat-label>
                 <input
                     matInput
@@ -25,7 +24,7 @@
         </mat-card-content>
         <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
             <button mat-raised-button style="background-color: orange">サインイン</button>
-            <a routerLink="/sign-up">サインアップ</a>
+            <p routerLink="/sign-up" class="router-link">新規登録はこちら</p>
         </mat-card-actions>
     </form>
-</mat-card>
+</div>

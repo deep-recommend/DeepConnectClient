@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface'
+import { UiStore } from 'src/app/states/ui'
 import { UserQuery, UserService } from 'src/app/states/user'
 
 @Component({
@@ -20,10 +21,13 @@ export class SignUpCComponent implements OnInit {
     constructor(
         private readonly userService: UserService,
         private readonly router: Router,
-        private readonly userQuery: UserQuery
+        private readonly userQuery: UserQuery,
+        private readonly uiStore: UiStore
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.uiStore.hideRoutingTab()
+    }
 
     onReceivedClickSignUp(signUp: SignUpProps): void {
         this.userService

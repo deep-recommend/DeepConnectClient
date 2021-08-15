@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { birthDayToAge } from 'src/app/general/functions/birthday-to-age'
 import { UserProps } from 'src/app/states/user'
 
@@ -10,8 +10,6 @@ import { UserProps } from 'src/app/states/user'
 export class MyPagePComponent implements OnInit {
     age!: number
     @Input() profile!: UserProps | null
-    @Output() clickToProfileSetting: EventEmitter<void> = new EventEmitter<void>()
-    @Output() clickSignOut: EventEmitter<void> = new EventEmitter()
 
     constructor() {}
 
@@ -20,14 +18,6 @@ export class MyPagePComponent implements OnInit {
     }
 
     birthDayToAge = birthDayToAge
-
-    onClickToProfileSetting(): void {
-        this.clickToProfileSetting.emit()
-    }
-
-    signOut(): void {
-        this.clickSignOut.emit()
-    }
 
     setBirthdayToAge(): void {
         this.age = this.birthDayToAge(

@@ -21,13 +21,43 @@ export class UserService {
 
     getUsersRequest(): Observable<UserProps[]> {
         const search = this.userQuery.searchGetter
-        const paramKeys: string[] = ['position', 'gender', 'birthYear', 'birthPlace', 'agency']
+        const paramKeys: string[] = [
+            'position',
+            'gender',
+            'birthYear',
+            'birthPlace',
+            'agency',
+            'work',
+            'hobby',
+            'brothersAndSisters',
+            'educationalBackground',
+            'secondLanguage',
+            'holiday',
+            'instrument',
+            'sport',
+            'isDrinking',
+            'isSmoking',
+            'hasPet',
+            'isMarried',
+        ]
         const paramValues: string[] = [
             search.position,
             search.gender,
             search.birthYear,
             search.birthPlace,
             search.agency,
+            search.work,
+            search.hobby,
+            search.brothersAndSisters,
+            search.educationalBackground,
+            search.secondLanguage,
+            search.holiday,
+            search.instrument,
+            search.sport,
+            search.isDrinking,
+            search.isSmoking,
+            search.hasPet,
+            search.isMarried,
         ]
         return this.http
             .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))

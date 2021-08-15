@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core'
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
 import { userIdKey } from 'src/app/general/utilities/local-strage'
+import { BROTHERS_AND_SISTERS } from 'src/app/general/utilities/select/brothers-and-sisters'
 import { DAY, MONTH, YEAR } from 'src/app/general/utilities/select/date'
 import { GENDER } from 'src/app/general/utilities/select/gender'
+import { HOLIDAY } from 'src/app/general/utilities/select/holiday'
 import { POSITION } from 'src/app/general/utilities/select/position'
 import { PREFECTURE } from 'src/app/general/utilities/select/prefecture'
-import { UserQuery } from '.'
 import { UserProps } from './user.model'
 
 export interface UserState extends EntityState<UserProps> {
@@ -16,6 +17,8 @@ export interface UserState extends EntityState<UserProps> {
         months: number[]
         days: number[]
         birthPlaces: string[]
+        brothersAndSisters: string[]
+        holiday: string[]
     }
     search: {
         position: string
@@ -42,13 +45,28 @@ const initialState = {
         months: MONTH,
         days: DAY,
         birthPlaces: PREFECTURE,
+        brothersAndSisters: BROTHERS_AND_SISTERS,
+        holiday: HOLIDAY,
     },
     search: {
         position: '',
         gender: '',
         birthYear: '',
+        height: '',
         birthPlace: '',
         agency: '',
+        work: '',
+        hobby: '',
+        brothersAndSisters: '',
+        educationalBackground: '',
+        secondLanguage: '',
+        holiday: '',
+        instrument: '',
+        sport: '',
+        isDrinking: null,
+        isSmoking: null,
+        hasPet: null,
+        isMarried: null,
     },
     params: {
         roomId: '',
@@ -116,8 +134,21 @@ export class UserStore extends EntityStore<UserState> {
                 position: '',
                 gender: '',
                 birthYear: '',
+                height: '',
                 birthPlace: '',
                 agency: '',
+                work: '',
+                hobby: '',
+                brothersAndSisters: '',
+                educationalBackground: '',
+                secondLanguage: '',
+                holiday: '',
+                instrument: '',
+                sport: '',
+                isDrinking: '',
+                isSmoking: '',
+                hasPet: '',
+                isMarried: '',
             },
         }))
     }

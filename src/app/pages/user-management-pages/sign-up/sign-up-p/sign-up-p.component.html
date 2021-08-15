@@ -1,23 +1,18 @@
-<mat-card>
+<div class="card" fxLayout="row" fxLayoutAlign="center center">
     <form [formGroup]="signUpForm" (ngSubmit)="onClickSignUp()">
-        <mat-card-content fxLayoutAlign="center">サインアップ</mat-card-content>
         <mat-card-content fxLayout="column">
-            <div fxLayout="row" >
-                <mat-form-field>
+            <div fxLayout="row" class="flex-field-container" fxLayoutAlign="center">
+                <mat-form-field class="name-field">
                     <mat-label>性</mat-label>
                     <input matInput formControlName="realLastName" required />
                     <mat-error *ngIf="signUpForm.get('realLastName')?.hasError('required')">・必須項目です</mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="name-field">
                     <mat-label>名</mat-label>
                     <input matInput formControlName="realFirstName" required />
                     <mat-error *ngIf="signUpForm.get('realFirstName')?.hasError('required')">・必須項目です</mat-error>
                 </mat-form-field>
             </div>
-            <mat-form-field>
-                <mat-label>芸名</mat-label>
-                <input matInput formControlName="stageName" />
-            </mat-form-field>
             <mat-form-field>
                 <mat-label>性別</mat-label>
                 <mat-select formControlName="gender" required>
@@ -27,8 +22,8 @@
                 </mat-select>
                 <mat-error *ngIf="signUpForm.get('gender')?.hasError('required')">・必須項目です</mat-error>
             </mat-form-field>
-            <div fxLayout="row" fxLayoutAlign="space-between">
-                <mat-form-field>
+            <div fxLayout="row" class="flex-field-container" fxLayoutAlign="center">
+                <mat-form-field class="birth-field">
                     <mat-label>誕生年</mat-label>
                     <mat-select formControlName="birthYear" required>
                         <mat-option *ngFor="let year of years" [value]="year">
@@ -37,7 +32,7 @@
                     </mat-select>
                     <mat-error *ngIf="signUpForm.get('birthYear')?.hasError('required')">・必須項目です</mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="birth-field">
                     <mat-label>誕生月</mat-label>
                     <mat-select formControlName="birthMonth" required>
                         <mat-option *ngFor="let month of months" [value]="month">
@@ -46,7 +41,7 @@
                     </mat-select>
                     <mat-error *ngIf="signUpForm.get('birthMonth')?.hasError('required')">・必須項目です</mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="birth-field">
                     <mat-label>誕生日</mat-label>
                     <mat-select formControlName="birthDay" required>
                         <mat-option *ngFor="let day of days" [value]="day">
@@ -57,7 +52,7 @@
                 </mat-form-field>
             </div>
             <mat-form-field>
-                <mat-label>地元</mat-label>
+                <mat-label>出身</mat-label>
                 <mat-select formControlName="birthPlace" required>
                     <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
                         {{ birthPlace }}
@@ -66,17 +61,11 @@
                 <mat-error *ngIf="signUpForm.get('birthPlace')?.hasError('required')">・必須項目です</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>事務所</mat-label>
-                <input matInput formControlName="agency" />
-            </mat-form-field>
-            <mat-label>プロフィール画像</mat-label>
-            <input type="file" accept="image/*" id="customImage" (input)="inputProfilePicture($event)" />
-            <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required />
                 <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">・必須項目です</mat-error>
             </mat-form-field>
-            <mat-form-field fxLayout="row">
+            <mat-form-field>
                 <mat-label>パスワード</mat-label>
                 <input
                     matInput
@@ -90,7 +79,7 @@
                 </button>
                 <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">・必須項目です</mat-error>
             </mat-form-field>
-            <mat-form-field fxLayout="row">
+            <mat-form-field>
                 <mat-label>確認用パスワード</mat-label>
                 <input
                     matInput
@@ -109,7 +98,7 @@
         </mat-card-content>
         <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
             <button mat-raised-button style="background-color: orange">サインアップ</button>
-            <a routerLink="/sign-in">サインイン</a>
+            <p routerLink="/sign-in" class="router-link">既にアカウントをお持ちの方</p>
         </mat-card-actions>
     </form>
-</mat-card>
+</div>

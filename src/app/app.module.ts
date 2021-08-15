@@ -12,10 +12,11 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter'
 import { SocketIoModule } from 'ngx-socket-io'
-import { apiHostPort } from './general/utilities/api'
+import { apiHostPort } from './general/utilities/api';
+import { NotificationBulkDeletionDialogComponent } from './pages/notification-pages/notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component'
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, NotificationBulkDeletionDialogComponent],
     imports: [
         AppRoutingModule,
         HttpClientModule,

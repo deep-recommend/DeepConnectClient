@@ -1,0 +1,27 @@
+:host {
+    .card {
+        .router-link {
+            color: #888;
+        }
+    }
+    .flex-field-container {
+        width: 348px;
+        margin: 0 auto;
+    }
+
+    mat-form-field {
+        margin: 0 auto;
+        width: 348px;
+        margin-bottom: 12px;
+        &.name-field {
+            width: 174px;
+        }
+        &.birth-field {
+            width: 116px;
+        }
+    }
+
+    mat-icon {
+        font-size: 100%;
+    }
+}
