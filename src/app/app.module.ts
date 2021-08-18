@@ -12,8 +12,9 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter'
 import { SocketIoModule } from 'ngx-socket-io'
-import { apiHostPort } from './general/utilities/api';
+import { apiHostPort } from './general/utilities/api'
 import { NotificationBulkDeletionDialogComponent } from './pages/notification-pages/notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component'
+import { WINDOW_PROVIDERS } from './window-token'
 
 @NgModule({
     declarations: [AppComponent, NotificationBulkDeletionDialogComponent],
@@ -32,6 +33,7 @@ import { NotificationBulkDeletionDialogComponent } from './pages/notification-pa
         LayoutModule,
     ],
     providers: [
+        WINDOW_PROVIDERS,
         {
             provide: NG_ENTITY_SERVICE_CONFIG,
             useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },

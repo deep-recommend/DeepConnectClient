@@ -1,0 +1,15 @@
+:host {
+    .button {
+        width: 700px;
+        background-color: white;
+        color: red;
+        opacity: 0.6;
+    }
+    @media screen and (max-width: 700px) {
+        .button {
+            width: 100vw;
+            position: fixed;
+            bottom: 48px;
+        }
+    }
+}

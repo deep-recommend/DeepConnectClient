@@ -7,7 +7,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-template": {
+    "comedian-matching-front": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-template",
+            "outputPath": "dist/comedian-matching-front",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-template:build"
+            "browserTarget": "comedian-matching-front:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-template:build:production"
+              "browserTarget": "comedian-matching-front:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-template:build"
+            "browserTarget": "comedian-matching-front:build"
           }
         },
         "test": {
@@ -120,16 +120,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-template:serve"
+            "devServerTarget": "comedian-matching-front:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-template:serve:production"
+              "devServerTarget": "comedian-matching-front:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-template"
+  "defaultProject": "comedian-matching-front"
 }

@@ -23,7 +23,7 @@
         .my-message {
             box-shadow: 0 2px 1px -1px #0003, 0 1px 1px 0 #00000024, 0 1px 3px 0 #0000001f;
             border-radius: 24px 24px 0 24px;
-            max-width: 50vw;
+            max-width: 350px;
             overflow-wrap: break-word;
             background-color: orange;
             color: white;
@@ -33,6 +33,12 @@
             border-radius: 24px 24px 24px 0;
             max-width: 50vw;
             overflow-wrap: break-word;
+        }
+        .scroll-to-bottom {
+            position: absolute;
+            bottom: 64px;
+            left: 528px;
+            border-radius: 100%;
         }
     }
     .avatar {
@@ -45,6 +51,12 @@
         .message-screen {
             width: 100vw;
             height: calc(100vh - 180px);
+            .my-message {
+                max-width: 50vw;
+            }
+            .scroll-to-bottom {
+                left: 5%;
+            }
         }
     }
 }
