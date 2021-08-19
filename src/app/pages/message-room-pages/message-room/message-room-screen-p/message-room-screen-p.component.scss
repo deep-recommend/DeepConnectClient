@@ -34,12 +34,6 @@
             max-width: 50vw;
             overflow-wrap: break-word;
         }
-        .scroll-to-bottom {
-            position: absolute;
-            bottom: 64px;
-            left: 528px;
-            border-radius: 100%;
-        }
     }
     .avatar {
         width: 44px;
@@ -53,9 +47,6 @@
             height: calc(100vh - 180px);
             .my-message {
                 max-width: 50vw;
-            }
-            .scroll-to-bottom {
-                left: 5%;
             }
         }
     }
