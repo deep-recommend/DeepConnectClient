@@ -1,0 +1,18 @@
+:host {
+    .container {
+        width: 700px;
+        margin: 0 auto;
+        .button {
+            position: fixed;
+            bottom: 64px;
+            margin-left: 35px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .container {
+            .button {
+                margin-left: 5%;
+            }
+        }
+    }
+}
