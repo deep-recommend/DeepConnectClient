@@ -3,17 +3,20 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
 import { LikeProps } from './like.model'
 
 export interface LikeState extends EntityState<LikeProps> {
-    ui: {}
+    ui: {
+        existsMatchingUsers: boolean
+    }
 }
 
 const initialState = {
-    ui: {},
+    ui: {
+        existsMatchingUsers: Boolean(),
+    },
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'like',
-    idKey: '_id',
 })
 export class LikeStore extends EntityStore<LikeState> {
     constructor() {
@@ -22,5 +25,14 @@ export class LikeStore extends EntityStore<LikeState> {
 
     setLikes(likes: LikeProps[]): void {
         this.set(likes)
+    }
+
+    updateExistsMatchingUsers(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                existsMatchingUsers: bool,
+            },
+        })
     }
 }

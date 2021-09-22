@@ -1,19 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormGroup, FormBuilder } from '@angular/forms'
-import { convertToDataUrl } from 'src/app/general/functions/convert-to-dataurl'
+import { toDataUrl } from 'src/app/general/functions/to-dataurl'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { UpdateProfileModel } from 'src/app/general/models/update-profile.model'
-import { UserProps } from 'src/app/states/user'
+import { UserProps } from 'src/app/states/user/user.model'
 
 @Component({
     selector: 'app-my-page-setting-p',
     templateUrl: './my-page-setting-p.component.html',
     styleUrls: ['./my-page-setting-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyPageSettingPComponent implements OnInit {
     hide: boolean = true
     hide2: boolean = true
-    customFile: any
+    customFile!: string | File | Blob
     updateUserFormInstance = new UpdateProfileModel()
     updateUserForm: FormGroup = this.fb.group(this.updateUserFormInstance.formGroupValue)
 
@@ -71,9 +72,9 @@ export class MyPageSettingPComponent implements OnInit {
         form.isMarried.patchValue(Boolean(me?.isMarried))
     }
 
-    async inputProfilePicture(event?: any): Promise<void> {
+    async inputProfilePicture(event: any): Promise<void> {
         const file = event.target.files[0]
-        const dataUrl = await convertToDataUrl(file)
+        const dataUrl = await toDataUrl(file)
         this.updateUserForm.controls.profilePicture.setValue(dataUrl)
     }
 }

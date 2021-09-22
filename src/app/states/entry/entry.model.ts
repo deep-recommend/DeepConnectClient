@@ -1,10 +1,10 @@
 export interface EntryProps {
-    _id: string;
-    userId: string;
-    roomId: string;
+    id: number
+    userId: number
+    roomId: number
 }
 
 export interface CreateEntryProps {
-    userId: string;
-    roomId: string;
+    userId: number
+    roomId: number
 }

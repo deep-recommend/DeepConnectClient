@@ -1,10 +1,11 @@
 export interface UserProps {
-    _id: string
+    id: number
     realLastName: string
     realFirstName: string
     stageName: string | null
     position: string | null
     gender: string
+    age: number
     birthYear: number
     birthMonth: number
     birthDay: number
@@ -25,7 +26,4 @@ export interface UserProps {
     isSmoking: boolean | null
     hasPet: boolean | null
     isMarried: boolean | null
-    email: string
-    password: string
-    passwordConfirmation: string
 }

@@ -7,6 +7,8 @@ import { NotificationPComponent } from './notification-p/notification-p.componen
 import { DeepRecommendSharedModule } from 'src/app/general/shared.module'
 import { NoNotificationsPComponent } from './no-notifications-p/no-notifications-p.component'
 import { NotificationBulkDeletionButtonPComponent } from './notification-bulk-deletion-button-p/notification-bulk-deletion-button-p.component'
+import { NotificationResolverService } from './notification.resolver'
+import { NotificationBulkDeletionDialogComponent } from '../notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component'
 @NgModule({
     declarations: [
         NotificationComponent,
@@ -14,7 +16,9 @@ import { NotificationBulkDeletionButtonPComponent } from './notification-bulk-de
         NotificationPComponent,
         NoNotificationsPComponent,
         NotificationBulkDeletionButtonPComponent,
+        NotificationBulkDeletionDialogComponent,
     ],
     imports: [DeepRecommendSharedModule, NotificationRoutingModule],
+    providers: [NotificationResolverService],
 })
 export class NotificationModule {}

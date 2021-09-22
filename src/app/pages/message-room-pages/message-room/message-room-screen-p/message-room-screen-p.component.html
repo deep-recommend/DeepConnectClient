@@ -1,7 +1,7 @@
 <div class="message-screen" #scroll>
     <div *ngFor="let message of messages; let i = index">
         <div *ngIf="currentRoomId === message.roomId" >
-            <div *ngIf="profile?._id === message.userId; then thenBlock else elseBlock"></div>
+            <div *ngIf="profile?.id === message.userId; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
                 <div class="message-content">
                     <div fxLayout="row" fxLayoutAlign="end">
@@ -16,7 +16,7 @@
             <ng-template #elseBlock>
                 <div fxLayout="row" fxLayoutAlign="start" class="message-content">
                     <div class="message-content">
-                        <div (click)="onClickCompanionProfilePicture(companion?._id)">
+                        <div (click)="onClickCompanionProfilePicture(companion?.id)">
                             <div *ngIf="companion?.profilePicture; then thenBlock; else elseBlock"></div>
                             <ng-template #thenBlock>
                                 <img class="avatar" src="{{ companion?.profilePicture }}" />

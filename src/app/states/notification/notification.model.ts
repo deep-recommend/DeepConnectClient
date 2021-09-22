@@ -1,13 +1,13 @@
 export interface NotificationProps {
-    _id: string
+    id: number
     isMessage: boolean
     message: string
-    currentUserId: string
-    userId: string
+    currentUserId: number
+    userId: number
 }
 
 export interface CreateNotificationProps {
     isMessage: boolean
-    currentUserId: string
-    userId: string
+    currentUserId: number
+    userId: number
 }

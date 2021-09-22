@@ -13,11 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter'
 import { SocketIoModule } from 'ngx-socket-io'
 import { apiHostPort } from './general/utilities/api'
-import { NotificationBulkDeletionDialogComponent } from './pages/notification-pages/notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component'
 import { WINDOW_PROVIDERS } from './window-token'
 
 @NgModule({
-    declarations: [AppComponent, NotificationBulkDeletionDialogComponent],
+    declarations: [AppComponent],
     imports: [
         AppRoutingModule,
         HttpClientModule,
@@ -31,6 +30,7 @@ import { WINDOW_PROVIDERS } from './window-token'
         SocketIoModule.forRoot({ url: apiHostPort }),
 
         LayoutModule,
+        BrowserModule,
     ],
     providers: [
         WINDOW_PROVIDERS,

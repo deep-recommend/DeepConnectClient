@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
 import { UserSearchProps } from 'src/app/general/interfaces/user-search.interface'
-import { UserQuery, UserService, UserStore } from 'src/app/states/user'
+import { UserQuery } from 'src/app/states/user/user.query'
+import { UserStore } from 'src/app/states/user/user.store'
 
 @Component({
     selector: 'app-search-c',
     templateUrl: './search-c.component.html',
     styleUrls: ['./search-c.component.scss'],
 })
-export class SearchCComponent implements OnInit {
-    pageName!: string | null | undefined
-
+export class SearchCComponent {
     positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
@@ -26,10 +25,6 @@ export class SearchCComponent implements OnInit {
         private readonly router: Router,
         private readonly userStore: UserStore
     ) {}
-
-    ngOnInit(): void {
-        this.pageName = '検索'
-    }
 
     onReceivedSubmitUserSearch(searchFormValue: UserSearchProps): void {
         this.userStore.updateSearch({
@@ -47,10 +42,10 @@ export class SearchCComponent implements OnInit {
             holiday: searchFormValue.holiday ?? '',
             instrument: searchFormValue.instrument ?? '',
             sport: searchFormValue.sport ?? '',
-            isDrinking: searchFormValue.isDrinking ?? null,
-            isSmoking: searchFormValue.isSmoking ?? null,
-            hasPet: searchFormValue.hasPet ?? null,
-            isMarried: searchFormValue.isMarried ?? null,
+            isDrinking: searchFormValue.isDrinking ?? undefined,
+            isSmoking: searchFormValue.isSmoking ?? undefined,
+            hasPet: searchFormValue.hasPet ?? undefined,
+            isMarried: searchFormValue.isMarried ?? undefined,
         })
         this.router.navigate(['/'])
     }

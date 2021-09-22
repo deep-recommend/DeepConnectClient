@@ -1,9 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, Subscription } from 'rxjs'
+import { Observable, Subscription, merge } from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { LikeProps, LikeService, LikeQuery } from 'src/app/states/like'
-import { UserProps, UserService, UserQuery, UserStore } from 'src/app/states/user'
+import { LikeProps } from 'src/app/states/like/like.model'
+import { LikeQuery } from 'src/app/states/like/like.query'
+import { LikeService } from 'src/app/states/like/like.service'
+import { UserProps } from 'src/app/states/user/user.model'
+import { UserQuery } from 'src/app/states/user/user.query'
+import { UserService } from 'src/app/states/user/user.service'
+import { UserStore } from 'src/app/states/user/user.store'
 
 @Component({
     selector: 'app-like-from-others-c',
@@ -11,9 +16,9 @@ import { UserProps, UserService, UserQuery, UserStore } from 'src/app/states/use
     styleUrls: ['./like-from-others-c.component.scss'],
 })
 export class LikeFromOthersCComponent implements OnInit, OnDestroy {
-    subscriptions: Subscription[] = []
+    subscription!: Subscription
 
-    currentUserId$: Observable<string> = this.userQuery.currentUserId$
+    currentUserId$: Observable<number> = this.userQuery.currentUserId$
     users$: Observable<UserProps[]> = this.userQuery.users$
     profile$: Observable<UserProps> = this.userQuery.profile$
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$
@@ -29,16 +34,18 @@ export class LikeFromOthersCComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.subscriptions.push(this.userService.getUsersRequest().subscribe())
-        this.subscriptions.push(this.likeService.getLikes().subscribe())
-        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
+        this.subscription = merge(
+            this.userService.getUsersRequest(),
+            this.likeService.getLikes(),
+            this.authenticationService.getProfile()
+        ).subscribe()
     }
 
     ngOnDestroy(): void {
-        this.subscriptions.forEach((sub) => sub.unsubscribe())
+        this.subscription.unsubscribe()
     }
 
-    onReceivedClickUserToMessage(userId: string): void {
+    onReceivedClickUserToMessage(userId: number): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {
             this.userStore.updateUserId(userId)
             this.router.navigate([`/user-detail/${userId}`])

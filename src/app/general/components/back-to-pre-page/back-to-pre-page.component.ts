@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { UiStore } from 'src/app/states/ui'
+import { Location } from '@angular/common'
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
+import { UiQuery } from 'src/app/states/ui/ui.query'
+import { UiStore } from 'src/app/states/ui/ui.store'
 
 @Component({
     selector: 'app-back-to-pre-page',
@@ -7,16 +10,20 @@ import { UiStore } from 'src/app/states/ui'
     styleUrls: ['./back-to-pre-page.component.scss'],
 })
 export class BackToPrePageComponent implements OnInit {
-    @Input() pageName!: string | null | undefined
+    pageName$: Observable<string> = this.uiQuery.pageName$
 
-    constructor(private uiStore: UiStore) {}
+    constructor(
+        private readonly uiStore: UiStore,
+        private readonly uiQuery: UiQuery,
+        private readonly location: Location
+    ) {}
 
     ngOnInit(): void {}
 
     onClickBackToPrePage(): void {
-        if (this.pageName === 'メッセージ中') {
+        if (this.uiQuery.pageNameGetter === 'メッセージ中') {
             this.uiStore.displayRoutingTab()
         }
-        history.back()
+        this.location.back()
     }
 }

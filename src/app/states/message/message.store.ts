@@ -1,30 +1,29 @@
-import { Injectable } from '@angular/core';
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { MessageProps } from './message.model';
+import { Injectable } from '@angular/core'
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
+import { MessageProps } from './message.model'
 
 export interface MessageState extends EntityState<MessageProps> {
-    ui: {};
+    ui: {}
 }
 
 const initialState = {
     ui: {},
-};
+}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'message',
-    idKey: '_id',
 })
 export class MessageStore extends EntityStore<MessageState> {
     constructor() {
-        super(initialState);
+        super(initialState)
     }
 
     setMessages(messages: MessageProps[]): void {
-        this.set(messages);
+        this.set(messages)
     }
 
     addMessage(message: MessageProps): void {
-        this.add(message);
+        this.add(message)
     }
 }

@@ -1,4 +1,4 @@
 <div class="button">
     <button mat-icon-button (click)="onClickBackToPrePage()"><mat-icon>arrow_back</mat-icon></button>
-    {{ pageName }}
+    {{ pageName$ | async }}
 </div>

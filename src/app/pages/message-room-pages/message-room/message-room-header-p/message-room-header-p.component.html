@@ -1,5 +1,5 @@
 <mat-toolbar class="message-room-header">
-    <div class="account-menu" (click)="onClickAccount(companion?._id)">
+    <div class="account-menu" (click)="onClickAccount(companion?.id)">
         <button mat-button>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
                 <div *ngIf="companion?.profilePicture; then thenBlock else elseBlock"></div>

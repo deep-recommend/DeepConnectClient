@@ -40,6 +40,8 @@ import { BackToPrePageComponent } from './components/back-to-pre-page/back-to-pr
 import { TitleHeaderComponent } from './components/title-header/title-header.component'
 import { ActionBarComponent } from './components/action-bar/action-bar.component'
 import { WaveComponent } from './components/wave/wave.component'
+import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module'
+
 @NgModule({
     declarations: [
         LikeRoutingTabsComponent,
@@ -54,6 +56,7 @@ import { WaveComponent } from './components/wave/wave.component'
         ReactiveFormsModule,
         FlexLayoutModule,
         RouterModule,
+        ProgressSpinnerModule,
 
         MatButtonModule,
         MatBadgeModule,
@@ -100,6 +103,7 @@ import { WaveComponent } from './components/wave/wave.component'
         ReactiveFormsModule,
         FlexLayoutModule,
         RouterModule,
+        ProgressSpinnerModule,
 
         MatButtonModule,
         MatBadgeModule,

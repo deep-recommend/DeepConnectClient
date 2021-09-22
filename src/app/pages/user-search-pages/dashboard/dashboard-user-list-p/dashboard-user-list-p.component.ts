@@ -1,22 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { birthDayToAge } from 'src/app/general/functions/birthday-to-age'
-import { LikeProps } from 'src/app/states/like'
-import { UserProps } from 'src/app/states/user'
 import { zip } from 'lodash-es'
 import { UiService } from 'src/app/states/ui/ui.service'
+import { LikeProps } from 'src/app/states/like/like.model'
+import { UserProps } from 'src/app/states/user/user.model'
 @Component({
     selector: 'app-dashboard-user-list-p',
     templateUrl: './dashboard-user-list-p.component.html',
     styleUrls: ['./dashboard-user-list-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardUserListPComponent implements OnInit {
     @Input() profile!: UserProps | null
-    @Input() currentUserId!: string | null
+    @Input() currentUserId!: number | null
     @Input() users!: UserProps[] | null
     @Input() likes!: LikeProps[] | null
-    @Output() clickLikeButton: EventEmitter<string> = new EventEmitter<string>()
-    @Output() clickUnlikeButton: EventEmitter<string> = new EventEmitter<string>()
-    @Output() clickUsersToDetails: EventEmitter<string> = new EventEmitter<string>()
+    @Output() clickLikeButton: EventEmitter<number> = new EventEmitter<number>()
+    @Output() clickUnlikeButton: EventEmitter<number> = new EventEmitter<number>()
+    @Output() clickUsersToDetails: EventEmitter<number> = new EventEmitter<number>()
 
     constructor(private readonly uiService: UiService) {}
 
@@ -25,19 +26,19 @@ export class DashboardUserListPComponent implements OnInit {
     zip = zip
     birthDayToAge = birthDayToAge
 
-    onClickLikeButton(userId: string): void {
+    onClickLikeButton(userId: number): void {
         this.clickLikeButton.emit(userId)
     }
 
-    onClickUnlikeButton(userId: string): void {
+    onClickUnlikeButton(userId: number): void {
         this.clickUnlikeButton.emit(userId)
     }
 
-    onClickUsersToDetail(userId: string): void {
+    onClickUsersToDetail(userId: number): void {
         this.clickUsersToDetails.emit(userId)
     }
 
-    alreadyLiked(userId: string): boolean {
-        return this.uiService.alreadyLikedByMyself(String(this.currentUserId), userId)
+    alreadyLiked(userId: number): boolean {
+        return this.uiService.alreadyLikedByMyself(Number(this.currentUserId), userId)
     }
 }

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 
 @Component({
-  selector: 'app-feature-p',
-  templateUrl: './feature-p.component.html',
-  styleUrls: ['./feature-p.component.scss']
+    selector: 'app-feature-p',
+    templateUrl: './feature-p.component.html',
+    styleUrls: ['./feature-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeaturePComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

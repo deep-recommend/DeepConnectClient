@@ -1,11 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { MyPageComponent } from './my-page.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { MyPageComponent } from './my-page.component'
+import { MyPageResolverService } from './my-page.resolver'
 
-const routes: Routes = [{ path: '', component: MyPageComponent }];
+const routes: Routes = [
+    {
+        path: '',
+        component: MyPageComponent,
+        resolve: { from: MyPageResolverService },
+    },
+]
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class MyPageRoutingModule { }
+export class MyPageRoutingModule {}

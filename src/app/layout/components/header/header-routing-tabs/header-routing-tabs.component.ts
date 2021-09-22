@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'
-import { NotificationProps } from 'src/app/states/notification'
-import { UiStore } from 'src/app/states/ui'
-import { UserQuery, UserStore } from 'src/app/states/user'
+import { RouterLinkProps } from 'src/app/general/interfaces/router-link.interface'
+import { NotificationProps } from 'src/app/states/notification/notification.model'
+import { UserStore } from 'src/app/states/user/user.store'
 
 @Component({
     selector: 'app-header-routing-tabs',
@@ -10,16 +10,15 @@ import { UserQuery, UserStore } from 'src/app/states/user'
     styleUrls: ['./header-routing-tabs.component.scss'],
 })
 export class HeaderRoutingTabsComponent implements OnInit {
-    public icon!: any[]
-    public routeLinks: any[]
-    public activeLinkIndex = 1
-    private currentRoute = ''
+    public icon: string | undefined
+    public routeLinks: RouterLinkProps[]
+    public activeLinkIndex: number = 1
+    private currentRoute: string = ''
 
-    @Input() notifications!: NotificationProps[] | null
-    @Output() outputPageName: EventEmitter<string | null | undefined> = new EventEmitter<string | null | undefined>()
+    @Input() notifications!: NotificationProps[] | null | undefined
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private userStore: UserStore) {
-        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => {
             return false
         }
 

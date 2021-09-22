@@ -1,13 +1,14 @@
 <ng-container>
     <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
-        <div *ngIf="profile?.profilePicture; then profilePictureIsTrue; else profilePictureIsFalse"></div>
-    <ng-template #profilePictureIsTrue><img src="{{ profile?.profilePicture }}" class="image" /></ng-template>
-    <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
+        <div *ngIf="profile?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
+        <ng-template #profilePictureIsTrue><img [src]="profile?.profilePicture" class="image" /></ng-template>
+        <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" />
+        </ng-template>
     </div>
     <div class="card">
         <mat-card-header fxLayoutAlign="start">
-            <mat-card-title>{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br/></mat-card-title>
-            <mat-card-subtitle>{{ age }}歳&nbsp;&nbsp;{{ profile?.gender }}</mat-card-subtitle>
+            <mat-card-title>{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br /></mat-card-title>
+            <mat-card-subtitle>{{ profile?.age }}歳&nbsp;&nbsp;{{ profile?.gender }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <div class="section">
@@ -39,7 +40,7 @@
                     </ul>
                     <ul class="value">
                         <li>{{ profile?.realLastName }}{{ profile?.realFirstName }}</li>
-                        <li>{{ age }}歳</li>
+                        <li>{{ profile?.age }}歳</li>
                         <li>{{ profile?.height ? profile?.height : '未設定' }}cm</li>
                         <li>{{ profile?.gender }}</li>
                         <li>{{ profile?.birthPlace }}</li>

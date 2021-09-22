@@ -1,10 +1,10 @@
 export interface LikeProps {
-    _id: string
-    currentUserId: string
-    userId: string
+    id: number
+    currentUserId: number
+    userId: number
 }
 
 export interface CreateLikeProps {
-    currentUserId: string
-    userId: string
+    currentUserId: number
+    userId: number
 }

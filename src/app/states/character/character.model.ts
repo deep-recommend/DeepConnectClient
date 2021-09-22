@@ -1,10 +1,10 @@
 export interface CharacterProps {
-    _id: string
-    userId: string
-    featureId: string
+    id: number
+    userId: number
+    featureId: number
 }
 
 export interface CreateCharacterProps {
-    userId: string
-    featureId: string
+    userId: number
+    featureId: number
 }

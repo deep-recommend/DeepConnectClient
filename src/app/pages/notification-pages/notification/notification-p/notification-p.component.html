@@ -1,6 +1,6 @@
 <div class="container">
   <ng-container *ngFor="let notification of notifications">
-    <mat-card class="card" (click)="onClickNotificationsToUserDetail(notification.currentUserId, notification._id, notification.isMessage)">
+    <mat-card class="card" (click)="onClickNotificationsToUserDetail(notification.currentUserId, notification.id, notification.isMessage)">
       <div fxLayout="row">
         <div *ngIf="getProfilePicture(notification.currentUserId); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>

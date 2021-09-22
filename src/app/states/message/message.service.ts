@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { apiMessageUrl, httpOptions } from 'src/app/general/utilities/api'
-import { RoomQuery } from '../room'
+import { RoomQuery } from '../room/room.query'
 import { MessageProps } from './message.model'
 import { MessageStore } from './message.store'
 
@@ -17,7 +17,7 @@ export class MessageService {
 
     getMessagesRequest(): Observable<MessageProps[]> {
         const paramKeys: string[] = ['roomId']
-        const paramValues: string[] = [this.roomQuery.currentRoomIdGetter]
+        const paramValues: string[] = [String(this.roomQuery.currentRoomIdGetter)]
 
         return this.http
             .get<MessageProps[]>(apiMessageUrl, httpOptions(paramKeys, paramValues))

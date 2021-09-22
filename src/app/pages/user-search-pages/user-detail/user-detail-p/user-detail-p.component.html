@@ -1,68 +1,70 @@
 <ng-container>
-  <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
-    <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
-    <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
-    <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" /></ng-template>
-  </div>
-  <div class="card">
-    <mat-card-header fxLayoutAlign="start">
-        <mat-card-title>{{ user?.stageName }}&nbsp;&nbsp;{{ user?.position }}
-            <button mat-icon-button *ngIf="isMatching(user!._id)" (click)="onClickUserToMessage(user!._id)">
-                <mat-icon class="icon">forward_to_inbox</mat-icon>
-            </button>
-        <br/></mat-card-title>
-        <mat-card-subtitle>{{ age }}歳&nbsp;&nbsp;{{ user?.gender }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <div class="section">
-            <p><strong>自己紹介</strong></p>
-            <p>{{ user?.description }}</p>
-        </div>
-        <div fxLayout="column" fxLayoutAlign="center" class="section">
-            <p><strong>基本情報</strong></p>
-            <div fxLayout="row" fxLayoutAlign="start">
-                <ul>
-                    <li>本名</li>
-                    <li>年齢</li>
-                    <li>身長</li>
-                    <li>性別</li>
-                    <li>出身</li>
-                    <li>所属事務所</li>
-                    <li>仕事</li>
-                    <li>趣味</li>
-                    <li>兄弟姉妹</li>
-                    <li>学歴</li>
-                    <li>第二言語</li>
-                    <li>休日</li>
-                    <li>楽器</li>
-                    <li>スポーツ</li>
-                    <li>酒</li>
-                    <li>タバコ</li>
-                    <li>ペット</li>
-                    <li>結婚</li>
-                </ul>
-                <ul class="value">
-                    <li>{{ user?.realLastName }}{{ user?.realFirstName }}</li>
-                    <li>{{ age }}歳</li>
-                    <li>{{ user?.height ? user?.height : '未設定' }}cm</li>
-                    <li>{{ user?.gender }}</li>
-                    <li>{{ user?.birthPlace }}</li>
-                    <li>{{ user?.agency ? user?.agency : '未設定' }}</li>
-                    <li>{{ user?.work ? user?.work : '未設定' }}</li>
-                    <li>{{ user?.hobby ? user?.hobby : '未設定' }}</li>
-                    <li>{{ user?.brothersAndSisters ? user?.brothersAndSisters : '未設定' }}</li>
-                    <li>{{ user?.educationalBackground ? user?.educationalBackground : '未設定' }}</li>
-                    <li>{{ user?.secondLanguage ? user?.secondLanguage : '未設定' }}</li>
-                    <li>{{ user?.holiday ? user?.holiday : '未設定' }}</li>
-                    <li>{{ user?.instrument ? user?.instrument : '未設定' }}</li>
-                    <li>{{ user?.sport ? user?.sport : '未設定' }}</li>
-                    <li>{{ user?.isDrinking ? '飲む' : '飲まない' }}</li>
-                    <li>{{ user?.isSmoking ? '吸う' : '吸わない' }}</li>
-                    <li>{{ user?.hasPet ? 'いる' : 'いない' }}</li>
-                    <li>{{ user?.isMarried ? 'している' : 'していない' }}</li>
-                </ul>
+    <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="user?.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
+        <ng-template #profilePictureIsTrue><img src="{{ user?.profilePicture }}" class="image" /></ng-template>
+        <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image" />
+        </ng-template>
+    </div>
+    <div class="card">
+        <mat-card-header fxLayoutAlign="start">
+            <mat-card-title>{{ user?.stageName }}&nbsp;&nbsp;{{ user?.position }}
+                <button mat-icon-button *ngIf="isMatching(user!.id)" (click)="onClickUserToMessage(user!.id)">
+                    <mat-icon class="icon">forward_to_inbox</mat-icon>
+                </button>
+                <br />
+            </mat-card-title>
+            <mat-card-subtitle>{{ user?.age }}歳&nbsp;&nbsp;{{ user?.gender }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="section">
+                <p><strong>自己紹介</strong></p>
+                <p>{{ user?.description }}</p>
             </div>
-        </div>
-    </mat-card-content>
-  </div>
+            <div fxLayout="column" fxLayoutAlign="center" class="section">
+                <p><strong>基本情報</strong></p>
+                <div fxLayout="row" fxLayoutAlign="start">
+                    <ul>
+                        <li>本名</li>
+                        <li>年齢</li>
+                        <li>身長</li>
+                        <li>性別</li>
+                        <li>出身</li>
+                        <li>所属事務所</li>
+                        <li>仕事</li>
+                        <li>趣味</li>
+                        <li>兄弟姉妹</li>
+                        <li>学歴</li>
+                        <li>第二言語</li>
+                        <li>休日</li>
+                        <li>楽器</li>
+                        <li>スポーツ</li>
+                        <li>酒</li>
+                        <li>タバコ</li>
+                        <li>ペット</li>
+                        <li>結婚</li>
+                    </ul>
+                    <ul class="value">
+                        <li>{{ user?.realLastName }}{{ user?.realFirstName }}</li>
+                        <li>{{ user?.age }}歳</li>
+                        <li>{{ user?.height ? user?.height : '未設定' }}cm</li>
+                        <li>{{ user?.gender }}</li>
+                        <li>{{ user?.birthPlace }}</li>
+                        <li>{{ user?.agency ? user?.agency : '未設定' }}</li>
+                        <li>{{ user?.work ? user?.work : '未設定' }}</li>
+                        <li>{{ user?.hobby ? user?.hobby : '未設定' }}</li>
+                        <li>{{ user?.brothersAndSisters ? user?.brothersAndSisters : '未設定' }}</li>
+                        <li>{{ user?.educationalBackground ? user?.educationalBackground : '未設定' }}</li>
+                        <li>{{ user?.secondLanguage ? user?.secondLanguage : '未設定' }}</li>
+                        <li>{{ user?.holiday ? user?.holiday : '未設定' }}</li>
+                        <li>{{ user?.instrument ? user?.instrument : '未設定' }}</li>
+                        <li>{{ user?.sport ? user?.sport : '未設定' }}</li>
+                        <li>{{ user?.isDrinking ? '飲む' : '飲まない' }}</li>
+                        <li>{{ user?.isSmoking ? '吸う' : '吸わない' }}</li>
+                        <li>{{ user?.hasPet ? 'いる' : 'いない' }}</li>
+                        <li>{{ user?.isMarried ? 'している' : 'していない' }}</li>
+                    </ul>
+                </div>
+            </div>
+        </mat-card-content>
+    </div>
 </ng-container>

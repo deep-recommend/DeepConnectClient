@@ -1,41 +1,40 @@
 import { Injectable } from '@angular/core'
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
-import { EntryProps } from './entry.model'
+import { EntryDto } from 'src/app/libs/entry/infrastructure/dto/entry.dto'
 
-export interface EntryState extends EntityState<EntryProps> {
+export interface EntryState extends EntityState<EntryDto> {
     ui: {}
-    profileEntries: EntryProps[]
-    companionEntries: EntryProps[]
+    profileEntries: EntryDto[]
+    companionEntries: EntryDto[]
 }
 
 const initialState = {
     ui: {},
-    profileEntries: [],
-    companionEntries: [],
+    profileEntries: Array(),
+    companionEntries: Array(),
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'entry',
-    idKey: '_id',
 })
 export class EntryStore extends EntityStore<EntryState> {
     constructor() {
         super(initialState)
     }
 
-    setEntries(entries: EntryProps[]): void {
+    setEntries(entries: EntryDto[]): void {
         this.set(entries)
     }
 
-    updateProfileEntries(profileEntries: EntryProps[]): void {
+    updateProfileEntries(profileEntries: EntryDto[]): void {
         this.update({
             ...this.getValue().profileEntries,
             profileEntries,
         })
     }
 
-    updateCompanionEntries(companionEntries: EntryProps[]): void {
+    updateCompanionEntries(companionEntries: EntryDto[]): void {
         this.update({
             ...this.getValue().companionEntries,
             companionEntries,

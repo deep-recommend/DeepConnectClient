@@ -1,20 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, Subscription } from 'rxjs'
+import { Observable } from 'rxjs'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { SnackBarService } from 'src/app/general/services/snack-bar.service'
-import { UserProps, UserQuery, UserService } from 'src/app/states/user'
-
+import { UserProps } from 'src/app/states/user/user.model'
+import { UserQuery } from 'src/app/states/user/user.query'
+import { UserService } from 'src/app/states/user/user.service'
 @Component({
     selector: 'app-my-page-setting-c',
     templateUrl: './my-page-setting-c.component.html',
     styleUrls: ['./my-page-setting-c.component.scss'],
 })
-export class MyPageSettingCComponent implements OnInit, OnDestroy {
-    pageName: string | null | undefined
-    subscriptions: Subscription[] = []
-
+export class MyPageSettingCComponent {
     positions$: Observable<string[]> = this.userQuery.positions$
     genders$: Observable<string[]> = this.userQuery.genders$
     years$: Observable<number[]> = this.userQuery.years$
@@ -25,7 +23,7 @@ export class MyPageSettingCComponent implements OnInit, OnDestroy {
     holiday$: Observable<string[]> = this.userQuery.holiday$
     profile$: Observable<UserProps> = this.userQuery.profile$
 
-    currentUserId: string = this.userQuery.currentUserId
+    currentUserId: number = this.userQuery.currentUserId
 
     constructor(
         private readonly userQuery: UserQuery,
@@ -34,15 +32,6 @@ export class MyPageSettingCComponent implements OnInit, OnDestroy {
         private readonly router: Router,
         private readonly snackBar: SnackBarService
     ) {}
-
-    ngOnInit(): void {
-        this.pageName = 'プロフィール編集'
-        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.forEach((sub) => sub.unsubscribe())
-    }
 
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {
         this.snackBar.open('プロフィールを編集しました')

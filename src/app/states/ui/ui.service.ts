@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { includes, intersection } from 'lodash'
-import { LikeQuery } from '../like'
+import { LikeQuery } from '../like/like.query'
 
 @Injectable({
     providedIn: 'root',
@@ -8,9 +8,9 @@ import { LikeQuery } from '../like'
 export class UiService {
     constructor(private readonly likeQuery: LikeQuery) {}
 
-    alreadyLikedByMyself(currentUserId: string, userId: string): boolean {
+    alreadyLikedByMyself(currentUserId: number, userId: number): boolean {
         let isLike!: boolean
-        let likeUserIds: string[] = []
+        let likeUserIds: number[] = []
         this.likeQuery.likeAll.forEach((data) => {
             if (data.currentUserId === currentUserId) {
                 likeUserIds.push(data.userId)
@@ -20,9 +20,9 @@ export class UiService {
         return isLike
     }
 
-    alreadyLikedByOthers(currentUserId: string, userId: string): boolean {
+    alreadyLikedByOthers(currentUserId: number, userId: number): boolean {
         let isLike!: boolean
-        let likeUserIds: string[] = []
+        let likeUserIds: number[] = []
         this.likeQuery.likeAll.forEach((data) => {
             if (data.currentUserId === userId) {
                 likeUserIds.push(data.userId)
@@ -32,11 +32,11 @@ export class UiService {
         return isLike
     }
 
-    isMatching(currentUserId: string, userId: string): boolean {
+    isMatching(currentUserId: number, userId: number): boolean {
         let isMatching!: boolean
         let likeEachOther!: any[]
-        let likeByCurrentUserIds: string[] = []
-        let likeByUserIds: string[] = []
+        let likeByCurrentUserIds: number[] = []
+        let likeByUserIds: number[] = []
         this.likeQuery.likeAll.forEach((data) => {
             if (data.currentUserId === currentUserId) {
                 likeByCurrentUserIds.push(data.userId)

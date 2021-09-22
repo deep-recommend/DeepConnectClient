@@ -7,7 +7,8 @@ import { UiState } from './ui.model'
 
 export const initialState: () => UiState = () => ({
     ui: {
-        authErrMsg: '',
+        authErrMsg: String(),
+        pageName: String(),
     },
     header: {
         accountMenus: headerAccountMenu,
@@ -33,6 +34,10 @@ export class UiStore extends Store<UiState> {
 
     displayErrMsg(errMsg: string): void {
         this._configureErrMsg(errMsg)
+    }
+
+    displayPageName(pageName: string): void {
+        this._configurePageName(pageName)
     }
 
     openSideNavFullMenu(): void {
@@ -64,6 +69,15 @@ export class UiStore extends Store<UiState> {
             ui: {
                 ...this.getValue().ui,
                 authErrMsg: errMsg,
+            },
+        })
+    }
+
+    private _configurePageName(pageName: string): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                pageName: pageName,
             },
         })
     }
