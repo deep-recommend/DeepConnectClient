@@ -1,43 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
-import { MatDialogRef } from '@angular/material/dialog'
-import { Subscription } from 'rxjs'
-import { SnackBarService } from 'src/app/general/services/snack-bar.service'
-import { SocketService } from 'src/app/general/services/socket/socket.service'
-import { NotificationQuery, NotificationService } from 'src/app/states/notification'
+import { Component, OnInit } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { SocketService } from 'src/app/libs/socket/socket.service'
+import { NotificationQuery } from 'src/app/states/notification/notification.query'
 
 @Component({
     selector: 'app-notification-bulk-deletion-dialog',
     templateUrl: './notification-bulk-deletion-dialog.component.html',
     styleUrls: ['./notification-bulk-deletion-dialog.component.scss'],
 })
-export class NotificationBulkDeletionDialogComponent implements OnInit, OnDestroy {
-    subscriptions: Subscription[] = []
-
+export class NotificationBulkDeletionDialogComponent implements OnInit {
     constructor(
-        private readonly notificationService: NotificationService,
+        private readonly dialog: MatDialog,
         private readonly notificationQuery: NotificationQuery,
-        private readonly socket: SocketService,
-        private readonly dialog: MatDialogRef<NotificationBulkDeletionDialogComponent>,
-        private readonly snackBar: SnackBarService
+        private readonly socket: SocketService
     ) {}
 
-    ngOnInit(): void {
-        this.subscriptions.push(this.notificationService.getNotifications().subscribe())
-    }
+    ngOnInit(): void {}
 
-    ngOnDestroy(): void {
-        this.subscriptions.forEach((sub) => sub.unsubscribe())
-    }
-
-    deleteNotificationAll(): void {
-        this.dialog.close()
-
+    deleteNotifications(): void {
         this.notificationQuery.notificationAll.forEach((data) => {
-            this.socket.notificationDecreaseWithoutReceive(data._id)
+            this.socket.notificationDecrease(data.id)
         })
-
-        this.notificationService.getNotifications().subscribe(() => {
-            this.snackBar.open('通知を削除しました')
-        })
+        this.dialog.closeAll()
     }
 }

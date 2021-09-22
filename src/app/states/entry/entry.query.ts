@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
-import { EntryProps } from './entry.model';
+import { EntryDto } from 'src/app/libs/entry/infrastructure/dto/entry.dto';
 import { EntryStore, EntryState } from './entry.store';
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +12,11 @@ export class EntryQuery extends QueryEntity<EntryState> {
         super(store);
     }
 
-    get profileEntriesGetter(): EntryProps[] {
+    get profileEntriesGetter(): EntryDto[] {
         return this.getValue().profileEntries;
     }
 
-    get companionEntriesGetter(): EntryProps[] {
+    get companionEntriesGetter(): EntryDto[] {
         return this.getValue().companionEntries;
     }
 }

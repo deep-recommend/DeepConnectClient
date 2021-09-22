@@ -13,19 +13,19 @@ export interface UpdateProfileProps {
     agency?: string
     description?: string
     profilePicture?: string
-    work?: string;
-    hobby?: string;
-    brothersAndSisters?: string;
-    educationalBackground?: string;
-    height?: string;
-    secondLanguage?: string;
-    holiday?: string;
-    instrument?: string;
-    sport?: string;
-    isDrinking?: boolean;
-    isSmoking?: boolean;
-    hasPet?: boolean;
-    isMarried?: boolean;
+    work?: string
+    hobby?: string
+    brothersAndSisters?: string
+    educationalBackground?: string
+    height?: string
+    secondLanguage?: string
+    holiday?: string
+    instrument?: string
+    sport?: string
+    isDrinking?: boolean
+    isSmoking?: boolean
+    hasPet?: boolean
+    isMarried?: boolean
 }
 
 export interface UpdateProfileFormProps {
@@ -34,8 +34,8 @@ export interface UpdateProfileFormProps {
     stageName: (string | null | undefined)[]
     position: (string | null | undefined)[]
     work: (string | null | undefined)[]
-    hobby: (string | null | undefined)[];
-    brothersAndSisters: (string | null | undefined)[];
+    hobby: (string | null | undefined)[]
+    brothersAndSisters: (string | null | undefined)[]
     educationalBackground: (string | null | undefined)[]
     height: (string | null | undefined)[]
     secondLanguage: (string | null | undefined)[]

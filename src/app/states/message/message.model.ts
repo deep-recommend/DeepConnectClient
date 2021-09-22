@@ -1,13 +1,13 @@
 export interface MessageProps {
-    _id: string;
-    userId: string;
-    roomId: string;
-    message: string;
-    createdAt: Date;
+    id: number
+    userId: number
+    roomId: number
+    message: string
+    createdAt: string
 }
 
 export interface CreateMessageProps {
-    userId: string;
-    roomId: string;
-    message: string;
+    userId: number
+    roomId: number
+    message: string
 }

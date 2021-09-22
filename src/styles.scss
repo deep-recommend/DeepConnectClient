@@ -55,6 +55,11 @@ $angular-template-theme: mat-light-theme(
     padding-bottom: 0;
 }
 
+.mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: orange;
+}
+
 html,
 body {
     height: 100vh;

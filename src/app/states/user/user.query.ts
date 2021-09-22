@@ -8,7 +8,7 @@ export class UserQuery extends QueryEntity<UserState> {
     users$ = this.selectAll()
 
     profile$ = this.select('profile')
-    currentUserId$ = this.select((state) => state.profile._id)
+    currentUserId$ = this.select((state) => state.profile.id)
 
     companion$ = this.select('companion')
     detailUser$ = this.select('detailUser')
@@ -25,6 +25,8 @@ export class UserQuery extends QueryEntity<UserState> {
 
     search$ = this.select('search')
 
+    existsMatchingUsers$ = this.select('existsMatchingUsers')
+
     constructor(protected store: UserStore) {
         super(store)
     }
@@ -33,8 +35,8 @@ export class UserQuery extends QueryEntity<UserState> {
         return this.getValue().profile
     }
 
-    get currentUserId(): string {
-        return this.getValue().profile._id
+    get currentUserId(): number {
+        return this.getValue().profile.id
     }
 
     get companionGetter(): UserProps {
@@ -45,7 +47,25 @@ export class UserQuery extends QueryEntity<UserState> {
         return this.getValue().detailUser
     }
 
-    get searchGetter(): any {
+    get searchGetter(): {
+        position: string
+        gender: string
+        birthYear: string
+        birthPlace: string
+        agency: string
+        work: string
+        hobby: string
+        brothersAndSisters: string
+        educationalBackground: string
+        secondLanguage: string
+        holiday: string
+        instrument: string
+        sport: string
+        isDrinking: boolean
+        isSmoking: boolean
+        hasPet: boolean
+        isMarried: boolean
+    } {
         return this.getValue().search
     }
 
@@ -53,7 +73,11 @@ export class UserQuery extends QueryEntity<UserState> {
         return this.getValue().userId
     }
 
-    getUserById(userId: string): UserProps | undefined {
-        return this.getEntity(userId)
+    getUserById(userId: number): UserProps | undefined {
+        const user = this.getEntity(userId)
+        if (!user) {
+            return
+        }
+        return user
     }
 }

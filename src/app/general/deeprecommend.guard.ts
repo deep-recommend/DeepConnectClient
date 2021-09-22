@@ -16,7 +16,6 @@ export class DeepRecommendGuard implements CanActivate {
     ): Observable<boolean> | Promise<boolean> | boolean {
         return this.localStorage.getItem(accessTokenKey).pipe(
             map((token) => {
-                console.log(token)
                 if (!token) {
                     this.router.navigate(['sign-in'])
                     return false

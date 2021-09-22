@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { NavigationEnd, Router } from '@angular/router'
 
 @Component({
     selector: 'app-content',
@@ -7,7 +8,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None,
 })
 export class ContentComponent implements OnInit {
-    constructor() {}
+    constructor(private readonly router: Router) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => {
+            return false
+        }
+
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.router.navigated = false
+                window.scrollTo(0, 0)
+            }
+        })
+    }
 
     ngOnInit(): void {}
 }

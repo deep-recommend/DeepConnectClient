@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
-import { apiNotificationUrl, httpOptions } from 'src/app/general/utilities/api'
-import { UserQuery } from '../user'
+import { apiNotificationUrl, httpHeaders } from 'src/app/general/utilities/api'
+import { UserQuery } from '../user/user.query'
 import { NotificationProps } from './notification.model'
 import { NotificationStore } from './notification.store'
 
@@ -16,17 +16,13 @@ export class NotificationService {
     ) {}
 
     getNotifications(): Observable<NotificationProps[]> {
-        const paramKeys: string[] = []
-        const paramValues: string[] = []
-
-        return this.http
-            .get<NotificationProps[]>(apiNotificationUrl, httpOptions(paramKeys, paramValues))
-            .pipe(
-                tap((data) =>
-                    this.notificationStore.setNotification(
-                        data.filter((data) => data.userId === this.userQuery.profileGetter._id)
-                    )
+        return this.http.get<NotificationProps[]>(apiNotificationUrl, httpHeaders).pipe(
+            tap((data) =>
+                this.notificationStore.setNotification(
+                    data.filter((data) => data.userId === this.userQuery.profileGetter.id)
                 )
-            )
+            ),
+            tap((data) => this.notificationStore.updateExistsNotifications(data?.length !== 0))
+        )
     }
 }

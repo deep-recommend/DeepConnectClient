@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { NotificationService } from '../states/notification'
-import { UiQuery } from '../states/ui'
+import { NotificationService } from '../states/notification/notification.service'
+import { UiQuery } from '../states/ui/ui.query'
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',

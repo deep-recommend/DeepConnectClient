@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
 })
 export class InteractionService {
-    exampleId: BehaviorSubject<string> = new BehaviorSubject<string>('');
+    exampleId: BehaviorSubject<number> = new BehaviorSubject<number>(Number())
 
     /*------------------------------------------------*/
     /*------------------------------------------------*/
@@ -17,8 +17,8 @@ export class InteractionService {
      * 送りたい値
      * @param id
      */
-    nextExampleId(id: string): void {
-        this.exampleId.next(id);
+    nextExampleId(id: number): void {
+        this.exampleId.next(id)
     }
 
     /*------------------------------------------------*/
@@ -27,7 +27,7 @@ export class InteractionService {
     /*------------------------------------------------*/
     /*------------------------------------------------*/
 
-    getExampleId(): string {
-        return this.exampleId.getValue();
+    getExampleId(): number {
+        return this.exampleId.getValue()
     }
 }

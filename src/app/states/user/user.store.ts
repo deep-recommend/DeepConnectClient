@@ -26,15 +26,28 @@ export interface UserState extends EntityState<UserProps> {
         birthYear: string
         birthPlace: string
         agency: string
+        work: string
+        hobby: string
+        brothersAndSisters: string
+        educationalBackground: string
+        secondLanguage: string
+        holiday: string
+        instrument: string
+        sport: string
+        isDrinking: boolean
+        isSmoking: boolean
+        hasPet: boolean
+        isMarried: boolean
     }
     params: {
-        roomId: string
-        userId: string
+        roomId: number
+        userId: number
     }
     profile: UserProps
     companion: UserProps
     detailUser: UserProps
-    userId: string
+    userId: number
+    existsMatchingUsers: boolean
 }
 
 const initialState = {
@@ -63,25 +76,25 @@ const initialState = {
         holiday: '',
         instrument: '',
         sport: '',
-        isDrinking: null,
-        isSmoking: null,
-        hasPet: null,
-        isMarried: null,
+        isDrinking: Boolean(undefined),
+        isSmoking: Boolean(undefined),
+        hasPet: Boolean(undefined),
+        isMarried: Boolean(undefined),
     },
     params: {
-        roomId: '',
-        userId: '',
+        roomId: Number(undefined),
+        userId: Number(undefined),
     },
     profile: undefined,
     companion: undefined,
     detailUser: undefined,
-    userDetailId: '',
+    userDetailId: Number(undefined),
+    existsMatchingUsers: Boolean(undefined),
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'user',
-    idKey: '_id',
 })
 export class UserStore extends EntityStore<UserState> {
     constructor() {
@@ -122,9 +135,13 @@ export class UserStore extends EntityStore<UserState> {
         })
     }
 
-    updateUserId(userId: string): void {
-        localStorage.setItem(userIdKey, userId)
+    updateUserId(userId: number): void {
+        localStorage.setItem(userIdKey, String(userId))
         this.update({ userId: userId })
+    }
+
+    updateExistsMatchingUsers(bool: boolean): void {
+        this.update({ existsMatchingUsers: bool })
     }
 
     resetSearch(): void {

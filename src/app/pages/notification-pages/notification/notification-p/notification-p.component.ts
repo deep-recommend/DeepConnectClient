@@ -1,25 +1,26 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { NotificationProps } from 'src/app/states/notification'
-import { UserQuery } from 'src/app/states/user'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { NotificationProps } from 'src/app/states/notification/notification.model'
+import { UserQuery } from 'src/app/states/user/user.query'
 
 @Component({
     selector: 'app-notification-p',
     templateUrl: './notification-p.component.html',
     styleUrls: ['./notification-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationPComponent implements OnInit {
     @Input() notifications!: NotificationProps[] | null
     @Output() clickNotificationsToUserDetail: EventEmitter<{
-        userId: string
-        notificationId: string
+        userId: number
+        notificationId: number
         isMessage: boolean
-    }> = new EventEmitter<{ userId: string; notificationId: string; isMessage: boolean }>()
+    }> = new EventEmitter<{ userId: number; notificationId: number; isMessage: boolean }>()
 
     constructor(private readonly userQuery: UserQuery) {}
 
     ngOnInit(): void {}
 
-    onClickNotificationsToUserDetail(userId: string, notificationId: string, isMessage: boolean): void {
+    onClickNotificationsToUserDetail(userId: number, notificationId: number, isMessage: boolean): void {
         const emitValue = {
             userId: userId,
             notificationId: notificationId,
@@ -28,12 +29,12 @@ export class NotificationPComponent implements OnInit {
         this.clickNotificationsToUserDetail.emit(emitValue)
     }
 
-    getUserName(userId: string): string | undefined {
+    getUserName(userId: number): string | undefined {
         const user = this.userQuery.getUserById(userId)
         return user ? `${user?.realLastName}${user?.realFirstName}` : undefined
     }
 
-    getProfilePicture(userId: string) {
+    getProfilePicture(userId: number) {
         const user = this.userQuery.getUserById(userId)
         return user ? user?.profilePicture : undefined
     }

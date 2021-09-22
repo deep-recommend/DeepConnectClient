@@ -3,17 +3,20 @@ import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
 import { NotificationProps } from './notification.model'
 
 export interface NotificationState extends EntityState<NotificationProps> {
-    ui: {}
+    ui: {
+        existsNotifications: boolean
+    }
 }
 
 const initialState = {
-    ui: {},
+    ui: {
+        existsNotifications: Boolean(),
+    },
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'notification',
-    idKey: '_id',
 })
 export class NotificationStore extends EntityStore<NotificationState> {
     constructor() {
@@ -22,5 +25,14 @@ export class NotificationStore extends EntityStore<NotificationState> {
 
     setNotification(notifications: NotificationProps[]): void {
         this.set(notifications)
+    }
+
+    updateExistsNotifications(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                existsNotifications: bool,
+            },
+        })
     }
 }

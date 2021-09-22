@@ -1,15 +1,15 @@
-import { HeaderAccountMenuProps } from '../../interfaces/layout/header-user-menu.interface';
-import { ValidationError } from '../../utilities/custom-error';
+import { HeaderAccountMenuProps } from '../../interfaces/layout/header-user-menu.interface'
+import { ValidationError } from '../../utilities/custom-error'
 
-export type HeaderAccountMenu = Readonly<Required<HeaderAccountMenuProps>>;
+export type HeaderAccountMenu = Readonly<Required<HeaderAccountMenuProps>>
 
 const validateHeaderAccountMenu: (props: HeaderAccountMenuProps) => void = (props: HeaderAccountMenuProps) => {
     if (!props.icon) {
-        throw new ValidationError('icon is required property.');
+        throw new ValidationError('icon is required property.')
     }
 
     if (!props.label) {
-        throw new ValidationError('label is required property.');
+        throw new ValidationError('label is required property.')
     }
 
     if (
@@ -17,14 +17,14 @@ const validateHeaderAccountMenu: (props: HeaderAccountMenuProps) => void = (prop
         (props.hrefLink && (props.routerLink || props.disabled)) ||
         (props.disabled && (props.routerLink || props.hrefLink))
     ) {
-        throw new ValidationError('routerLink, hrefLink and disabled are exclusive.');
+        throw new ValidationError('routerLink, hrefLink and disabled are exclusive.')
     }
-};
+}
 
 export const createHeaderAccountMenu: (props: HeaderAccountMenuProps) => HeaderAccountMenu = (
     props: HeaderAccountMenuProps
 ) => {
-    validateHeaderAccountMenu(props);
+    validateHeaderAccountMenu(props)
     return Object.freeze({
         icon: props.icon,
         label: props.label,
@@ -32,5 +32,5 @@ export const createHeaderAccountMenu: (props: HeaderAccountMenuProps) => HeaderA
         hrefLink: props.hrefLink ?? null,
         disabled: props.disabled ?? false,
         isHideWhenWindowWidthWide: props.isHideWhenWindowWidthWide ?? false,
-    });
-};
+    })
+}

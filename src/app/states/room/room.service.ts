@@ -9,7 +9,7 @@ import { RoomStore } from './room.store'
 export class RoomService {
     constructor(private readonly roomStore: RoomStore, private readonly http: HttpClient) {}
 
-    getOnlyRoomRequest(roomId: string): Observable<RoomProps> {
+    getOnlyRoomRequest(roomId: number): Observable<RoomProps> {
         const url = `${apiRoomUrl}/${roomId}`
         return this.http.get<RoomProps>(url, httpHeaders)
     }

@@ -1,59 +1,34 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, Subscription } from 'rxjs'
-import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { SocketService } from 'src/app/general/services/socket/socket.service'
-import { LikeService } from 'src/app/states/like'
-import { NotificationProps, NotificationQuery, NotificationService } from 'src/app/states/notification'
-import { UserQuery, UserService, UserStore } from 'src/app/states/user'
-import { UserProps } from 'src/app/states/user'
+import { Observable } from 'rxjs'
+import { SocketService } from 'src/app/libs/socket/socket.service'
+import { NotificationProps } from 'src/app/states/notification/notification.model'
+import { NotificationQuery } from 'src/app/states/notification/notification.query'
+import { UserProps } from 'src/app/states/user/user.model'
+import { UserQuery } from 'src/app/states/user/user.query'
+import { UserStore } from 'src/app/states/user/user.store'
 @Component({
     selector: 'app-notification-c',
     templateUrl: './notification-c.component.html',
     styleUrls: ['./notification-c.component.scss'],
 })
-export class NotificationCComponent implements OnInit, OnDestroy {
-    pageName: string | null | undefined
-    existsNotifications: boolean = true
-
+export class NotificationCComponent {
     profile: UserProps = this.userQuery.profileGetter
 
-    subscriptions: Subscription[] = []
-
-    notifications$: Observable<NotificationProps[] | null> = this.notificationQuery.notifications$
+    existsNotifications$: Observable<boolean> = this.notificationQuery.existsNotifications$
+    notifications$: Observable<NotificationProps[]> = this.notificationQuery.notifications$
 
     constructor(
         private readonly notificationQuery: NotificationQuery,
         private readonly userQuery: UserQuery,
         private readonly socket: SocketService,
         private readonly router: Router,
-        private readonly userStore: UserStore,
-        private readonly userService: UserService,
-        private readonly likeService: LikeService,
-        private readonly authenticationService: AuthenticationService,
-        private readonly notificationService: NotificationService
+        private readonly userStore: UserStore
     ) {}
 
-    ngOnInit(): void {
-        this.pageName = '通知'
-        this.subscriptions.push(this.userService.getUsersRequest().subscribe())
-        this.subscriptions.push(this.likeService.getLikes().subscribe())
-        this.subscriptions.push(this.authenticationService.getProfile().subscribe())
-        this.subscriptions.push(this.notificationService.getNotifications().subscribe())
-        this.subscriptions.push(
-            this.notifications$.subscribe((data) => {
-                this.existsNotifications = data?.length !== 0
-            })
-        )
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.forEach((sub) => sub.unsubscribe())
-    }
-
     onReceivedClickNotificationsToUserDetail(data: {
-        userId: string
-        notificationId: string
+        userId: number
+        notificationId: number
         isMessage: boolean
     }): void {
         this.userStore.updateUserId(data.userId)

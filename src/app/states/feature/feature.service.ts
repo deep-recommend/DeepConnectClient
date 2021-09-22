@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { apiFeatureUrl, httpHeaders } from 'src/app/general/utilities/api'
 import { FeatureStore } from './feature.store'
 
 @Injectable({ providedIn: 'root' })

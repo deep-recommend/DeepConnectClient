@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormGroup, FormBuilder } from '@angular/forms'
-import { convertToDataUrl } from 'src/app/general/functions/convert-to-dataurl'
+import { toDataUrl } from 'src/app/general/functions/to-dataurl'
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface'
 import { SignUpModel } from 'src/app/general/models/sign-up.model'
 
@@ -8,6 +8,7 @@ import { SignUpModel } from 'src/app/general/models/sign-up.model'
     selector: 'app-sign-up-p',
     templateUrl: './sign-up-p.component.html',
     styleUrls: ['./sign-up-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpPComponent implements OnInit {
     hide: boolean = true
@@ -34,8 +35,7 @@ export class SignUpPComponent implements OnInit {
 
     async inputProfilePicture(event?: any): Promise<void> {
         const file = event.target.files[0]
-        const dataUrl = await convertToDataUrl(file)
-        console.log(dataUrl)
+        const dataUrl = await toDataUrl(file)
         this.signUpForm.controls.profilePicture.setValue(dataUrl)
     }
 }

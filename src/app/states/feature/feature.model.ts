@@ -1,4 +1,4 @@
 export interface FeatureProps {
-    _id: string
+    id: number
     name: string
 }

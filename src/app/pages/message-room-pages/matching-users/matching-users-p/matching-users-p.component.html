@@ -1,7 +1,7 @@
 <div class="container">
     <ng-container *ngFor="let user of users">
-        <div *ngIf="profile?._id !== user._id && isMatching(user._id)">
-            <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card" (click)="onClickUserToMessage(user._id)">
+        <div *ngIf="profile?.id !== user.id && isMatching(user.id)">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card" (click)="onClickUserToMessage(user.id)">
                 <div fxLayout="row">
                     <div *ngIf="user.profilePicture; then thenBlock else elseBlock"></div>
                     <ng-template #thenBlock>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { UserSearchProps } from 'src/app/general/interfaces/user-search.interface'
 import { UserSearchModel } from 'src/app/general/models/user-search.model'
@@ -7,6 +7,7 @@ import { UserSearchModel } from 'src/app/general/models/user-search.model'
     selector: 'app-search-form-p',
     templateUrl: './search-form-p.component.html',
     styleUrls: ['./search-form-p.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormPComponent implements OnInit {
     userSearchFormInstance = new UserSearchModel()

@@ -1,5 +1,5 @@
-<app-title-header [pageName]="pageName"></app-title-header>
-<div *ngIf="!existsMatchingUsers">
+<app-title-header></app-title-header>
+<div *ngIf="!(existsMatchingUsers$ | async)">
     <app-no-matching-users-p></app-no-matching-users-p>
 </div>
 <app-matching-users-p

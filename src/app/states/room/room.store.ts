@@ -5,21 +5,20 @@ import { RoomProps } from './room.model'
 export interface RoomState extends EntityState<RoomProps> {
     ui: {
         isRoom: boolean
-        currentRoomId: string
+        currentRoomId: number
     }
 }
 
 const initialState = {
     ui: {
-        isRoom: true,
-        currentRoomId: '',
+        isRoom: Boolean(),
+        currentRoomId: Number(),
     },
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
     name: 'room',
-    idKey: '_id',
 })
 export class RoomStore extends EntityStore<RoomState> {
     constructor() {
@@ -44,7 +43,7 @@ export class RoomStore extends EntityStore<RoomState> {
         })
     }
 
-    updateCurrentRoomId(currentRoomId: string): void {
+    updateCurrentRoomId(currentRoomId: number): void {
         this.update({
             ui: {
                 ...this.getValue().ui,

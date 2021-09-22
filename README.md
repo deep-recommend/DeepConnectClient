@@ -28,3 +28,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 -   今はユーザーにいっぱいカラム付け足すしかない
 -   特徴機能
+-   changeDetection で無駄のない実装
+-   rx-angular/state でコンポーネント内の値のリアクティブ化
+-   ドメイン駆動設計による適切で簡易な API との HTTP 通信
+-   サーバーサイドの DB のグローバル化

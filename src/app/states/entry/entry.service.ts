@@ -1,59 +1,32 @@
-import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { tap } from 'rxjs/operators'
-import { apiEntryUrl, httpHeaders, httpOptions } from 'src/app/general/utilities/api'
-import { UserQuery } from '../user'
-import { CreateEntryProps, EntryProps } from './entry.model'
-import { EntryStore } from './entry.store'
+import { CreateEntryDto } from 'src/app/libs/entry/infrastructure/dto/create-entry.dto'
+import { EntryDto } from 'src/app/libs/entry/infrastructure/dto/entry.dto'
+import { useEntry } from 'src/app/libs/entry/usercase/entry.service'
 
 @Injectable({ providedIn: 'root' })
 export class EntryService {
     constructor(
-        private readonly entryStore: EntryStore,
-        private readonly http: HttpClient,
-        private readonly userQuery: UserQuery
+        private readonly useEntry: useEntry,
     ) {}
 
-    getEntriesRequestByProfile(): Observable<EntryProps[]> {
-        const paramKeys: string[] = ['userId']
-        const paramValues: string[] = [this.userQuery.profileGetter._id]
-
-        return this.http
-            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
-            .pipe(tap((data) => this.entryStore.updateProfileEntries(data)))
+    getEntriesRequestByProfile(): Observable<EntryDto[]> {
+        return this.useEntry.findManyByProfile()
     }
 
-    getEntriesRequestByCompanion(): Observable<EntryProps[]> {
-        const paramKeys: string[] = ['userId']
-        const paramValues: string[] = [this.userQuery.companionGetter._id]
-
-        return this.http
-            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
-            .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)))
+    getEntriesRequestByCompanion(): Observable<EntryDto[]> {
+        return this.useEntry.findManyByCompanion()
     }
 
-    getEntriesRequestByProfileNotObservable(): Promise<EntryProps[]> {
-        const paramKeys: string[] = ['userId']
-        const paramValues: string[] = [this.userQuery.profileGetter._id]
-
-        return this.http
-            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
-            .pipe(tap((data) => this.entryStore.updateProfileEntries(data)))
-            .toPromise()
+    getEntriesRequestByProfileNotObservable(): Promise<EntryDto[]> {
+        return this.useEntry.findManyByProfileToPromise();
     }
 
-    getEntriesRequestByCompanionNotObservable(): Promise<EntryProps[]> {
-        const paramKeys: string[] = ['userId']
-        const paramValues: string[] = [this.userQuery.companionGetter._id]
-
-        return this.http
-            .get<EntryProps[]>(apiEntryUrl, httpOptions(paramKeys, paramValues))
-            .pipe(tap((data) => this.entryStore.updateCompanionEntries(data)))
-            .toPromise()
+    getEntriesRequestByCompanionNotObservable(): Promise<EntryDto[]> {
+        return this.useEntry.findManyByCompanionToPromise()
     }
 
-    postEntryRequest(entry: CreateEntryProps): Observable<EntryProps> {
-        return this.http.post<EntryProps>(apiEntryUrl, entry, httpHeaders)
+    postEntryRequest(entry: CreateEntryDto): Observable<EntryDto> {
+        return this.useEntry.create(entry);
     }
 }

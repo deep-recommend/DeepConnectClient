@@ -1,15 +1,12 @@
 <ng-container *ngFor="let user of users; let i = index">
-    <ng-container *ngIf="profile?._id !== user!._id">
-        <div (click)="onClickUsersToDetail(user._id)" class="card">
-            <div class="image-container">
-                <div *ngIf="user.profilePicture; then profilePictureIsTrue else profilePictureIsFalse"></div>
-                <ng-template #profilePictureIsTrue><img src="{{ user.profilePicture }}" class="image" /></ng-template>
-                <ng-template #profilePictureIsFalse><img src="/assets/images/png/default-avatar.png" class="image"/></ng-template>
-            </div>
-            <mat-card-content>
-                <div>{{ user.birthPlace }}&nbsp;&nbsp;{{ user.position }}</div>
-                <mat-card-subtitle>{{ user.description }}</mat-card-subtitle>
-            </mat-card-content>
+    <div (click)="onClickUsersToDetail(user.id)" class="card">
+        <div class="image-container">
+            <img *ngIf="user.profilePicture" [src]="user.profilePicture" class="image" />
+            <img *ngIf="!user.profilePicture" src="/assets/images/png/default-avatar.png" class="image"/>
         </div>
-    </ng-container>
+        <mat-card-content>
+            <div>{{ user.birthPlace }}&nbsp;&nbsp;{{ user.position }}</div>
+            <mat-card-subtitle>{{ user.description }}</mat-card-subtitle>
+        </mat-card-content>
+    </div>
 </ng-container>
