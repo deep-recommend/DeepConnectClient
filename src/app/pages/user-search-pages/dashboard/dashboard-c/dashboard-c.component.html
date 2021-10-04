@@ -1,17 +1,7 @@
 <app-title-header></app-title-header>
-<app-dashboard-to-search-page-button-p
-    class="user-search"
-    fxLayout="row"
-    fxLayoutAlign="center center"
-    (clickSearchField)="onReceivedClickSearchField()"
-></app-dashboard-to-search-page-button-p>
-<app-dashboard-user-list-p
-    class="user-list"
-    [currentUserId]="currentUserId$ | async"
-    [profile]="profile$ | async"
-    [users]="users$ | async"
-    [likes]="likes$ | async"
-    (clickLikeButton)="onReceivedClickLikeButton($event)"
+<app-dashboard-to-search-page-button-p class="user-search" fxLayout="row" fxLayoutAlign="center center"
+    (clickSearchField)="onReceivedClickSearchField()"></app-dashboard-to-search-page-button-p>
+<app-dashboard-user-list-p class="user-list" [currentUserId]="currentUserId$ | async" [profile]="profile$ | async"
+    [users]="users$ | async" [likes]="likes$ | async" (clickLikeButton)="onReceivedClickLikeButton($event)"
     (clickUnlikeButton)="onReceivedClickUnlikeButton($event)"
-    (clickUsersToDetails)="onReceivedClickUsersToDetail($event)"
-></app-dashboard-user-list-p>
+    (clickUsersToDetails)="onReceivedClickUsersToDetail($event)"></app-dashboard-user-list-p>

@@ -5,6 +5,8 @@
         color: red;
         opacity: 0.6;
     }
+    position: fixed;
+    bottom: 0;
     @media screen and (max-width: 700px) {
         .button {
             width: 100vw;
