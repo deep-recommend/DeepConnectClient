@@ -1,5 +1,5 @@
-import { Entity } from '../../shared/entity'
-import { Id } from '../../shared/id'
+import { Entity } from '../../value-object/entity'
+import { Id } from '../../value-object/id'
 import { IRouterHistory } from './i-router-history'
 
 export class RouterHistory extends Entity<IRouterHistory> {
