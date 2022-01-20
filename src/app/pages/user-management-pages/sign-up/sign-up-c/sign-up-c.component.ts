@@ -25,9 +25,13 @@ export class SignUpCComponent {
     ) {}
 
     onReceivedClickSignUp(signUp: SignUpProps): void {
-        this.userService
-            .postUserRequest(signUp)
-            .pipe(mergeMap(() => this.router.navigate(['/sign-in'])))
-            .subscribe()
+        this.userService.getIsDuplicateUserRequest(signUp.email).subscribe(bool => {
+            console.log(bool)
+        })
+        return;
+        // this.userService
+        //     .postUserRequest(signUp)
+        //     .pipe(mergeMap(() => this.router.navigate(['/sign-in'])))
+        //     .subscribe()
     }
 }

@@ -76,6 +76,13 @@ export class UserService {
         return this.http.get<UserProps>(url, httpHeaders).pipe(tap((data) => this.userStore.updateCompanion(data)))
     }
 
+    getIsDuplicateUserRequest(email: string): Observable<boolean> {
+        const paramKeys: string[] = ['email']
+        const paramValues: string[] = [email]
+        const url = `${apiUserUrl}/isDuplicate`
+        return this.http.get<boolean>(url, httpOptions(paramKeys, paramValues))
+    }
+
     postUserRequest(user: SignInProps): Observable<SignInProps> {
         return this.httpService.post(apiUserUrl, user, httpHeaders)
     }
