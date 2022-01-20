@@ -34,7 +34,7 @@ export class MyPageSettingCComponent {
     ) {}
 
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {
-        this.snackBar.open('プロフィールを編集しました')
+        this.snackBar.open('プロフィールを編集しました');
         this.userService.updateUserRequest(this.currentUserId, user).subscribe(data => {
             console.log({
                 user: user,
