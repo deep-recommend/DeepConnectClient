@@ -1,8 +1,9 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
-import { mergeMap } from 'rxjs/operators'
+import { first, mergeMap } from 'rxjs/operators'
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface'
+import { SnackBarService } from 'src/app/general/services/snack-bar.service'
 import { UserQuery } from 'src/app/states/user/user.query'
 import { UserService } from 'src/app/states/user/user.service'
 
@@ -21,17 +22,18 @@ export class SignUpCComponent {
     constructor(
         private readonly userService: UserService,
         private readonly router: Router,
-        private readonly userQuery: UserQuery
+        private readonly userQuery: UserQuery,
+        private readonly snackBar: SnackBarService,
     ) {}
 
     onReceivedClickSignUp(signUp: SignUpProps): void {
-        this.userService.getIsDuplicateUserRequest(signUp.email).subscribe(bool => {
-            console.log(bool)
-        })
-        return;
-        // this.userService
-        //     .postUserRequest(signUp)
-        //     .pipe(mergeMap(() => this.router.navigate(['/sign-in'])))
-        //     .subscribe()
+        this.userService
+            .postUserRequest(signUp)
+            .pipe(first())
+            .subscribe(data => {
+                data
+                    ? this.snackBar.open('入力されたEmailは既に使用されています')
+                    : this.router.navigate(['/sign-in'])
+            })
     }
 }
