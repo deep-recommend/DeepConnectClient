@@ -11,7 +11,7 @@ export const apiFeatureUrl: string = `${apiUrl}/auth/features`
 export const apiRoomUrl: string = `${apiUrl}/rooms`
 export const apiMessageUrl: string = `${apiUrl}/messages`
 export const apiEntryUrl: string = `${apiUrl}/entries`
-export const apiLikeUrl: string = `${apiUrl}/like`
+export const apiLikeUrl: string = `${apiUrl}/likes`
 export const apiCharacterUrl: string = `${apiUrl}/characters`
 export const apiNotificationUrl: string = `${apiUrl}/notifications`
 

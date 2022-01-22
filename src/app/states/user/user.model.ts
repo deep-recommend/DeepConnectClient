@@ -11,7 +11,7 @@ export interface UserProps {
     birthDay: number
     birthPlace: string
     agency: string | null
-    profilePicture: string | null
+    profilePicture: string | Blob | null
     description: string | null
     work: string | null
     hobby: string | null

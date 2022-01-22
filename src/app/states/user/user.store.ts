@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
+import { toBlob } from 'src/app/general/functions/to-blob'
 import { userIdKey } from 'src/app/general/utilities/local-strage'
 import { BROTHERS_AND_SISTERS } from 'src/app/general/utilities/select/brothers-and-sisters'
 import { DAY, MONTH, YEAR } from 'src/app/general/utilities/select/date'
@@ -115,6 +116,9 @@ export class UserStore extends EntityStore<UserState> {
     }
 
     updateProfile(profile: UserProps): void {
+        profile.profilePicture = toBlob(String(profile.profilePicture))
+
+        console.log({profile})
         this.update({
             ...this.getValue().profile,
             profile,
