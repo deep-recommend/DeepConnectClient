@@ -14,7 +14,9 @@ export class MatchedDetailPComponent implements OnInit {
   @Input() currentUserId!: number | null;
   @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
 
-  isMatching: boolean = this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
+  isMatching(): boolean {
+    return  this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
+  }
 
   constructor(
     private readonly uiService: UiService

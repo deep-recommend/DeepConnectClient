@@ -14,7 +14,9 @@ export class UserDetailLikePComponent implements OnInit {
     @Output() clickLikeButton: EventEmitter<number> = new EventEmitter<number>()
     @Output() clickUnlikeButton: EventEmitter<number> = new EventEmitter<number>()
 
-    alreadyLiked: boolean = this.uiService.alreadyLikedByMyself(Number(this.currentUserId), Number(this.user?.id))
+    get alreadyLiked(): boolean {
+      return this.uiService.alreadyLikedByMyself(Number(this.currentUserId), Number(this.user?.id))
+    }
 
     constructor(
         private readonly uiService: UiService

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
 import { UiService } from 'src/app/states/ui/ui.service';
 import { UserProps } from 'src/app/states/user/user.model';
 
@@ -14,7 +13,9 @@ export class LikeFromOthersDetailPComponent implements OnInit {
   @Input() currentUserId!: number | null;
   @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
 
-  alreadyLikedByOthers: boolean = this.uiService.alreadyLikedByOthers(Number(this.currentUserId), Number(this.user?.id))
+  alreadyLikedByOthers(): boolean {
+    return this.uiService.alreadyLikedByOthers(Number(this.currentUserId), Number(this.user?.id))
+  }
 
   constructor(
     private readonly uiService: UiService

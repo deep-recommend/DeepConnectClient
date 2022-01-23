@@ -13,7 +13,9 @@ export class UserDetailPComponent implements OnInit, OnChanges {
     @Input() currentUserId!: number | null | undefined
     @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>()
 
-    isMatching: boolean = this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
+    isMatching(): boolean {
+      return this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
+    }
 
     constructor(private readonly uiService: UiService) {}
 
