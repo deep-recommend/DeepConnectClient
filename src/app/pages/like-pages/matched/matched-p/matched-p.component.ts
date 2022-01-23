@@ -17,17 +17,11 @@ export class MatchedPComponent implements OnInit {
     @Input() likes!: LikeProps[] | null
     @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>()
 
-    constructor(private readonly uiService: UiService) {}
+    constructor() {}
 
     ngOnInit(): void {}
 
-    birthDayToAge = birthDayToAge
-
-    onClickUserToMessage(userId: number): void {
+    onReceivedClickUserToMessage(userId: number): void {
         this.clickUserToMessage.emit(userId)
-    }
-
-    isMatching(userId: number): boolean {
-        return this.uiService.isMatching(Number(this.currentUserId), userId)
     }
 }

@@ -1,8 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Observable } from 'rxjs'
-import { birthDayToAge } from 'src/app/general/functions/birthday-to-age'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
 import { LikeProps } from 'src/app/states/like/like.model'
-import { UiService } from 'src/app/states/ui/ui.service'
 import { UserProps } from 'src/app/states/user/user.model'
 
 @Component({
@@ -18,17 +15,9 @@ export class LikeFromMePComponent {
     @Input() likes!: LikeProps[] | null
     @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>()
 
-    // alreadyLiked: Observable<boolean> = this.uiService.alreadyLikedByMyself(Number(this.currentUserId), userId);
-
-    constructor(private readonly uiService: UiService) {}
-
-    birthDayToAge = birthDayToAge
+    constructor() {}
 
     onClickUserToMessage(userId: number): void {
         this.clickUserToMessage.emit(userId)
     }
-
-    // alreadyLiked(userId: number): boolean {
-    //     return this.uiService.alreadyLikedByMyself(Number(this.currentUserId), userId)
-    // }
 }
