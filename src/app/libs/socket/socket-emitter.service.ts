@@ -12,7 +12,6 @@ export class SocketEmitterService {
     }
 
     emitLike(like: CreateLikeProps): void {
-        console.log({like})
         this.socket.emit('like', like)
     }
 
