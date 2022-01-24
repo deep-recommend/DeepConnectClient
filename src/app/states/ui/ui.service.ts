@@ -9,19 +9,15 @@ export class UiService {
     constructor(private readonly likeQuery: LikeQuery) {}
 
     alreadyLikedByMyself(currentUserId: number, userId: number): boolean {
-        const likeUserIds = this.likeQuery.likeAll.filter((o) => 
+        const likeUserIds = this.likeQuery.likeAll.filter((o) =>
             o.currentUserId === currentUserId
         ).map(o => o.userId)
         const isLike = includes(likeUserIds, userId)
-        console.log({
-            likeUserIds,
-            userId
-        })
         return isLike
     }
 
     alreadyLikedByOthers(currentUserId: number, userId: number): boolean {
-        const likeUserIds = this.likeQuery.likeAll.filter((o) => 
+        const likeUserIds = this.likeQuery.likeAll.filter((o) =>
                 o.currentUserId === userId
         ).map(o => o.userId)
         const isLike = includes(likeUserIds, currentUserId)
