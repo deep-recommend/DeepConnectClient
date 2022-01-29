@@ -27,7 +27,6 @@ export class DashboardResolverService implements Resolve<Observable<void>> {
             this.authenticationService.getProfile()
         ).pipe(
             last(),
-            mergeMap(async () => this.spinner.close()),
             map((observer) => void observer)
         )
     }

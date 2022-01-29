@@ -35,7 +35,7 @@ export class SignUpPComponent implements OnInit {
 
     async inputProfilePicture(event?: any): Promise<void> {
         const file = event.target.files[0]
-        const dataUrl = await toDataUrl(file)
-        this.signUpForm.controls.profilePicture.setValue(dataUrl)
+        // const dataUrl = await toDataUrl(file)
+        this.signUpForm.controls.profilePicture.setValue(file)
     }
 }

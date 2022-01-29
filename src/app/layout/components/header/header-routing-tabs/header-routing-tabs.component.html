@@ -5,12 +5,15 @@
         *ngFor="let routeLink of routeLinks; let i = index"
         [routerLink]="routeLink.link"
         [active]="activeLinkIndex === i"
-        (click)="route()"
+        (click)="route(i)"
     >
         <div fxLayout="column" fxLayoutAlign="center center">
             <mat-icon class="router-link-icon">
                 <div
-                    *ngIf="routeLink.icon === 'notifications' && notifications?.length !== 0"
+                    *ngIf="
+                        routeLink.icon === 'notifications' &&
+                        notifications?.length !== 0
+                    "
                     matBadge="{{ notifications?.length }}"
                     matBadgeSize="small"
                     matBadgeColor="warn"

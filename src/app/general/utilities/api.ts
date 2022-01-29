@@ -30,7 +30,6 @@ export const httpOptions = (paramKeys: string[], paramValues: string[]) => {
     for (let param of paramValues) {
         if (param) {
             httpParams = httpParams.set(paramKeys[arrIndex], param)
-            console.log(paramKeys[arrIndex], param)
         }
         arrIndex += 1
     }

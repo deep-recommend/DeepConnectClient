@@ -1,19 +1,35 @@
 <div class="container">
     <ng-container *ngFor="let user of users" class="user">
         <div *ngIf="profile?.id !== user.id && alreadyLiked(user.id)">
-            <mat-card fxLayout="row" fxLayoutAlign="space-between" class="card" (click)="onClickUserToMessage(user.id)">
+            <mat-card
+                fxLayout="row"
+                fxLayoutAlign="space-between"
+                class="card"
+                (click)="onClickUserToMessage(user.id)"
+            >
                 <div fxLayout="row">
-                    <div *ngIf="user.profilePicture; then thenBlock; else elseBlock"></div>
+                    <div
+                        *ngIf="
+                            user.profilePicture;
+                            then thenBlock;
+                            else elseBlock
+                        "
+                    ></div>
                     <ng-template #thenBlock>
                         <img src="{{ user.profilePicture }}" class="image" />
                     </ng-template>
                     <ng-template #elseBlock>
-                        <img src="/assets/images/png/default-avatar.png" class="image" />
+                        <img
+                            src="/assets/images/png/default-avatar.png"
+                            class="image"
+                        />
                     </ng-template>
                     <mat-card-header>
                         <mat-card-title> {{ user.stageName }}</mat-card-title>
                         <mat-card-subtitle
-                            >{{ user.birthPlace }}&nbsp;&nbsp;{{ user.position }}</mat-card-subtitle
+                            >{{ user.birthPlace }}&nbsp;&nbsp;{{
+                                user.position
+                            }}</mat-card-subtitle
                         >
                     </mat-card-header>
                 </div>
@@ -21,4 +37,3 @@
         </div>
     </ng-container>
 </div>
-

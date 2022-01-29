@@ -13,7 +13,7 @@ export class HeaderRoutingTabsComponent implements OnInit {
     public icon: string | undefined
     public routeLinks: RouterLinkProps[]
     public activeLinkIndex: number = 1
-    private currentRoute: string = ''
+    private currentRoute: string = '/'
 
     @Input() notifications!: NotificationProps[] | null | undefined
 
@@ -39,15 +39,13 @@ export class HeaderRoutingTabsComponent implements OnInit {
                     }
                 })
             }
-        })
+        });
     }
 
     ngOnInit(): void {}
 
-    route(): void {
+    route(i: number): void {
         this.userStore.resetSearch()
-        for (let i in this.routeLinks) {
-            this.activeLinkIndex = Number(i)
-        }
+        this.activeLinkIndex = i;
     }
 }

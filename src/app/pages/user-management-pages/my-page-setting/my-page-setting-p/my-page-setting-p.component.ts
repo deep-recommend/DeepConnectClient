@@ -74,7 +74,7 @@ export class MyPageSettingPComponent implements OnInit {
 
     async inputProfilePicture(event: any): Promise<void> {
         const file = event.target.files[0]
-        const dataUrl = await toDataUrl(file)
-        this.updateUserForm.controls.profilePicture.setValue(dataUrl)
+        // const dataUrl = await toDataUrl(file)
+        this.updateUserForm.controls.profilePicture.setValue(file)
     }
 }

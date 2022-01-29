@@ -25,8 +25,6 @@ export class SignInCComponent {
     ) {}
 
     onReceivedClickSignIn(signIn: SignInProps): void {
-        this.spinner.open()
-
         this.authService
             .signInRequest(signIn)
             .pipe(
