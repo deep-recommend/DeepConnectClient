@@ -115,6 +115,7 @@ export class UserStore extends EntityStore<UserState> {
     }
 
     updateProfile(profile: UserProps): void {
+        console.log({profile})
         this.update({
             ...this.getValue().profile,
             profile,

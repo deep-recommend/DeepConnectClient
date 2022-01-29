@@ -47,9 +47,9 @@ export class AuthenticationService {
     }
 
     updateProfile(userId: number, updateUser: UpdateProfileProps): Observable<UserProps> {
+        console.log({updateUser})
         const url = `${this._apiProfileUrl}/${userId}`
         return this.http
             .put<UserProps>(url, updateUser, this._httpHeaders)
-            .pipe(tap((data) => this.userStore.updateProfile(data)))
     }
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormGroup, FormBuilder } from '@angular/forms'
+import { DomSanitizer } from '@angular/platform-browser'
 import { toDataUrl } from 'src/app/general/functions/to-dataurl'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { UpdateProfileModel } from 'src/app/general/models/update-profile.model'
@@ -30,7 +31,10 @@ export class MyPageSettingPComponent implements OnInit {
 
     @Output() update: EventEmitter<UpdateProfileProps> = new EventEmitter<UpdateProfileProps>()
 
-    constructor(private readonly fb: FormBuilder) {}
+    constructor(
+        private readonly fb: FormBuilder,
+        private readonly sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit(): void {
         this.setInitialValue()
@@ -45,6 +49,7 @@ export class MyPageSettingPComponent implements OnInit {
     setInitialValue(): void {
         const form = this.updateUserForm.controls
         const me = this.profile
+        console.log({me})
         form.realLastName.patchValue(me?.realLastName)
         form.realFirstName.patchValue(me?.realFirstName)
         form.stageName.patchValue(me?.stageName)
@@ -74,7 +79,8 @@ export class MyPageSettingPComponent implements OnInit {
 
     async inputProfilePicture(event: any): Promise<void> {
         const file = event.target.files[0]
-        // const dataUrl = await toDataUrl(file)
-        this.updateUserForm.controls.profilePicture.setValue(file)
+        const dataUrl = await toDataUrl(file)
+        // console.log({dataUrl})
+        this.updateUserForm.controls.profilePicture.setValue(dataUrl)
     }
 }

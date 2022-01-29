@@ -8,13 +8,12 @@
             "
         ></div>
         <ng-template #profilePictureIsTrue
-            ><img [src]="profile?.profilePicture" class="image"
+            ><img [src]="transform() | async" class="image"
         /></ng-template>
         <ng-template #profilePictureIsFalse
             ><img src="/assets/images/png/default-avatar.png" class="image" />
         </ng-template>
     </div>
-    {{ profile?.profilePicture }}
     <div class="card">
         <mat-card-header fxLayoutAlign="start">
             <mat-card-title
