@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { FormGroup, FormBuilder } from '@angular/forms'
-import { DomSanitizer } from '@angular/platform-browser'
-import { toDataUrl } from 'src/app/general/functions/to-dataurl'
-import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
-import { UpdateProfileModel } from 'src/app/general/models/update-profile.model'
-import { UserProps } from 'src/app/states/user/user.model'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { toBlob } from 'src/app/general/functions/to-blob';
+import { toDataUrl } from 'src/app/general/functions/to-dataurl';
+import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface';
+import { UpdateProfileModel } from 'src/app/general/models/update-profile.model';
+import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
     selector: 'app-my-page-setting-p',
@@ -33,7 +33,6 @@ export class MyPageSettingPComponent implements OnInit {
 
     constructor(
         private readonly fb: FormBuilder,
-        private readonly sanitizer: DomSanitizer
     ) {}
 
     ngOnInit(): void {
@@ -47,40 +46,14 @@ export class MyPageSettingPComponent implements OnInit {
     }
 
     setInitialValue(): void {
-        const form = this.updateUserForm.controls
-        const me = this.profile
-        console.log({me})
-        form.realLastName.patchValue(me?.realLastName)
-        form.realFirstName.patchValue(me?.realFirstName)
-        form.stageName.patchValue(me?.stageName)
-        form.position.patchValue(me?.position)
-        form.gender.patchValue(me?.gender)
-        form.birthYear.patchValue(me?.birthYear)
-        form.birthMonth.patchValue(me?.birthMonth)
-        form.birthDay.patchValue(me?.birthDay)
-        form.birthPlace.patchValue(me?.birthPlace)
-        form.agency.patchValue(me?.agency)
-        form.description.patchValue(me?.description)
-        form.profilePicture.patchValue(me?.profilePicture)
-        form.work.patchValue(me?.work)
-        form.hobby.patchValue(me?.hobby)
-        form.brothersAndSisters.patchValue(me?.brothersAndSisters)
-        form.educationalBackground.patchValue(me?.educationalBackground)
-        form.height.patchValue(me?.height)
-        form.secondLanguage.patchValue(me?.secondLanguage)
-        form.holiday.patchValue(me?.holiday)
-        form.instrument.patchValue(me?.instrument)
-        form.sport.patchValue(me?.sport)
-        form.isDrinking.patchValue(Boolean(me?.isDrinking))
-        form.isSmoking.patchValue(Boolean(me?.isSmoking))
-        form.hasPet.patchValue(Boolean(me?.hasPet))
-        form.isMarried.patchValue(Boolean(me?.isMarried))
+        this.updateUserForm.patchValue({...this.profile})
     }
 
     async inputProfilePicture(event: any): Promise<void> {
         const file = event.target.files[0]
-        const dataUrl = await toDataUrl(file)
-        // console.log({dataUrl})
-        this.updateUserForm.controls.profilePicture.setValue(dataUrl)
+        console.log({file})
+        toDataUrl(file).subscribe(dataUrl => {
+            this.updateUserForm.controls.profilePicture.setValue(dataUrl)
+        })
     }
 }

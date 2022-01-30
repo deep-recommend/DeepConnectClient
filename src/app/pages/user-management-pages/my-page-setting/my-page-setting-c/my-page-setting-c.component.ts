@@ -36,13 +36,13 @@ export class MyPageSettingCComponent {
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {
         this.snackBar.open('プロフィールを編集しました');
         
-        this.userService.updateUserRequest(this.currentUserId, user).subscribe(data => {
+        this.userService.updateUserRequest(this.currentUserId, user).subscribe(() => {
             this.authenticationService.getProfile().subscribe();
             this.onReceivedClickBackToPrePage();
         })
     }
 
     onReceivedClickBackToPrePage(): void {
-        this.router.navigate(['/my-page'])
+        this.router.navigate(['/my-page']);
     }
 }

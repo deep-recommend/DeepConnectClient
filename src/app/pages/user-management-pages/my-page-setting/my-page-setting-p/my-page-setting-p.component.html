@@ -3,12 +3,20 @@
         <mat-form-field>
             <mat-label>性</mat-label>
             <input matInput formControlName="realLastName" required />
-            <mat-error *ngIf="updateUserForm.get('realLastName')?.hasError('required')">・必須項目です</mat-error>
+            <mat-error
+                *ngIf="updateUserForm.get('realLastName')?.hasError('required')"
+                >・必須項目です</mat-error
+            >
         </mat-form-field>
         <mat-form-field>
             <mat-label>名</mat-label>
             <input matInput formControlName="realFirstName" required />
-            <mat-error *ngIf="updateUserForm.get('realFirstName')?.hasError('required')">・必須項目です</mat-error>
+            <mat-error
+                *ngIf="
+                    updateUserForm.get('realFirstName')?.hasError('required')
+                "
+                >・必須項目です</mat-error
+            >
         </mat-form-field>
         <mat-form-field>
             <mat-label>芸名</mat-label>
@@ -17,7 +25,10 @@
         <mat-form-field>
             <mat-label>ボケ/ツッコミ</mat-label>
             <mat-select formControlName="position">
-                <mat-option *ngFor="let position of positions" [value]="position">
+                <mat-option
+                    *ngFor="let position of positions"
+                    [value]="position"
+                >
                     {{ position }}
                 </mat-option>
             </mat-select>
@@ -29,7 +40,10 @@
                     {{ gender }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="updateUserForm.get('gender')?.hasError('required')">・必須項目です</mat-error>
+            <mat-error
+                *ngIf="updateUserForm.get('gender')?.hasError('required')"
+                >・必須項目です</mat-error
+            >
         </mat-form-field>
         <div fxLayout="row">
             <mat-form-field>
@@ -39,7 +53,12 @@
                         {{ year }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="updateUserForm.get('birthYear')?.hasError('required')">・必須項目です</mat-error>
+                <mat-error
+                    *ngIf="
+                        updateUserForm.get('birthYear')?.hasError('required')
+                    "
+                    >・必須項目です</mat-error
+                >
             </mat-form-field>
             <mat-form-field>
                 <mat-label>誕生月</mat-label>
@@ -48,7 +67,12 @@
                         {{ month }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="updateUserForm.get('birthMonth')?.hasError('required')">・必須項目です</mat-error>
+                <mat-error
+                    *ngIf="
+                        updateUserForm.get('birthMonth')?.hasError('required')
+                    "
+                    >・必須項目です</mat-error
+                >
             </mat-form-field>
             <mat-form-field>
                 <mat-label>誕生日</mat-label>
@@ -57,21 +81,30 @@
                         {{ day }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="updateUserForm.get('birthDay')?.hasError('required')">・必須項目です</mat-error>
+                <mat-error
+                    *ngIf="updateUserForm.get('birthDay')?.hasError('required')"
+                    >・必須項目です</mat-error
+                >
             </mat-form-field>
         </div>
         <mat-form-field>
             <mat-label>身長(cm)</mat-label>
-            <input matInput formControlName="height">
+            <input matInput formControlName="height" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>出身</mat-label>
             <mat-select formControlName="birthPlace" required>
-                <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
+                <mat-option
+                    *ngFor="let birthPlace of birthPlaces"
+                    [value]="birthPlace"
+                >
                     {{ birthPlace }}
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="updateUserForm.get('birthPlace')?.hasError('required')">・必須項目です</mat-error>
+            <mat-error
+                *ngIf="updateUserForm.get('birthPlace')?.hasError('required')"
+                >・必須項目です</mat-error
+            >
         </mat-form-field>
         <mat-form-field>
             <mat-label>事務所</mat-label>
@@ -88,7 +121,10 @@
         <mat-form-field>
             <mat-label>兄弟姉妹</mat-label>
             <mat-select formControlName="brothersAndSisters">
-                <mat-option *ngFor="let brotherAndSister of brothersAndSisters" [value]="brotherAndSister">
+                <mat-option
+                    *ngFor="let brotherAndSister of brothersAndSisters"
+                    [value]="brotherAndSister"
+                >
                     {{ brotherAndSister }}
                 </mat-option>
             </mat-select>
@@ -150,9 +186,25 @@
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>
         <mat-label>プロフィール画像</mat-label>
-        <input type="file" accept="image/*" id="customImage" (input)="inputProfilePicture($event)" />
+        <input
+            type="file"
+            accept="image/*"
+            id="customImage"
+            (input)="inputProfilePicture($event)"
+        />
     </mat-card-content>
-    <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
-        <button mat-raised-button type="submit" style="background-color: orange" class="update-button">編集する</button>
+    <mat-card-actions
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="16px"
+    >
+        <button
+            mat-raised-button
+            type="submit"
+            style="background-color: orange"
+            class="update-button"
+        >
+            編集する
+        </button>
     </mat-card-actions>
 </form>

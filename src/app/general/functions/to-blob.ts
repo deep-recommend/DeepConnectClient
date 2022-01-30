@@ -1,22 +1,26 @@
 import * as loadImage from 'blueimp-load-image';
+import { Observable } from 'rxjs';
 
 export const toBlob = (
-    file: string | File | Blob,
+    file: string,
     options?: loadImage.LoadImageOptions
-): Promise<string | File | Blob | null> => {
-    return new Promise((resolve) => {
+): Observable<Blob> => {
+    return new Observable((subscriber) => {
         loadImage(
             file,
             (image) => {
                 (image as HTMLCanvasElement).toBlob((blob) => {
-                    resolve(blob);
+                    if (blob) {
+                        subscriber.next(blob);
+                        subscriber.complete();
+                    }
                 });
             },
             {
                 canvas: true,
                 meta: true,
                 orientation: true,
-                maxWidth: 600,
+                ...options,
             }
         );
     });
