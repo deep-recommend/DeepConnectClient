@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { CreateLikeProps } from 'src/app/states/like/like.model'
 import { SocketEmitterService } from './socket-emitter.service'
 import { SocketReceiverService } from './socket-receiver.service'
 
@@ -18,9 +19,8 @@ export class SocketService {
         this.socketReceiver.receiveMessage()
     }
 
-    like(data: any): void {
+    like(data: CreateLikeProps): void {
         this.socketEmitter.emitLike(data)
-        this.socketReceiver.receiveLike()
     }
 
     unlike(query: any): void {

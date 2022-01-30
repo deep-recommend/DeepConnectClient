@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Socket } from 'ngx-socket-io'
+import { CreateLikeProps } from 'src/app/states/like/like.model'
 @Injectable({
     providedIn: 'root',
 })
@@ -10,7 +11,8 @@ export class SocketEmitterService {
         this.socket.emit('sendMessage', message)
     }
 
-    emitLike(like: any): void {
+    emitLike(like: CreateLikeProps): void {
+        console.log({like})
         this.socket.emit('like', like)
     }
 

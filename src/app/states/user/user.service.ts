@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
-import { LikeStatus } from 'src/app/general/classes/like-status'
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { HttpClientService } from 'src/app/general/services/http-client.service'
@@ -18,7 +17,6 @@ export class UserService {
         private readonly httpService: HttpClientService,
         private readonly userStore: UserStore,
         private readonly userQuery: UserQuery,
-        private readonly likeStatus: LikeStatus
     ) {}
 
     getUsersRequest(): Observable<UserProps[]> {

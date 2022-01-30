@@ -1,53 +1,47 @@
 import { Injectable } from '@angular/core'
 import { includes, intersection } from 'lodash'
+import { Observable, of } from 'rxjs'
+import { filter, first } from 'rxjs/operators'
+import { LikeProps } from '../like/like.model'
 import { LikeQuery } from '../like/like.query'
 
 @Injectable({
     providedIn: 'root',
 })
 export class UiService {
-    constructor(private readonly likeQuery: LikeQuery) {}
+    likes?: LikeProps[];
 
-    alreadyLikedByMyself(currentUserId: number, userId: number): boolean {
-        let isLike!: boolean
-        let likeUserIds: number[] = []
-        this.likeQuery.likeAll.forEach((data) => {
-            if (data.currentUserId === currentUserId) {
-                likeUserIds.push(data.userId)
-            }
+    constructor(private readonly likeQuery: LikeQuery) {
+        this.likeQuery.likes$.subscribe(likes => {
+            this.likes = likes
         })
-        isLike = includes(likeUserIds, userId)
-        return isLike
     }
 
-    alreadyLikedByOthers(currentUserId: number, userId: number): boolean {
-        let isLike!: boolean
-        let likeUserIds: number[] = []
-        this.likeQuery.likeAll.forEach((data) => {
-            if (data.currentUserId === userId) {
-                likeUserIds.push(data.userId)
-            }
-        })
-        isLike = includes(likeUserIds, currentUserId)
-        return isLike
+    alreadyLikedByMyself(currentUserId: number, userId: number): Observable<boolean> {
+        const likeUserIds = (this.likes as LikeProps[]).filter((o) => 
+            o.currentUserId === currentUserId
+        ).map(o => o.userId)
+        const isLike = includes(likeUserIds, userId)
+        return of(isLike)
     }
 
-    isMatching(currentUserId: number, userId: number): boolean {
-        let isMatching!: boolean
-        let likeEachOther!: any[]
-        let likeByCurrentUserIds: number[] = []
-        let likeByUserIds: number[] = []
-        this.likeQuery.likeAll.forEach((data) => {
-            if (data.currentUserId === currentUserId) {
-                likeByCurrentUserIds.push(data.userId)
-            } else if (data.currentUserId === userId) {
-                likeByUserIds.push(data.currentUserId)
-            } else {
-                return
-            }
-        })
-        likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds)
-        isMatching = likeEachOther.length !== 0
-        return isMatching
+    alreadyLikedByOthers(currentUserId: number, userId: number): Observable<boolean> {
+        const likeUserIds = (this.likes as LikeProps[]).filter((o) => 
+                o.currentUserId === userId
+        ).map(o => o.userId)
+        const isLike = includes(likeUserIds, currentUserId)
+        return of(isLike)
+    }
+
+    isMatching(currentUserId: number, userId: number): Observable<boolean> {
+        const likeByCurrentUserIds = (this.likes as LikeProps[]).filter((o) => {
+            o.currentUserId === currentUserId
+        }).map(o => o.id);
+        const likeByUserIds = (this.likes as LikeProps[]).filter((o) => {
+            o.currentUserId === userId
+        }).map(o => o.currentUserId)
+        const likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds)
+        const isMatching = likeEachOther.length !== 0
+        return of(isMatching)
     }
 }
