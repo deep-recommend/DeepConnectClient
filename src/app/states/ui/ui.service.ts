@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core'
 import { includes, intersection } from 'lodash'
-import { Observable, of } from 'rxjs'
-import { filter, first } from 'rxjs/operators'
-import { LikeProps } from '../like/like.model'
 import { LikeQuery } from '../like/like.query'
 
 @Injectable({
