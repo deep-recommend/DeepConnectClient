@@ -14,7 +14,7 @@ export class LikeFromOthersDetailPComponent implements OnInit {
   @Input() currentUserId!: number | null;
   @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
 
-  alreadyLikedByOthers$: Observable<boolean> = this.uiService.alreadyLikedByOthers(Number(this.currentUserId), Number(this.user?.id))
+  alreadyLikedByOthers: boolean = this.uiService.alreadyLikedByOthers(Number(this.currentUserId), Number(this.user?.id))
 
   constructor(
     private readonly uiService: UiService

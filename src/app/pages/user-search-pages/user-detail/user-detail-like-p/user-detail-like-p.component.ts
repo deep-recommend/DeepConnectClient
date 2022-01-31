@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Observable } from 'rxjs'
 import { UiService } from 'src/app/states/ui/ui.service'
 import { UserProps } from 'src/app/states/user/user.model'
 
@@ -15,20 +14,19 @@ export class UserDetailLikePComponent implements OnInit {
     @Output() clickLikeButton: EventEmitter<number> = new EventEmitter<number>()
     @Output() clickUnlikeButton: EventEmitter<number> = new EventEmitter<number>()
 
-    alreadyLiked$: Observable<boolean> = this.uiService.alreadyLikedByMyself(Number(this.currentUserId), Number(this.user?.id))
+    alreadyLiked: boolean = this.uiService.alreadyLikedByMyself(Number(this.currentUserId), Number(this.user?.id))
 
     constructor(
         private readonly uiService: UiService
-    ) {
-    }
+    ) {}
 
     ngOnInit(): void {}
 
-    onClickLikeButton(userId: number): void {
-        this.clickLikeButton.emit(userId)
+    onClickLikeButton(): void {
+        this.clickLikeButton.emit(this.user?.id)
     }
 
-    onClickUnlikeButton(userId: number): void {
-        this.clickUnlikeButton.emit(userId)
+    onClickUnlikeButton(): void {
+        this.clickUnlikeButton.emit(this.user?.id)
     }
 }

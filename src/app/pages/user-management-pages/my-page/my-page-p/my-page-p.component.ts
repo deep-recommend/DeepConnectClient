@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input,  OnChanges,  OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { toBlob } from 'src/app/general/functions/to-blob';
 import { UserProps } from 'src/app/states/user/user.model';
 
@@ -14,9 +13,7 @@ export class MyPagePComponent implements OnInit, OnChanges {
 
     @Input() profile!: UserProps | null;
     
-    constructor(
-        private readonly sanitizer: DomSanitizer,
-    ) {}
+    constructor() {}
 
     ngOnInit(): void {
         this.getIcon()
