@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators'
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { HttpClientService } from 'src/app/general/services/http-client.service'
-import { apiUserUrl, httpHeaders, httpOptions } from 'src/app/general/utilities/api'
+import { apiUrl, apiUserUrl, httpHeaders, httpOptions } from 'src/app/general/utilities/api'
 import { UserProps } from './user.model'
 import { UserQuery } from './user.query'
 import { UserStore } from './user.store'
@@ -61,6 +61,27 @@ export class UserService {
         ]
         return this.http
             .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))
+            .pipe(tap((data) => this.userStore.setUsers(data)))
+    }
+
+    getLikedFromMeUsersRequest(): Observable<UserProps[]> {
+        const url = `${apiUrl}/?likeStatus=likeFromMe`;
+        return this.http
+            .get<UserProps[]>(url, httpHeaders)
+            .pipe(tap((data) => this.userStore.setUsers(data)))
+    }
+
+    getLikedFromOthersUsersRequest(): Observable<UserProps[]> {
+        const url = `${apiUrl}/?likeStatus=likeFromOther`;
+        return this.http
+            .get<UserProps[]>(url, httpHeaders)
+            .pipe(tap((data) => this.userStore.setUsers(data)))
+    }
+
+    getMatchedUsersRequest(): Observable<UserProps[]> {
+        const url = `${apiUserUrl}/?likeStatus=matched`;
+        return this.http
+            .get<UserProps[]>(url, httpHeaders)
             .pipe(tap((data) => this.userStore.setUsers(data)))
     }
 

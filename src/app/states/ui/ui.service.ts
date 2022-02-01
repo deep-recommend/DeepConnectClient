@@ -13,6 +13,10 @@ export class UiService {
             o.currentUserId === currentUserId
         ).map(o => o.userId)
         const isLike = includes(likeUserIds, userId)
+        console.log({
+            likeUserIds,
+            userId
+        })
         return isLike
     }
 

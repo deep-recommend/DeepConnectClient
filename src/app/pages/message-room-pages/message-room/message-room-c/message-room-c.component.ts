@@ -73,7 +73,6 @@ export class MessageRoomCComponent implements OnInit, OnDestroy {
         const companionEntries = await this.entryService.getEntriesRequestByCompanionNotObservable()
 
         if (profileEntries.length === 0 || companionEntries.length === 0) {
-            console.log('Create room')
             this.subscriptions.push(
                 this.roomService.postRoomRequest().subscribe((roomData) => {
                     const profileEntryValue = {
@@ -93,7 +92,6 @@ export class MessageRoomCComponent implements OnInit, OnDestroy {
                 })
             )
         } else {
-            console.log('Exist room')
             profileEntries.forEach((profileEntry) => {
                 companionEntries.forEach((companionEntry) => {
                     if (profileEntry.roomId === companionEntry.roomId) {

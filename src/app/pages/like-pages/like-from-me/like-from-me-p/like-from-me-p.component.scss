@@ -1,17 +1,5 @@
 :host {
     .container {
         margin-bottom: 48px;
-        .card {
-            padding: 16px 16px 0px;
-            border-bottom: 1px solid #0000001f;
-            &:hover {
-                background-color: #fafafa;
-            }
-        }
-        .image {
-            width: 44px;
-            height: 44px;
-            border-radius: 100%;
-        }
     }
 }

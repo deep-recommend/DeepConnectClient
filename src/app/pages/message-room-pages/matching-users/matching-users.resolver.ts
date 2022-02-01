@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { merge, Observable } from 'rxjs'
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { merge, Observable } from 'rxjs';
 import { first, map, mergeMap } from 'rxjs/operators'
 import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
@@ -15,14 +15,14 @@ export class MatchingUsersResolverService implements Resolve<Observable<void>> {
         private readonly likeService: LikeService,
         private readonly authenticationService: AuthenticationService,
         private readonly uiStore: UiStore,
-        private readonly spinner: ProgressSpinnerService
+        private readonly spinner: ProgressSpinnerService,
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
-        this.uiStore.displayPageName(route.data.title)
+        this.uiStore.displayPageName(route.data.title);
 
         return merge(
-            this.userService.getUsersRequest(),
+            this.userService.getMatchedUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(

@@ -1,7 +1,5 @@
 <app-title-header></app-title-header>
-<div *ngIf="!(existsMatchingUsers$ | async)">
-    <app-no-matching-users-p></app-no-matching-users-p>
-</div>
+<app-no-matching-users-p [users]="users$ | async"></app-no-matching-users-p>
 <app-matching-users-p
     [currentUserId]="currentUserId$ | async"
     [users]="users$ | async"
