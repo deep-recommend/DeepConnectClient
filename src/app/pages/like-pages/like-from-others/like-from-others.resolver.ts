@@ -16,7 +16,7 @@ export class LikeFromOthersResolverService implements Resolve<Observable<void>> 
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
         return merge(
-            this.userService.getUsersRequest(),
+            this.userService.getLikedFromOthersUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(

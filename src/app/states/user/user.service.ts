@@ -65,21 +65,21 @@ export class UserService {
     }
 
     getLikedFromMeUsersRequest(): Observable<UserProps[]> {
-        const url = `${apiUrl}/?likeStatus=likeFromMe`;
+        const url = `${apiUserUrl}?likeStatus=likeFromMe`;
         return this.http
             .get<UserProps[]>(url, httpHeaders)
             .pipe(tap((data) => this.userStore.setUsers(data)))
     }
 
     getLikedFromOthersUsersRequest(): Observable<UserProps[]> {
-        const url = `${apiUrl}/?likeStatus=likeFromOther`;
+        const url = `${apiUserUrl}?likeStatus=likeFromOther`;
         return this.http
             .get<UserProps[]>(url, httpHeaders)
             .pipe(tap((data) => this.userStore.setUsers(data)))
     }
 
     getMatchedUsersRequest(): Observable<UserProps[]> {
-        const url = `${apiUserUrl}/?likeStatus=matched`;
+        const url = `${apiUserUrl}?likeStatus=matched`;
         return this.http
             .get<UserProps[]>(url, httpHeaders)
             .pipe(tap((data) => this.userStore.setUsers(data)))

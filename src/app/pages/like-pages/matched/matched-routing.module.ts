@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: MatchedComponent,
-    resolve: MatchedResolverService,
+    resolve: { from: MatchedResolverService },
   },
 ];
 

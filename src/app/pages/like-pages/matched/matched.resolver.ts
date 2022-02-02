@@ -16,7 +16,7 @@ export class MatchedResolverService implements Resolve<Observable<void>> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
         return merge(
-            this.userService.getUsersRequest(),
+            this.userService.getMatchedUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(
