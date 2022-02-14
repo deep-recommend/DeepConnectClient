@@ -28,7 +28,7 @@ export class DashboardResolverService implements Resolve<Observable<void>> {
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(
-            this.userService.getUsersAllRequest(),
+            this.userService.getUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(map((observer) => void observer));

@@ -65,11 +65,12 @@ export class UserService {
             search.holiday,
             search.instrument,
             search.sport,
-            String(search.isDrinking),
-            String(search.isSmoking),
-            String(search.hasPet),
-            String(search.isMarried),
+            search.isDrinking ? 'true' : '',
+            search.isSmoking ? 'true' : '',
+            search.hasPet ? 'true' : '',
+            search.isMarried ? 'true' : '',
         ];
+        console.log(httpOptions(paramKeys, paramValues));
         return this.http
             .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.userStore.setUsers(data)));
