@@ -11,6 +11,7 @@ export class MessageRoomResolverService implements Resolve<void> {
     constructor(private readonly uiStore: UiStore) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
+        this.uiStore.hideRoutingTab();
         this.uiStore.displayPageName(route.data.title);
     }
 }
