@@ -70,7 +70,6 @@ export class UserService {
             search.hasPet ? 'true' : '',
             search.isMarried ? 'true' : '',
         ];
-        console.log(httpOptions(paramKeys, paramValues));
         return this.http
             .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))
             .pipe(tap((data) => this.userStore.setUsers(data)));

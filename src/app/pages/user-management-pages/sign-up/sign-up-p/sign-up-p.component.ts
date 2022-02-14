@@ -7,7 +7,6 @@ import {
     Output,
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { toDataUrl } from 'src/app/general/functions/to-dataurl';
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SignUpModel } from 'src/app/general/models/sign-up.model';
 
@@ -41,11 +40,5 @@ export class SignUpPComponent implements OnInit {
 
     onClickSignUp(): void {
         this.signUp.emit(this.signUpForm.value);
-    }
-
-    async inputProfilePicture(event?: any): Promise<void> {
-        const file = event.target.files[0];
-        // const dataUrl = await toDataUrl(file)
-        this.signUpForm.controls.profilePicture.setValue(file);
     }
 }
