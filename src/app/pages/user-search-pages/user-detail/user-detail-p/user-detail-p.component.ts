@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core'
-import { UiService } from 'src/app/states/ui/ui.service'
-import { UserProps } from 'src/app/states/user/user.model'
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+} from '@angular/core';
+import { UiService } from 'src/app/states/ui/ui.service';
+import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
     selector: 'app-user-detail-p',
@@ -9,12 +17,16 @@ import { UserProps } from 'src/app/states/user/user.model'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailPComponent implements OnInit, OnChanges {
-    @Input() user!: UserProps | null | undefined
-    @Input() currentUserId!: number | null | undefined
-    @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>()
+    @Input() user!: UserProps | null | undefined;
+    @Input() currentUserId!: number | null | undefined;
+    @Output() clickUserToMessage: EventEmitter<number> =
+        new EventEmitter<number>();
 
     get isMatching(): boolean {
-      return this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
+        return this.uiService.isMatching(
+            Number(this.currentUserId),
+            Number(this.user?.id)
+        );
     }
 
     constructor(private readonly uiService: UiService) {}
@@ -23,7 +35,7 @@ export class UserDetailPComponent implements OnInit, OnChanges {
 
     ngOnChanges(): void {}
 
-    onClickUserToMessage(userId: number): void {
-        this.clickUserToMessage.emit(userId)
+    onClickToDetails(userId: number): void {
+        this.clickUserToMessage.emit(userId);
     }
 }

@@ -1,4 +1,8 @@
 <div class="header" fxLayout="row" fxLayoutAlign="center center">
-  <img *ngIf="(pageName$ | async) === 'CmCn'" src="/assets/images/png/mike.png" class="image">
-  {{ pageName$ | async }}
+    <img
+        *ngIf="(pageName$ | async) === 'CmCn'"
+        src="/assets/images/png/mike.png"
+        class="image"
+    />
+    {{ pageName$ | async }}
 </div>

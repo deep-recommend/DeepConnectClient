@@ -1,5 +1,5 @@
-import * as moment from 'moment'
+import * as moment from 'moment';
 
 export const relativeTime = (date: string) => {
-    return moment(date).fromNow()
-}
+    return moment(date).fromNow();
+};

@@ -6,23 +6,24 @@ import { DebugElement } from '@angular/core';
 import { DashboardToSearchPageButtonPComponent } from './dashboard-to-search-page-button-p.component';
 
 describe('DashboardToSearchPageButtonPComponent', () => {
-  let component: DashboardToSearchPageButtonPComponent;
-  let fixture: ComponentFixture<DashboardToSearchPageButtonPComponent>;
+    let component: DashboardToSearchPageButtonPComponent;
+    let fixture: ComponentFixture<DashboardToSearchPageButtonPComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashboardToSearchPageButtonPComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [DashboardToSearchPageButtonPComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardToSearchPageButtonPComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(
+            DashboardToSearchPageButtonPComponent
+        );
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

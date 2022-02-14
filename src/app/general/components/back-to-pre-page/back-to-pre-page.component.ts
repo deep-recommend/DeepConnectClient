@@ -1,8 +1,8 @@
-import { Location } from '@angular/common'
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { UiQuery } from 'src/app/states/ui/ui.query'
-import { UiStore } from 'src/app/states/ui/ui.store'
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UiQuery } from 'src/app/states/ui/ui.query';
+import { UiStore } from 'src/app/states/ui/ui.store';
 
 @Component({
     selector: 'app-back-to-pre-page',
@@ -10,7 +10,7 @@ import { UiStore } from 'src/app/states/ui/ui.store'
     styleUrls: ['./back-to-pre-page.component.scss'],
 })
 export class BackToPrePageComponent implements OnInit {
-    pageName$: Observable<string> = this.uiQuery.pageName$
+    pageName$: Observable<string> = this.uiQuery.pageName$;
 
     constructor(
         private readonly uiStore: UiStore,
@@ -22,8 +22,8 @@ export class BackToPrePageComponent implements OnInit {
 
     onClickBackToPrePage(): void {
         if (this.uiQuery.pageNameGetter === 'メッセージ中') {
-            this.uiStore.displayRoutingTab()
+            this.uiStore.displayRoutingTab();
         }
-        this.location.back()
+        this.location.back();
     }
 }

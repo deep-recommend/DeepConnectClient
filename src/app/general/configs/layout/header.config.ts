@@ -1,4 +1,7 @@
-import { createHeaderAccountMenu, HeaderAccountMenu } from '../../domains/layout/header-user-menu.domain'
+import {
+    createHeaderAccountMenu,
+    HeaderAccountMenu,
+} from '../../domains/layout/header-user-menu.domain';
 
 export const headerAccountMenu: HeaderAccountMenu[] = [
     createHeaderAccountMenu({
@@ -11,4 +14,4 @@ export const headerAccountMenu: HeaderAccountMenu[] = [
         label: 'サインアウト',
         routerLink: '/sign-in',
     }),
-]
+];

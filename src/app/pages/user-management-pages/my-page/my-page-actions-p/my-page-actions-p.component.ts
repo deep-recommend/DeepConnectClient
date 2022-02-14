@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core'
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    OnInit,
+    Output,
+} from '@angular/core';
 
 @Component({
     selector: 'app-my-page-actions-p',
@@ -7,18 +13,19 @@ import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyPageActionsPComponent implements OnInit {
-    @Output() clickToProfileSetting: EventEmitter<void> = new EventEmitter<void>()
-    @Output() clickSignOut: EventEmitter<void> = new EventEmitter()
+    @Output() clickToProfileSetting: EventEmitter<void> =
+        new EventEmitter<void>();
+    @Output() clickSignOut: EventEmitter<void> = new EventEmitter();
 
     constructor() {}
 
     ngOnInit(): void {}
 
     onClickToProfileSetting(): void {
-        this.clickToProfileSetting.emit()
+        this.clickToProfileSetting.emit();
     }
 
     signOut(): void {
-        this.clickSignOut.emit()
+        this.clickSignOut.emit();
     }
 }

@@ -9,7 +9,9 @@
         <app-sidenav-p
             [sideNavMenus]="sideNavMenus$ | async"
             [lockSideNav$]="lockSideNav$"
-            (clickSideNavMenu)="onReceivedClickSideNav($event.index, $event.item)"
+            (clickSideNavMenu)="
+                onReceivedClickSideNav($event.index, $event.item)
+            "
         ></app-sidenav-p>
     </div>
 </div>

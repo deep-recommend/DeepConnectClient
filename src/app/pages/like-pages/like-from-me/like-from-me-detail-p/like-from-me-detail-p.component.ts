@@ -1,31 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UiService } from 'src/app/states/ui/ui.service';
 import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
-  selector: 'app-like-from-me-detail-p',
-  templateUrl: './like-from-me-detail-p.component.html',
-  styleUrls: ['./like-from-me-detail-p.component.scss']
+    selector: 'app-like-from-me-detail-p',
+    templateUrl: './like-from-me-detail-p.component.html',
+    styleUrls: ['./like-from-me-detail-p.component.scss'],
 })
-export class LikeFromMeDetailPComponent implements OnInit {
-  @Input() user!: UserProps | null;
-  @Input() profile!: UserProps | null;
-  @Input() currentUserId!: number | null;
-  @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
+export class LikeFromMeDetailPComponent {
+    @Input() user!: UserProps | null;
+    @Input() profile!: UserProps | null;
+    @Input() currentUserId!: number | null;
+    @Output() clickToDetails: EventEmitter<number> = new EventEmitter<number>();
 
-  alreadyLiked(): boolean {
-    return this.uiService.alreadyLikedByMyself(Number(this.currentUserId), Number(this.user?.id))
-  }
+    get alreadyLiked(): boolean {
+        return this.uiService.alreadyLikedByMyself(
+            Number(this.currentUserId),
+            Number(this.user?.id)
+        );
+    }
 
-  constructor(
-    private readonly uiService: UiService
-  ) { }
+    constructor(private readonly uiService: UiService) {}
 
-  ngOnInit(): void {
-  }
-
-  onClickUserToMessage(): void {
-    this.clickUsersToMessage.emit(this.user?.id)
-  }
+    onClickToDetails(): void {
+        this.clickToDetails.emit(this.user?.id);
+    }
 }

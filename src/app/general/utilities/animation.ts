@@ -11,7 +11,7 @@ import {
     animation,
     useAnimation,
     stagger,
-} from '@angular/animations'
+} from '@angular/animations';
 
 const customAnimation = animation(
     [
@@ -19,7 +19,10 @@ const customAnimation = animation(
             opacity: '{{opacity}}',
             transform: 'scale({{scale}}) translate3d({{x}}, {{y}}, {{z}})',
         }),
-        animate('{{duration}} {{delay}} cubic-bezier(0.0, 0.0, 0.2, 1)', style('*')),
+        animate(
+            '{{duration}} {{delay}} cubic-bezier(0.0, 0.0, 0.2, 1)',
+            style('*')
+        ),
     ],
     {
         params: {
@@ -32,17 +35,22 @@ const customAnimation = animation(
             z: '0',
         },
     }
-)
+);
 
 export const animations = [
-    trigger('animate', [transition('void => *', [useAnimation(customAnimation)])]),
+    trigger('animate', [
+        transition('void => *', [useAnimation(customAnimation)]),
+    ]),
 
     trigger('animateStagger', [
         state('50', style('*')),
         state('100', style('*')),
         state('200', style('*')),
 
-        transition('void => 50', query('@*', [stagger('50ms', [animateChild()])], { optional: true })),
+        transition(
+            'void => 50',
+            query('@*', [stagger('50ms', [animateChild()])], { optional: true })
+        ),
         transition(
             'void => 100',
             query('@*', [stagger('100ms', [animateChild()])], {
@@ -72,7 +80,10 @@ export const animations = [
         ),
         transition('1 => 0', animate('300ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
         transition('0 => 1', animate('300ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
-        transition('void <=> *', animate('300ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
+        transition(
+            'void <=> *',
+            animate('300ms cubic-bezier(0.0, 0.0, 0.2, 1)')
+        ),
     ]),
 
     trigger('slideInOut', [
@@ -548,4 +559,4 @@ export const animations = [
             ])
         ),
     ]),
-]
+];

@@ -2,7 +2,7 @@
     <ng-container *ngFor="let room of rooms">
         <app-matching-users-detail-p
             [room]="room"
-            (clickUsersToMessage)="onReceivedClickUserToMessage($event)"
+            (clickToDetails)="onReceivedClickUserToMessage($event)"
         ></app-matching-users-detail-p>
     </ng-container>
 </div>

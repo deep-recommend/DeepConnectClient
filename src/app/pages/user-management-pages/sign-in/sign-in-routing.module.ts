@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { SignInComponent } from './sign-in.component'
-import { SignInResolverService } from './sign-in.resolver'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { SignInComponent } from './sign-in.component';
+import { SignInResolverService } from './sign-in.resolver';
 
 const routes: Routes = [
     {
@@ -9,7 +9,7 @@ const routes: Routes = [
         component: SignInComponent,
         resolve: { from: SignInResolverService },
     },
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

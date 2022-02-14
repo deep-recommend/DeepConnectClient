@@ -2,10 +2,14 @@
     fxLayout="row"
     fxLayoutAlign="space-between"
     class="card"
-    (click)="onClickUserToMessage()"
+    (click)="onClickToDetails()"
 >
     <div fxLayout="row">
-        <img *ngIf="user?.profilePicture" src="{{ user?.profilePicture }}" class="image" />
+        <img
+            *ngIf="user?.profilePicture"
+            src="{{ user?.profilePicture }}"
+            class="image"
+        />
         <img
             *ngIf="!user?.profilePicture"
             src="/assets/images/png/default-avatar.png"

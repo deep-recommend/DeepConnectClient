@@ -4,15 +4,15 @@ import { MatchedComponent } from './matched.component';
 import { MatchedResolverService } from './matched.resolver';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: MatchedComponent,
-    resolve: { from: MatchedResolverService },
-  },
+    {
+        path: '',
+        component: MatchedComponent,
+        resolve: { from: MatchedResolverService },
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class MatchedRoutingModule { }
+export class MatchedRoutingModule {}

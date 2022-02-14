@@ -1,18 +1,18 @@
-import { BehaviorSubject, Observable } from 'rxjs'
-import { Injectable } from '@angular/core'
-import { map } from 'rxjs/operators'
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
-const APP_PREFIX = 'DeepRecommend-'
+const APP_PREFIX = 'DeepRecommend-';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DeepRecommendLocalStorageService {
-    subject: BehaviorSubject<any> = new BehaviorSubject<any>({})
-    observer: Observable<any> = this.subject.asObservable()
+    subject: BehaviorSubject<any> = new BehaviorSubject<any>({});
+    observer: Observable<any> = this.subject.asObservable();
 
     constructor() {
-        this.subject.next(this.getAllItemByStatic())
+        this.subject.next(this.getAllItemByStatic());
     }
 
     /**
@@ -24,20 +24,22 @@ export class DeepRecommendLocalStorageService {
                 const stateKeys = storageKey
                     .replace(APP_PREFIX, '')
                     .split('.')
-                    .map((key) => this.kebab2Camel(key))
+                    .map((key) => this.kebab2Camel(key));
 
-                let currentStateRef = state
+                let currentStateRef = state;
                 stateKeys.forEach((key, index) => {
                     if (index === stateKeys.length - 1) {
-                        currentStateRef[key] = JSON.parse(String(localStorage.getItem(storageKey)))
-                        return
+                        currentStateRef[key] = JSON.parse(
+                            String(localStorage.getItem(storageKey))
+                        );
+                        return;
                     }
-                    currentStateRef[key] = currentStateRef[key] || {}
-                    currentStateRef = currentStateRef[key]
-                })
+                    currentStateRef[key] = currentStateRef[key] || {};
+                    currentStateRef = currentStateRef[key];
+                });
             }
-            return state
-        }, {})
+            return state;
+        }, {});
     }
 
     /**
@@ -49,20 +51,22 @@ export class DeepRecommendLocalStorageService {
             .toLowerCase()
             .split('-')
             .map((token, index) => {
-                return index === 0 ? token : token.charAt(0).toUpperCase() + token.slice(1)
+                return index === 0
+                    ? token
+                    : token.charAt(0).toUpperCase() + token.slice(1);
             })
-            .join('')
+            .join('');
     }
 
     private kebab2Camel(key: string): string {
-        return DeepRecommendLocalStorageService.kebab2Camel(key)
+        return DeepRecommendLocalStorageService.kebab2Camel(key);
     }
 
     /**
      * 静的に全データを取得する
      */
     getAllItemByStatic(): any {
-        return DeepRecommendLocalStorageService.loadInitialState()
+        return DeepRecommendLocalStorageService.loadInitialState();
     }
 
     /**
@@ -70,14 +74,14 @@ export class DeepRecommendLocalStorageService {
      * @param key
      */
     getItemByStatic(key: string): any {
-        return JSON.parse(String(localStorage.getItem(`${APP_PREFIX}${key}`)))
+        return JSON.parse(String(localStorage.getItem(`${APP_PREFIX}${key}`)));
     }
 
     /**
      * 全データを取得するObservableを返す
      */
     getAllItem(): Observable<any> {
-        return this.observer
+        return this.observer;
     }
 
     /**
@@ -87,10 +91,10 @@ export class DeepRecommendLocalStorageService {
     getItem(key: string): Observable<string> {
         return this.observer.pipe(
             map((data) => {
-                return key || ''
+                return key || '';
                 // return data[${this.kebab2Camel(key)}] || '';
             })
-        )
+        );
     }
 
     /**
@@ -99,8 +103,8 @@ export class DeepRecommendLocalStorageService {
      * @param value
      */
     setItem(key: string, value: any): void {
-        localStorage.setItem(`${APP_PREFIX}${key}`, JSON.stringify(value))
-        this.subject.next(this.getAllItemByStatic())
+        localStorage.setItem(`${APP_PREFIX}${key}`, JSON.stringify(value));
+        this.subject.next(this.getAllItemByStatic());
     }
 
     /**
@@ -108,8 +112,8 @@ export class DeepRecommendLocalStorageService {
      * @param key
      */
     removeItem(key: string): void {
-        localStorage.removeItem(`${APP_PREFIX}${key}`)
-        this.subject.next(this.getAllItemByStatic())
+        localStorage.removeItem(`${APP_PREFIX}${key}`);
+        this.subject.next(this.getAllItemByStatic());
     }
 
     /**
@@ -118,28 +122,28 @@ export class DeepRecommendLocalStorageService {
     removeAll(): void {
         Object.keys(localStorage).forEach((storageKey: string) => {
             if (storageKey.includes(APP_PREFIX)) {
-                this.removeItem(storageKey.replace(APP_PREFIX, ''))
+                this.removeItem(storageKey.replace(APP_PREFIX, ''));
             }
-        })
+        });
     }
 
     /**
      * テスト用
      */
     async testLocalStorage(): Promise<void> {
-        const testValue = 'testValue'
-        const testKey = 'testKey'
+        const testValue = 'testValue';
+        const testKey = 'testKey';
 
-        let retrievedValue: string
+        let retrievedValue: string;
 
-        const errorMessage = 'localStorage did not return expected value'
+        const errorMessage = 'localStorage did not return expected value';
 
-        this.setItem(testKey, testValue)
-        retrievedValue = await this.getItem(testKey).toPromise()
-        this.removeItem(testKey)
+        this.setItem(testKey, testValue);
+        retrievedValue = await this.getItem(testKey).toPromise();
+        this.removeItem(testKey);
 
         if (retrievedValue !== testValue) {
-            throw new Error(errorMessage)
+            throw new Error(errorMessage);
         }
     }
 }

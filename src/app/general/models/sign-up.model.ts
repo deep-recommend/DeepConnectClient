@@ -1,41 +1,41 @@
-import { Validators } from '@angular/forms'
-import { SignUpFormProps, SignUpProps } from '../interfaces/sign-up.interface'
+import { Validators } from '@angular/forms';
+import { SignUpFormProps, SignUpProps } from '../interfaces/sign-up.interface';
 
 export class SignUpModel implements SignUpProps {
-    realLastName!: string
-    realFirstName!: string
-    stageName?: string = ''
-    position?: string = ''
-    gender!: string
-    birthYear!: number
-    birthMonth!: number
-    birthDay!: number
-    birthPlace!: string
-    agency?: string = ''
-    description?: string = ''
-    profilePicture?: string = ''
-    email!: string
-    password!: string
-    passwordConfirmation!: string
+    realLastName!: string;
+    realFirstName!: string;
+    stageName?: string = '';
+    position?: string = '';
+    gender!: string;
+    birthYear!: number;
+    birthMonth!: number;
+    birthDay!: number;
+    birthPlace!: string;
+    agency?: string = '';
+    description?: string = '';
+    profilePicture?: string = '';
+    email!: string;
+    password!: string;
+    passwordConfirmation!: string;
 
     constructor(value?: SignUpProps) {
         if (value) {
-            this.realLastName = value.realLastName
-            this.realFirstName = value.realFirstName
-            this.stageName = value.stageName
-            this.position = value.position
-            this.gender = value.gender
-            this.birthYear = value.birthYear
-            this.birthMonth = value.birthMonth
-            this.birthDay = value.birthDay
-            this.birthYear = value.birthYear
-            this.birthPlace = value.birthPlace
-            this.agency = value.agency
-            this.description = value.description
-            this.profilePicture = value.profilePicture
-            this.email = value.email
-            this.password = value.password
-            this.passwordConfirmation = value.passwordConfirmation
+            this.realLastName = value.realLastName;
+            this.realFirstName = value.realFirstName;
+            this.stageName = value.stageName;
+            this.position = value.position;
+            this.gender = value.gender;
+            this.birthYear = value.birthYear;
+            this.birthMonth = value.birthMonth;
+            this.birthDay = value.birthDay;
+            this.birthYear = value.birthYear;
+            this.birthPlace = value.birthPlace;
+            this.agency = value.agency;
+            this.description = value.description;
+            this.profilePicture = value.profilePicture;
+            this.email = value.email;
+            this.password = value.password;
+            this.passwordConfirmation = value.passwordConfirmation;
         }
     }
 
@@ -56,7 +56,7 @@ export class SignUpModel implements SignUpProps {
             email: this.email,
             password: this.password,
             passwordConfirmation: this.passwordConfirmation,
-        }
+        };
     }
 
     get formGroupValue(): SignUpFormProps {
@@ -75,11 +75,14 @@ export class SignUpModel implements SignUpProps {
             profilePicture: [this.profilePicture],
             email: [this.email, [Validators.required, Validators.email]],
             password: [this.password, [Validators.required]],
-            passwordConfirmation: [this.passwordConfirmation, [Validators.required]],
-        }
+            passwordConfirmation: [
+                this.passwordConfirmation,
+                [Validators.required],
+            ],
+        };
     }
 
     static isSignInForm(item: SignUpFormProps): SignUpFormProps | undefined {
-        return item.email && item.password ? item : undefined
+        return item.email && item.password ? item : undefined;
     }
 }

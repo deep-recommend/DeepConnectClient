@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { MyPageSettingComponent } from './my-page-setting.component'
-import { MyPageSettingResolverService } from './my-page-setting.resolver'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MyPageSettingComponent } from './my-page-setting.component';
+import { MyPageSettingResolverService } from './my-page-setting.resolver';
 
 const routes: Routes = [
     {
@@ -10,7 +10,7 @@ const routes: Routes = [
         data: { title: 'プロフィール編集' },
         resolve: { from: MyPageSettingResolverService },
     },
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

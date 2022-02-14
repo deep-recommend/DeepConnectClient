@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core'
-import * as Payjp from 'payjp'
+import { Injectable } from '@angular/core';
+import * as Payjp from 'payjp';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PayjpService {
-    private readonly _payjp = Payjp('sk_test_c62fade9d045b54cd76d7036')
+    private readonly _payjp = Payjp('sk_test_c62fade9d045b54cd76d7036');
 
     constructor() {}
 
@@ -17,6 +17,8 @@ export class PayjpService {
                 card: 'tokenid_by_Checkout_or_payjp.js',
             })
             .then((charge: Payjp.Charge) => console.log(charge))
-            .catch((e: Payjp.ResponseError) => console.error(e.response!.body as Payjp.PayjpError))
+            .catch((e: Payjp.ResponseError) =>
+                console.error(e.response!.body as Payjp.PayjpError)
+            );
     }
 }

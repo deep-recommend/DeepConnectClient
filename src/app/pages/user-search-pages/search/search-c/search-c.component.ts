@@ -1,9 +1,9 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
-import { UserSearchProps } from 'src/app/general/interfaces/user-search.interface'
-import { UserQuery } from 'src/app/states/user/user.query'
-import { UserStore } from 'src/app/states/user/user.store'
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UserSearchProps } from 'src/app/general/interfaces/user-search.interface';
+import { UserQuery } from 'src/app/states/user/user.query';
+import { UserStore } from 'src/app/states/user/user.store';
 
 @Component({
     selector: 'app-search-c',
@@ -11,14 +11,15 @@ import { UserStore } from 'src/app/states/user/user.store'
     styleUrls: ['./search-c.component.scss'],
 })
 export class SearchCComponent {
-    positions$: Observable<string[]> = this.userQuery.positions$
-    genders$: Observable<string[]> = this.userQuery.genders$
-    years$: Observable<number[]> = this.userQuery.years$
-    months$: Observable<number[]> = this.userQuery.months$
-    days$: Observable<number[]> = this.userQuery.days$
-    birthPlaces$: Observable<string[]> = this.userQuery.birthPlaces$
-    brothersAndSisters$: Observable<string[]> = this.userQuery.brothersAndSisters$
-    holiday$: Observable<string[]> = this.userQuery.holiday$
+    positions$: Observable<string[]> = this.userQuery.positions$;
+    genders$: Observable<string[]> = this.userQuery.genders$;
+    years$: Observable<number[]> = this.userQuery.years$;
+    months$: Observable<number[]> = this.userQuery.months$;
+    days$: Observable<number[]> = this.userQuery.days$;
+    birthPlaces$: Observable<string[]> = this.userQuery.birthPlaces$;
+    brothersAndSisters$: Observable<string[]> =
+        this.userQuery.brothersAndSisters$;
+    holiday$: Observable<string[]> = this.userQuery.holiday$;
 
     constructor(
         private readonly userQuery: UserQuery,
@@ -46,7 +47,7 @@ export class SearchCComponent {
             isSmoking: searchFormValue.isSmoking ?? undefined,
             hasPet: searchFormValue.hasPet ?? undefined,
             isMarried: searchFormValue.isMarried ?? undefined,
-        })
-        this.router.navigate(['/'])
+        });
+        this.router.navigate(['/']);
     }
 }

@@ -1,6 +1,11 @@
 <ul *ngFor="let item of footerSnsItem; let i = index">
     <li *ngIf="item.hrefLink">
-        <a [href]="item.hrefLink" target="_blank" rel="noopener noreferrer" style="color: #00ff00">
+        <a
+            [href]="item.hrefLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color: #00ff00"
+        >
             <mat-icon>{{ item.icon }}</mat-icon>
             <span>{{ item.label }}</span>
         </a>

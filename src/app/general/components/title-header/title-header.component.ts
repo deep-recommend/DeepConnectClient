@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
-import { Observable } from 'rxjs'
-import { UiQuery } from 'src/app/states/ui/ui.query'
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UiQuery } from 'src/app/states/ui/ui.query';
 
 @Component({
     selector: 'app-title-header',
@@ -8,7 +8,7 @@ import { UiQuery } from 'src/app/states/ui/ui.query'
     styleUrls: ['./title-header.component.scss'],
 })
 export class TitleHeaderComponent {
-    pageName$: Observable<string> = this.uiQuery.pageName$
+    pageName$: Observable<string> = this.uiQuery.pageName$;
 
     constructor(private readonly uiQuery: UiQuery) {}
 }

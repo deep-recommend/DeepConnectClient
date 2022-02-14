@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms'
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export interface SignInProps {
     email: string;
@@ -7,6 +7,12 @@ export interface SignInProps {
 }
 
 export interface SignInFormProps {
-    email: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
-    password: (string | ((control: AbstractControl) => ValidationErrors | null)[])[]
+    email: (
+        | string
+        | ((control: AbstractControl) => ValidationErrors | null)[]
+    )[];
+    password: (
+        | string
+        | ((control: AbstractControl) => ValidationErrors | null)[]
+    )[];
 }

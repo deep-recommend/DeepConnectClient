@@ -1,4 +1,8 @@
-<form [formGroup]="userSearchForm" (ngSubmit)="onSubmitUserSearch()" class="form">
+<form
+    [formGroup]="userSearchForm"
+    (ngSubmit)="onSubmitUserSearch()"
+    class="form"
+>
     <mat-card-content fxLayout="column">
         <mat-form-field>
             <mat-label>性別</mat-label>
@@ -18,12 +22,15 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>身長(cm)</mat-label>
-            <input matInput formControlName="height">
+            <input matInput formControlName="height" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>出身</mat-label>
             <mat-select formControlName="birthPlace">
-                <mat-option *ngFor="let birthPlace of birthPlaces" [value]="birthPlace">
+                <mat-option
+                    *ngFor="let birthPlace of birthPlaces"
+                    [value]="birthPlace"
+                >
                     {{ birthPlace }}
                 </mat-option>
             </mat-select>
@@ -43,7 +50,10 @@
         <mat-form-field>
             <mat-label>兄弟姉妹</mat-label>
             <mat-select formControlName="brothersAndSisters">
-                <mat-option *ngFor="let brotherAndSister of brothersAndSisters" [value]="brotherAndSister">
+                <mat-option
+                    *ngFor="let brotherAndSister of brothersAndSisters"
+                    [value]="brotherAndSister"
+                >
                     {{ brotherAndSister }}
                 </mat-option>
             </mat-select>
@@ -101,7 +111,11 @@
             </mat-select>
         </mat-form-field>
     </mat-card-content>
-    <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+    <mat-card-actions
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="16px"
+    >
         <button mat-raised-button class="search-button">検索する</button>
     </mat-card-actions>
 </form>

@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core'
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { forkJoin, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { LikeService } from 'src/app/states/like/like.service'
-import { UserService } from 'src/app/states/user/user.service'
+import { Injectable } from '@angular/core';
+import {
+    ActivatedRouteSnapshot,
+    Resolve,
+    RouterStateSnapshot,
+} from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/general/services/authentication.service';
+import { LikeService } from 'src/app/states/like/like.service';
+import { UserService } from 'src/app/states/user/user.service';
 
 @Injectable()
 export class LikeFromMeResolverService implements Resolve<Observable<void>> {
@@ -14,13 +18,14 @@ export class LikeFromMeResolverService implements Resolve<Observable<void>> {
         private readonly authenticationService: AuthenticationService
     ) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<void> {
         return forkJoin(
             this.userService.getLikedFromMeUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
-        ).pipe(
-            map((observer) => void observer)
-        )
+        ).pipe(map((observer) => void observer));
     }
 }

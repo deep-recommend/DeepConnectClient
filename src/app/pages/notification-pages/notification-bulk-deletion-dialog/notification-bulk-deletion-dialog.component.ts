@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-import { SocketService } from 'src/app/libs/socket/socket.service'
-import { NotificationQuery } from 'src/app/states/notification/notification.query'
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SocketService } from 'src/app/libs/socket/socket.service';
+import { NotificationQuery } from 'src/app/states/notification/notification.query';
 
 @Component({
     selector: 'app-notification-bulk-deletion-dialog',
@@ -19,8 +19,8 @@ export class NotificationBulkDeletionDialogComponent implements OnInit {
 
     deleteNotifications(): void {
         this.notificationQuery.notificationAll.forEach((data) => {
-            this.socket.notificationDecrease(data.id)
-        })
-        this.dialog.closeAll()
+            this.socket.notificationDecrease(data.id);
+        });
+        this.dialog.closeAll();
     }
 }

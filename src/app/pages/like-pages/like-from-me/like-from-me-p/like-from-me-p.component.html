@@ -1,9 +1,10 @@
 <div class="container">
     <ng-container *ngFor="let user of users" class="user">
         <app-like-from-me-detail-p
-          [user]="user"
-          [profile]="profile"
-          [currentUserId]="currentUserId"
+            [user]="user"
+            [profile]="profile"
+            [currentUserId]="currentUserId"
+            (clickToDetails)="onClickToDetails($event)"
         ></app-like-from-me-detail-p>
     </ng-container>
 </div>

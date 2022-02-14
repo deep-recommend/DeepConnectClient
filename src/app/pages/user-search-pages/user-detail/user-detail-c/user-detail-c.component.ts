@@ -1,9 +1,9 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable } from 'rxjs'
-import { SocketService } from 'src/app/libs/socket/socket.service'
-import { UserProps } from 'src/app/states/user/user.model'
-import { UserQuery } from 'src/app/states/user/user.query'
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SocketService } from 'src/app/libs/socket/socket.service';
+import { UserProps } from 'src/app/states/user/user.model';
+import { UserQuery } from 'src/app/states/user/user.query';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -11,10 +11,10 @@ import { UserQuery } from 'src/app/states/user/user.query'
     styleUrls: ['./user-detail-c.component.scss'],
 })
 export class UserDetailCComponent {
-    profile: UserProps = this.userQuery.profileGetter
-    detailUser: UserProps = this.userQuery.detailUserGetter
-    detailUser$: Observable<UserProps> = this.userQuery.detailUser$
-    currentUserId$: Observable<number> = this.userQuery.currentUserId$
+    profile: UserProps = this.userQuery.profileGetter;
+    detailUser: UserProps = this.userQuery.detailUserGetter;
+    detailUser$: Observable<UserProps> = this.userQuery.detailUser$;
+    currentUserId$: Observable<number> = this.userQuery.currentUserId$;
 
     constructor(
         private readonly userQuery: UserQuery,
@@ -23,32 +23,32 @@ export class UserDetailCComponent {
     ) {}
 
     onReceivedClickLikeButton(userId: number): void {
-        this._setLike(userId)
-        this._setNotificationIncrease(userId)
+        this._setLike(userId);
+        this._setNotificationIncrease(userId);
     }
 
     onReceivedClickUnlikeButton(userId: number): void {
-        this._setUnlike(userId)
+        this._setUnlike(userId);
     }
 
     onReceivedClickUserToMessage(userId: number): void {
-        this.router.navigate([`/message-room/${userId}`])
+        this.router.navigate([`/message-room/${userId}`]);
     }
 
     private _setLike(userId: number): void {
         const value = {
             currentUserId: this.profile.id,
             userId: userId,
-        }
-        this.socket.like(value)
+        };
+        this.socket.like(value);
     }
 
     private _setUnlike(userId: number): void {
         const query = {
             currentUserId: this.profile.id,
             userId: userId,
-        }
-        this.socket.unlike(query)
+        };
+        this.socket.unlike(query);
     }
 
     private _setNotificationIncrease(userId: number): void {
@@ -56,7 +56,7 @@ export class UserDetailCComponent {
             isMessage: false,
             currentUserId: this.profile.id,
             userId: userId,
-        }
-        this.socket.notificationIncrease(value)
+        };
+        this.socket.notificationIncrease(value);
     }
 }

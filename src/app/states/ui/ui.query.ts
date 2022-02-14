@@ -1,39 +1,41 @@
-import { Injectable } from '@angular/core'
-import { Query } from '@datorama/akita'
-import { UiStore } from './ui.store'
-import { UiState } from './ui.model'
+import { Injectable } from '@angular/core';
+import { Query } from '@datorama/akita';
+import { UiStore } from './ui.store';
+import { UiState } from './ui.model';
 
 @Injectable({ providedIn: 'root' })
 export class UiQuery extends Query<UiState> {
-    ui$ = this.select('ui')
-    authErrMsg$ = this.select((state) => state.ui.authErrMsg)
-    pageName$ = this.select((state) => state.ui.pageName)
+    ui$ = this.select('ui');
+    authErrMsg$ = this.select((state) => state.ui.authErrMsg);
+    pageName$ = this.select((state) => state.ui.pageName);
 
-    header$ = this.select('header')
-    headerAccountMenus$ = this.select((state) => state.header.accountMenus)
-    isVisibleHeaders$ = this.select((state) => state.header.isVisible)
+    header$ = this.select('header');
+    headerAccountMenus$ = this.select((state) => state.header.accountMenus);
+    isVisibleHeaders$ = this.select((state) => state.header.isVisible);
 
-    sideNav$ = this.select('sideNav')
-    sideNavMenus$ = this.select((state) => state.sideNav.menus)
-    isSideNavFullMenuVisible$ = this.select((state) => state.sideNav.isFullMenuVisible)
+    sideNav$ = this.select('sideNav');
+    sideNavMenus$ = this.select((state) => state.sideNav.menus);
+    isSideNavFullMenuVisible$ = this.select(
+        (state) => state.sideNav.isFullMenuVisible
+    );
 
-    footer$ = this.select('footer')
-    footerLawItems$ = this.select((state) => state.footer.footerLawItems)
-    footerSnsItems$ = this.select((state) => state.footer.footerSnsItems)
+    footer$ = this.select('footer');
+    footerLawItems$ = this.select((state) => state.footer.footerLawItems);
+    footerSnsItems$ = this.select((state) => state.footer.footerSnsItems);
 
     get pageNameGetter(): string {
-        return this.getValue().ui.pageName
+        return this.getValue().ui.pageName;
     }
 
     get isSideNavFullMenuVisible(): boolean {
-        return this.getValue().sideNav.isFullMenuVisible
+        return this.getValue().sideNav.isFullMenuVisible;
     }
 
     get isSideNavLocked(): boolean {
-        return this.getValue().sideNav.isLocked
+        return this.getValue().sideNav.isLocked;
     }
 
     constructor(protected readonly store: UiStore) {
-        super(store)
+        super(store);
     }
 }

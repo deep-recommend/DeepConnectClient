@@ -5,7 +5,9 @@ import { SideNavMenuProps } from '../../interfaces/layout/sidenav-menu.interface
 
 export type SideNavMenu = Readonly<Required<SideNavMenuProps>>;
 
-const validateHeaderIconMenu: (props: SideNavMenuProps) => void = (props: SideNavMenuProps) => {
+const validateHeaderIconMenu: (props: SideNavMenuProps) => void = (
+    props: SideNavMenuProps
+) => {
     if (!props.icon) {
         throw new ValidationError('tooltip is required property.');
     }
@@ -18,11 +20,15 @@ const validateHeaderIconMenu: (props: SideNavMenuProps) => void = (props: SideNa
         (props.hrefLink && (props.routerLink || props.disabled)) ||
         (props.disabled && (props.routerLink || props.hrefLink))
     ) {
-        throw new ValidationError('routerLink, hrefLink, and disabled are exclusive');
+        throw new ValidationError(
+            'routerLink, hrefLink, and disabled are exclusive'
+        );
     }
 };
 
-export const createSideNavMenu: (props: SideNavMenuProps) => SideNavMenu = (props: SideNavMenuProps) => {
+export const createSideNavMenu: (props: SideNavMenuProps) => SideNavMenu = (
+    props: SideNavMenuProps
+) => {
     validateHeaderIconMenu(props);
     return Object.freeze({
         icon: props.icon,
@@ -34,9 +40,14 @@ export const createSideNavMenu: (props: SideNavMenuProps) => SideNavMenu = (prop
     });
 };
 
-export const changeSideNavMenu: (sideNavMenu: SideNavMenu, props: PartialDeep<SideNavMenuProps>) => SideNavMenu = (
+export const changeSideNavMenu: (
+    sideNavMenu: SideNavMenu,
+    props: PartialDeep<SideNavMenuProps>
+) => SideNavMenu = (
     sideNavMenu: SideNavMenu,
     props: PartialDeep<SideNavMenuProps>
 ) => {
-    return createSideNavMenu(merge<SideNavMenu, PartialDeep<SideNavMenuProps>>(sideNavMenu, props));
+    return createSideNavMenu(
+        merge<SideNavMenu, PartialDeep<SideNavMenuProps>>(sideNavMenu, props)
+    );
 };

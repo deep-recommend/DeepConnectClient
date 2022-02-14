@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { UiQuery } from 'src/app/states/ui/ui.query'
+import { Component, OnInit } from '@angular/core';
+import { UiQuery } from 'src/app/states/ui/ui.query';
 
 @Component({
     selector: 'app-footer-c',
@@ -7,8 +7,8 @@ import { UiQuery } from 'src/app/states/ui/ui.query'
     styleUrls: ['./footer-c.component.scss'],
 })
 export class FooterCComponent implements OnInit {
-    footerLawItem$ = this.uiQuery.footerLawItems$
-    footerSnsItem$ = this.uiQuery.footerSnsItems$
+    footerLawItem$ = this.uiQuery.footerLawItems$;
+    footerSnsItem$ = this.uiQuery.footerSnsItems$;
 
     constructor(private readonly uiQuery: UiQuery) {}
 

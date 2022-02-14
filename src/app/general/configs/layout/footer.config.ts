@@ -1,4 +1,7 @@
-import { createFooterItem, FooterItem } from '../../domains/layout/footer.domain';
+import {
+    createFooterItem,
+    FooterItem,
+} from '../../domains/layout/footer.domain';
 
 export const footerLawItem: FooterItem[] = [
     createFooterItem({
@@ -47,7 +50,8 @@ export const footerSnsItem: FooterItem[] = [
     createFooterItem({
         icon: 'public',
         label: 'YouTube',
-        hrefLink: 'https://www.youtube.com/channel/UCSPkV4QQmj_hT1LA-CAtUPg/featured',
+        hrefLink:
+            'https://www.youtube.com/channel/UCSPkV4QQmj_hT1LA-CAtUPg/featured',
     }),
     createFooterItem({
         icon: 'public',

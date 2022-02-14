@@ -1,10 +1,10 @@
 export interface ActionButton {
-    icon: string
-    label: string
-    disabled: boolean
+    icon: string;
+    label: string;
+    disabled: boolean;
 }
 
 export interface Counter {
-    count: number
-    label: string
+    count: number;
+    label: string;
 }

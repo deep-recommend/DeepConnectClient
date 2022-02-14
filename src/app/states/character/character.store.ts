@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
-import { CharacterProps } from './character.model'
+import { Injectable } from '@angular/core';
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { CharacterProps } from './character.model';
 
 export interface CharacterState extends EntityState<CharacterProps> {}
 
@@ -10,6 +10,6 @@ export interface CharacterState extends EntityState<CharacterProps> {}
 })
 export class CharacterStore extends EntityStore<CharacterState> {
     constructor() {
-        super()
+        super();
     }
 }

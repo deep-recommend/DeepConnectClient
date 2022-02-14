@@ -4,9 +4,7 @@ import { CharacterStore, CharacterState } from './character.store';
 
 @Injectable({ providedIn: 'root' })
 export class CharacterQuery extends QueryEntity<CharacterState> {
-
-  constructor(protected store: CharacterStore) {
-    super(store);
-  }
-
+    constructor(protected store: CharacterStore) {
+        super(store);
+    }
 }

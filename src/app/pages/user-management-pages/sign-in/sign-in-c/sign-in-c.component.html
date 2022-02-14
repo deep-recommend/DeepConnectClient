@@ -1,4 +1,7 @@
 <div class="container">
     <app-wave></app-wave>
-    <app-sign-in-p [error]="errMsg$ | async" (signIn)="onReceivedClickSignIn($event)"></app-sign-in-p>
+    <app-sign-in-p
+        [error]="errMsg$ | async"
+        (signIn)="onReceivedClickSignIn($event)"
+    ></app-sign-in-p>
 </div>

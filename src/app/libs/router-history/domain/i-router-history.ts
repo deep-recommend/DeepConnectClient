@@ -1,5 +1,5 @@
 export interface IRouterHistory {
-    previousUrl: string
-    currentUrl: string
-    histories: string[]
+    previousUrl: string;
+    currentUrl: string;
+    histories: string[];
 }

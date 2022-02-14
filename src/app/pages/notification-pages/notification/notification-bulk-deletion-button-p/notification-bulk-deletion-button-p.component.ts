@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
-import { NotificationBulkDeletionDialogComponent } from '../../notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationBulkDeletionDialogComponent } from '../../notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component';
 
 @Component({
     selector: 'app-notification-bulk-deletion-button-p',
@@ -14,6 +14,6 @@ export class NotificationBulkDeletionButtonPComponent implements OnInit {
     ngOnInit(): void {}
 
     openDialogBulkDeletion(): void {
-        this.dialog.open(NotificationBulkDeletionDialogComponent)
+        this.dialog.open(NotificationBulkDeletionDialogComponent);
     }
 }

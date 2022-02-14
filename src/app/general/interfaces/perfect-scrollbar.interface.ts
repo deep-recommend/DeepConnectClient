@@ -1,6 +1,8 @@
 import { InjectionToken } from '@angular/core';
 
-export const PERFECT_SCROLLBAR_CONFIG = new InjectionToken('PERFECT_SCROLLBAR_CONFIG');
+export const PERFECT_SCROLLBAR_CONFIG = new InjectionToken(
+    'PERFECT_SCROLLBAR_CONFIG'
+);
 
 export class Geometry {
     public x: number;
@@ -101,7 +103,9 @@ export class PerfectScrollbarConfig implements PerfectScrollbarConfigInterface {
 
     public assign(config: PerfectScrollbarConfigInterface = {}) {
         for (const key in config) {
-            this[key as keyof PerfectScrollbarConfig] = config[key as keyof PerfectScrollbarConfigInterface] as never;
+            this[key as keyof PerfectScrollbarConfig] = config[
+                key as keyof PerfectScrollbarConfigInterface
+            ] as never;
         }
     }
 }

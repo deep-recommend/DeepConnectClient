@@ -1,12 +1,18 @@
 <div class="box">
-  <div><mat-icon color="warn">delete</mat-icon></div>
-  <div><strong>本当に削除しますか?</strong><br/>※失ったデータは二度と復元することはできません</div>
-  <div class="button">
-    <button mat-button [mat-dialog-close]="true">
-      閉じる
-    </button>
-    <button mat-button color="warn" (click)="deleteNotifications()" class="action">
-      削除
-    </button>
-  </div>
+    <div><mat-icon color="warn">delete</mat-icon></div>
+    <div>
+        <strong>本当に削除しますか?</strong
+        ><br />※失ったデータは二度と復元することはできません
+    </div>
+    <div class="button">
+        <button mat-button [mat-dialog-close]="true">閉じる</button>
+        <button
+            mat-button
+            color="warn"
+            (click)="deleteNotifications()"
+            class="action"
+        >
+            削除
+        </button>
+    </div>
 </div>

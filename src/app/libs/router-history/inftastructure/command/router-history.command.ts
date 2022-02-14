@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
-import { RouterHistory } from '../../domain/router-history'
-import { RouterHistoryStore } from '../store/router-history.store'
+import { Injectable } from '@angular/core';
+import { RouterHistory } from '../../domain/router-history';
+import { RouterHistoryStore } from '../store/router-history.store';
 
 @Injectable({ providedIn: 'root' })
 export class RouterHistoryCommand {
@@ -11,6 +11,6 @@ export class RouterHistoryCommand {
             previousUrl: routerHistory.previousUrl,
             currentUrl: routerHistory.currentUrl,
             histories: routerHistory.histories,
-        })
+        });
     }
 }

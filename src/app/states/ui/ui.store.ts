@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core'
-import { Store, StoreConfig } from '@datorama/akita'
-import { footerLawItem, footerSnsItem } from 'src/app/general/configs/layout/footer.config'
-import { headerAccountMenu } from 'src/app/general/configs/layout/header.config'
-import { sideNavMenu } from 'src/app/general/configs/layout/sidenav.config'
-import { UiState } from './ui.model'
+import { Injectable } from '@angular/core';
+import { Store, StoreConfig } from '@datorama/akita';
+import {
+    footerLawItem,
+    footerSnsItem,
+} from 'src/app/general/configs/layout/footer.config';
+import { headerAccountMenu } from 'src/app/general/configs/layout/header.config';
+import { sideNavMenu } from 'src/app/general/configs/layout/sidenav.config';
+import { UiState } from './ui.model';
 
 export const initialState: () => UiState = () => ({
     ui: {
@@ -23,45 +26,45 @@ export const initialState: () => UiState = () => ({
         footerLawItems: footerLawItem,
         footerSnsItems: footerSnsItem,
     },
-})
+});
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'ui' })
 export class UiStore extends Store<UiState> {
     constructor() {
-        super(initialState())
+        super(initialState());
     }
 
     displayErrMsg(errMsg: string): void {
-        this._configureErrMsg(errMsg)
+        this._configureErrMsg(errMsg);
     }
 
     displayPageName(pageName: string): void {
-        this._configurePageName(pageName)
+        this._configurePageName(pageName);
     }
 
     openSideNavFullMenu(): void {
-        this._configureSideNavIsFullMenuVisible(true)
+        this._configureSideNavIsFullMenuVisible(true);
     }
 
     closeSideNavFullMenu(): void {
-        this._configureSideNavIsFullMenuVisible(false)
+        this._configureSideNavIsFullMenuVisible(false);
     }
 
     lockSideNav(): void {
-        this._configureSideNavLock(true)
+        this._configureSideNavLock(true);
     }
 
     unlockSideNav(): void {
-        this._configureSideNavLock(false)
+        this._configureSideNavLock(false);
     }
 
     displayRoutingTab(): void {
-        this._configRoutingTabDisplay(true)
+        this._configRoutingTabDisplay(true);
     }
 
     hideRoutingTab(): void {
-        this._configRoutingTabDisplay(false)
+        this._configRoutingTabDisplay(false);
     }
 
     private _configureErrMsg(errMsg: string): void {
@@ -70,7 +73,7 @@ export class UiStore extends Store<UiState> {
                 ...this.getValue().ui,
                 authErrMsg: errMsg,
             },
-        })
+        });
     }
 
     private _configurePageName(pageName: string): void {
@@ -79,12 +82,12 @@ export class UiStore extends Store<UiState> {
                 ...this.getValue().ui,
                 pageName: pageName,
             },
-        })
+        });
     }
 
     private _configureSideNavIsFullMenuVisible(bool: boolean): void {
         if (this.getValue().sideNav.isLocked) {
-            return
+            return;
         }
 
         this.update({
@@ -92,7 +95,7 @@ export class UiStore extends Store<UiState> {
                 ...this.getValue().sideNav,
                 isFullMenuVisible: bool,
             },
-        })
+        });
     }
 
     private _configureSideNavLock(bool: boolean): void {
@@ -101,7 +104,7 @@ export class UiStore extends Store<UiState> {
                 ...this.getValue().sideNav,
                 isLocked: bool,
             },
-        })
+        });
     }
 
     private _configRoutingTabDisplay(bool: boolean): void {
@@ -110,6 +113,6 @@ export class UiStore extends Store<UiState> {
                 ...this.getValue().header,
                 isVisible: bool,
             },
-        })
+        });
     }
 }

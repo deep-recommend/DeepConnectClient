@@ -1,7 +1,10 @@
-import * as loadImage from 'blueimp-load-image'
-import { Observable } from 'rxjs'
+import * as loadImage from 'blueimp-load-image';
+import { Observable } from 'rxjs';
 
-export const toDataUrl = (file: string | File | Blob, options?: loadImage.LoadImageOptions): Observable<string> => {
+export const toDataUrl = (
+    file: string | File | Blob,
+    options?: loadImage.LoadImageOptions
+): Observable<string> => {
     return new Observable<string>((subscriber) => {
         loadImage(
             file,
@@ -15,6 +18,6 @@ export const toDataUrl = (file: string | File | Blob, options?: loadImage.LoadIm
                 orientation: true,
                 ...options,
             }
-        )
-    })
-}
+        );
+    });
+};

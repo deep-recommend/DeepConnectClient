@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input,  OnChanges,  OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 import { toBlob } from 'src/app/general/functions/to-blob';
 import { UserProps } from 'src/app/states/user/user.model';
 
@@ -12,15 +19,15 @@ export class MyPagePComponent implements OnInit, OnChanges {
     icon?: any;
 
     @Input() profile!: UserProps | null;
-    
+
     constructor() {}
 
     ngOnInit(): void {
-        this.getIcon()
+        this.getIcon();
     }
 
     ngOnChanges(): void {
-        this.getIcon()
+        this.getIcon();
     }
 
     getIcon(): void {

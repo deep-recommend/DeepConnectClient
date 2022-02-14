@@ -1,5 +1,5 @@
 export interface RouterLinkProps {
-    icon: string
-    label: string
-    link: string
+    icon: string;
+    label: string;
+    link: string;
 }

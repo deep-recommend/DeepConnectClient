@@ -1,1 +1,1 @@
-export const userIdKey: string = 'companionid'
+export const userIdKey: string = 'companionid';

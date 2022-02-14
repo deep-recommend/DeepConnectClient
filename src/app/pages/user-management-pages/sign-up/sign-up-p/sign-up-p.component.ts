@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { FormGroup, FormBuilder } from '@angular/forms'
-import { toDataUrl } from 'src/app/general/functions/to-dataurl'
-import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface'
-import { SignUpModel } from 'src/app/general/models/sign-up.model'
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+} from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { toDataUrl } from 'src/app/general/functions/to-dataurl';
+import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
+import { SignUpModel } from 'src/app/general/models/sign-up.model';
 
 @Component({
     selector: 'app-sign-up-p',
@@ -11,31 +18,34 @@ import { SignUpModel } from 'src/app/general/models/sign-up.model'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpPComponent implements OnInit {
-    hide: boolean = true
-    hide2: boolean = true
-    customFile: any
-    signUpFormInstance = new SignUpModel()
-    signUpForm: FormGroup = this.fb.group(this.signUpFormInstance.formGroupValue)
+    hide: boolean = true;
+    hide2: boolean = true;
+    customFile: any;
+    signUpFormInstance = new SignUpModel();
+    signUpForm: FormGroup = this.fb.group(
+        this.signUpFormInstance.formGroupValue
+    );
 
-    @Input() genders!: string[] | null
-    @Input() years!: number[] | null
-    @Input() months!: number[] | null
-    @Input() days!: number[] | null
-    @Input() birthPlaces!: string[] | null
+    @Input() genders!: string[] | null;
+    @Input() years!: number[] | null;
+    @Input() months!: number[] | null;
+    @Input() days!: number[] | null;
+    @Input() birthPlaces!: string[] | null;
 
-    @Output() signUp: EventEmitter<SignUpProps> = new EventEmitter<SignUpProps>()
+    @Output() signUp: EventEmitter<SignUpProps> =
+        new EventEmitter<SignUpProps>();
 
     constructor(private readonly fb: FormBuilder) {}
 
     ngOnInit(): void {}
 
     onClickSignUp(): void {
-        this.signUp.emit(this.signUpForm.value)
+        this.signUp.emit(this.signUpForm.value);
     }
 
     async inputProfilePicture(event?: any): Promise<void> {
-        const file = event.target.files[0]
+        const file = event.target.files[0];
         // const dataUrl = await toDataUrl(file)
-        this.signUpForm.controls.profilePicture.setValue(file)
+        this.signUpForm.controls.profilePicture.setValue(file);
     }
 }

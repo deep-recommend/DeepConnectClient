@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core'
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { forkJoin, merge, Observable } from 'rxjs'
-import { map, mergeMap } from 'rxjs/operators'
-import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service'
-import { AuthenticationService } from 'src/app/general/services/authentication.service'
-import { userIdKey } from 'src/app/general/utilities/local-strage'
-import { LikeService } from 'src/app/states/like/like.service'
-import { UiStore } from 'src/app/states/ui/ui.store'
-import { UserProps } from 'src/app/states/user/user.model'
-import { UserQuery } from 'src/app/states/user/user.query'
-import { UserService } from 'src/app/states/user/user.service'
+import { Injectable } from '@angular/core';
+import {
+    ActivatedRouteSnapshot,
+    Resolve,
+    RouterStateSnapshot,
+} from '@angular/router';
+import { forkJoin, merge, Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service';
+import { AuthenticationService } from 'src/app/general/services/authentication.service';
+import { userIdKey } from 'src/app/general/utilities/local-strage';
+import { LikeService } from 'src/app/states/like/like.service';
+import { UiStore } from 'src/app/states/ui/ui.store';
+import { UserProps } from 'src/app/states/user/user.model';
+import { UserQuery } from 'src/app/states/user/user.query';
+import { UserService } from 'src/app/states/user/user.service';
 
 @Injectable()
 export class UserDetailResolverService implements Resolve<Observable<void>> {
@@ -22,8 +26,11 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
         private readonly spinner: ProgressSpinnerService
     ) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
-        this.uiStore.displayPageName(route.data.title)
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<void> {
+        this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(
             this.userService.getUsersRequest(),
@@ -31,16 +38,22 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
             this.authenticationService.getProfile(),
             this._getUserDetail()
         ).pipe(
-            mergeMap(async () => this.uiStore.displayPageName(String(this.userQuery.detailUserGetter?.stageName))),
+            mergeMap(async () =>
+                this.uiStore.displayPageName(
+                    String(this.userQuery.detailUserGetter?.stageName)
+                )
+            ),
             mergeMap(async () => this.spinner.close()),
             map((observer) => void observer)
-        )
+        );
     }
 
     private _getUserDetail(): Observable<UserProps> {
-        const userId = this.userQuery.userIdGetter
+        const userId = this.userQuery.userIdGetter;
         return userId
             ? this.userService.getOnlyUserRequest(userId)
-            : this.userService.getOnlyUserRequest(Number(localStorage.getItem(userIdKey)))
+            : this.userService.getOnlyUserRequest(
+                  Number(localStorage.getItem(userIdKey))
+              );
     }
 }

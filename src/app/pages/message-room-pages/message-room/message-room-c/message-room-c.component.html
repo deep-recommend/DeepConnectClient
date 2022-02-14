@@ -13,7 +13,9 @@
         [profile]="profile$ | async"
         [companion]="companion$ | async"
         (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
-        (clickCompanionProfilePicture)="onReceivedClickCompanionProfilePicture($event)"
+        (clickCompanionProfilePicture)="
+            onReceivedClickCompanionProfilePicture($event)
+        "
     ></app-message-room-screen-p>
     <app-message-room-message-sender-p
         class="message-sender"
@@ -21,4 +23,3 @@
         (sendMessage)="onReceivedSendMessage($event)"
     ></app-message-room-message-sender-p>
 </div>
-

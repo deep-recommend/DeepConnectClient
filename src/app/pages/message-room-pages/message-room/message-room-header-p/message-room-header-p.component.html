@@ -1,13 +1,26 @@
 <mat-toolbar class="message-room-header">
     <div class="account-menu" (click)="onClickAccount(companion?.id)">
         <button mat-button>
-            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
-                <div *ngIf="companion?.profilePicture; then thenBlock else elseBlock"></div>
+            <div
+                fxLayout="row"
+                fxLayoutAlign="center center"
+                fxLayoutGap="12px"
+            >
+                <div
+                    *ngIf="
+                        companion?.profilePicture;
+                        then thenBlock;
+                        else elseBlock
+                    "
+                ></div>
                 <ng-template #thenBlock>
                     <img class="avatar" src="{{ companion?.profilePicture }}" />
                 </ng-template>
                 <ng-template #elseBlock>
-                    <img class="avatar" src="/assets/images/png/default-avatar.png" />
+                    <img
+                        class="avatar"
+                        src="/assets/images/png/default-avatar.png"
+                    />
                 </ng-template>
                 <span>{{ companion?.stageName }}</span>
             </div>

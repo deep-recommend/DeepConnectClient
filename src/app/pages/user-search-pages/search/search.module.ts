@@ -10,6 +10,6 @@ import { SearchResolverService } from './search.resolve';
 @NgModule({
     declarations: [SearchComponent, SearchCComponent, SearchFormPComponent],
     imports: [DeepRecommendSharedModule, SearchRoutingModule],
-    providers: [SearchResolverService]
+    providers: [SearchResolverService],
 })
 export class SearchModule {}

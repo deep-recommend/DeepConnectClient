@@ -3,28 +3,28 @@ import { UiService } from 'src/app/states/ui/ui.service';
 import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
-  selector: 'app-like-from-others-detail-p',
-  templateUrl: './like-from-others-detail-p.component.html',
-  styleUrls: ['./like-from-others-detail-p.component.scss']
+    selector: 'app-like-from-others-detail-p',
+    templateUrl: './like-from-others-detail-p.component.html',
+    styleUrls: ['./like-from-others-detail-p.component.scss'],
 })
 export class LikeFromOthersDetailPComponent implements OnInit {
-  @Input() user!: UserProps | null;
-  @Input() profile!: UserProps | null;
-  @Input() currentUserId!: number | null;
-  @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
+    @Input() user!: UserProps | null;
+    @Input() profile!: UserProps | null;
+    @Input() currentUserId!: number | null;
+    @Output() clickToDetails: EventEmitter<number> = new EventEmitter<number>();
 
-  alreadyLikedByOthers(): boolean {
-    return this.uiService.alreadyLikedByOthers(Number(this.currentUserId), Number(this.user?.id))
-  }
+    get alreadyLikedByOthers(): boolean {
+        return this.uiService.alreadyLikedByOthers(
+            Number(this.currentUserId),
+            Number(this.user?.id)
+        );
+    }
 
-  constructor(
-    private readonly uiService: UiService
-  ) { }
+    constructor(private readonly uiService: UiService) {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 
-  onClickUserToMessage(): void {
-    this.clickUsersToMessage.emit(this.user?.id)
-  }
+    onClickToDetails(): void {
+        this.clickToDetails.emit(this.user?.id);
+    }
 }

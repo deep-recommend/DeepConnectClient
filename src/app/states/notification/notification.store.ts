@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core'
-import { EntityState, EntityStore, StoreConfig } from '@datorama/akita'
-import { NotificationProps } from './notification.model'
+import { Injectable } from '@angular/core';
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { NotificationProps } from './notification.model';
 
 export interface NotificationState extends EntityState<NotificationProps> {
     ui: {
-        existsNotifications: boolean
-    }
+        existsNotifications: boolean;
+    };
 }
 
 const initialState = {
     ui: {
         existsNotifications: Boolean(),
     },
-}
+};
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
@@ -20,11 +20,11 @@ const initialState = {
 })
 export class NotificationStore extends EntityStore<NotificationState> {
     constructor() {
-        super(initialState)
+        super(initialState);
     }
 
     setNotification(notifications: NotificationProps[]): void {
-        this.set(notifications)
+        this.set(notifications);
     }
 
     updateExistsNotifications(bool: boolean): void {
@@ -33,6 +33,6 @@ export class NotificationStore extends EntityStore<NotificationState> {
                 ...this.getValue().ui,
                 existsNotifications: bool,
             },
-        })
+        });
     }
 }

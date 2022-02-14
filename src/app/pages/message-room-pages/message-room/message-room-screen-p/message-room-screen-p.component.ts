@@ -1,7 +1,16 @@
-import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core'
-import { relativeTime } from 'src/app/general/functions/moment'
-import { MessageProps } from 'src/app/states/message/message.model'
-import { UserProps } from 'src/app/states/user/user.model'
+import {
+    AfterViewChecked,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+} from '@angular/core';
+import { relativeTime } from 'src/app/general/functions/moment';
+import { MessageProps } from 'src/app/states/message/message.model';
+import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
     selector: 'app-message-room-screen-p',
@@ -9,33 +18,36 @@ import { UserProps } from 'src/app/states/user/user.model'
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
 export class MessageRoomScreenPComponent implements OnInit, AfterViewChecked {
-    @Input() currentRoomId!: number | null
-    @Input() messages!: MessageProps[] | null
-    @Input() profile!: UserProps | null
-    @Input() companion!: UserProps | null
-    @Output() clickMyProfilePicture: EventEmitter<void> = new EventEmitter<void>()
-    @Output() clickCompanionProfilePicture: EventEmitter<number> = new EventEmitter<number>()
-    @ViewChild('scroll') private scrollContainer!: ElementRef
+    @Input() currentRoomId!: number | null;
+    @Input() messages!: MessageProps[] | null;
+    @Input() profile!: UserProps | null;
+    @Input() companion!: UserProps | null;
+    @Output() clickMyProfilePicture: EventEmitter<void> =
+        new EventEmitter<void>();
+    @Output() clickCompanionProfilePicture: EventEmitter<number> =
+        new EventEmitter<number>();
+    @ViewChild('scroll') private scrollContainer!: ElementRef;
 
     constructor() {}
 
     ngOnInit(): void {}
 
     ngAfterViewChecked() {
-        this.scrollToBottom()
+        this.scrollToBottom();
     }
 
-    relativeTime = relativeTime
+    relativeTime = relativeTime;
 
     onClickMyProfilePicture(): void {
-        this.clickMyProfilePicture.emit()
+        this.clickMyProfilePicture.emit();
     }
 
     onClickCompanionProfilePicture(companionId: number | undefined): void {
-        this.clickCompanionProfilePicture.emit(companionId)
+        this.clickCompanionProfilePicture.emit(companionId);
     }
 
     scrollToBottom(): void {
-        this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight
+        this.scrollContainer.nativeElement.scrollTop =
+            this.scrollContainer.nativeElement.scrollHeight;
     }
 }

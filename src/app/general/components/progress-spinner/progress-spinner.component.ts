@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core'
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'progress-spinner',
@@ -14,5 +14,5 @@ import { Component, HostBinding } from '@angular/core'
 export class ProgressSpinnerComponent {
     constructor() {}
 
-    @HostBinding('@fadeInOut') fade: any
+    @HostBinding('@fadeInOut') fade: any;
 }

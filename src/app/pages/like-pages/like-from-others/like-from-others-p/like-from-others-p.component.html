@@ -1,10 +1,10 @@
 <div class="container">
     <ng-container *ngFor="let user of users" class="user">
         <app-like-from-others-detail-p
-          [user]="user"
-          [profile]="profile"
-          [currentUserId]="currentUserId"
-          (clickUsersToMessage)="onReceivedClickUserToMessage($event)"
+            [user]="user"
+            [profile]="profile"
+            [currentUserId]="currentUserId"
+            (clickToDetails)="onReceivedClickUserToMessage($event)"
         ></app-like-from-others-detail-p>
     </ng-container>
 </div>

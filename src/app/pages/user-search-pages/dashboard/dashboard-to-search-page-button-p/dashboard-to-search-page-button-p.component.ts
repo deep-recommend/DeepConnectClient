@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-dashboard-to-search-page-button-p',
@@ -6,13 +6,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core'
     styleUrls: ['./dashboard-to-search-page-button-p.component.scss'],
 })
 export class DashboardToSearchPageButtonPComponent implements OnInit {
-    @Output() clickSearchField: EventEmitter<void> = new EventEmitter<void>()
+    @Output() clickSearchField: EventEmitter<void> = new EventEmitter<void>();
 
     constructor() {}
 
     ngOnInit() {}
 
     onClickSearchField(): void {
-        this.clickSearchField.emit()
+        this.clickSearchField.emit();
     }
 }

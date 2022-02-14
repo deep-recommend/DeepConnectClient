@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { DashboardComponent } from './dashboard.component'
-import { DashboardResolverService } from './dashboard.resolver'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard.component';
+import { DashboardResolverService } from './dashboard.resolver';
 
 const routes: Routes = [
     {
@@ -10,7 +10,7 @@ const routes: Routes = [
         data: { title: 'ダッシュボード' },
         resolve: { from: DashboardResolverService },
     },
-]
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
