@@ -99,9 +99,9 @@ const routes: Routes = [
     {
         path: 'feature',
         loadChildren: () =>
-            import('./pages/feature-pages/feature/feature.module').then(
-                (m) => m.FeatureModule
-            ),
+            import(
+                './general/unused/feature-pages/feature/feature.module'
+            ).then((m) => m.FeatureModule),
         canActivate: [DeepRecommendGuard],
     },
     {

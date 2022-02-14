@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-matching-users',
-    templateUrl: './matching-users.component.html',
-    styleUrls: ['./matching-users.component.scss'],
+    template: `<app-matching-users-c></app-matching-users-c>`,
 })
-export class MatchingUsersComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class MatchingUsersComponent {}

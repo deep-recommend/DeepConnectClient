@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-like-from-me',
-    templateUrl: './like-from-me.component.html',
-    styleUrls: ['./like-from-me.component.scss'],
+    template: `<app-like-from-me-c></app-like-from-me-c>`,
 })
-export class LikeFromMeComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class LikeFromMeComponent {}
