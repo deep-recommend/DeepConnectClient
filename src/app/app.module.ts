@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
 import { SocketIoModule } from 'ngx-socket-io';
 import { apiHostPort } from './general/utilities/api';
-import { WINDOW_PROVIDERS } from './window-token';
+import { WINDOW_PROVIDERS } from './general/utilities/window-token';
 
 @NgModule({
     declarations: [AppComponent],
