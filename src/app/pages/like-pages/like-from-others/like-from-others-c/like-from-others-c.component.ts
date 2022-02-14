@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, Subscription, merge } from 'rxjs'
+import { Observable, Subscription} from 'rxjs'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { LikeProps } from 'src/app/states/like/like.model'
 import { LikeQuery } from 'src/app/states/like/like.query'
@@ -15,7 +15,7 @@ import { UserStore } from 'src/app/states/user/user.store'
     templateUrl: './like-from-others-c.component.html',
     styleUrls: ['./like-from-others-c.component.scss'],
 })
-export class LikeFromOthersCComponent implements OnInit, OnDestroy {
+export class LikeFromOthersCComponent {
     subscription!: Subscription
 
     currentUserId$: Observable<number> = this.userQuery.currentUserId$
@@ -32,18 +32,6 @@ export class LikeFromOthersCComponent implements OnInit, OnDestroy {
         private readonly likeQuery: LikeQuery,
         private readonly userStore: UserStore
     ) {}
-
-    ngOnInit(): void {
-        this.subscription = merge(
-            this.userService.getUsersRequest(),
-            this.likeService.getLikes(),
-            this.authenticationService.getProfile()
-        ).subscribe()
-    }
-
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe()
-    }
 
     onReceivedClickUserToMessage(userId: number): void {
         this.userService.getCompanionRequest(userId).subscribe(() => {

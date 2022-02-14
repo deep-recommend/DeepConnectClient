@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { merge, Observable } from 'rxjs'
-import { last, map, mergeMap } from 'rxjs/operators'
-import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service'
+import { forkJoin, Observable } from 'rxjs'
+import { last, map } from 'rxjs/operators'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { LikeService } from 'src/app/states/like/like.service'
 import { UiStore } from 'src/app/states/ui/ui.store'
@@ -15,14 +14,13 @@ export class DashboardResolverService implements Resolve<Observable<void>> {
         private readonly likeService: LikeService,
         private readonly authenticationService: AuthenticationService,
         private readonly uiStore: UiStore,
-        private readonly spinner: ProgressSpinnerService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
         this.uiStore.displayPageName(route.data.title)
 
-        return merge(
-            this.userService.getUsersRequest(),
+        return forkJoin(
+            this.userService.getUsersAllRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(

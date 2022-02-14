@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, Input } from '@angular/core'
-import { UserProps } from 'src/app/states/user/user.model'
+import { RoomProps } from 'src/app/states/room/room.model'
 
 @Component({
     selector: 'app-no-matching-users-p',
@@ -8,7 +8,7 @@ import { UserProps } from 'src/app/states/user/user.model'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoMatchingUsersPComponent implements OnInit {
-    @Input() users!: UserProps[] | null
+    @Input() rooms!: RoomProps[] | null
     
     constructor() {}
 

@@ -25,6 +25,10 @@ export class RoomStore extends EntityStore<RoomState> {
         super(initialState)
     }
 
+    setRooms(rooms: RoomProps[]): void {
+        this.set(rooms);
+    }
+
     updateRoomToTrue(): void {
         this.update({
             ui: {

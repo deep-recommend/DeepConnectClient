@@ -13,7 +13,7 @@ export class UiService {
             o.currentUserId === currentUserId
         ).map(o => o.userId)
         const isLike = includes(likeUserIds, userId)
-        return isLike
+        return isLike;
     }
 
     alreadyLikedByOthers(currentUserId: number, userId: number): boolean {
@@ -21,7 +21,7 @@ export class UiService {
                 o.currentUserId === userId
         ).map(o => o.userId)
         const isLike = includes(likeUserIds, currentUserId)
-        return isLike
+        return isLike;
     }
 
     isMatching(currentUserId: number, userId: number): boolean {
@@ -33,6 +33,6 @@ export class UiService {
         }).map(o => o.currentUserId)
         const likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds)
         const isMatching = likeEachOther.length !== 0
-        return isMatching
+        return isMatching;
     }
 }

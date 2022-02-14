@@ -1,31 +1,23 @@
-<ng-container *ngIf="profile?.id !== user?.id && isMatching">
-    <mat-card
-        fxLayout="row"
-        fxLayoutAlign="space-between"
-        class="card"
-        (click)="onClickUserToMessage()"
-    >
-        <div fxLayout="row">
-            <div
-                *ngIf="user?.profilePicture; then thenBlock; else elseBlock"
-            ></div>
-            <ng-template #thenBlock>
-                <img src="{{ user?.profilePicture }}" class="image" />
-            </ng-template>
-            <ng-template #elseBlock>
-                <img
-                    src="/assets/images/png/default-avatar.png"
-                    class="image"
-                />
-            </ng-template>
-            <mat-card-header>
-                <mat-card-title> {{ user?.stageName }}</mat-card-title>
-                <mat-card-subtitle
-                    >{{ user?.birthPlace }}&nbsp;&nbsp;{{
-                        user?.position
-                    }}</mat-card-subtitle
-                >
-            </mat-card-header>
-        </div>
-    </mat-card>
-</ng-container>
+<mat-card
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    class="card"
+    (click)="onClickUserToMessage()"
+>
+    <div fxLayout="row">
+        <img *ngIf="user?.profilePicture" src="{{ user?.profilePicture }}" class="image" />
+        <img
+            *ngIf="!user?.profilePicture"
+            src="/assets/images/png/default-avatar.png"
+            class="image"
+        />
+        <mat-card-header>
+            <mat-card-title> {{ user?.stageName }}</mat-card-title>
+            <mat-card-subtitle
+                >{{ user?.birthPlace }}&nbsp;&nbsp;{{
+                    user?.position
+                }}</mat-card-subtitle
+            >
+        </mat-card-header>
+    </div>
+</mat-card>

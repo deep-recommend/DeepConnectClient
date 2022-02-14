@@ -1,9 +1,7 @@
 <div class="container">
-    <ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let room of rooms">
         <app-matching-users-detail-p
-            [user]="user"
-            [profile]="profile"
-            [currentUserId]="currentUserId"
+            [room]="room"
             (clickUsersToMessage)="onReceivedClickUserToMessage($event)"
         ></app-matching-users-detail-p>
     </ng-container>

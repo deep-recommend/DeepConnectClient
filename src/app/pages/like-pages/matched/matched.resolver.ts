@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { merge, Observable } from 'rxjs'
-import { first, map } from 'rxjs/operators'
+import { forkJoin, Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { LikeService } from 'src/app/states/like/like.service'
 import { UserService } from 'src/app/states/user/user.service'
@@ -15,12 +15,11 @@ export class MatchedResolverService implements Resolve<Observable<void>> {
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
-        return merge(
+        return forkJoin(
             this.userService.getMatchedUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
         ).pipe(
-            first(),
             map((observer) => void observer)
         )
     }

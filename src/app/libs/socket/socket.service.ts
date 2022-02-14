@@ -25,17 +25,14 @@ export class SocketService {
 
     unlike(query: any): void {
         this.socketEmitter.emitUnlike(query)
-        this.socketReceiver.receiveUnlike()
     }
 
     notificationIncrease(data: any): void {
         this.socketEmitter.emitNotificationIncrease(data)
-        this.socketReceiver.receiveNotificationIncrease()
     }
 
     notificationDecrease(id: any): void {
         this.socketEmitter.emitNotificationDecrease(id)
-        this.socketReceiver.receiveNotificationDecrease()
     }
 
     notificationDecreaseWithoutReceive(id: any): void {

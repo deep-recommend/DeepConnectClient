@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { UiService } from 'src/app/states/ui/ui.service';
+import { RoomProps } from 'src/app/states/room/room.model';
 import { UserProps } from 'src/app/states/user/user.model';
+import { UserService } from 'src/app/states/user/user.service';
 
 @Component({
   selector: 'app-matching-users-detail-p',
@@ -9,23 +9,22 @@ import { UserProps } from 'src/app/states/user/user.model';
   styleUrls: ['./matching-users-detail-p.component.scss']
 })
 export class MatchingUsersDetailPComponent implements OnInit {
-  @Input() currentUserId!: number | null
-  @Input() profile!: UserProps | null;
-  @Input() user!: UserProps | null;
+  user?: UserProps;
+
+  @Input() room!: RoomProps | null;
   @Output() clickUsersToMessage: EventEmitter<number> = new EventEmitter<number>();
 
-  isMatching(): boolean {
-    return this.uiService.isMatching(Number(this.currentUserId), Number(this.user?.id))
-  }
-
   constructor(
-    private readonly uiService: UiService,
+    private readonly userService: UserService
   ) { }
 
   ngOnInit(): void {
+    // this.userService.getOnlyUserRequest(Number(this.room?.userId)).subscribe(user => {
+    //   this.user = user
+    // })
   }
 
   onClickUserToMessage(): void {
-    this.clickUsersToMessage.emit(this.user?.id)
+    this.clickUsersToMessage.emit(this.room?.userId)
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { tap } from 'rxjs/operators'
+import { mergeMap, tap } from 'rxjs/operators'
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface'
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface'
 import { HttpClientService } from 'src/app/general/services/http-client.service'
@@ -18,6 +18,12 @@ export class UserService {
         private readonly userStore: UserStore,
         private readonly userQuery: UserQuery,
     ) {}
+
+    getUsersAllRequest(): Observable<UserProps[]> {
+        return this.http
+            .get<UserProps[]>(apiUserUrl, httpHeaders)
+            .pipe(tap((data) => this.userStore.setUsers(data)))
+    }
 
     getUsersRequest(): Observable<UserProps[]> {
         const search = this.userQuery.searchGetter
@@ -82,7 +88,9 @@ export class UserService {
         const url = `${apiUserUrl}?likeStatus=matched`;
         return this.http
             .get<UserProps[]>(url, httpHeaders)
-            .pipe(tap((data) => this.userStore.setUsers(data)))
+            .pipe(
+                tap((data) => this.userStore.setUsers(data))
+            )
     }
 
     getOnlyUserRequest(userId: number): Observable<UserProps> {

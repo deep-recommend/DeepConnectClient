@@ -1,9 +1,6 @@
 <app-title-header></app-title-header>
-<app-no-matching-users-p [users]="users$ | async"></app-no-matching-users-p>
+<app-no-matching-users-p [rooms]="rooms$ | async"></app-no-matching-users-p>
 <app-matching-users-p
-    [currentUserId]="currentUserId$ | async"
-    [users]="users$ | async"
-    [profile]="profile$ | async"
-    [likes]="likes$ | async"
+    [rooms]="rooms$ | async"
     (clickUserToMessage)="onReceivedClickUserToMessage($event)"
 ></app-matching-users-p>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
-import { merge, Observable } from 'rxjs'
-import { last, map, mergeMap } from 'rxjs/operators'
+import { forkJoin, merge, Observable } from 'rxjs'
+import { map, mergeMap } from 'rxjs/operators'
 import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service'
 import { AuthenticationService } from 'src/app/general/services/authentication.service'
 import { userIdKey } from 'src/app/general/utilities/local-strage'
@@ -25,13 +25,12 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<void> {
         this.uiStore.displayPageName(route.data.title)
 
-        return merge(
+        return forkJoin(
             this.userService.getUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile(),
             this._getUserDetail()
         ).pipe(
-            last(),
             mergeMap(async () => this.uiStore.displayPageName(String(this.userQuery.detailUserGetter?.stageName))),
             mergeMap(async () => this.spinner.close()),
             map((observer) => void observer)

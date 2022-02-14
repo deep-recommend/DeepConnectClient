@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { LikeProps } from 'src/app/states/like/like.model'
+import { RoomProps } from 'src/app/states/room/room.model'
 import { UserProps } from 'src/app/states/user/user.model'
 
 @Component({
@@ -9,10 +9,7 @@ import { UserProps } from 'src/app/states/user/user.model'
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatchingUsersPComponent implements OnInit {
-    @Input() currentUserId!: number | null
-    @Input() users!: UserProps[] | null
-    @Input() profile!: UserProps | null
-    @Input() likes!: LikeProps[] | null
+    @Input() rooms!: RoomProps[] | null
     @Output() clickUserToMessage: EventEmitter<number> = new EventEmitter<number>()
     @Output() outputUsers: EventEmitter<UserProps> = new EventEmitter<UserProps>()
 
