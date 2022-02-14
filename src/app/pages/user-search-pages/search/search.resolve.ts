@@ -11,6 +11,7 @@ export class SearchResolverService implements Resolve<void> {
     constructor(private readonly uiStore: UiStore) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
+        this.uiStore.displayRoutingTab();
         this.uiStore.displayPageName(route.data.title);
     }
 }

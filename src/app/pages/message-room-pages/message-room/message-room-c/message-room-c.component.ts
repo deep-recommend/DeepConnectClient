@@ -44,7 +44,6 @@ export class MessageRoomCComponent {
     }
 
     onReceivedClickAccount(userId: number | undefined): void {
-        this.uiStore.displayRoutingTab();
         this.userStore.updateUserId(Number(userId));
         this.router.navigate([`user-detail/${userId}`]);
     }

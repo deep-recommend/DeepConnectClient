@@ -13,7 +13,6 @@ export class BackToPrePageComponent implements OnInit {
     pageName$: Observable<string> = this.uiQuery.pageName$;
 
     constructor(
-        private readonly uiStore: UiStore,
         private readonly uiQuery: UiQuery,
         private readonly location: Location
     ) {}
@@ -21,9 +20,6 @@ export class BackToPrePageComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickBackToPrePage(): void {
-        if (this.uiQuery.pageNameGetter === 'メッセージ中') {
-            this.uiStore.displayRoutingTab();
-        }
         this.location.back();
     }
 }

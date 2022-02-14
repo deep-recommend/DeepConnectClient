@@ -4,7 +4,6 @@ import { AuthenticationService } from 'src/app/general/services/authentication.s
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
 import { mergeMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service';
 import { UiQuery } from 'src/app/states/ui/ui.query';
 import { UiStore } from 'src/app/states/ui/ui.store';
 
@@ -20,8 +19,7 @@ export class SignInCComponent {
         private readonly authService: AuthenticationService,
         private readonly router: Router,
         private readonly uiQuery: UiQuery,
-        private readonly uiStore: UiStore,
-        private readonly spinner: ProgressSpinnerService
+        private readonly uiStore: UiStore
     ) {}
 
     onReceivedClickSignIn(signIn: SignInProps): void {

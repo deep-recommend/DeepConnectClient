@@ -30,6 +30,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<void> {
+        this.uiStore.displayRoutingTab();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(
