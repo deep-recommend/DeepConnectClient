@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-message-room',
-    templateUrl: './message-room.component.html',
-    styleUrls: ['./message-room.component.scss'],
+    template: `<app-message-room-c></app-message-room-c>`,
 })
-export class MessageRoomComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class MessageRoomComponent {}

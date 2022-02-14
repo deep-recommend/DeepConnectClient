@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-notification',
-    templateUrl: './notification.component.html',
-    styleUrls: ['./notification.component.scss'],
+    template: `<app-notification-c></app-notification-c>`,
 })
-export class NotificationComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class NotificationComponent {}

@@ -4,8 +4,8 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { merge, Observable } from 'rxjs';
-import { last, map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { UiStore } from 'src/app/states/ui/ui.store';
 
@@ -22,8 +22,7 @@ export class MyPageSettingResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayPageName(route.data.title);
 
-        return merge(this.authenticationService.getProfile()).pipe(
-            last(),
+        return forkJoin(this.authenticationService.getProfile()).pipe(
             map((observer) => void observer)
         );
     }

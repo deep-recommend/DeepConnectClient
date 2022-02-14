@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-my-page-setting',
-    templateUrl: './my-page-setting.component.html',
-    styleUrls: ['./my-page-setting.component.scss'],
+    template: `<app-my-page-setting-c></app-my-page-setting-c>`,
 })
-export class MyPageSettingComponent implements OnInit {
-    constructor() {}
-
-    ngOnInit(): void {}
-}
+export class MyPageSettingComponent {}

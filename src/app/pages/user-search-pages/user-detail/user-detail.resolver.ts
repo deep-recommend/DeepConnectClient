@@ -4,7 +4,7 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { forkJoin, merge, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';

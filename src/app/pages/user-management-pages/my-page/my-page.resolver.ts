@@ -4,8 +4,8 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { merge, Observable } from 'rxjs';
-import { last, map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { UserService } from 'src/app/states/user/user.service';
 
@@ -20,12 +20,9 @@ export class MyPageResolverService implements Resolve<Observable<void>> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<void> {
-        return merge(
+        return forkJoin(
             this.userService.getUsersRequest(),
             this.authenticationService.getProfile()
-        ).pipe(
-            last(),
-            map((observer) => void observer)
-        );
+        ).pipe(map((observer) => void observer));
     }
 }

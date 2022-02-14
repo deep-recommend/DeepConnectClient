@@ -5,7 +5,7 @@ import {
     RouterStateSnapshot,
 } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { last, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { LikeService } from 'src/app/states/like/like.service';
 import { UiStore } from 'src/app/states/ui/ui.store';
@@ -30,9 +30,6 @@ export class DashboardResolverService implements Resolve<Observable<void>> {
             this.userService.getUsersAllRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile()
-        ).pipe(
-            last(),
-            map((observer) => void observer)
-        );
+        ).pipe(map((observer) => void observer));
     }
 }
