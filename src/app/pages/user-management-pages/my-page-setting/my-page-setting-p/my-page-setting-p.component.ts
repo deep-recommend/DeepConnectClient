@@ -7,10 +7,7 @@ import {
     Output,
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {
-    toDataUrlAsObservable,
-    toDataUrlAsPromise,
-} from 'src/app/general/functions/to-dataurl';
+import { toDataUrlAsObservable } from 'src/app/general/functions/to-dataurl';
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface';
 import { UpdateProfileModel } from 'src/app/general/models/update-profile.model';
 import { UserProps } from 'src/app/states/user/user.model';
