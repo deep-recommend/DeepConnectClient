@@ -1,3 +1,8 @@
+/**
+ * Usage
+ *
+ * const hoge = switchf(val).case(caseVal).then(() => 'hoge')
+ */
 export const switchf = (switchVal: any) => {
     const caseMethod = (funcToDo?: Function) => (caseVal: any) => {
         const isFixedNow = !funcToDo && switchVal === caseVal;
@@ -20,6 +25,3 @@ export const switchf = (switchVal: any) => {
     };
     return { case: caseMethod() };
 };
-
-// usage
-// const hoge = switchf(val).case(caseVal).then(() => 'hoge')

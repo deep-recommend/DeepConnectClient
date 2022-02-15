@@ -1,3 +1,7 @@
+/**
+ * Usage
+ * const hoge = iff(condition).then(() => fuga).else(() => piyo)
+ */
 export const iff = (condition: boolean) => {
     const thenMethod = (thenFunc: Function) => {
         const elseMethod = (elseFunc: Function) => {
@@ -7,6 +11,3 @@ export const iff = (condition: boolean) => {
     };
     return { then: thenMethod };
 };
-
-// usage
-// const hoge = iff(condition).then(() => fuga).else(() => piyo)

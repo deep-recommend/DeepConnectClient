@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UiQuery } from 'src/app/states/ui/ui.query';
-import { UiStore } from 'src/app/states/ui/ui.store';
 
 @Component({
     selector: 'app-back-to-pre-page',
