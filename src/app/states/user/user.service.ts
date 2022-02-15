@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface';
 import { HttpClientService } from 'src/app/general/services/http-client.service';
 import {
-    apiUrl,
     apiUserUrl,
     httpHeaders,
     httpOptions,
