@@ -8,7 +8,10 @@
             "
         ></div>
         <ng-template #profilePictureIsTrue
-            ><img [src]="icon" class="image" alt="Image Source"
+            ><img
+                [src]="profile?.profilePicture"
+                class="image"
+                alt="Image Source"
         /></ng-template>
         <ng-template #profilePictureIsFalse
             ><img src="/assets/images/png/default-avatar.png" class="image" />

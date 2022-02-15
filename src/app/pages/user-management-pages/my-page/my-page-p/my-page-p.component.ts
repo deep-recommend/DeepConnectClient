@@ -1,12 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    OnChanges,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
-import { toBlob } from 'src/app/general/functions/to-blob';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UserProps } from 'src/app/states/user/user.model';
 
 @Component({
@@ -15,22 +7,8 @@ import { UserProps } from 'src/app/states/user/user.model';
     styleUrls: ['./my-page-p.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MyPagePComponent implements OnInit, OnChanges {
-    icon?: any;
-
+export class MyPagePComponent {
     @Input() profile!: UserProps | null;
 
     constructor() {}
-
-    ngOnInit(): void {
-        this.getIcon();
-    }
-
-    ngOnChanges(): void {
-        this.getIcon();
-    }
-
-    getIcon(): void {
-        toBlob(String(this.profile?.profilePicture)).subscribe();
-    }
 }

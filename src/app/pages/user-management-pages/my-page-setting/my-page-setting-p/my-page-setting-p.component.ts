@@ -7,7 +7,10 @@ import {
     Output,
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { toDataUrl } from 'src/app/general/functions/to-dataurl';
+import {
+    toDataUrlAsObservable,
+    toDataUrlAsPromise,
+} from 'src/app/general/functions/to-dataurl';
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface';
 import { UpdateProfileModel } from 'src/app/general/models/update-profile.model';
 import { UserProps } from 'src/app/states/user/user.model';
@@ -56,9 +59,9 @@ export class MyPageSettingPComponent implements OnInit {
         this.updateUserForm.patchValue({ ...this.profile });
     }
 
-    async inputProfilePicture(event: any): Promise<void> {
+    inputProfilePicture(event: any): void {
         const file = event.target.files[0];
-        toDataUrl(file, { maxWidth: 480 }).subscribe((dataUrl) => {
+        toDataUrlAsObservable(file, { maxWidth: 640 }).subscribe((dataUrl) => {
             this.updateUserForm.controls.profilePicture.setValue(dataUrl);
         });
     }
