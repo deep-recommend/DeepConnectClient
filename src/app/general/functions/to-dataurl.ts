@@ -1,7 +1,10 @@
 import * as loadImage from 'blueimp-load-image';
 import { Observable } from 'rxjs';
 
-export const toDataUrl = (
+/**
+ * maxWidthを制限する
+ */
+export const toDataUrlAsObservable = (
     file: string | File | Blob,
     options?: loadImage.LoadImageOptions
 ): Observable<string> => {
@@ -11,6 +14,26 @@ export const toDataUrl = (
             (image) => {
                 subscriber.next((image as HTMLCanvasElement).toDataURL());
                 subscriber.complete();
+            },
+            {
+                canvas: true,
+                meta: true,
+                orientation: true,
+                ...options,
+            }
+        );
+    });
+};
+
+export const toDataUrlAsPromise = (
+    file: string | File | Blob,
+    options?: loadImage.LoadImageOptions,
+) => {
+    return new Promise<string>(resolve => {
+        loadImage(
+            file,
+            image => {
+                resolve((image as HTMLCanvasElement).toDataURL());
             },
             {
                 canvas: true,
