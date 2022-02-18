@@ -35,7 +35,6 @@ export class DashboardCComponent {
 
     onReceivedClickLikeButton(userId: number): void {
         this._setLike(userId);
-        this._setNotificationIncrease(userId);
     }
 
     onReceivedClickUnlikeButton(userId: number): void {
@@ -61,13 +60,5 @@ export class DashboardCComponent {
             userId: userId,
         };
         this.socket.unlike(query);
-    }
-
-    private _setNotificationIncrease(userId: number): void {
-        const value = {
-            currentUserId: this.profile.id,
-            userId: userId,
-        };
-        this.socket.notificationIncrease(value);
     }
 }

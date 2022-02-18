@@ -27,23 +27,14 @@ export class SocketService {
         this.socketEmitter.emitUnlike(query);
     }
 
-    notificationIncrease(data: any): void {
-        this.socketEmitter.emitNotificationIncrease(data);
-    }
-
-    notificationDecrease(id: any): void {
-        this.socketEmitter.emitNotificationDecrease(id);
-    }
-
-    notificationDecreaseWithoutReceive(id: any): void {
-        this.socketEmitter.emitNotificationDecrease(id);
+    notificationDecrease(ids: number[]): void {
+        this.socketEmitter.emitNotificationDecrease(ids);
     }
 
     private _connect(): void {
         this.socketReceiver.receiveMessage();
         this.socketReceiver.receiveLike();
         this.socketReceiver.receiveUnlike();
-        this.socketReceiver.receiveNotificationIncrease();
         this.socketReceiver.receiveNotificationDecrease();
     }
 }

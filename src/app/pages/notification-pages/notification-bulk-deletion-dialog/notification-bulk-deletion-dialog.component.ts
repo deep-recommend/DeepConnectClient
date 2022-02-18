@@ -18,9 +18,8 @@ export class NotificationBulkDeletionDialogComponent implements OnInit {
     ngOnInit(): void {}
 
     deleteNotifications(): void {
-        this.notificationQuery.notificationAll.forEach((data) => {
-            this.socket.notificationDecrease(data.id);
-        });
+        const ids = this.notificationQuery.notificationAll.map((notification) => notification.id);
+        this.socket.notificationDecrease(ids);
         this.dialog.closeAll();
     }
 }

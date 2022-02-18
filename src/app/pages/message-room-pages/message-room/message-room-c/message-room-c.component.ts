@@ -40,7 +40,6 @@ export class MessageRoomCComponent {
 
     onReceivedSendMessage(message: string): void {
         this._setMessageSending(message);
-        this._setNotificationIncrease();
     }
 
     onReceivedClickAccount(userId: number | undefined): void {
@@ -64,14 +63,5 @@ export class MessageRoomCComponent {
             message: message,
         };
         this.socket.sendMessage(value);
-    }
-
-    private _setNotificationIncrease(): void {
-        const value = {
-            isMessage: true,
-            currentUserId: this.profile.id,
-            userId: this.companion.id,
-        };
-        this.socket.notificationIncrease(value);
     }
 }

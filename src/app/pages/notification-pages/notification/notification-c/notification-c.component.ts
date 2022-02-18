@@ -23,7 +23,6 @@ export class NotificationCComponent {
     constructor(
         private readonly notificationQuery: NotificationQuery,
         private readonly userQuery: UserQuery,
-        private readonly socket: SocketService,
         private readonly router: Router,
         private readonly userStore: UserStore
     ) {}
@@ -34,12 +33,9 @@ export class NotificationCComponent {
         isMessage: boolean;
     }): void {
         this.userStore.updateUserId(data.userId);
-        this.socket.notificationDecrease(data.notificationId);
 
-        if (data.isMessage) {
-            this.router.navigate([`message-room/${data.userId}`]);
-        } else {
-            this.router.navigate([`user-detail/${data.userId}`]);
-        }
+        data.isMessage
+          ? this.router.navigate([`message-room/${data.userId}`])
+          : this.router.navigate([`user-detail/${data.userId}`]);
     }
 }

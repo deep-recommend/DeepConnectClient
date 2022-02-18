@@ -23,19 +23,15 @@ export class SocketReceiverService {
 
     receiveLike(): void {
         this.socket.fromEvent('liked').subscribe(() => {
+            this.notificationService.getNotifications().subscribe();
             this.likeService.getLikes().subscribe();
         });
     }
 
     receiveUnlike(): void {
         this.socket.fromEvent('unliked').subscribe(() => {
-            this.likeService.getLikes().subscribe();
-        });
-    }
-
-    receiveNotificationIncrease(): void {
-        this.socket.fromEvent('notificationIncrease').subscribe(() => {
             this.notificationService.getNotifications().subscribe();
+            this.likeService.getLikes().subscribe();
         });
     }
 

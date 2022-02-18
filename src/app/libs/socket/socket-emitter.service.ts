@@ -19,11 +19,7 @@ export class SocketEmitterService {
         this.socket.emit('unlike', unlike);
     }
 
-    emitNotificationIncrease(notification: any): void {
-        this.socket.emit('notificationIncrease', notification);
-    }
-
-    emitNotificationDecrease(notificationId: any): void {
-        this.socket.emit('notificationDecrease', notificationId);
+    emitNotificationDecrease(ids: number[]): void {
+        this.socket.emit('notificationDecrease', ids);
     }
 }
