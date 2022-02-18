@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { trim } from 'lodash';
 import { io } from 'socket.io-client';
@@ -7,14 +7,10 @@ import { io } from 'socket.io-client';
     templateUrl: './message-room-message-sender-p.component.html',
     styleUrls: ['./message-room-message-sender-p.component.scss'],
 })
-export class MessageRoomMessageSenderPComponent implements OnInit {
+export class MessageRoomMessageSenderPComponent {
     message = new FormControl('', [Validators.required]);
 
     @Output() sendMessage: EventEmitter<string> = new EventEmitter<string>();
-
-    constructor() {}
-
-    ngOnInit(): void {}
 
     onSendMessage(event?: any): void {
         if (trim(this.message.value) === '') {

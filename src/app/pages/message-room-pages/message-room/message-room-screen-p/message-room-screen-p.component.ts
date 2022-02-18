@@ -4,7 +4,6 @@ import {
     ElementRef,
     EventEmitter,
     Input,
-    OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
@@ -17,7 +16,9 @@ import { UserProps } from 'src/app/states/user/user.model';
     templateUrl: './message-room-screen-p.component.html',
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
-export class MessageRoomScreenPComponent implements OnInit, AfterViewChecked {
+export class MessageRoomScreenPComponent implements AfterViewChecked {
+    relativeTime = relativeTime;
+
     @Input() currentRoomId!: number | null;
     @Input() messages!: MessageProps[] | null;
     @Input() profile!: UserProps | null;
@@ -28,15 +29,9 @@ export class MessageRoomScreenPComponent implements OnInit, AfterViewChecked {
         new EventEmitter<number>();
     @ViewChild('scroll') private scrollContainer!: ElementRef;
 
-    constructor() {}
-
-    ngOnInit(): void {}
-
     ngAfterViewChecked() {
         this.scrollToBottom();
     }
-
-    relativeTime = relativeTime;
 
     onClickMyProfilePicture(): void {
         this.clickMyProfilePicture.emit();
