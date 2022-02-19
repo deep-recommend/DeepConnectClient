@@ -1,0 +1,13 @@
+<ng-container>
+  <img
+    *ngIf="profilePicture"
+    src="{{ profilePicture }}"
+    class="image"
+    #thenBlock
+  />
+  <img
+      *ngIf="!profilePicture"
+      src="/assets/images/png/default-avatar.png"
+      class="image"
+  />
+</ng-container>

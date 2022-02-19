@@ -5,18 +5,9 @@
     (click)="onClickToDetails()"
 >
     <div fxLayout="row">
-        <img
-            *ngIf="user?.profilePicture; else nonePicture"
-            src="{{ user?.profilePicture }}"
-            class="image"
-            #thenBlock
-        />
-        <img
-            #nonePicture
-            src="/assets/images/png/default-avatar.png"
-            class="image"
-            #elseBlock
-        />
+        <app-profile-picture
+          [profilePicture]="user?.profilePicture"
+        ></app-profile-picture>
         <mat-card-header>
             <mat-card-title> {{ user?.stageName }}</mat-card-title>
             <mat-card-subtitle

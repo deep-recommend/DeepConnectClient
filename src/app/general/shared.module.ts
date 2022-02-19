@@ -41,6 +41,7 @@ import { TitleHeaderComponent } from './components/title-header/title-header.com
 import { ActionBarComponent } from './components/action-bar/action-bar.component';
 import { WaveComponent } from './components/wave/wave.component';
 import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
+import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { ProgressSpinnerModule } from './components/progress-spinner/progress-sp
         TitleHeaderComponent,
         ActionBarComponent,
         WaveComponent,
+        ProfilePictureComponent,
     ],
     imports: [
         CommonModule,
@@ -97,6 +99,7 @@ import { ProgressSpinnerModule } from './components/progress-spinner/progress-sp
         TitleHeaderComponent,
         ActionBarComponent,
         WaveComponent,
+        ProfilePictureComponent,
 
         CommonModule,
         FormsModule,

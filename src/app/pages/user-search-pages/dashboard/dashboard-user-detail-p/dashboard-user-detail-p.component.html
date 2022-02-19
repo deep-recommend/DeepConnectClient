@@ -2,12 +2,12 @@
     <div (click)="onClickUsersToDetail()" class="card">
         <div class="image-container">
             <img
-                *ngIf="user?.profilePicture; else nonePicture"
+                *ngIf="user?.profilePicture;"
                 [src]="user?.profilePicture"
                 class="image"
             />
             <img
-                #nonePicture
+                *ngIf="!user?.profilePicture;"
                 src="/assets/images/png/default-avatar.png"
                 class="image"
             />
