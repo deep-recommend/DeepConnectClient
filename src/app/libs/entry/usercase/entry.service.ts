@@ -26,7 +26,7 @@ export class useEntry {
 
     findManyByCompanion(): Observable<EntryDto[]> {
         const paramValues: string[] = [
-            String(this.userQuery.companionGetter.id),
+            String(this.userQuery.companionGetter?.id),
         ];
         return this.query
             .findMany(paramValues)

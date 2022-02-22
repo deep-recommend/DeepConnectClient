@@ -42,7 +42,7 @@ export class RouterHistoryService {
                                 ...acc,
                                 event,
                                 trigger: event.navigationTrigger,
-                                id: event.id,
+                                id: event?.id,
                                 idToRestore:
                                     (event.restoredState &&
                                         event.restoredState.navigationId) ||

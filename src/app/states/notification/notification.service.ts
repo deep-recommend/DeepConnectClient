@@ -23,7 +23,7 @@ export class NotificationService {
                     this.notificationStore.setNotification(
                         data.filter(
                             (data) =>
-                                data.userId === this.userQuery.profileGetter.id
+                                data.userId === this.userQuery.profileGetter?.id
                         )
                     )
                 ),

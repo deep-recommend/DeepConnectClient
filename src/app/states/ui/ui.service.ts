@@ -29,7 +29,7 @@ export class UiService {
             .filter((o) => {
                 o.currentUserId === currentUserId;
             })
-            .map((o) => o.id);
+            .map((o) => o?.id);
         const likeByUserIds = this.likeQuery.likeAll
             .filter((o) => {
                 o.currentUserId === userId;

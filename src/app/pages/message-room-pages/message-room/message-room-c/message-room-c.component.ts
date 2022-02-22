@@ -58,7 +58,7 @@ export class MessageRoomCComponent {
 
     private _setMessageSending(message: string): void {
         const value: CreateMessageProps = {
-            userId: this.profile.id,
+            userId: this.profile?.id,
             roomId: this.roomQuery.currentRoomIdGetter,
             message: message,
         };

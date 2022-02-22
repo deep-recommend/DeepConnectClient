@@ -48,7 +48,7 @@ export class DashboardCComponent {
 
     private _setLike(userId: number): void {
         const value = {
-            currentUserId: this.profile.id,
+            currentUserId: this.profile?.id,
             userId: userId,
         };
         this.socket.like(value);
@@ -56,7 +56,7 @@ export class DashboardCComponent {
 
     private _setUnlike(userId: number): void {
         const query = {
-            currentUserId: this.profile.id,
+            currentUserId: this.profile?.id,
             userId: userId,
         };
         this.socket.unlike(query);

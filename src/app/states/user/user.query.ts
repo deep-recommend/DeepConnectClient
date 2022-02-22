@@ -36,7 +36,7 @@ export class UserQuery extends QueryEntity<UserState> {
     }
 
     get currentUserId(): number {
-        return this.getValue().profile.id;
+        return this.getValue().profile?.id;
     }
 
     get companionGetter(): UserProps {
