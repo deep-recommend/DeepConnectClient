@@ -18,7 +18,6 @@ export class MatchingUsersCComponent {
         this.userQuery.existsMatchingUsers$;
 
     rooms$: Observable<RoomProps[]> = this.roomQuery.rooms$;
-
     profileGetter = this.userQuery.profileGetter;
 
     constructor(

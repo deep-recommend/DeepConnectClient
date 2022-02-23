@@ -5,13 +5,18 @@
     (click)="onClickToDetails()"
 >
     <div fxLayout="row">
-        <div *ngIf="user?.profilePicture; then thenBlock; else elseBlock"></div>
-        <ng-template #thenBlock>
-            <img src="{{ user?.profilePicture }}" class="image" />
-        </ng-template>
-        <ng-template #elseBlock>
-            <img src="/assets/images/png/default-avatar.png" class="image" />
-        </ng-template>
+        <img
+            *ngIf="user?.profilePicture; else nonePicture"
+            src="{{ user?.profilePicture }}"
+            class="image"
+            #thenBlock
+        />
+        <img
+            #nonePicture
+            src="/assets/images/png/default-avatar.png"
+            class="image"
+            #elseBlock
+        />
         <mat-card-header>
             <mat-card-title> {{ user?.stageName }}</mat-card-title>
             <mat-card-subtitle

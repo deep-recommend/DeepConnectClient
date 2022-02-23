@@ -6,17 +6,18 @@
 >
     <div fxLayout="row">
         <img
-            *ngIf="user?.profilePicture"
+            *ngIf="user?.profilePicture; else nonePicture"
             src="{{ user?.profilePicture }}"
             class="image"
+            #thenBlock
         />
         <img
-            *ngIf="!user?.profilePicture"
+            #nonePicture
             src="/assets/images/png/default-avatar.png"
             class="image"
         />
         <mat-card-header>
-            <mat-card-title> {{ user?.stageName }}</mat-card-title>
+            <mat-card-title>{{ user?.stageName }}</mat-card-title>
             <mat-card-subtitle
                 >{{ user?.birthPlace }}&nbsp;&nbsp;{{
                     user?.position
