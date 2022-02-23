@@ -18,4 +18,35 @@ export class LikeService {
             .get<LikeProps[]>(apiLikeUrl, httpHeaders)
             .pipe(tap((data) => this.likeStore.setLikes(data)));
     }
+
+    alreadyLikedByMyself(
+        currentUserId: number,
+        userId: number
+    ): Observable<boolean> {
+        const url = `${apiLikeUrl}/byMySelf?currentUserId=${currentUserId}&userId=${userId}`;
+        return this.http
+            .get<boolean>(url, httpHeaders)
+            .pipe(
+                tap((data) => this.likeStore.updateAlreadyLikedByMySelf(data))
+            );
+    }
+
+    alreadyLikedByOthers(
+        currentUserId: number,
+        userId: number
+    ): Observable<boolean> {
+        const url = `${apiLikeUrl}/byOther?currentUserId=${currentUserId}&userId=${userId}`;
+        return this.http
+            .get<boolean>(url, httpHeaders)
+            .pipe(
+                tap((data) => this.likeStore.updateAlreadyLikedByOther(data))
+            );
+    }
+
+    matched(currentUserId: number, userId: number): Observable<boolean> {
+        const url = `${apiLikeUrl}/matched?currentUserId=${currentUserId}&userId=${userId}`;
+        return this.http
+            .get<boolean>(url, httpHeaders)
+            .pipe(tap((data) => this.likeStore.updateMatched(data)));
+    }
 }

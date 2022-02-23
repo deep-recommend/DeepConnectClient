@@ -16,7 +16,6 @@ export class SocketService {
 
     sendMessage(data: any): void {
         this.socketEmitter.emitMessageSending(data);
-        this.socketReceiver.receiveMessage();
     }
 
     like(data: CreateLikeProps): void {

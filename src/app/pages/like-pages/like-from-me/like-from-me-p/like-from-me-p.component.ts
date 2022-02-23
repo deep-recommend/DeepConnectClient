@@ -21,8 +21,6 @@ export class LikeFromMePComponent {
     @Input() likes!: LikeProps[] | null;
     @Output() clickToDetails: EventEmitter<number> = new EventEmitter<number>();
 
-    constructor() {}
-
     onClickToDetails(userId: number): void {
         this.clickToDetails.emit(userId);
     }

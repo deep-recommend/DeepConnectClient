@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { UiStore } from './ui.store';
 import { UiState } from './ui.model';
+import { LikeQuery } from '../like/like.query';
+import { includes, intersection } from 'lodash';
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UiQuery extends Query<UiState> {
@@ -23,6 +26,38 @@ export class UiQuery extends Query<UiState> {
     footerLawItems$ = this.select((state) => state.footer.footerLawItems);
     footerSnsItems$ = this.select((state) => state.footer.footerSnsItems);
 
+    alreadyLikedByMyself(currentUserId: number, userId: number): boolean {
+        const likeUserIds = this.likeQuery.likeAll
+            .filter((o) => o.currentUserId === currentUserId)
+            .map((o) => o.userId);
+        const isLike = includes(likeUserIds, userId);
+        return isLike;
+    }
+
+    alreadyLikedByOthers(currentUserId: number, userId: number): boolean {
+        const likeUserIds = this.likeQuery.likeAll
+            .filter((o) => o.currentUserId === userId)
+            .map((o) => o.userId);
+        const isLike = includes(likeUserIds, currentUserId);
+        return isLike;
+    }
+
+    isMatching(currentUserId: number, userId: number): boolean {
+        const likeByCurrentUserIds = this.likeQuery.likeAll
+            .filter((o) => {
+                o.currentUserId === currentUserId;
+            })
+            .map((o) => o?.id);
+        const likeByUserIds = this.likeQuery.likeAll
+            .filter((o) => {
+                o.currentUserId === userId;
+            })
+            .map((o) => o.currentUserId);
+        const likeEachOther = intersection(likeByCurrentUserIds, likeByUserIds);
+        const isMatching = likeEachOther.length !== 0;
+        return isMatching;
+    }
+
     get pageNameGetter(): string {
         return this.getValue().ui.pageName;
     }
@@ -35,7 +70,10 @@ export class UiQuery extends Query<UiState> {
         return this.getValue().sideNav.isLocked;
     }
 
-    constructor(protected readonly store: UiStore) {
+    constructor(
+        protected readonly store: UiStore,
+        private readonly likeQuery: LikeQuery
+    ) {
         super(store);
     }
 }

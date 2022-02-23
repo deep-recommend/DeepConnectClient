@@ -1,5 +1,5 @@
 <div class="action" fxLayoutAlign="end">
-    <div *ngIf="alreadyLiked; then unlike; else like"></div>
+    <div *ngIf="alreadyLikedByMySelf; then unlike; else like"></div>
     <ng-template #unlike>
         <button
             mat-raised-button

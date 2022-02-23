@@ -145,6 +145,10 @@ select {
     box-shadow: 0 0 0 0 white, 0 0 0 0 white, 0 0 0 0 white;
 }
 
+.image {
+    object-fit: cover;
+}
+
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {

@@ -20,8 +20,8 @@
                 >{{ user?.stageName }}&nbsp;&nbsp;{{ user?.position }}
                 <button
                     mat-icon-button
-                    *ngIf="isMatching"
-                    (click)="onClickToDetails(user!.id)"
+                    *ngIf="matched"
+                    (click)="onClickToDetails()"
                 >
                     <mat-icon class="icon">forward_to_inbox</mat-icon>
                 </button>

@@ -5,12 +5,18 @@ import { LikeProps } from './like.model';
 export interface LikeState extends EntityState<LikeProps> {
     ui: {
         existsMatchingUsers: boolean;
+        alreadyLikedByMyself: boolean;
+        alreadyLikedByOther: boolean;
+        matched: boolean;
     };
 }
 
 const initialState = {
     ui: {
-        existsMatchingUsers: Boolean(),
+        existsMatchingUsers: !!null,
+        alreadyLikedByMyself: !!null,
+        alreadyLikedByOther: !!null,
+        matched: !!null,
     },
 };
 
@@ -32,6 +38,33 @@ export class LikeStore extends EntityStore<LikeState> {
             ui: {
                 ...this.getValue().ui,
                 existsMatchingUsers: bool,
+            },
+        });
+    }
+
+    updateAlreadyLikedByMySelf(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                alreadyLikedByMyself: bool,
+            },
+        });
+    }
+
+    updateAlreadyLikedByOther(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                alreadyLikedByOther: bool,
+            },
+        });
+    }
+
+    updateMatched(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                matched: bool,
             },
         });
     }

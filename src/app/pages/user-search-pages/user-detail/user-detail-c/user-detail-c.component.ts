@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SocketService } from 'src/app/libs/socket/socket.service';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserQuery } from 'src/app/states/user/user.query';
+import { LikeQuery } from '../../../../states/like/like.query';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -13,25 +14,30 @@ import { UserQuery } from 'src/app/states/user/user.query';
 export class UserDetailCComponent {
     profile: UserProps = this.userQuery.profileGetter;
     detailUser: UserProps = this.userQuery.detailUserGetter;
+
     detailUser$: Observable<UserProps> = this.userQuery.detailUser$;
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
+    alreadyLikedByMySelf$: Observable<boolean> =
+        this.likeQuery.alreadyLikedByMyself$;
+    matched$: Observable<boolean> = this.likeQuery.matched$;
 
     constructor(
         private readonly userQuery: UserQuery,
+        private readonly likeQuery: LikeQuery,
         private readonly socket: SocketService,
         private readonly router: Router
     ) {}
 
-    onReceivedClickLikeButton(userId: number): void {
-        this._setLike(userId);
+    onReceivedClickLikeButton(): void {
+        this._setLike(this.detailUser.id);
     }
 
-    onReceivedClickUnlikeButton(userId: number): void {
-        this._setUnlike(userId);
+    onReceivedClickUnlikeButton(): void {
+        this._setUnlike(this.detailUser.id);
     }
 
-    onReceivedClickUserToMessage(userId: number): void {
-        this.router.navigate([`/message-room/${userId}`]);
+    onReceivedClickUserToMessage(): void {
+        this.router.navigate([`/message-room/${this.detailUser.id}`]);
     }
 
     private _setLike(userId: number): void {

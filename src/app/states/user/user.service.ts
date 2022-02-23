@@ -117,7 +117,6 @@ export class UserService {
         id: number,
         user: UpdateProfileProps
     ): Observable<UserProps> {
-        console.log(user);
         const url = `${apiUserUrl}/${id}`;
         return this.httpService.put(url, user, httpHeaders);
     }

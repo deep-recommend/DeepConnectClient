@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LikeProps } from 'src/app/states/like/like.model';
 import { LikeQuery } from 'src/app/states/like/like.query';
 import { UserProps } from 'src/app/states/user/user.model';
@@ -14,8 +14,6 @@ import { UserStore } from 'src/app/states/user/user.store';
     styleUrls: ['./matched-c.component.scss'],
 })
 export class MatchedCComponent {
-    subscription!: Subscription;
-
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
     users$: Observable<UserProps[]> = this.userQuery.users$;
     profile$: Observable<UserProps> = this.userQuery.profile$;

@@ -22,8 +22,6 @@ export class MatchedPComponent {
     @Output() clickUserToMessage: EventEmitter<number> =
         new EventEmitter<number>();
 
-    constructor() {}
-
     onReceivedClickUserToMessage(userId: number): void {
         this.clickUserToMessage.emit(userId);
     }
