@@ -16,13 +16,10 @@ export class MessageRoomMessageSenderPComponent {
         if (trim(this.message.value) === '') {
             return;
         }
-        if (
-            (event.keyCode === 13 && event.shiftKey) ||
-            event.type === 'click'
-        ) {
+
+        if (event.keyCode === 13 || event.shiftKey || event.type === 'click') {
             this.sendMessage.emit(this.message.value);
             this.message.reset();
         }
-        return;
     }
 }

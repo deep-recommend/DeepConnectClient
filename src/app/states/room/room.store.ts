@@ -4,15 +4,19 @@ import { RoomProps } from './room.model';
 
 export interface RoomState extends EntityState<RoomProps> {
     ui: {
-        isRoom: boolean;
+        currentRoom: RoomProps;
         currentRoomId: number;
     };
 }
 
 const initialState = {
     ui: {
-        isRoom: Boolean(),
-        currentRoomId: Number(),
+        currentRoom: {
+            id: 0,
+            userA: 0,
+            userB: 0,
+        },
+        currentRoomId: 0,
     },
 };
 
@@ -29,25 +33,17 @@ export class RoomStore extends EntityStore<RoomState> {
         this.set(rooms);
     }
 
-    updateRoomToTrue(): void {
+    updateCurrentRoom(room: RoomProps): void {
+        this._updateCurrentRoomId(room.id);
         this.update({
             ui: {
                 ...this.getValue().ui,
-                isRoom: true,
+                currentRoom: room,
             },
         });
     }
 
-    updateRoomToFalse(): void {
-        this.update({
-            ui: {
-                ...this.getValue().ui,
-                isRoom: false,
-            },
-        });
-    }
-
-    updateCurrentRoomId(currentRoomId: number): void {
+    private _updateCurrentRoomId(currentRoomId: number): void {
         this.update({
             ui: {
                 ...this.getValue().ui,

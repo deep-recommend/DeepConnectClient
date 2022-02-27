@@ -17,16 +17,12 @@ export class NotificationService {
 
     getNotifications(): Observable<NotificationProps[]> {
         return this.http
-            .get<NotificationProps[]>(apiNotificationUrl, httpHeaders)
+            .get<NotificationProps[]>(
+                `${apiNotificationUrl}?currentUserId=${this.userQuery.profileGetter?.id}`,
+                httpHeaders
+            )
             .pipe(
-                tap((data) =>
-                    this.notificationStore.setNotification(
-                        data.filter(
-                            (data) =>
-                                data.userId === this.userQuery.profileGetter?.id
-                        )
-                    )
-                ),
+                tap((data) => this.notificationStore.setNotification(data)),
                 tap((data) =>
                     this.notificationStore.updateExistsNotifications(
                         data?.length !== 0

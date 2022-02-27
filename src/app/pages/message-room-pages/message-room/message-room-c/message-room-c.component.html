@@ -1,25 +1,27 @@
 <div class="container">
     <app-back-to-pre-page></app-back-to-pre-page>
-    <div *ngIf="!(isRoom$ | async)">
-        <app-message-room-is-false-p></app-message-room-is-false-p>
-    </div>
-    <app-message-room-header-p
-        [companion]="companion$ | async"
-        (clickAccount)="onReceivedClickAccount($event)"
-    ></app-message-room-header-p>
-    <app-message-room-screen-p
-        [currentRoomId]="currentRoomId$ | async"
-        [messages]="messages$ | async"
-        [profile]="profile$ | async"
-        [companion]="companion$ | async"
-        (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
-        (clickCompanionProfilePicture)="
-            onReceivedClickCompanionProfilePicture($event)
-        "
-    ></app-message-room-screen-p>
-    <app-message-room-message-sender-p
-        class="message-sender"
-        fxLayoutAlign="center center"
-        (sendMessage)="onReceivedSendMessage($event)"
-    ></app-message-room-message-sender-p>
+    <app-message-room-is-false-p
+        *ngIf="!(currentRoomId$ | async)"
+    ></app-message-room-is-false-p>
+    <ng-container *ngIf="currentRoomId$ | async">
+        <app-message-room-header-p
+            [room]="currentRoom$ | async"
+            (clickAccount)="onReceivedClickAccount($event)"
+        ></app-message-room-header-p>
+        <app-message-room-screen-p
+            [room]="currentRoom$ | async"
+            [currentRoomId]="currentRoomId$ | async"
+            [messages]="messages$ | async"
+            [profile]="profile$ | async"
+            (clickMyProfilePicture)="onReceivedClickMyProfilePicture()"
+            (clickCompanionProfilePicture)="
+                onReceivedClickCompanionProfilePicture($event)
+            "
+        ></app-message-room-screen-p>
+        <app-message-room-message-sender-p
+            class="message-sender"
+            fxLayoutAlign="center center"
+            (sendMessage)="onReceivedSendMessage($event)"
+        ></app-message-room-message-sender-p>
+    </ng-container>
 </div>

@@ -9,6 +9,14 @@ import { MessageStore } from './message.store';
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
+    private get _paramKeys(): string[] {
+        return ['roomId'];
+    }
+
+    private get _paramValues(): string[] {
+        return [this.roomQuery.currentRoomIdGetter.toString()];
+    }
+
     constructor(
         private readonly messageStore: MessageStore,
         private readonly http: HttpClient,
@@ -16,15 +24,10 @@ export class MessageService {
     ) {}
 
     getMessagesRequest(): Observable<MessageProps[]> {
-        const paramKeys: string[] = ['roomId'];
-        const paramValues: string[] = [
-            String(this.roomQuery.currentRoomIdGetter),
-        ];
-
         return this.http
             .get<MessageProps[]>(
                 apiMessageUrl,
-                httpOptions(paramKeys, paramValues)
+                httpOptions(this._paramKeys, this._paramValues)
             )
             .pipe(tap((data) => this.messageStore.setMessages(data)));
     }

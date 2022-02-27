@@ -7,9 +7,13 @@ import {
     Output,
     ViewChild,
 } from '@angular/core';
+import { first } from 'rxjs/operators';
 import { relativeTime } from 'src/app/general/functions/moment';
 import { MessageProps } from 'src/app/states/message/message.model';
 import { UserProps } from 'src/app/states/user/user.model';
+import { RoomProps } from '../../../../states/room/room.model';
+import { UserQuery } from '../../../../states/user/user.query';
+import { UserService } from '../../../../states/user/user.service';
 
 @Component({
     selector: 'app-message-room-screen-p',
@@ -17,17 +21,41 @@ import { UserProps } from 'src/app/states/user/user.model';
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
 export class MessageRoomScreenPComponent implements AfterViewChecked {
+    room?: RoomProps;
+    companion?: UserProps;
     relativeTime = relativeTime;
 
-    @Input() currentRoomId!: number | null;
-    @Input() messages!: MessageProps[] | null;
-    @Input() profile!: UserProps | null;
-    @Input() companion!: UserProps | null;
+    @Input() currentRoomId?: number | null;
+    @Input() messages?: MessageProps[] | null;
+    @Input() profile?: UserProps | null;
+    @Input('room') set roomSetter(data: RoomProps | null) {
+        if (!data) return;
+
+        this.room = data;
+        // TODO: 親からcurrentUserIdを受け取る
+        const userId =
+            data.userA === this.userQuery.profileGetter?.id
+                ? data.userB
+                : data.userA;
+        // TODO: Queryから値を受け取る
+        this.userService
+            .getOnlyUserRequest(userId)
+            .pipe(first())
+            .subscribe((data: UserProps) => {
+                console.log({ data });
+                this.companion = data;
+            });
+    }
     @Output() clickMyProfilePicture: EventEmitter<void> =
         new EventEmitter<void>();
     @Output() clickCompanionProfilePicture: EventEmitter<number> =
         new EventEmitter<number>();
     @ViewChild('scroll') private scrollContainer!: ElementRef;
+
+    constructor(
+        private readonly userService: UserService,
+        private readonly userQuery: UserQuery
+    ) {}
 
     ngAfterViewChecked() {
         this.scrollToBottom();

@@ -9,12 +9,12 @@ import { UserProps } from 'src/app/states/user/user.model';
 })
 export class MatchingUsersPComponent {
     @Input() rooms!: RoomProps[] | null;
-    @Output() clickUserToMessage: EventEmitter<number> =
-        new EventEmitter<number>();
+    @Output() clickUserToMessage: EventEmitter<RoomProps> =
+        new EventEmitter<RoomProps>();
     @Output() outputUsers: EventEmitter<UserProps> =
         new EventEmitter<UserProps>();
 
-    onReceivedClickUserToMessage(userId: number): void {
-        this.clickUserToMessage.emit(userId);
+    onReceivedClickUserToMessage(room: RoomProps): void {
+        this.clickUserToMessage.emit(room);
     }
 }

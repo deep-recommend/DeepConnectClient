@@ -38,25 +38,9 @@
                                 onClickCompanionProfilePicture(companion?.id)
                             "
                         >
-                            <div
-                                *ngIf="
-                                    companion?.profilePicture;
-                                    then thenBlock;
-                                    else elseBlock
-                                "
-                            ></div>
-                            <ng-template #thenBlock>
-                                <img
-                                    class="avatar"
-                                    src="{{ companion?.profilePicture }}"
-                                />
-                            </ng-template>
-                            <ng-template #elseBlock>
-                                <img
-                                    class="avatar"
-                                    src="/assets/images/png/default-avatar.png"
-                                />
-                            </ng-template>
+                            <app-profile-picture
+                                [profilePicture]="companion?.profilePicture"
+                            ></app-profile-picture>
                         </div>
                     </div>
                     <div fxLayout="column">

@@ -16,22 +16,8 @@ import { UserStore } from './user.store';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(
-        private readonly http: HttpClient,
-        private readonly httpService: HttpClientService,
-        private readonly userStore: UserStore,
-        private readonly userQuery: UserQuery
-    ) {}
-
-    getUsersAllRequest(): Observable<UserProps[]> {
-        return this.http
-            .get<UserProps[]>(apiUserUrl, httpHeaders)
-            .pipe(tap((data) => this.userStore.setUsers(data)));
-    }
-
-    getUsersRequest(): Observable<UserProps[]> {
-        const search = this.userQuery.searchGetter;
-        const paramKeys: string[] = [
+    private get _paramKeys(): string[] {
+        return [
             'position',
             'gender',
             'birthYear',
@@ -50,7 +36,11 @@ export class UserService {
             'hasPet',
             'isMarried',
         ];
-        const paramValues: string[] = [
+    }
+
+    private get _paramValues(): string[] {
+        const search = this.userQuery.searchGetter;
+        return [
             search.position,
             search.gender,
             search.birthYear,
@@ -69,8 +59,27 @@ export class UserService {
             search.hasPet ? 'true' : '',
             search.isMarried ? 'true' : '',
         ];
+    }
+
+    constructor(
+        private readonly http: HttpClient,
+        private readonly httpService: HttpClientService,
+        private readonly userStore: UserStore,
+        private readonly userQuery: UserQuery
+    ) {}
+
+    getUsersAllRequest(): Observable<UserProps[]> {
         return this.http
-            .get<UserProps[]>(apiUserUrl, httpOptions(paramKeys, paramValues))
+            .get<UserProps[]>(apiUserUrl, httpHeaders)
+            .pipe(tap((data) => this.userStore.setUsers(data)));
+    }
+
+    getUsersRequest(): Observable<UserProps[]> {
+        return this.http
+            .get<UserProps[]>(
+                apiUserUrl,
+                httpOptions(this._paramKeys, this._paramValues)
+            )
             .pipe(tap((data) => this.userStore.setUsers(data)));
     }
 

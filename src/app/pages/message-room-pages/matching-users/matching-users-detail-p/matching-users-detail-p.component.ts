@@ -11,9 +11,11 @@ import { UserService } from '../../../../states/user/user.service';
     styleUrls: ['./matching-users-detail-p.component.scss'],
 })
 export class MatchingUsersDetailPComponent {
+    room?: RoomProps;
     user?: UserProps;
 
-    @Input('room') set room(data: RoomProps) {
+    @Input('room') set roomSetter(data: RoomProps) {
+        this.room = data;
         // TODO: 親からcurrentUserIdを受け取る
         const userId =
             data.userA === this.userQuery.profileGetter?.id
@@ -27,7 +29,8 @@ export class MatchingUsersDetailPComponent {
                 this.user = data;
             });
     }
-    @Output() clickToDetails: EventEmitter<number> = new EventEmitter<number>();
+    @Output() clickToDetails: EventEmitter<RoomProps> =
+        new EventEmitter<RoomProps>();
 
     constructor(
         private readonly userService: UserService,
@@ -35,6 +38,6 @@ export class MatchingUsersDetailPComponent {
     ) {}
 
     onClickToDetails(): void {
-        this.clickToDetails.emit(this.user?.id);
+        this.clickToDetails.emit(this.room);
     }
 }
