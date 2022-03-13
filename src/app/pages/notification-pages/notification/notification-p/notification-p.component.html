@@ -13,16 +13,14 @@
             <div fxLayout="row">
                 <div
                     *ngIf="
-                        getProfilePicture(notification.currentUserId);
+                        getProfilePicture(notification.userId);
                         then thenBlock;
                         else elseBlock
                     "
                 ></div>
                 <ng-template #thenBlock>
                     <img
-                        src="{{
-                            getProfilePicture(notification.currentUserId)
-                        }}"
+                        src="{{ getProfilePicture(notification.userId) }}"
                         class="image"
                     />
                 </ng-template>

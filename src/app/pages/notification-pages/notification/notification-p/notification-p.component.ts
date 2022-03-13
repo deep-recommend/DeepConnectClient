@@ -46,7 +46,6 @@ export class NotificationPComponent implements OnInit {
 
     getUserName(userId: number): string | undefined {
         const user = this.userQuery.getUserById(userId);
-        console.log({ user });
         return user ? `${user?.realLastName}${user?.realFirstName}` : undefined;
     }
 
