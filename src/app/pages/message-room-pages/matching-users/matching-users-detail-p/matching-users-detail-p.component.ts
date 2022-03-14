@@ -13,6 +13,7 @@ import { UserService } from '../../../../states/user/user.service';
 export class MatchingUsersDetailPComponent {
     room?: RoomProps;
     user?: UserProps;
+    profileGetter: UserProps = this.userQuery.profileGetter;
 
     @Input('room') set roomSetter(data: RoomProps) {
         this.room = data;
@@ -22,6 +23,9 @@ export class MatchingUsersDetailPComponent {
                 ? data.userB
                 : data.userA;
         // TODO: Queryから値を受け取る
+
+        if (userId === this.profileGetter.id) return;
+
         this.userService
             .getOnlyUserRequest(userId)
             .pipe(first())
