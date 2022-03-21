@@ -4,12 +4,10 @@ frontend:
         preBuild:
             commands:
                 - npm ci
+                - rm -rf node_modules/@datorama/akita-ng-entity-service/lib/ng-entity.service.d.t
         build:
             commands:
                 - npm run build
-        postBuild:
-            commands:
-                - rm -rf node_modules/@datorama/akita-ng-entity-service/lib/ng-entity.service.d.t
     artifacts:
         baseDirectory: dist/comedian-matching-front
         files:
