@@ -4,7 +4,7 @@ frontend:
         preBuild:
             commands:
                 - npm ci
-                - rm -rf node_modules/@datorama/akita-ng-entity-service/lib/ng-entity.service.d.t
+                - rm -rf node_modules/@datorama/akita-ng-entity-service/node_modules
         build:
             commands:
                 - npm run build
