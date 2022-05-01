@@ -36,11 +36,6 @@ $angular-template-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
-.mat-tab-group.mat-primary .mat-ink-bar,
-.mat-tab-nav-bar.mat-primary .mat-ink-bar {
-    background-color: orange;
-}
-
 .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 0;
 }
@@ -53,11 +48,6 @@ $angular-template-theme: mat-light-theme(
 
 .mat-form-field-wrapper {
     padding-bottom: 0;
-}
-
-.mat-progress-spinner circle,
-.mat-spinner circle {
-    stroke: orange;
 }
 
 html,
@@ -131,14 +121,6 @@ button,
 textarea,
 select {
     font: inherit;
-}
-
-.mat-fab,
-.mat-flat-button,
-.mat-mini-fab,
-.mat-raised-button {
-    color: white;
-    background-color: orange;
 }
 
 .mat-card:not([class*='mat-elevation-z']) {

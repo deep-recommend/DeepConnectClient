@@ -1,7 +1,7 @@
 :host {
     .orange-box {
         height: 128px;
-        background-color: orange;
+        background-color: #fafafa;
     }
     .wave-container {
         transform: scaleY(-1);
@@ -36,8 +36,8 @@
         right: 0;
         margin: 0 auto;
         .image {
-            width: 30px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
         }
     }
     @keyframes move-forever {
