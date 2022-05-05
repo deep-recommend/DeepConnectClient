@@ -41,6 +41,7 @@ export class UserDetailCComponent {
     }
 
     private _setLike(userId: number): void {
+        console.log({ profile: this.profile.id, userId });
         const value = {
             currentUserId: this.profile.id,
             userId: userId,

@@ -30,16 +30,13 @@ export class NotificationResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayPageName(route.data.title);
+        console.log('routing');
 
         return merge(
             this.userService.getUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile(),
             this.notificationService.getNotifications()
-        ).pipe(
-            first(),
-            mergeMap(async () => this.spinner.close()),
-            map((observer) => void observer)
-        );
+        ).pipe(map((observer) => void observer));
     }
 }

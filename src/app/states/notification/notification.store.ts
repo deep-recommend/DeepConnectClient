@@ -24,6 +24,7 @@ export class NotificationStore extends EntityStore<NotificationState> {
     }
 
     setNotification(notifications: NotificationProps[]): void {
+        console.log({ notifications });
         this.set(notifications);
     }
 

@@ -17,10 +17,7 @@ export class NotificationService {
 
     getNotifications(): Observable<NotificationProps[]> {
         return this.http
-            .get<NotificationProps[]>(
-                `${apiNotificationUrl}?currentUserId=${this.userQuery.profileGetter?.id}`,
-                httpHeaders
-            )
+            .get<NotificationProps[]>(apiNotificationUrl, httpHeaders)
             .pipe(
                 tap((data) => this.notificationStore.setNotification(data)),
                 tap((data) =>
