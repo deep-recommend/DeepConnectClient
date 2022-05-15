@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { apiNotificationUrl, httpHeaders } from 'src/app/general/utilities/api';
-import { UserQuery } from '../user/user.query';
 import { NotificationProps } from './notification.model';
 import { NotificationStore } from './notification.store';
 
@@ -11,8 +10,7 @@ import { NotificationStore } from './notification.store';
 export class NotificationService {
     constructor(
         private readonly notificationStore: NotificationStore,
-        private readonly http: HttpClient,
-        private readonly userQuery: UserQuery
+        private readonly http: HttpClient
     ) {}
 
     getNotifications(): Observable<NotificationProps[]> {

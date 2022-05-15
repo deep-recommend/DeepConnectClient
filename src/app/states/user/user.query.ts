@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QueryEntity } from '@datorama/akita';
+import { RoomProps } from '../room/room.model';
 import { UserProps } from './user.model';
 import { UserStore, UserState } from './user.store';
 
@@ -35,7 +36,7 @@ export class UserQuery extends QueryEntity<UserState> {
         return this.getValue().profile;
     }
 
-    get currentUserId(): number {
+    get currentUserId(): any {
         return this.getValue().profile?.id;
     }
 
@@ -73,11 +74,11 @@ export class UserQuery extends QueryEntity<UserState> {
         return this.getValue().userId;
     }
 
-    getUserById(userId: number): UserProps | undefined {
-        const user = this.getEntity(userId);
-        if (!user) {
-            return;
-        }
-        return user;
+    getById(userId: number): UserProps | undefined {
+        return this.getEntity(userId);
+    }
+
+    getOtherUserIdByRoom(room: RoomProps): number {
+        return this.profileGetter?.id === room.userA ? room.userB : room.userA;
     }
 }

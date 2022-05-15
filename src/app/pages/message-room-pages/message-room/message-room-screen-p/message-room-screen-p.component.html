@@ -16,9 +16,9 @@
                                 {{ profile?.realLastName
                                 }}{{ profile?.realFirstName }}
                             </p>
-                            <mat-card class="my-message">{{
-                                message.message
-                            }}</mat-card>
+                            <mat-card class="my-message"
+                                ><div [innerHTML]="message.message"></div
+                            ></mat-card>
                             <p fxLayoutAlign="end" class="message-time">
                                 {{ relativeTime(message.createdAt) }}
                             </p>
@@ -32,28 +32,34 @@
                     fxLayoutAlign="start"
                     class="message-content"
                 >
-                    <div class="message-content">
+                    <div
+                        class="message-content"
+                        fxLayout
+                        fxLayoutAlign="start center"
+                        fxLayoutGap="12px"
+                    >
                         <div
                             (click)="
                                 onClickCompanionProfilePicture(companion?.id)
                             "
+                            class="profile-picture-container"
                         >
                             <app-profile-picture
                                 [profilePicture]="companion?.profilePicture"
                             ></app-profile-picture>
                         </div>
-                    </div>
-                    <div fxLayout="column">
-                        <p class="message-name">
-                            {{ companion?.realLastName
-                            }}{{ companion?.realFirstName }}
-                        </p>
-                        <mat-card class="your-message">
-                            {{ message.message }}</mat-card
-                        >
-                        <p class="message-time">
-                            {{ relativeTime(message.createdAt) }}
-                        </p>
+                        <div fxLayout="column">
+                            <p class="message-name">
+                                {{ companion?.realLastName
+                                }}{{ companion?.realFirstName }}
+                            </p>
+                            <mat-card class="your-message">
+                                <div [innerHTML]="message?.message"></div
+                            ></mat-card>
+                            <p class="message-time">
+                                {{ relativeTime(message.createdAt) }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </ng-template>

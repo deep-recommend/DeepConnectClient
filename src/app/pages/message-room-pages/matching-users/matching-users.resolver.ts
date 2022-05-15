@@ -4,7 +4,7 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { forkJoin, merge, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RoomService } from 'src/app/states/room/room.service';
 import { UiStore } from 'src/app/states/ui/ui.store';

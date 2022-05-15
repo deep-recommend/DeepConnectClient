@@ -1,15 +1,19 @@
+@import '~@angular/material/theming';
+
 :host {
     .message-screen {
         padding: 12px 0;
         width: 700px;
         height: calc(100vh - 190px);
         overflow-y: scroll;
-        background-color: #fff;
         .message-content {
             padding: 0 8px;
             margin: 8px 0;
             &:active {
                 background-color: #fafafa;
+            }
+            .profile-picture-container {
+                margin-top: 12px;
             }
         }
         .message-name {
@@ -21,21 +25,26 @@
             color: #888;
         }
         .my-message {
-            box-shadow: 0 2px 1px -1px #0003, 0 1px 1px 0 #00000024,
-                0 1px 3px 0 #0000001f;
             border-radius: 24px 24px 0 24px;
             max-width: 350px;
             overflow-y-wrap: break-word;
-            color: white;
             margin-top: 12px;
+            background-color: map-get($mat-blue, 500);
+            color: #fff;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
         .your-message {
-            box-shadow: 0 2px 1px -1px #0003, 0 1px 1px 0 #00000024,
-                0 1px 3px 0 #0000001f;
             border-radius: 24px 24px 24px 0;
             max-width: 50vw;
             overflow-y-wrap: break-word;
             margin-top: 12px;
+            background-color: #f5f5f5;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+        ::ng-deep a {
+            text-decoration: underline !important;
         }
     }
     @media screen and (max-width: 700px) {
@@ -43,7 +52,7 @@
             width: 100vw;
             height: calc(100vh - 180px);
             .my-message {
-                max-width: 50vw;
+                max-width: 70vw;
             }
         }
     }

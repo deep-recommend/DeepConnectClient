@@ -24,7 +24,8 @@ export class MessageRoomCComponent {
     currentRoom$: Observable<RoomProps> = this.roomQuery.currentRoom$;
     currentRoomId$: Observable<number> = this.roomQuery.currentRoomId$;
 
-    currentRoom: RoomProps = this.roomQuery.currentRoomGetter;
+    newMessage: string = '';
+    currentRoom: RoomProps = this.roomQuery.currentRoom;
     profile: UserProps = this.userQuery.profileGetter;
 
     constructor(
@@ -55,15 +56,33 @@ export class MessageRoomCComponent {
     }
 
     private _setMessageSending(message: string): void {
+        this.replaceMessage(message);
         const value: CreateMessageProps = {
             currentUserId: this.profile?.id,
             userId:
                 this.currentRoom.userA === this.profile?.id
                     ? this.currentRoom.userB
                     : this.currentRoom.userA,
-            roomId: this.roomQuery.currentRoomIdGetter,
-            message: message,
+            roomId: this.roomQuery.currentRoomId,
+            message: this.newMessage,
         };
         this.socket.sendMessage(value);
+    }
+
+    private replaceMessage(message: string): void {
+        const _replaceMessage = (message: string) => {
+            const regexp =
+                /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/g;
+            const result = regexp.exec(message);
+            if (result) {
+                this.newMessage = this.newMessage.replace(
+                    result[0],
+                    `<a href="${result[0]}" target="_blank" rel="noopener noreferrer">${result[0]}</a>`
+                );
+            }
+        };
+
+        this.newMessage = message;
+        _replaceMessage(this.newMessage);
     }
 }

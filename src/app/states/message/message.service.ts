@@ -14,7 +14,7 @@ export class MessageService {
     }
 
     private get _paramValues(): string[] {
-        return [this.roomQuery.currentRoomIdGetter.toString()];
+        return [String(this.roomQuery.currentRoomId)];
     }
 
     constructor(

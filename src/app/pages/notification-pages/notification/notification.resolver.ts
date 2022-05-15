@@ -5,13 +5,13 @@ import {
     RouterStateSnapshot,
 } from '@angular/router';
 import { merge, Observable } from 'rxjs';
-import { first, map, mergeMap } from 'rxjs/operators';
-import { ProgressSpinnerService } from 'src/app/general/components/progress-spinner/progress-spinner.service';
+import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { LikeService } from 'src/app/states/like/like.service';
 import { NotificationService } from 'src/app/states/notification/notification.service';
 import { UiStore } from 'src/app/states/ui/ui.store';
 import { UserService } from 'src/app/states/user/user.service';
+import { RoomService } from '../../../states/room/room.service';
 
 @Injectable()
 export class NotificationResolverService implements Resolve<Observable<void>> {
@@ -20,8 +20,8 @@ export class NotificationResolverService implements Resolve<Observable<void>> {
         private readonly likeService: LikeService,
         private readonly authenticationService: AuthenticationService,
         private readonly uiStore: UiStore,
-        private readonly spinner: ProgressSpinnerService,
-        private readonly notificationService: NotificationService
+        private readonly notificationService: NotificationService,
+        private readonly roomService: RoomService
     ) {}
 
     resolve(
@@ -30,13 +30,13 @@ export class NotificationResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayPageName(route.data.title);
-        console.log('routing');
 
         return merge(
             this.userService.getUsersRequest(),
             this.likeService.getLikes(),
             this.authenticationService.getProfile(),
-            this.notificationService.getNotifications()
+            this.notificationService.getNotifications(),
+            this.roomService.getRoomsRequest()
         ).pipe(map((observer) => void observer));
     }
 }
