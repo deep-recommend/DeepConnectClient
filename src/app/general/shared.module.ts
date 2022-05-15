@@ -43,6 +43,7 @@ import { WaveComponent } from './components/wave/wave.component';
 import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { PositionComponent } from './components/position/position.component';
+import { ProfileTableComponent } from './components/profile-table/profile-table.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { PositionComponent } from './components/position/position.component';
         WaveComponent,
         ProfilePictureComponent,
         PositionComponent,
+        ProfileTableComponent,
     ],
     imports: [
         CommonModule,
@@ -103,6 +105,7 @@ import { PositionComponent } from './components/position/position.component';
         WaveComponent,
         ProfilePictureComponent,
         PositionComponent,
+        ProfileTableComponent,
 
         CommonModule,
         FormsModule,

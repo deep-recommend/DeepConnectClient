@@ -1,0 +1,88 @@
+<table>
+    <tr>
+        <td class="py-2 pr-2">本名</td>
+        <td>{{ profile?.realLastName }}{{ profile?.realFirstName }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">年齢</td>
+        <td>{{ profile?.age }}歳</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">身長</td>
+        <td>{{ profile?.height ? profile?.height : '未設定' }}cm</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">性別</td>
+        <td>{{ profile?.gender }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">出身</td>
+        <td>{{ profile?.birthPlace }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">所属</td>
+        <td>{{ profile?.agency ? profile?.agency : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">職業</td>
+        <td>{{ profile?.work ? profile?.work : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">趣味</td>
+        <td>{{ profile?.hobby ? profile?.hobby : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">兄弟姉妹</td>
+        <td>
+            {{
+                profile?.brothersAndSisters
+                    ? profile?.brothersAndSisters
+                    : '未設定'
+            }}
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">学歴</td>
+        <td>
+            {{
+                profile?.educationalBackground
+                    ? profile?.educationalBackground
+                    : '未設定'
+            }}
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">第二言語</td>
+        <td>
+            {{ profile?.secondLanguage ? profile?.secondLanguage : '未設定' }}
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">休日</td>
+        <td>{{ profile?.holiday ? profile?.holiday : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">楽器</td>
+        <td>{{ profile?.instrument ? profile?.instrument : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">スポーツ</td>
+        <td>{{ profile?.sport ? profile?.sport : '未設定' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">酒</td>
+        <td>{{ profile?.isDrinking ? '飲む' : '飲まない' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">タバコ</td>
+        <td>{{ profile?.isSmoking ? '吸う' : '吸わない' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">ペット</td>
+        <td>{{ profile?.hasPet ? 'いる' : 'いない' }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-2">結婚</td>
+        <td>{{ profile?.isMarried ? 'している' : 'していない' }}</td>
+    </tr>
+</table>

@@ -21,7 +21,9 @@
         <mat-card-header fxLayoutAlign="start">
             <mat-card-title
                 ><div fxLayout fxLayoutAlign="start center" fxLayoutGap="12px">
-                    <div class="stage-name">{{ profile?.stageName }}</div>
+                    <div class="stage-name">
+                        {{ profile?.stageName ? profile?.stageName : '未設定' }}
+                    </div>
                     <app-position
                         [position]="profile?.position"
                     ></app-position></div
@@ -39,87 +41,7 @@
             </div>
             <div fxLayout="column" fxLayoutAlign="center" class="section">
                 <p><strong>基本情報</strong></p>
-                <div fxLayout="row" fxLayoutAlign="start">
-                    <ul>
-                        <li>本名</li>
-                        <li>年齢</li>
-                        <li>身長</li>
-                        <li>性別</li>
-                        <li>出身</li>
-                        <li>所属</li>
-                        <li>職業</li>
-                        <li>趣味</li>
-                        <li>兄弟姉妹</li>
-                        <li>学歴</li>
-                        <li>第二言語</li>
-                        <li>休日</li>
-                        <li>楽器</li>
-                        <li>スポーツ</li>
-                        <li>酒</li>
-                        <li>タバコ</li>
-                        <li>ペット</li>
-                        <li>結婚</li>
-                    </ul>
-                    <ul class="value">
-                        <li>
-                            {{ profile?.realLastName
-                            }}{{ profile?.realFirstName }}
-                        </li>
-                        <li>{{ profile?.age }}歳</li>
-                        <li>
-                            {{ profile?.height ? profile?.height : '未設定' }}cm
-                        </li>
-                        <li>{{ profile?.gender }}</li>
-                        <li>{{ profile?.birthPlace }}</li>
-                        <li>
-                            {{ profile?.agency ? profile?.agency : '未設定' }}
-                        </li>
-                        <li>{{ profile?.work ? profile?.work : '未設定' }}</li>
-                        <li>
-                            {{ profile?.hobby ? profile?.hobby : '未設定' }}
-                        </li>
-                        <li>
-                            {{
-                                profile?.brothersAndSisters
-                                    ? profile?.brothersAndSisters
-                                    : '未設定'
-                            }}
-                        </li>
-                        <li>
-                            {{
-                                profile?.educationalBackground
-                                    ? profile?.educationalBackground
-                                    : '未設定'
-                            }}
-                        </li>
-                        <li>
-                            {{
-                                profile?.secondLanguage
-                                    ? profile?.secondLanguage
-                                    : '未設定'
-                            }}
-                        </li>
-                        <li>
-                            {{ profile?.holiday ? profile?.holiday : '未設定' }}
-                        </li>
-                        <li>
-                            {{
-                                profile?.instrument
-                                    ? profile?.instrument
-                                    : '未設定'
-                            }}
-                        </li>
-                        <li>
-                            {{ profile?.sport ? profile?.sport : '未設定' }}
-                        </li>
-                        <li>{{ profile?.isDrinking ? '飲む' : '飲まない' }}</li>
-                        <li>{{ profile?.isSmoking ? '吸う' : '吸わない' }}</li>
-                        <li>{{ profile?.hasPet ? 'いる' : 'いない' }}</li>
-                        <li>
-                            {{ profile?.isMarried ? 'している' : 'していない' }}
-                        </li>
-                    </ul>
-                </div>
+                <app-profile-table [profile]="profile"></app-profile-table>
             </div>
         </mat-card-content>
     </div>
