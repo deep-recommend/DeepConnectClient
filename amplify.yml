@@ -3,6 +3,7 @@ frontend:
     phases:
         preBuild:
             commands:
+                - npm i --ignore-engines
                 - rm -rf node_modules/@datorama/akita-ng-entity-service/node_modules
         build:
             commands:
