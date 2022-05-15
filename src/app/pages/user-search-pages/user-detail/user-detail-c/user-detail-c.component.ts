@@ -5,6 +5,9 @@ import { SocketService } from 'src/app/libs/socket/socket.service';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserQuery } from 'src/app/states/user/user.query';
 import { LikeQuery } from '../../../../states/like/like.query';
+import { RoomProps } from '../../../../states/room/room.model';
+import { RoomQuery } from '../../../../states/room/room.query';
+import { RoomStore } from '../../../../states/room/room.store';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -25,7 +28,9 @@ export class UserDetailCComponent {
         private readonly userQuery: UserQuery,
         private readonly likeQuery: LikeQuery,
         private readonly socket: SocketService,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly roomQuery: RoomQuery,
+        private readonly roomStore: RoomStore
     ) {}
 
     onReceivedClickLikeButton(): void {
@@ -37,7 +42,12 @@ export class UserDetailCComponent {
     }
 
     onReceivedClickUserToMessage(): void {
-        this.router.navigate([`/message-room/${this.detailUser.id}`]);
+        const room = this.roomQuery.getByUserId(
+            this.profile.id,
+            this.detailUser.id
+        );
+        this.roomStore.updateCurrentRoom(room as RoomProps);
+        this.router.navigate([`/message-room/${room?.id}`]);
     }
 
     private _setLike(userId: number): void {

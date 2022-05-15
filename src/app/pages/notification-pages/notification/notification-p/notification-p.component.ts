@@ -44,13 +44,15 @@ export class NotificationPComponent implements OnInit {
         this.clickNotificationsToUserDetail.emit(emitValue);
     }
 
-    getUserName(userId: number): string | undefined {
-        const user = this.userQuery.getUserById(userId);
-        return user ? `${user?.realLastName}${user?.realFirstName}` : undefined;
+    getMessage(notification: NotificationProps): string {
+        const user = this.userQuery.getById(notification.currentUserId);
+        return (
+            `${user?.realLastName}${user?.realFirstName}` + notification.message
+        );
     }
 
     getProfilePicture(userId: number) {
-        const user = this.userQuery.getUserById(userId);
+        const user = this.userQuery.getById(userId);
         return user ? user?.profilePicture : undefined;
     }
 }

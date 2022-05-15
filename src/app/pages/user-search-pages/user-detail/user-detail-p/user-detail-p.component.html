@@ -16,16 +16,18 @@
     </div>
     <div class="card">
         <mat-card-header fxLayoutAlign="start">
-            <mat-card-title
-                >{{ user?.stageName }}&nbsp;&nbsp;{{ user?.position }}
-                <button
-                    mat-icon-button
-                    *ngIf="matched"
-                    (click)="onClickToDetails()"
-                >
-                    <mat-icon class="icon">forward_to_inbox</mat-icon>
-                </button>
-                <br />
+            <mat-card-title>
+                <div fxLayout fxLayoutAlign="start center" fxLayoutGap="12px">
+                    <div>{{ user?.stageName }}</div>
+                    <app-position [position]="user?.position"></app-position>
+                    <button
+                        mat-icon-button
+                        *ngIf="matched"
+                        (click)="onClickToDetails()"
+                    >
+                        <mat-icon>forward_to_inbox</mat-icon>
+                    </button>
+                </div>
             </mat-card-title>
             <mat-card-subtitle
                 >{{ user?.age }}歳&nbsp;&nbsp;{{
@@ -47,8 +49,8 @@
                         <li>身長</li>
                         <li>性別</li>
                         <li>出身</li>
-                        <li>所属事務所</li>
-                        <li>仕事</li>
+                        <li>所属</li>
+                        <li>職業</li>
                         <li>趣味</li>
                         <li>兄弟姉妹</li>
                         <li>学歴</li>

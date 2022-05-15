@@ -2,18 +2,21 @@
     <div (click)="onClickUsersToDetail()" class="card">
         <div class="image-container">
             <img
-                *ngIf="user?.profilePicture;"
+                *ngIf="user?.profilePicture"
                 [src]="user?.profilePicture"
                 class="image"
             />
             <img
-                *ngIf="!user?.profilePicture;"
+                *ngIf="!user?.profilePicture"
                 src="/assets/images/png/default-avatar.png"
                 class="image"
             />
         </div>
         <mat-card-content>
-            <div>{{ user?.birthPlace }}&nbsp;&nbsp;{{ user?.position }}</div>
+            <div fxLayout fxLayoutAlign="start center">
+                <div class="birth-place">{{ user?.birthPlace }}</div>
+                <app-position [position]="user?.position"></app-position>
+            </div>
             <mat-card-subtitle>{{ user?.description }}</mat-card-subtitle>
         </mat-card-content>
     </div>

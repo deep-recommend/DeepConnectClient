@@ -19,17 +19,23 @@
             >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>芸名</mat-label>
+            <mat-label>ニックネーム</mat-label>
             <input matInput formControlName="stageName" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>ボケ/ツッコミ</mat-label>
+            <mat-label>あなたの役割</mat-label>
             <mat-select formControlName="position">
                 <mat-option
                     *ngFor="let position of positions"
                     [value]="position"
                 >
-                    {{ position }}
+                    <span *ngIf="position === 'none'">未選択</span>
+                    <span *ngIf="position === 'visionary'"
+                        >ビジョナリー（アイデアがある）</span
+                    >
+                    <span *ngIf="position === 'practitioner'">
+                        ハッカー（スキルがある）
+                    </span>
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -107,11 +113,11 @@
             >
         </mat-form-field>
         <mat-form-field>
-            <mat-label>事務所</mat-label>
+            <mat-label>所属</mat-label>
             <input matInput formControlName="agency" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>仕事</mat-label>
+            <mat-label>職業</mat-label>
             <input matInput formControlName="work" />
         </mat-form-field>
         <mat-form-field>
@@ -130,7 +136,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>学歴</mat-label>
+            <mat-label>最終学歴</mat-label>
             <input matInput formControlName="educationalBackground" />
         </mat-form-field>
         <mat-form-field>
@@ -183,7 +189,11 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>自己紹介</mat-label>
-            <textarea matInput formControlName="description"></textarea>
+            <textarea
+                matInput
+                rows="5"
+                formControlName="description"
+            ></textarea>
         </mat-form-field>
         <mat-label>プロフィール画像</mat-label>
         <input
@@ -199,9 +209,9 @@
         fxLayoutGap="16px"
     >
         <button
-            mat-raised-button
+            mat-stroked-button
             type="submit"
-            style="background-color: orange"
+            color="primary"
             class="update-button"
         >
             編集する

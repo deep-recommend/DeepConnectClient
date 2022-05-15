@@ -1,12 +1,13 @@
 <div class="action" fxLayoutAlign="row">
     <button
-        mat-raised-button
+        mat-stroked-button
+        color="primary"
         (click)="onClickToProfileSetting()"
         class="edit-profile"
     >
         プロフィールを編集する
     </button>
-    <button mat-raised-button (click)="signOut()" class="sign-out">
+    <button mat-stroked-button (click)="signOut()" class="sign-out">
         サインアウト
     </button>
 </div>

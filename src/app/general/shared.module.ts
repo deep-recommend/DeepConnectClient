@@ -42,6 +42,7 @@ import { ActionBarComponent } from './components/action-bar/action-bar.component
 import { WaveComponent } from './components/wave/wave.component';
 import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
+import { PositionComponent } from './components/position/position.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
         ActionBarComponent,
         WaveComponent,
         ProfilePictureComponent,
+        PositionComponent,
     ],
     imports: [
         CommonModule,
@@ -100,6 +102,7 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
         ActionBarComponent,
         WaveComponent,
         ProfilePictureComponent,
+        PositionComponent,
 
         CommonModule,
         FormsModule,

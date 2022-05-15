@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { userIdKey } from 'src/app/general/utilities/local-strage';
+import {
+    currentUserIdKey,
+    otherUserIdKey,
+} from 'src/app/general/utilities/local-strage';
 import { BROTHERS_AND_SISTERS } from 'src/app/general/utilities/select/brothers-and-sisters';
 import { DAY, MONTH, YEAR } from 'src/app/general/utilities/select/date';
 import { GENDER } from 'src/app/general/utilities/select/gender';
@@ -115,6 +118,7 @@ export class UserStore extends EntityStore<UserState> {
     }
 
     updateProfile(profile: UserProps): void {
+        localStorage.setItem(currentUserIdKey, String(profile.id));
         this.update({
             ...this.getValue().profile,
             profile,
@@ -136,7 +140,7 @@ export class UserStore extends EntityStore<UserState> {
     }
 
     updateUserId(userId: number): void {
-        localStorage.setItem(userIdKey, String(userId));
+        localStorage.setItem(otherUserIdKey, String(userId));
         this.update({ userId: userId });
     }
 

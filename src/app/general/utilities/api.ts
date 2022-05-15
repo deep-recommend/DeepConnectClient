@@ -1,12 +1,10 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 export const accessTokenKey: string = 'CmCn_access_token';
 
-// export const apiHostPort: string = 'http://localhost:3500/';
-// export const apiUrl: string = 'http://localhost:3500/api';
-
-export const apiHostPort: string = 'https://deep-matching.online/';
-export const apiUrl: string = 'https://deep-matching.online/api';
+export const apiHostPort: string = environment.apiHostPort;
+export const apiUrl: string = environment.apiUrl;
 
 export const apiUserUrl: string = `${apiUrl}/users`;
 export const apiAuthUrl: string = `${apiUrl}/auth/login`;

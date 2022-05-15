@@ -14,11 +14,25 @@ export class RoomQuery extends QueryEntity<RoomState> {
         super(store);
     }
 
-    get currentRoomGetter(): RoomProps {
+    get currentRoom(): RoomProps {
         return this.getValue().ui.currentRoom;
     }
 
-    get currentRoomIdGetter(): number {
+    get currentRoomId(): any {
         return this.getValue().ui.currentRoomId;
+    }
+
+    getById(id: number): RoomProps | undefined {
+        return this.getEntity(id);
+    }
+
+    getByUserId(currentUserId: number, userId: number): RoomProps | undefined {
+        const room = this.getAll().find(
+            (room) =>
+                (room.userA === currentUserId && room.userB === userId) ||
+                (room.userA === userId && room.userB === currentUserId)
+        );
+
+        return room;
     }
 }

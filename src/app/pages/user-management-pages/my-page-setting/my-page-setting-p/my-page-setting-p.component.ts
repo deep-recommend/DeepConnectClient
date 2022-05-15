@@ -16,7 +16,6 @@ import { UserProps } from 'src/app/states/user/user.model';
     selector: 'app-my-page-setting-p',
     templateUrl: './my-page-setting-p.component.html',
     styleUrls: ['./my-page-setting-p.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyPageSettingPComponent implements OnInit {
     hide: boolean = true;

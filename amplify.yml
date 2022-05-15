@@ -7,7 +7,7 @@ frontend:
                 - rm -rf node_modules/@datorama/akita-ng-entity-service/node_modules
         build:
             commands:
-                - npm run build
+                - npm run prod
     artifacts:
         baseDirectory: dist/comedian-matching-front
         files:

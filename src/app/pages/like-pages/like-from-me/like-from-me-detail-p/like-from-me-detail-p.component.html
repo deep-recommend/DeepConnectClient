@@ -6,15 +6,17 @@
 >
     <div fxLayout="row">
         <app-profile-picture
-          [profilePicture]="user?.profilePicture"
+            [profilePicture]="user?.profilePicture"
         ></app-profile-picture>
         <mat-card-header>
             <mat-card-title> {{ user?.stageName }}</mat-card-title>
             <mat-card-subtitle
-                >{{ user?.birthPlace }}&nbsp;&nbsp;{{
-                    user?.position
-                }}</mat-card-subtitle
-            >
+                fxLayout
+                fxLayoutAlign="start center"
+                fxLayoutGap="12px"
+                ><div>{{ user?.birthPlace }}</div>
+                <app-position [position]="user?.position"></app-position
+            ></mat-card-subtitle>
         </mat-card-header>
     </div>
 </mat-card>

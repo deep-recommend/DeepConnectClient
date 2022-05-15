@@ -1,6 +1,9 @@
 :host {
     .card {
         margin: 0 auto;
+        .birth-place {
+            margin-right: 12px;
+        }
         .image {
             width: 256px;
             height: 256px;

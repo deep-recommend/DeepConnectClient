@@ -2,7 +2,7 @@
     <div *ngIf="alreadyLikedByMySelf; then unlike; else like"></div>
     <ng-template #unlike>
         <button
-            mat-raised-button
+            mat-stroked-button
             fxLayout="row"
             fxLayoutAlign="center center"
             class="still-liked-button"
@@ -13,8 +13,9 @@
     </ng-template>
     <ng-template #like>
         <button
-            mat-raised-button
+            mat-stroked-button
             fxLayout="row"
+            color="primary"
             fxLayoutAlign="center center"
             class="already-like-button"
             (click)="onClickLikeButton()"

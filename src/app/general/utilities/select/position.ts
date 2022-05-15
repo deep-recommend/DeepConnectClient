@@ -1,1 +1,1 @@
-export const POSITION = ['未選択', 'ボケ', 'ツッコミ'];
+export const POSITION = ['none', 'visionary', 'practitioner'];

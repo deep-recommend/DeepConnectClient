@@ -4,7 +4,7 @@ import { Component, HostBinding } from '@angular/core';
     selector: 'progress-spinner',
     template: `
         <div class="progress-spinner-container">
-            <mat-spinner color="orange" [diameter]="48"></mat-spinner>
+            <mat-spinner color="primary" [diameter]="48"></mat-spinner>
         </div>
     `,
     styles: [

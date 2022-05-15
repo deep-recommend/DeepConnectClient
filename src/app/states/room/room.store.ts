@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { currentRoomIdKey } from '../../general/utilities/local-strage';
 import { RoomProps } from './room.model';
 
 export interface RoomState extends EntityState<RoomProps> {
@@ -34,7 +35,7 @@ export class RoomStore extends EntityStore<RoomState> {
     }
 
     updateCurrentRoom(room: RoomProps): void {
-        this._updateCurrentRoomId(room.id);
+        this.updateCurrentRoomId(room.id);
         this.update({
             ui: {
                 ...this.getValue().ui,
@@ -43,7 +44,8 @@ export class RoomStore extends EntityStore<RoomState> {
         });
     }
 
-    private _updateCurrentRoomId(currentRoomId: number): void {
+    updateCurrentRoomId(currentRoomId: number): void {
+        localStorage.setItem(currentRoomIdKey, String(currentRoomId));
         this.update({
             ui: {
                 ...this.getValue().ui,

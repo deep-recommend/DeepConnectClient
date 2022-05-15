@@ -1,0 +1,10 @@
+:host {
+    .position-none {
+        background-color: #e0e0e0 !important;
+    }
+
+    ::ng-deep .mat-standard-chip {
+        min-height: 0px !important;
+        height: 18px !important;
+    }
+}

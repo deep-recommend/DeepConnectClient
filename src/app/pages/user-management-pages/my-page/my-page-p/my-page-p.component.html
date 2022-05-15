@@ -20,8 +20,12 @@
     <div class="card">
         <mat-card-header fxLayoutAlign="start">
             <mat-card-title
-                >{{ profile?.stageName }}&nbsp;&nbsp;{{ profile?.position }}<br
-            /></mat-card-title>
+                ><div fxLayout fxLayoutAlign="start center" fxLayoutGap="12px">
+                    <div class="stage-name">{{ profile?.stageName }}</div>
+                    <app-position
+                        [position]="profile?.position"
+                    ></app-position></div
+            ></mat-card-title>
             <mat-card-subtitle
                 >{{ profile?.age }}歳&nbsp;&nbsp;{{
                     profile?.gender
@@ -42,8 +46,8 @@
                         <li>身長</li>
                         <li>性別</li>
                         <li>出身</li>
-                        <li>所属事務所</li>
-                        <li>仕事</li>
+                        <li>所属</li>
+                        <li>職業</li>
                         <li>趣味</li>
                         <li>兄弟姉妹</li>
                         <li>学歴</li>

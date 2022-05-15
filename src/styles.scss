@@ -1,8 +1,10 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 // Plus imports for other components in your app.
-
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -36,11 +38,6 @@ $angular-template-theme: mat-light-theme(
 
 /* You can add global styles to this file, and also import other style files */
 
-.mat-tab-group.mat-primary .mat-ink-bar,
-.mat-tab-nav-bar.mat-primary .mat-ink-bar {
-    background-color: orange;
-}
-
 .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 0;
 }
@@ -53,11 +50,6 @@ $angular-template-theme: mat-light-theme(
 
 .mat-form-field-wrapper {
     padding-bottom: 0;
-}
-
-.mat-progress-spinner circle,
-.mat-spinner circle {
-    stroke: orange;
 }
 
 html,
@@ -133,20 +125,26 @@ select {
     font: inherit;
 }
 
-.mat-fab,
-.mat-flat-button,
-.mat-mini-fab,
-.mat-raised-button {
-    color: white;
-    background-color: orange;
-}
-
 .mat-card:not([class*='mat-elevation-z']) {
     box-shadow: 0 0 0 0 white, 0 0 0 0 white, 0 0 0 0 white;
 }
 
 .image {
     object-fit: cover;
+}
+
+.mat-stroked-button {
+    &.mat-primary {
+        background-color: #fff;
+    }
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.mat-card-header-text {
+    margin: 0 !important;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */

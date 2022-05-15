@@ -4,6 +4,10 @@ import { forkJoin } from 'rxjs';
 import { LikeService } from 'src/app/states/like/like.service';
 import { MessageService } from 'src/app/states/message/message.service';
 import { NotificationService } from 'src/app/states/notification/notification.service';
+import {
+    currentUserIdKey,
+    otherUserIdKey,
+} from '../../general/utilities/local-strage';
 import { UserQuery } from '../../states/user/user.query';
 
 @Injectable({
@@ -38,18 +42,23 @@ export class SocketReceiverService {
 
     receiveNotificationDecrease(): void {
         this.socket.fromEvent('notificationDecrease').subscribe(() => {
-            this.notificationService.getNotifications().subscribe();
+            this._afterReceived();
         });
     }
 
     private _afterReceived(): void {
-        const currentUserId = this.userQuery.currentUserId;
-        const userId = this.userQuery.userIdGetter;
+        const currentUserId = this.userQuery.currentUserId
+            ? this.userQuery.currentUserId
+            : localStorage.getItem(currentUserIdKey);
+        const userId = this.userQuery.userIdGetter
+            ? this.userQuery.userIdGetter
+            : localStorage.getItem(otherUserIdKey);
 
         forkJoin(
             this.notificationService.getNotifications(),
             this.likeService.getLikes(),
             this.likeService.alreadyLikedByMyself(currentUserId, userId),
+            this.likeService.alreadyLikedByOthers(currentUserId, userId),
             this.likeService.matched(currentUserId, userId)
         ).subscribe();
     }
