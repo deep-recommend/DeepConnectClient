@@ -3,11 +3,7 @@
     fxLayout="row"
     fxLayoutAlign="center center"
 >
-    <mat-form-field
-        class="message-sender"
-        (keydown)="onSendMessage($event)"
-        appearance="outline"
-    >
+    <mat-form-field class="message-sender" (keydown)="onSendMessage($event)">
         <input
             matInput
             placeholder="メッセージ入力"

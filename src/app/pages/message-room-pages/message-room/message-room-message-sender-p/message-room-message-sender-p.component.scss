@@ -2,10 +2,14 @@
     .message-sender-container {
         border-top: 1px solid #0000001f;
         width: 700px;
-        padding: 16px 0;
+        padding: 4px;
         .message-sender {
             margin: 0 auto;
             width: 90%;
         }
+    }
+
+    ::ng-deep .mat-form-field-underline {
+        display: none;
     }
 }
