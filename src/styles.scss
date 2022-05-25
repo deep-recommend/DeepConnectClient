@@ -92,6 +92,11 @@ ol[role='list'] {
     list-style: none;
 }
 
+html,
+css {
+    touch-action: none;
+}
+
 /* Set core root defaults */
 html:focus-within {
     scroll-behavior: smooth;
