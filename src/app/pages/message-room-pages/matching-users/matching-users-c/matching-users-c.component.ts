@@ -27,6 +27,6 @@ export class MatchingUsersCComponent {
 
     onReceivedClickUserToMessage(room: RoomProps): void {
         this.roomStore.updateCurrentRoom(room);
-        this.router.navigate([`/message-room/${room.id}`]);
+        this.router.navigate([`/message-room/${room?.id}`]);
     }
 }

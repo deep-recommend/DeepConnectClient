@@ -169,6 +169,14 @@ select {
 @media screen and (max-width: 700px) {
     .mat-tab-group.mat-primary .mat-ink-bar,
     .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-        background-color: white;
+        display: none;
+    }
+    .mat-radio-ripple,
+    .mat-ripple,
+    .mat-checkbox-ripple {
+        display: none;
+    }
+    .mat-tab-label {
+        min-width: 0;
     }
 }

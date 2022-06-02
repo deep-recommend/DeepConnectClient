@@ -35,7 +35,9 @@ export class RoomStore extends EntityStore<RoomState> {
     }
 
     updateCurrentRoom(room: RoomProps): void {
-        this.updateCurrentRoomId(room.id);
+        if (!room) return;
+
+        this.updateCurrentRoomId(room?.id);
         this.update({
             ui: {
                 ...this.getValue().ui,

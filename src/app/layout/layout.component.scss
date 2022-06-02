@@ -1,14 +1,23 @@
 :host {
+    .back-img {
+        width: calc((100vw - 700px) / 2);
+    }
     .contents {
         width: 700px;
         height: 100vh;
         overflow-y: scroll;
         overflow-x: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
         margin: 0 auto;
         background-color: #fafafa;
+        scrollbar-color: #fafafa;
         .content {
             margin-top: 64px;
         }
+    }
+    .contents::-webkit-scrollbar {
+        display: none;
     }
     @media screen and (max-width: 700px) {
         .contents {

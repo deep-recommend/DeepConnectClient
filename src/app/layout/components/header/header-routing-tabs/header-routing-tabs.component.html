@@ -1,10 +1,11 @@
-<nav mat-tab-nav-bar mat-align-tabs="center" class="routing-tabs">
+<nav mat-tab-nav-bar mat-align-tabs="center" class="routing-tabs" disableRipple>
     <a
         mat-tab-link
         class="mat-tab-link"
         *ngFor="let routeLink of routeLinks; let i = index"
         [routerLink]="routeLink.link"
         [active]="activeLinkIndex === i"
+        [ngClass]="{ active: activeLinkIndex === i }"
         (click)="route(i)"
     >
         <div fxLayout="column" fxLayoutAlign="center center">

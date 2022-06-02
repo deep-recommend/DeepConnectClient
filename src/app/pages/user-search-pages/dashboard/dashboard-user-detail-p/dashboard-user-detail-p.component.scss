@@ -4,6 +4,14 @@
         .birth-place {
             margin-right: 12px;
         }
+        .image-container {
+            position: relative;
+        }
+        .position {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
         .image {
             width: 256px;
             height: 256px;
