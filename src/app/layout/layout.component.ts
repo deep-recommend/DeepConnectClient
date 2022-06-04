@@ -10,6 +10,7 @@ import { UiQuery } from '../states/ui/ui.query';
 export class LayoutComponent implements OnInit, OnDestroy {
     subscriptions: Subscription[] = [];
     isVisibleHeaders$ = this.uiQuery.isVisibleHeaders$;
+    isVisibleMobileHeader$ = this.uiQuery.isVisibleMobileHeaders$;
 
     constructor(
         private readonly uiQuery: UiQuery,

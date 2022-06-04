@@ -21,6 +21,7 @@ export class MyPageSettingResolverService implements Resolve<Observable<void>> {
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
+        this.uiStore.hideMobileHeader();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(this.authenticationService.getProfile()).pipe(

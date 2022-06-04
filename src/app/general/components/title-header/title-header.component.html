@@ -1,8 +1,10 @@
 <div class="header" fxLayout="row" fxLayoutAlign="center center">
     <img
-        *ngIf="(pageName$ | async) === 'DeepConnect'"
-        src="/assets/images/png/logo.png"
+        *ngIf="(pageName$ | async) === 'ダッシュボード'; else defaultPageName"
+        src="/assets/images/png/logo2.png"
         class="image"
     />
-    {{ pageName$ | async }}
+    <ng-template #defaultPageName>
+        {{ pageName$ | async }}
+    </ng-template>
 </div>

@@ -15,6 +15,9 @@ export class UiQuery extends Query<UiState> {
     header$ = this.select('header');
     headerAccountMenus$ = this.select((state) => state.header.accountMenus);
     isVisibleHeaders$ = this.select((state) => state.header.isVisible);
+    isVisibleMobileHeaders$ = this.select(
+        (state) => state.header.isMobileVisible
+    );
 
     sideNav$ = this.select('sideNav');
     sideNavMenus$ = this.select((state) => state.sideNav.menus);

@@ -22,6 +22,11 @@
     @media screen and (max-width: 700px) {
         .contents {
             width: 100vw;
+            .header {
+                &.visible {
+                    padding: 24px 0;
+                }
+            }
             .content {
                 margin-top: 0;
             }

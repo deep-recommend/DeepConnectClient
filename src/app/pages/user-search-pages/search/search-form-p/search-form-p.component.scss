@@ -10,12 +10,14 @@
             margin: auto;
             width: 630px;
             z-index: 2;
+            background-color: #fafafa;
         }
     }
     @media screen and (max-width: 700px) {
         .form {
             .search-button {
                 width: 90vw;
+                bottom: 64px;
             }
         }
     }

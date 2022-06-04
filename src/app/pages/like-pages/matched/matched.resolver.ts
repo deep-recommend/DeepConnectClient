@@ -25,6 +25,7 @@ export class MatchedResolverService implements Resolve<Observable<void>> {
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
+        this.uiStore.hideMobileHeader();
 
         return forkJoin(
             this.userService.getMatchedUsersRequest(),

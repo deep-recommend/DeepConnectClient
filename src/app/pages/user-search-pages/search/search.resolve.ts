@@ -12,6 +12,7 @@ export class SearchResolverService implements Resolve<void> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
         this.uiStore.displayRoutingTab();
+        this.uiStore.hideMobileHeader();
         this.uiStore.displayPageName(route.data.title);
     }
 }

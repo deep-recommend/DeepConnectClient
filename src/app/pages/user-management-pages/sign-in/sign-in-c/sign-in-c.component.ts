@@ -27,7 +27,10 @@ export class SignInCComponent {
             .signInRequest(signIn)
             .pipe(
                 mergeMap(() => this.router.navigate(['/'])),
-                mergeMap(async () => this.uiStore.displayRoutingTab())
+                mergeMap(async () => {
+                    this.uiStore.displayRoutingTab();
+                    this.uiStore.displayMobileHeader();
+                })
             )
             .subscribe();
     }

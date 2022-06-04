@@ -25,6 +25,7 @@ export class DashboardResolverService implements Resolve<Observable<void>> {
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
+        this.uiStore.displayMobileHeader();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(

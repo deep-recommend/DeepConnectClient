@@ -27,6 +27,7 @@ export class LikeFromOthersResolverService
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
+        this.uiStore.hideMobileHeader();
 
         return forkJoin(
             this.userService.getLikedFromOthersUsersRequest(),

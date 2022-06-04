@@ -23,6 +23,7 @@ export class MyPageResolverService implements Resolve<Observable<void>> {
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
+        this.uiStore.displayMobileHeader();
 
         return forkJoin(
             this.userService.getUsersRequest(),

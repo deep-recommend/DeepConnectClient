@@ -4,6 +4,8 @@
         <app-header-c
             style="z-index: 2"
             *ngIf="isVisibleHeaders$ | async"
+            class="header"
+            [ngClass]="{ visible: (isVisibleMobileHeader$ | async) }"
         ></app-header-c>
         <app-content style="z-index: 0" class="content"></app-content>
     </div>

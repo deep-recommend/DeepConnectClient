@@ -40,6 +40,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
             : localStorage.getItem(otherUserIdKey);
 
         this.uiStore.displayRoutingTab();
+        this.uiStore.hideMobileHeader();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(

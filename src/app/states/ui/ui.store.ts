@@ -16,6 +16,7 @@ export const initialState: () => UiState = () => ({
     header: {
         accountMenus: headerAccountMenu,
         isVisible: true,
+        isMobileVisible: true,
     },
     sideNav: {
         menus: sideNavMenu,
@@ -67,6 +68,14 @@ export class UiStore extends Store<UiState> {
         this._configRoutingTabDisplay(false);
     }
 
+    displayMobileHeader(): void {
+        this._configMobileHeaderDisplay(true);
+    }
+
+    hideMobileHeader(): void {
+        this._configMobileHeaderDisplay(false);
+    }
+
     private _configureErrMsg(errMsg: string): void {
         this.update({
             ui: {
@@ -112,6 +121,15 @@ export class UiStore extends Store<UiState> {
             header: {
                 ...this.getValue().header,
                 isVisible: bool,
+            },
+        });
+    }
+
+    private _configMobileHeaderDisplay(bool: boolean): void {
+        this.update({
+            header: {
+                ...this.getValue().header,
+                isMobileVisible: bool,
             },
         });
     }

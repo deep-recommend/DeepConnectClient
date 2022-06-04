@@ -12,5 +12,6 @@ export class SignUpResolverService implements Resolve<void> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
         this.uiStore.hideRoutingTab();
+        this.uiStore.hideMobileHeader();
     }
 }

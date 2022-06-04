@@ -33,6 +33,7 @@ export class MessageRoomResolverService implements Resolve<Observable<void>> {
         state: RouterStateSnapshot
     ): Observable<void> {
         this.uiStore.hideRoutingTab();
+        this.uiStore.hideMobileHeader();
         this.uiStore.displayPageName(route.data.title);
 
         const currentRoomId = this.roomQuery.currentRoomId

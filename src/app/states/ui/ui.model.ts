@@ -10,6 +10,7 @@ export interface UiState {
     header: {
         accountMenus: HeaderAccountMenu[];
         isVisible: boolean;
+        isMobileVisible: boolean;
     };
     sideNav: {
         menus: SideNavMenu[];
