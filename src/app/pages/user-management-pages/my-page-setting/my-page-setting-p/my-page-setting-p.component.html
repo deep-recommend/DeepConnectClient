@@ -51,21 +51,19 @@
                 >・必須項目です</mat-error
             >
         </mat-form-field>
+        <mat-form-field>
+            <mat-label>誕生年</mat-label>
+            <mat-select formControlName="birthYear" required>
+                <mat-option *ngFor="let year of years" [value]="year">
+                    {{ year }}
+                </mat-option>
+            </mat-select>
+            <mat-error
+                *ngIf="updateUserForm.get('birthYear')?.hasError('required')"
+                >・必須項目です</mat-error
+            >
+        </mat-form-field>
         <div fxLayout="row">
-            <mat-form-field>
-                <mat-label>誕生年</mat-label>
-                <mat-select formControlName="birthYear" required>
-                    <mat-option *ngFor="let year of years" [value]="year">
-                        {{ year }}
-                    </mat-option>
-                </mat-select>
-                <mat-error
-                    *ngIf="
-                        updateUserForm.get('birthYear')?.hasError('required')
-                    "
-                    >・必須項目です</mat-error
-                >
-            </mat-form-field>
             <mat-form-field>
                 <mat-label>誕生月</mat-label>
                 <mat-select formControlName="birthMonth" required>

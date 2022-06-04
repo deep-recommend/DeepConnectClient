@@ -1,11 +1,17 @@
 <mat-chip-list>
-    <mat-chip *ngIf="position !== 'visionary' && position !== 'practitioner'">
+    <mat-chip
+        *ngIf="position !== 'visionary' && position !== 'practitioner'"
+        disabled
+        disableRipple
+    >
         未選択
     </mat-chip>
     <mat-chip
         *ngIf="position === 'visionary' || position === 'practitioner'"
         [color]="chipColor"
         selected
+        disabled
+        disableRipple
     >
         {{ puttingInOtherWords }}
     </mat-chip>

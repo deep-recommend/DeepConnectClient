@@ -12,6 +12,7 @@ export const initialState: () => UiState = () => ({
     ui: {
         authErrMsg: String(),
         pageName: String(),
+        isMessaging: false,
     },
     header: {
         accountMenus: headerAccountMenu,
@@ -76,6 +77,14 @@ export class UiStore extends Store<UiState> {
         this._configMobileHeaderDisplay(false);
     }
 
+    messaging(): void {
+        this._configMessaging(true);
+    }
+
+    quitMessaging(): void {
+        this._configMessaging(false);
+    }
+
     private _configureErrMsg(errMsg: string): void {
         this.update({
             ui: {
@@ -90,6 +99,15 @@ export class UiStore extends Store<UiState> {
             ui: {
                 ...this.getValue().ui,
                 pageName: pageName,
+            },
+        });
+    }
+
+    private _configMessaging(bool: boolean): void {
+        this.update({
+            ui: {
+                ...this.getValue().ui,
+                isMessaging: bool,
             },
         });
     }

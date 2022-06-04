@@ -1,6 +1,10 @@
 <div fxLayout>
     <div class="back-img"></div>
-    <div fxLayout="column" class="contents">
+    <div
+        fxLayout="column"
+        class="contents"
+        [ngClass]="{ messaging: (isMessaging$ | async) }"
+    >
         <app-header-c
             style="z-index: 2"
             *ngIf="isVisibleHeaders$ | async"

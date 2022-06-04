@@ -28,6 +28,7 @@ export class MatchingUsersResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayMobileHeader();
+        this.uiStore.quitMessaging();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(

@@ -4,13 +4,13 @@ import { UiStore } from './ui.store';
 import { UiState } from './ui.model';
 import { LikeQuery } from '../like/like.query';
 import { includes, intersection } from 'lodash';
-import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UiQuery extends Query<UiState> {
     ui$ = this.select('ui');
     authErrMsg$ = this.select((state) => state.ui.authErrMsg);
     pageName$ = this.select((state) => state.ui.pageName);
+    isMessaging$ = this.select((state) => state.ui.isMessaging);
 
     header$ = this.select('header');
     headerAccountMenus$ = this.select((state) => state.header.accountMenus);

@@ -24,6 +24,7 @@ export class MyPageResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayMobileHeader();
+        this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(
             this.userService.getUsersRequest(),

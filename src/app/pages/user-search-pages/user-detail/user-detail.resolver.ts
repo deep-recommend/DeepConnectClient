@@ -41,6 +41,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
 
         this.uiStore.displayRoutingTab();
         this.uiStore.hideMobileHeader();
+        this.uiStore.quitMessaging();
         this.uiStore.displayPageName(route.data.title);
 
         return forkJoin(

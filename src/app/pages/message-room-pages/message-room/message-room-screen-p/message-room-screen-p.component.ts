@@ -4,9 +4,11 @@ import {
     ElementRef,
     EventEmitter,
     Input,
+    OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { relativeTime } from 'src/app/general/functions/moment';
 import { MessageProps } from 'src/app/states/message/message.model';
 import { UserProps } from 'src/app/states/user/user.model';
@@ -18,7 +20,7 @@ import { UserQuery } from '../../../../states/user/user.query';
     templateUrl: './message-room-screen-p.component.html',
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
-export class MessageRoomScreenPComponent implements AfterViewChecked {
+export class MessageRoomScreenPComponent implements AfterViewChecked, OnInit {
     room?: RoomProps;
     companion?: UserProps;
     relativeTime = relativeTime;
@@ -34,14 +36,27 @@ export class MessageRoomScreenPComponent implements AfterViewChecked {
         const userId = this.userQuery.getOtherUserIdByRoom(this.room);
         this.companion = this.userQuery.getById(userId);
     }
+
     @Output() clickMyProfilePicture: EventEmitter<void> =
         new EventEmitter<void>();
     @Output() clickCompanionProfilePicture: EventEmitter<number> =
         new EventEmitter<number>();
 
-    @ViewChild('scroll') private scrollContainer!: ElementRef;
+    @ViewChild('scroll') scrollContainer!: ElementRef;
 
-    constructor(private readonly userQuery: UserQuery) {}
+    constructor(
+        private readonly userQuery: UserQuery,
+        private readonly router: Router
+    ) {}
+
+    ngOnInit(): void {
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0);
+        });
+    }
 
     ngAfterViewChecked() {
         this.scrollToBottom();

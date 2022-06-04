@@ -4,7 +4,7 @@
     .message-screen {
         padding: 12px 0;
         width: 700px;
-        height: calc(100vh - 190px);
+        height: calc(100vh - 170px);
         overflow-y: scroll;
         .message-content {
             padding: 0 8px;
@@ -50,7 +50,9 @@
     @media screen and (max-width: 700px) {
         .message-screen {
             width: 100vw;
-            height: calc(100vh - 180px);
+            height: 90vh;
+            overflow-y: scroll;
+            padding-top: 96px;
             .my-message {
                 max-width: 70vw;
             }

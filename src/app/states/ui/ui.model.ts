@@ -6,6 +6,7 @@ export interface UiState {
     ui: {
         authErrMsg: string;
         pageName: string;
+        isMessaging: boolean;
     };
     header: {
         accountMenus: HeaderAccountMenu[];

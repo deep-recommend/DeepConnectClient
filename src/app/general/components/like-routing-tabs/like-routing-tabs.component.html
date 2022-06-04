@@ -1,9 +1,11 @@
 <nav mat-tab-nav-bar mat-align-tabs="center" disableRipple>
     <a
         mat-tab-link
+        class="mat-tab-link"
         *ngFor="let routeLink of routeLinks; let i = index"
         [routerLink]="routeLink.link"
         [active]="activeLinkIndex === i"
+        [ngClass]="{ active: activeLinkIndex === i }"
         (click)="activeLinkIndex = i"
         >{{ routeLink.label }}</a
     >

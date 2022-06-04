@@ -7,6 +7,7 @@ const routes: Routes = [
     {
         path: '',
         component: MyPageComponent,
+        data: { title: 'マイページ' },
         resolve: { from: MyPageResolverService },
     },
 ];

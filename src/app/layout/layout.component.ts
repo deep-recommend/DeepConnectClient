@@ -11,6 +11,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     subscriptions: Subscription[] = [];
     isVisibleHeaders$ = this.uiQuery.isVisibleHeaders$;
     isVisibleMobileHeader$ = this.uiQuery.isVisibleMobileHeaders$;
+    isMessaging$ = this.uiQuery.isMessaging$;
 
     constructor(
         private readonly uiQuery: UiQuery,

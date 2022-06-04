@@ -1,5 +1,4 @@
 :host {
-    overflow-y: hidden;
     .sidenav {
         position: absolute;
         top: 64px;
@@ -8,7 +7,6 @@
 
         width: 320px;
         height: calc(100vh + 64px);
-        overflow-y: hidden;
         border-right: 1px solid #eee;
 
         transform: translateX(-100%);
