@@ -8,7 +8,6 @@ import {
     Output,
     ViewChild,
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { relativeTime } from 'src/app/general/functions/moment';
 import { MessageProps } from 'src/app/states/message/message.model';
 import { UserProps } from 'src/app/states/user/user.model';
@@ -44,19 +43,9 @@ export class MessageRoomScreenPComponent implements AfterViewChecked, OnInit {
 
     @ViewChild('scroll') scrollContainer!: ElementRef;
 
-    constructor(
-        private readonly userQuery: UserQuery,
-        private readonly router: Router
-    ) {}
+    constructor(private readonly userQuery: UserQuery) {}
 
-    ngOnInit(): void {
-        this.router.events.subscribe((evt) => {
-            if (!(evt instanceof NavigationEnd)) {
-                return;
-            }
-            window.scrollTo(0, 0);
-        });
-    }
+    ngOnInit(): void {}
 
     ngAfterViewChecked() {
         this.scrollToBottom();
