@@ -2,7 +2,7 @@
     <div *ngIf="alreadyLikedByMySelf; then unlike; else like"></div>
     <ng-template #unlike>
         <button
-            mat-stroked-button
+            mat-button
             fxLayout="row"
             fxLayoutAlign="center center"
             class="still-liked-button"
@@ -13,7 +13,7 @@
     </ng-template>
     <ng-template #like>
         <button
-            mat-stroked-button
+            mat-button
             fxLayout="row"
             color="primary"
             fxLayoutAlign="center center"
@@ -23,7 +23,7 @@
             組みたい<mat-icon class="icon">thumb_up</mat-icon>
         </button>
     </ng-template>
-    <button mat-stroked-button (click)="onClickNextButton()" class="next-user">
+    <button mat-button (click)="onClickNextButton()" class="next-user">
         次へ<mat-icon class="icon">next_plan</mat-icon>
     </button>
 </div>
