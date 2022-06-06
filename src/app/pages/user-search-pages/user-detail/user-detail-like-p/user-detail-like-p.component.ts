@@ -10,6 +10,7 @@ export class UserDetailLikePComponent {
 
     @Output() clickLikeButton: EventEmitter<void> = new EventEmitter<void>();
     @Output() clickUnlikeButton: EventEmitter<void> = new EventEmitter<void>();
+    @Output() clickNextButton: EventEmitter<void> = new EventEmitter<void>();
 
     onClickLikeButton(): void {
         this.clickLikeButton.emit();
@@ -17,5 +18,9 @@ export class UserDetailLikePComponent {
 
     onClickUnlikeButton(): void {
         this.clickUnlikeButton.emit();
+    }
+
+    onClickNextButton(): void {
+        this.clickNextButton.emit();
     }
 }

@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { QueryEntity } from '@datorama/akita';
+import { QueryConfig, QueryEntity } from '@datorama/akita';
 import { RoomProps } from '../room/room.model';
 import { UserProps } from './user.model';
 import { UserStore, UserState } from './user.store';
 
+@QueryConfig({
+    sortBy: (a: UserProps, b: UserProps) => {
+        return b.id > a.id ? 1 : -1;
+    },
+})
 @Injectable({ providedIn: 'root' })
 export class UserQuery extends QueryEntity<UserState> {
     users$ = this.selectAll();
@@ -30,6 +35,15 @@ export class UserQuery extends QueryEntity<UserState> {
 
     constructor(protected store: UserStore) {
         super(store);
+    }
+
+    nextUserId(id: number): number {
+        const currentUserIndex = this.getAll().findIndex(
+            (user) => user?.id === id
+        );
+        const nextUserId = this.getAll()[currentUserIndex + 1]?.id;
+
+        return nextUserId;
     }
 
     get profileGetter(): UserProps {

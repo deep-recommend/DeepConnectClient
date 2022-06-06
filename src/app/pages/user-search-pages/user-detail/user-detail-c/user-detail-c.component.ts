@@ -1,3 +1,4 @@
+import { UserStore } from 'src/app/states/user/user.store';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -30,7 +31,8 @@ export class UserDetailCComponent {
         private readonly socket: SocketService,
         private readonly router: Router,
         private readonly roomQuery: RoomQuery,
-        private readonly roomStore: RoomStore
+        private readonly roomStore: RoomStore,
+        private readonly userStore: UserStore
     ) {}
 
     onReceivedClickLikeButton(): void {
@@ -48,6 +50,18 @@ export class UserDetailCComponent {
         );
         this.roomStore.updateCurrentRoom(room as RoomProps);
         this.router.navigate([`/message-room/${room?.id}`]);
+    }
+
+    onReceivedClickNextButton(): void {
+        const nextUserId = this.userQuery.nextUserId(this.detailUser.id);
+
+        if (!nextUserId) {
+            this.router.navigate(['/']);
+            return;
+        }
+
+        this.userStore.updateUserId(nextUserId);
+        this.router.navigate([`user-detail/${nextUserId}`]);
     }
 
     private _setLike(userId: number): void {

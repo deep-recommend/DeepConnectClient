@@ -19,7 +19,7 @@ import { UserQuery } from '../../../../states/user/user.query';
     templateUrl: './message-room-screen-p.component.html',
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
-export class MessageRoomScreenPComponent implements AfterViewChecked, OnInit {
+export class MessageRoomScreenPComponent implements OnInit {
     room?: RoomProps;
     companion?: UserProps;
     relativeTime = relativeTime;
@@ -46,10 +46,6 @@ export class MessageRoomScreenPComponent implements AfterViewChecked, OnInit {
     constructor(private readonly userQuery: UserQuery) {}
 
     ngOnInit(): void {}
-
-    ngAfterViewChecked() {
-        this.scrollToBottom();
-    }
 
     onClickMyProfilePicture(): void {
         this.clickMyProfilePicture.emit();

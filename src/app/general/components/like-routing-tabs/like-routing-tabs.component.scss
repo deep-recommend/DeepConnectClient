@@ -4,4 +4,9 @@
             color: #448aff;
         }
     }
+    @media screen and (max-width: 700px) {
+        .mat-tab-nav-bar {
+            padding-top: 12px;
+        }
+    }
 }
