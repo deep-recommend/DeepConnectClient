@@ -1,6 +1,7 @@
 import {
-    AfterViewChecked,
+    AfterViewInit,
     Component,
+    DoCheck,
     ElementRef,
     EventEmitter,
     Input,
@@ -19,10 +20,14 @@ import { UserQuery } from '../../../../states/user/user.query';
     templateUrl: './message-room-screen-p.component.html',
     styleUrls: ['./message-room-screen-p.component.scss'],
 })
-export class MessageRoomScreenPComponent implements OnInit {
+export class MessageRoomScreenPComponent
+    implements OnInit, AfterViewInit, DoCheck
+{
     room?: RoomProps;
     companion?: UserProps;
     relativeTime = relativeTime;
+    maxScroll: number = 0;
+    canScrollBottom: boolean = false;
 
     @Input() currentRoomId?: number | null;
     @Input() messages?: MessageProps[] | null;
@@ -46,6 +51,24 @@ export class MessageRoomScreenPComponent implements OnInit {
     constructor(private readonly userQuery: UserQuery) {}
 
     ngOnInit(): void {}
+
+    ngAfterViewInit(): void {
+        this.scrollToBottom();
+
+        this.maxScroll = this.scrollContainer.nativeElement.scrollTop;
+        this.canScrollBottom =
+            this.scrollContainer.nativeElement.scrollTop <
+            this.maxScroll * 0.95;
+    }
+
+    onScroll(event: any) {
+        console.log(this.scrollContainer?.nativeElement.scrollTop);
+        this.canScrollBottom =
+            this.scrollContainer.nativeElement.scrollTop <
+            this.maxScroll * 0.95;
+    }
+
+    ngDoCheck(): void {}
 
     onClickMyProfilePicture(): void {
         this.clickMyProfilePicture.emit();

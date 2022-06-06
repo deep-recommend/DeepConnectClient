@@ -1,4 +1,4 @@
-<div class="message-screen" #scroll>
+<div class="message-screen" #scroll (scroll)="onScroll($event)">
     <div *ngFor="let message of messages; let i = index">
         <div *ngIf="currentRoomId === message.roomId">
             <div
@@ -66,6 +66,7 @@
         </div>
     </div>
     <app-message-room-scroll-to-bottom-button-p
+        *ngIf="canScrollBottom"
         class="scroll-to-bottom"
         (clickScrollToBottom)="scrollToBottom()"
     ></app-message-room-scroll-to-bottom-button-p>
