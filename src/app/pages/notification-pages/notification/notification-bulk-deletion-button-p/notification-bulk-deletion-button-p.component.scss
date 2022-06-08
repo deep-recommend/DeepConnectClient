@@ -1,17 +1,20 @@
 :host {
     .button {
         width: 700px;
-        background-color: white;
-        color: red;
-        opacity: 0.6;
+        align-items: center;
+        position: fixed;
+        bottom: 24px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 630px;
+        z-index: 2;
+        background-color: #fff;
     }
-    position: fixed;
-    bottom: 0;
     @media screen and (max-width: 700px) {
         .button {
-            width: 100vw;
-            position: fixed;
-            bottom: 48px;
+            width: 90vw;
+            bottom: 64px;
         }
     }
 }
