@@ -1,16 +1,13 @@
-<div fxLayout>
-    <div class="back-img"></div>
-    <div
-        fxLayout="column"
-        class="contents"
-        [ngClass]="{ messaging: (isMessaging$ | async) }"
-    >
-        <app-header-c
-            style="z-index: 2"
-            *ngIf="isVisibleHeaders$ | async"
-            class="header"
-            [ngClass]="{ visible: (isVisibleMobileHeader$ | async) }"
-        ></app-header-c>
-        <app-content style="z-index: 0" class="content"></app-content>
-    </div>
+<div
+    fxLayout="column"
+    class="contents"
+    [ngClass]="{ messaging: (isMessaging$ | async) }"
+>
+    <app-header-c
+        style="z-index: 2"
+        *ngIf="isVisibleHeaders$ | async"
+        class="header"
+        [ngClass]="{ visible: (isVisibleMobileHeader$ | async) }"
+    ></app-header-c>
+    <app-content style="z-index: 0" class="content"></app-content>
 </div>
