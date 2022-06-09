@@ -3,7 +3,9 @@ frontend:
     phases:
         preBuild:
             commands:
-                - npm i --ignore-engines
+                - rm -rf node_modules
+                - rm -rf package-lock.json
+                - npm i --ignore-engines --force
                 - rm -rf node_modules/@datorama/akita-ng-entity-service/node_modules
         build:
             commands:
