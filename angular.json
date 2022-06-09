@@ -31,8 +31,11 @@
                         "tsConfig": "tsconfig.app.json",
                         "aot": true,
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
+                        "styles": [
+                            "src/styles.scss",
+                            "node_modules/aos/dist/aos.css"
+                        ],
+                        "scripts": ["node_modules/aos/dist/aos.js"]
                     },
                     "configurations": {
                         "production": {
@@ -89,8 +92,11 @@
                         "tsConfig": "tsconfig.spec.json",
                         "karmaConfig": "karma.conf.js",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
+                        "styles": [
+                            "src/styles.scss",
+                            "node_modules/aos/dist/aos.css"
+                        ],
+                        "scripts": ["node_modules/aos/dist/aos.js"]
                     }
                 },
                 "lint": {

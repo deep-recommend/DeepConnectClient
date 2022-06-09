@@ -16,6 +16,7 @@ import {
     otherUserIdKey,
 } from '../../../general/utilities/local-strage';
 import { RoomService } from '../../../states/room/room.service';
+import * as AOS from 'aos';
 
 @Injectable()
 export class UserDetailResolverService implements Resolve<Observable<void>> {
@@ -43,6 +44,9 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
         this.uiStore.hideMobileHeader();
         this.uiStore.quitMessaging();
         this.uiStore.displayPageName(route.data.title);
+        AOS.init({
+            duration: 1000,
+        });
 
         return forkJoin(
             this.userService.getOnlyUserRequest(userId),

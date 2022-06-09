@@ -1,8 +1,17 @@
 module.exports = {
-    purge: ['./src/**/*.{html,ts}'],
-    content: [],
+    prefix: '',
+    purge: {
+        content: ['./src/**/*.{html,ts}'],
+    },
+    darkMode: 'class', // or 'media' or 'class'
     theme: {
         extend: {},
     },
-    plugins: [],
+    variants: {
+        extend: {},
+    },
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+    ],
 };
