@@ -7,7 +7,7 @@ const routes: Routes = [
     {
         path: '',
         component: UserDetailComponent,
-        data: { title: 'ユーザー詳細' },
+        data: { title: '' },
         resolve: { from: UserDetailResolverService },
     },
 ];

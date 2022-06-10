@@ -43,7 +43,9 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
         this.uiStore.displayRoutingTab();
         this.uiStore.hideMobileHeader();
         this.uiStore.quitMessaging();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiStore.displayPageName(
+            String(this.userQuery.detailUserGetter?.stageName)
+        );
         AOS.init({
             duration: 1000,
         });
@@ -58,13 +60,6 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
             this.likeService.matched(currentUserId, userId),
             this.authenticationService.getProfile(),
             this.roomService.getRoomsRequest()
-        ).pipe(
-            mergeMap(async () =>
-                this.uiStore.displayPageName(
-                    String(this.userQuery.detailUserGetter?.stageName)
-                )
-            ),
-            map((observer) => void observer)
-        );
+        ).pipe(map((observer) => void observer));
     }
 }
