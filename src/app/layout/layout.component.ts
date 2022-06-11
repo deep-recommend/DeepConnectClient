@@ -1,7 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { UiStore } from './../states/ui/ui.store';
+import {
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from '../states/notification/notification.service';
 import { UiQuery } from '../states/ui/ui.query';
+
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',
@@ -9,9 +17,13 @@ import { UiQuery } from '../states/ui/ui.query';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
     subscriptions: Subscription[] = [];
-    isVisibleHeaders$ = this.uiQuery.isVisibleHeaders$;
-    isVisibleMobileHeader$ = this.uiQuery.isVisibleMobileHeaders$;
-    isMessaging$ = this.uiQuery.isMessaging$;
+
+    isVisibleHeaders$: Observable<boolean> = this.uiQuery.isVisibleHeaders$;
+    isVisibleMobileHeader$: Observable<boolean> =
+        this.uiQuery.isVisibleMobileHeaders$;
+    isMessaging$: Observable<boolean> = this.uiQuery.isMessaging$;
+
+    @ViewChild('scroll') scrollContainer!: ElementRef;
 
     constructor(
         private readonly uiQuery: UiQuery,

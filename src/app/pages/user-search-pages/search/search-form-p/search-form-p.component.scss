@@ -1,6 +1,5 @@
 :host {
     .form {
-        padding-top: 48px;
         margin: 24px 8px 128px;
         .search-button {
             align-items: center;
@@ -16,6 +15,7 @@
     }
     @media screen and (max-width: 700px) {
         .form {
+            padding-top: 72px;
             .search-button {
                 width: 90vw;
                 bottom: 64px;

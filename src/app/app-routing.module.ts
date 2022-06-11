@@ -25,6 +25,20 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'terms',
+        loadChildren: () =>
+            import('./pages/user-management-pages/terms/terms.module').then(
+                (m) => m.TermsModule
+            ),
+    },
+    {
+        path: 'privacy-policy',
+        loadChildren: () =>
+            import(
+                './pages/user-management-pages/privacy-policy/privacy-policy.module'
+            ).then((m) => m.PrivacyPolicyModule),
+    },
+    {
         path: 'my-page',
         loadChildren: () =>
             import('./pages/user-management-pages/my-page/my-page.module').then(

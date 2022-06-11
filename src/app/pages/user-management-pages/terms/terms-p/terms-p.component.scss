@@ -1,0 +1,11 @@
+:host {
+    iframe {
+        width: 700px;
+        height: 100vh;
+    }
+    @media screen and (max-width: 700px) {
+        iframe {
+            width: 100vw;
+        }
+    }
+}

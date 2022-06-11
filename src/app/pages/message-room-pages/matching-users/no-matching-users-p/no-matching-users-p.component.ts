@@ -21,10 +21,8 @@ export class NoMatchingUsersPComponent implements OnInit {
                 (_room) =>
                     room.userA === _room.userB && room.userB === _room.userA
             );
-            console.log({ duplicated });
             if (!duplicated?.id) return true;
 
-            console.log('if', room.id > duplicated?.id);
             if (duplicated?.id < room.id) return false;
 
             return true;

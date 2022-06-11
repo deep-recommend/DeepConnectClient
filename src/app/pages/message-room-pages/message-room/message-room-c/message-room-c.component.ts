@@ -56,7 +56,8 @@ export class MessageRoomCComponent {
     }
 
     private _setMessageSending(message: string): void {
-        this.replaceMessage(message);
+        // TODO: url対応
+        // this.replaceMessage(message);
         const value: CreateMessageProps = {
             currentUserId: this.profile?.id,
             userId:
@@ -64,7 +65,7 @@ export class MessageRoomCComponent {
                     ? this.currentRoom.userB
                     : this.currentRoom.userA,
             roomId: this.roomQuery.currentRoomId,
-            message: this.newMessage,
+            message: message,
         };
         this.socket.sendMessage(value);
     }

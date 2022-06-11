@@ -62,7 +62,6 @@ export class MessageRoomScreenPComponent
     }
 
     onScroll(event: any) {
-        console.log(this.scrollContainer?.nativeElement.scrollTop);
         this.canScrollBottom =
             this.scrollContainer.nativeElement.scrollTop <
             this.maxScroll * 0.95;

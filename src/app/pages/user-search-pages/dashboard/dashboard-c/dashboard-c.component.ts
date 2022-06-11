@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { UiQuery } from 'src/app/states/ui/ui.query';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SocketService } from 'src/app/libs/socket/socket.service';
@@ -20,13 +21,16 @@ export class DashboardCComponent {
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
     users$: Observable<UserProps[]> = this.userQuery.users$;
     likes$: Observable<LikeProps[]> = this.likeQuery.likes$;
+    isVisibleMobileHeader$: Observable<boolean> =
+        this.uiQuery.isVisibleMobileHeaders$;
 
     constructor(
         private readonly userQuery: UserQuery,
         private readonly router: Router,
         private readonly likeQuery: LikeQuery,
         private readonly socket: SocketService,
-        private readonly userStore: UserStore
+        private readonly userStore: UserStore,
+        private readonly uiQuery: UiQuery
     ) {}
 
     onReceivedClickSearchField(): void {

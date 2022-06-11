@@ -1,4 +1,6 @@
-<app-title-header></app-title-header>
+<app-title-header
+    [hidden]="!(isVisibleMobileHeader$ | async)"
+></app-title-header>
 <app-dashboard-to-search-page-button-p
     class="user-search"
     fxLayout="row"
