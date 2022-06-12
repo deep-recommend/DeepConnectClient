@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SignUpModel } from 'src/app/general/models/sign-up.model';
 
@@ -20,6 +20,7 @@ export class SignUpPComponent implements OnInit {
     hide: boolean = true;
     hide2: boolean = true;
     customFile: any;
+    onceSignUp: boolean = true;
     signUpFormInstance = new SignUpModel();
     signUpForm: FormGroup = this.fb.group(
         this.signUpFormInstance.formGroupValue
@@ -39,6 +40,7 @@ export class SignUpPComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickSignUp(): void {
+        this.onceSignUp = false;
         this.signUp.emit(this.signUpForm.value);
     }
 }

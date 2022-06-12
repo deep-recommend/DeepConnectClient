@@ -10,5 +10,9 @@ import { UserProps } from 'src/app/states/user/user.model';
 export class MyPagePComponent {
     @Input() profile!: UserProps | null;
 
-    constructor() {}
+    get age(): string {
+        return Number(this.profile?.age) > 100
+            ? '未設定'
+            : String(this.profile?.age);
+    }
 }

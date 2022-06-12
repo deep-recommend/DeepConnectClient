@@ -12,6 +12,10 @@ export class UserDetailPComponent {
 
     @Output() clickUserToMessage: EventEmitter<void> = new EventEmitter<void>();
 
+    get age(): string {
+        return Number(this.user?.age) > 100 ? '未設定' : String(this.user?.age);
+    }
+
     onClickToDetails(): void {
         this.clickUserToMessage.emit();
     }

@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 export interface SignUpProps {
     realLastName: string;
@@ -16,6 +17,7 @@ export interface SignUpProps {
     email: string;
     password: string;
     passwordConfirmation: string;
+    checkedTerms: boolean;
 }
 
 export interface SignUpFormProps {
@@ -62,6 +64,10 @@ export interface SignUpFormProps {
     )[];
     passwordConfirmation: (
         | string
+        | ((control: AbstractControl) => ValidationErrors | null)[]
+    )[];
+    checkedTerms: (
+        | boolean
         | ((control: AbstractControl) => ValidationErrors | null)[]
     )[];
 }

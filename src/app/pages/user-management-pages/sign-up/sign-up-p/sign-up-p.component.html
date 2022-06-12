@@ -41,70 +41,6 @@
                     >・必須項目です</mat-error
                 >
             </mat-form-field>
-            <div
-                fxLayout="row"
-                class="flex-field-container"
-                fxLayoutAlign="center"
-            >
-                <mat-form-field class="birth-field">
-                    <mat-label>誕生年</mat-label>
-                    <mat-select formControlName="birthYear" required>
-                        <mat-option *ngFor="let year of years" [value]="year">
-                            {{ year }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="
-                            signUpForm.get('birthYear')?.hasError('required')
-                        "
-                        >・必須項目です</mat-error
-                    >
-                </mat-form-field>
-                <mat-form-field class="birth-field">
-                    <mat-label>誕生月</mat-label>
-                    <mat-select formControlName="birthMonth" required>
-                        <mat-option
-                            *ngFor="let month of months"
-                            [value]="month"
-                        >
-                            {{ month }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="
-                            signUpForm.get('birthMonth')?.hasError('required')
-                        "
-                        >・必須項目です</mat-error
-                    >
-                </mat-form-field>
-                <mat-form-field class="birth-field">
-                    <mat-label>誕生日</mat-label>
-                    <mat-select formControlName="birthDay" required>
-                        <mat-option *ngFor="let day of days" [value]="day">
-                            {{ day }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error
-                        *ngIf="signUpForm.get('birthDay')?.hasError('required')"
-                        >・必須項目です</mat-error
-                    >
-                </mat-form-field>
-            </div>
-            <mat-form-field>
-                <mat-label>出身</mat-label>
-                <mat-select formControlName="birthPlace" required>
-                    <mat-option
-                        *ngFor="let birthPlace of birthPlaces"
-                        [value]="birthPlace"
-                    >
-                        {{ birthPlace }}
-                    </mat-option>
-                </mat-select>
-                <mat-error
-                    *ngIf="signUpForm.get('birthPlace')?.hasError('required')"
-                    >・必須項目です</mat-error
-                >
-            </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required />
@@ -164,6 +100,26 @@
                     >・必須項目です</mat-error
                 >
             </mat-form-field>
+            <div class="mb-4">
+                <mat-checkbox
+                    color="primary"
+                    formControlName="checkedTerms"
+                    fxLayout
+                    fxLayoutAlign="center center"
+                    >利用規約に同意する</mat-checkbox
+                >
+                <mat-error
+                    fxLayout
+                    fxLayoutAlign="center center"
+                    class="terms-err-msg"
+                    *ngIf="
+                        !onceSignUp &&
+                        signUpForm.get('checkedTerms')?.hasError('checkedTerms')
+                    "
+                >
+                    ・利用規約に同意してください
+                </mat-error>
+            </div>
         </mat-card-content>
         <mat-card-actions
             fxLayout="column"

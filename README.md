@@ -119,3 +119,23 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     }
 }
 ```
+
+-   terms-p.component.scss
+
+```scss
+@media screen and (max-width: 700px) {
+    iframe {
+        padding-top: 64px;
+    }
+}
+```
+
+-   privacy-policy-p.component.scss
+
+```scss
+@media screen and (max-width: 700px) {
+    iframe {
+        padding-top: 64px;
+    }
+}
+```

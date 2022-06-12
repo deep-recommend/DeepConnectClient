@@ -35,7 +35,7 @@
         // left: 0;
         // right: 0;
         // margin: 0 auto;
-        height: 128px;
+        height: 185px;
         .image {
             width: 45px;
             height: 45px;
@@ -47,6 +47,12 @@
         }
         100% {
             transform: translate3d(85px, 0, 0);
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        .service {
+            padding-top: 64px;
         }
     }
 }

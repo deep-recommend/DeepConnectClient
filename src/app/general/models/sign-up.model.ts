@@ -1,4 +1,5 @@
-import { Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 import { SignUpFormProps, SignUpProps } from '../interfaces/sign-up.interface';
 
 export class SignUpModel implements SignUpProps {
@@ -7,16 +8,17 @@ export class SignUpModel implements SignUpProps {
     stageName?: string = '';
     position?: string = '';
     gender!: string;
-    birthYear!: number;
-    birthMonth!: number;
-    birthDay!: number;
-    birthPlace!: string;
+    birthYear: number = 0;
+    birthMonth: number = 0;
+    birthDay: number = 0;
+    birthPlace: string = '未設定';
     agency?: string = '';
     description?: string = '';
     profilePicture?: string = '';
     email!: string;
     password!: string;
     passwordConfirmation!: string;
+    checkedTerms: boolean = false;
 
     constructor(value?: SignUpProps) {
         if (value) {
@@ -36,6 +38,7 @@ export class SignUpModel implements SignUpProps {
             this.email = value.email;
             this.password = value.password;
             this.passwordConfirmation = value.passwordConfirmation;
+            this.checkedTerms = value.checkedTerms;
         }
     }
 
@@ -56,6 +59,7 @@ export class SignUpModel implements SignUpProps {
             email: this.email,
             password: this.password,
             passwordConfirmation: this.passwordConfirmation,
+            checkedTerms: this.checkedTerms,
         };
     }
 
@@ -78,6 +82,15 @@ export class SignUpModel implements SignUpProps {
             passwordConfirmation: [
                 this.passwordConfirmation,
                 [Validators.required],
+            ],
+            checkedTerms: [
+                this.checkedTerms,
+                [
+                    Validators.required,
+                    (control: AbstractControl): ValidationErrors | null => {
+                        return !control.value ? { checkedTerms: true } : null;
+                    },
+                ],
             ],
         };
     }
