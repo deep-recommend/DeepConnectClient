@@ -1,3 +1,4 @@
+import { DeepRecommendSplashScreenService } from './general/services/splash-screen.service';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { latestUrlKey } from './general/utilities/local-strage';
@@ -9,7 +10,12 @@ import { latestUrlKey } from './general/utilities/local-strage';
 export class AppComponent {
     currentRoute: string = '';
 
-    constructor(private router: Router) {
+    constructor(
+        private router: Router,
+        private splash: DeepRecommendSplashScreenService
+    ) {
+        this.splash.init();
+
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.currentRoute = event.url;

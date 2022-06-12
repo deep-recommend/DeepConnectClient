@@ -6,7 +6,7 @@ import {
     EventEmitter,
     ChangeDetectionStrategy,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { UserSearchProps } from 'src/app/general/interfaces/user-search.interface';
 import { UserSearchModel } from 'src/app/general/models/user-search.model';
 
@@ -18,7 +18,7 @@ import { UserSearchModel } from 'src/app/general/models/user-search.model';
 })
 export class SearchFormPComponent implements OnInit {
     userSearchFormInstance = new UserSearchModel();
-    userSearchForm: FormGroup = this.fb.group(
+    userSearchForm: UntypedFormGroup = this.fb.group(
         this.userSearchFormInstance.formGroupValue
     );
 
@@ -34,7 +34,7 @@ export class SearchFormPComponent implements OnInit {
     @Output() submitUserSearch: EventEmitter<UserSearchProps> =
         new EventEmitter<UserSearchProps>();
 
-    constructor(private readonly fb: FormBuilder) {}
+    constructor(private readonly fb: UntypedFormBuilder) {}
 
     ngOnInit(): void {}
 

@@ -22,8 +22,148 @@
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
         />
+        <style type="text/css">
+            #dr-splash-screen {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #fafafa;
+                z-index: 99999;
+                pointer-events: none;
+            }
+
+            #dr-splash-screen .center {
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            #dr-splash-screen .logo {
+                width: 128px;
+                margin: 24px auto;
+                animation: buranko 1s alternate infinite ease-in-out;
+                transform-origin: 48% 60%;
+            }
+
+            #dr-splash-screen .logo img {
+                // filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2));
+            }
+
+            #dr-splash-screen .spinner-wrapper {
+                display: block;
+                position: relative;
+                width: 100%;
+                min-height: 100px;
+                height: 100px;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner {
+                position: absolute;
+                overflow: hidden;
+                left: 50%;
+                margin-left: -50px;
+                animation: outer-rotate 2.91667s linear infinite;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner .inner {
+                width: 100px;
+                height: 100px;
+                position: relative;
+                animation: sporadic-rotate 5.25s cubic-bezier(0.35, 0, 0.25, 1)
+                    infinite;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner .inner .gap {
+                position: absolute;
+                left: 49px;
+                right: 49px;
+                top: 0;
+                bottom: 0;
+                border-top: 10px solid;
+                box-sizing: border-box;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner .inner .left,
+            #dr-splash-screen .spinner-wrapper .spinner .inner .right {
+                position: absolute;
+                top: 0;
+                height: 100px;
+                width: 50px;
+                overflow: hidden;
+            }
+
+            #dr-splash-screen
+                .spinner-wrapper
+                .spinner
+                .inner
+                .left
+                .half-circle,
+            #dr-splash-screen
+                .spinner-wrapper
+                .spinner
+                .inner
+                .right
+                .half-circle {
+                position: absolute;
+                top: 0;
+                width: 100px;
+                height: 100px;
+                box-sizing: border-box;
+                border: 10px solid #2f2f2f;
+                border-bottom-color: transparent;
+                border-radius: 50%;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner .inner .left {
+                left: 0;
+            }
+
+            #dr-splash-screen
+                .spinner-wrapper
+                .spinner
+                .inner
+                .left
+                .half-circle {
+                left: 0;
+                border-right-color: transparent;
+                animation: left-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1)
+                    infinite;
+                -webkit-animation: left-wobble 1.3125s
+                    cubic-bezier(0.35, 0, 0.25, 1) infinite;
+            }
+
+            #dr-splash-screen .spinner-wrapper .spinner .inner .right {
+                right: 0;
+            }
+
+            #dr-splash-screen
+                .spinner-wrapper
+                .spinner
+                .inner
+                .right
+                .half-circle {
+                right: 0;
+                border-left-color: transparent;
+                animation: right-wobble 1.3125s cubic-bezier(0.35, 0, 0.25, 1)
+                    infinite;
+                -webkit-animation: right-wobble 1.3125s
+                    cubic-bezier(0.35, 0, 0.25, 1) infinite;
+            }
+        </style>
     </head>
     <body class="mat-typography">
+        <dr-splash-screen id="dr-splash-screen">
+            <div class="center">
+                <div class="logo">
+                    <img width="128" src="/assets/images/png/logo.png" />
+                </div>
+            </div>
+        </dr-splash-screen>
         <app-root></app-root>
     </body>
 </html>

@@ -6,7 +6,7 @@ import {
     EventEmitter,
     ChangeDetectionStrategy,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
 import { SignInModel } from 'src/app/general/models/sign-in.model';
 
@@ -19,7 +19,7 @@ import { SignInModel } from 'src/app/general/models/sign-in.model';
 export class SignInPComponent implements OnInit {
     hide: boolean = true;
     signInFormInstance = new SignInModel();
-    signInForm: FormGroup = this.fb.group(
+    signInForm: UntypedFormGroup = this.fb.group(
         this.signInFormInstance.formGroupValue
     );
 
@@ -27,7 +27,7 @@ export class SignInPComponent implements OnInit {
     @Output() signIn: EventEmitter<SignInProps> =
         new EventEmitter<SignInProps>();
 
-    constructor(private readonly fb: FormBuilder) {}
+    constructor(private readonly fb: UntypedFormBuilder) {}
 
     ngOnInit(): void {}
 

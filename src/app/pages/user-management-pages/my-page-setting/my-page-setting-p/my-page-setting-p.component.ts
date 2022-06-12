@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { toDataUrlAsObservable } from 'src/app/general/functions/to-dataurl';
 import { UpdateProfileProps } from 'src/app/general/interfaces/update-profile.interface';
 import { UpdateProfileModel } from 'src/app/general/models/update-profile.model';
@@ -22,7 +22,7 @@ export class MyPageSettingPComponent implements OnInit {
     hide2: boolean = true;
     customFile!: string | File | Blob;
     updateUserFormInstance = new UpdateProfileModel();
-    updateUserForm: FormGroup = this.fb.group(
+    updateUserForm: UntypedFormGroup = this.fb.group(
         this.updateUserFormInstance.formGroupValue
     );
 
@@ -39,7 +39,7 @@ export class MyPageSettingPComponent implements OnInit {
     @Output() update: EventEmitter<UpdateProfileProps> =
         new EventEmitter<UpdateProfileProps>();
 
-    constructor(private readonly fb: FormBuilder) {}
+    constructor(private readonly fb: UntypedFormBuilder) {}
 
     ngOnInit(): void {
         this.setInitialValue();

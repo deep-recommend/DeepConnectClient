@@ -2,7 +2,9 @@
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "cli": {
         "analytics": "02ddb479-1e3b-405f-8a33-19de6e3fe411",
-        "defaultCollection": "@datorama/akita"
+        "schematicCollections": [
+          "@datorama/akita"
+        ]
     },
     "version": 1,
     "newProjectRoot": "projects",
@@ -118,6 +120,5 @@
                 }
             }
         }
-    },
-    "defaultProject": "comedian-matching-front"
+    }
 }

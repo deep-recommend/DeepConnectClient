@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, FormControl } from '@angular/forms';
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SignUpModel } from 'src/app/general/models/sign-up.model';
 
@@ -22,7 +22,7 @@ export class SignUpPComponent implements OnInit {
     customFile: any;
     onceSignUp: boolean = true;
     signUpFormInstance = new SignUpModel();
-    signUpForm: FormGroup = this.fb.group(
+    signUpForm: UntypedFormGroup = this.fb.group(
         this.signUpFormInstance.formGroupValue
     );
 
@@ -35,7 +35,7 @@ export class SignUpPComponent implements OnInit {
     @Output() signUp: EventEmitter<SignUpProps> =
         new EventEmitter<SignUpProps>();
 
-    constructor(private readonly fb: FormBuilder) {}
+    constructor(private readonly fb: UntypedFormBuilder) {}
 
     ngOnInit(): void {}
 
