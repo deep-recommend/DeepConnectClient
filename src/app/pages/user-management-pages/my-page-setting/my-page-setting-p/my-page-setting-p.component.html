@@ -196,9 +196,8 @@
         <mat-label>プロフィール画像</mat-label>
         <input
             type="file"
-            accept="image/*"
+            accept="image/*,video/*,audio/*"
             id="customImage"
-            capture="user"
             (input)="inputProfilePicture($event)"
         />
     </mat-card-content>
