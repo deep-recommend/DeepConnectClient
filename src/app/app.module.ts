@@ -14,6 +14,7 @@ import { DeepRecommendInterceptor } from './general/deeprecommend.intercepter';
 import { SocketIoModule } from 'ngx-socket-io';
 import { apiHostPort } from './general/utilities/api';
 import { WINDOW_PROVIDERS } from './general/utilities/window-token';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,6 +32,12 @@ import { WINDOW_PROVIDERS } from './general/utilities/window-token';
 
         LayoutModule,
         BrowserModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
     ],
     providers: [
         WINDOW_PROVIDERS,
