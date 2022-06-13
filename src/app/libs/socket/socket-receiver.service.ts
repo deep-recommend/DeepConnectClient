@@ -46,6 +46,22 @@ export class SocketReceiverService {
         });
     }
 
+    receiveBlock(): void {
+        this.socket.fromEvent('block').subscribe(() => {});
+    }
+
+    receiveUnblock(): void {
+        this.socket.fromEvent('unblock').subscribe(() => {});
+    }
+
+    receiveFilter(): void {
+        this.socket.fromEvent('filter').subscribe(() => {});
+    }
+
+    receiveUnfilter(): void {
+        this.socket.fromEvent('unfilter').subscribe(() => {});
+    }
+
     private _afterReceived(): void {
         const currentUserId = this.userQuery.currentUserId
             ? this.userQuery.currentUserId

@@ -1,6 +1,20 @@
-<div class="button">
-    <button mat-icon-button (click)="onClickBackToPrePage()">
-        <mat-icon>arrow_back_ios_new</mat-icon>
+<div class="button" fxLayout fxLayoutAlign="space-between center">
+    <div>
+        <button mat-icon-button (click)="onClickBackToPrePage()">
+            <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+        {{ pageName$ | async }}
+    </div>
+    <button *ngIf="needsMenu" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
     </button>
-    {{ pageName$ | async }}
 </div>
+
+<mat-menu #menu="matMenu">
+    <ng-container *ngFor="let menu of menus">
+        <button mat-menu-item (click)="(menu.clickCallBack)">
+            <mat-icon>{{ menu.icon }}</mat-icon>
+            <span>{{ menu.description }}</span>
+        </button>
+    </ng-container>
+</mat-menu>

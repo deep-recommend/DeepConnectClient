@@ -22,4 +22,20 @@ export class SocketEmitterService {
     emitNotificationDecrease(ids: number[]): void {
         this.socket.emit('notificationDecrease', ids);
     }
+
+    emitBlock(block: { userId: number; blockUserId: number }): void {
+        this.socket.emit('block', block);
+    }
+
+    emitUnblock(id: number): void {
+        this.socket.emit('unblock', id);
+    }
+
+    emitFilter(filter: { userId: number; filterUserId: number }): void {
+        this.socket.emit('filter', filter);
+    }
+
+    emitUnfilter(id: number): void {
+        this.socket.emit('unfilter', id);
+    }
 }

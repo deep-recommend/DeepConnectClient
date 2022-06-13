@@ -9,6 +9,7 @@ import { LikeQuery } from '../../../../states/like/like.query';
 import { RoomProps } from '../../../../states/room/room.model';
 import { RoomQuery } from '../../../../states/room/room.query';
 import { RoomStore } from '../../../../states/room/room.store';
+import { Menu } from '../../../../general/interfaces/menu.interface';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -18,6 +19,18 @@ import { RoomStore } from '../../../../states/room/room.store';
 export class UserDetailCComponent {
     profile: UserProps = this.userQuery.profileGetter;
     detailUser: UserProps = this.userQuery.detailUserGetter;
+    menus: Menu[] = [
+        {
+            icon: 'person_off',
+            description: '表示しない',
+            clickCallBack: () => {},
+        },
+        {
+            icon: 'block',
+            description: 'ブロックする',
+            clickCallBack: () => {},
+        },
+    ];
 
     detailUser$: Observable<UserProps> = this.userQuery.detailUser$;
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
