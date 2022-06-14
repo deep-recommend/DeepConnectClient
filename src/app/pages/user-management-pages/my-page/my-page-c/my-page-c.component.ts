@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { accessTokenKey } from 'src/app/general/utilities/api';
+import { BlockProps, blocksStore } from 'src/app/states/block';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserQuery } from 'src/app/states/user/user.query';
+import { selectAllEntities } from '@ngneat/elf-entities';
+import { FilterProps, filtersStore } from 'src/app/states/filter';
 
 @Component({
     selector: 'app-my-page-c',
@@ -12,6 +15,10 @@ import { UserQuery } from 'src/app/states/user/user.query';
 })
 export class MyPageCComponent {
     profile$: Observable<UserProps> = this.userQuery.profile$;
+    blocks$: Observable<BlockProps[]> = blocksStore.pipe(selectAllEntities());
+    filters$: Observable<FilterProps[]> = filtersStore.pipe(
+        selectAllEntities()
+    );
 
     constructor(
         private readonly userQuery: UserQuery,

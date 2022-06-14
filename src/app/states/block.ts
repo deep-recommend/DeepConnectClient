@@ -8,13 +8,14 @@ import {
 } from '@ngneat/elf-entities';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { HttpClientService } from '../general/services/http-client.service';
 import { apiBlockUrl, httpHeaders } from '../general/utilities/api';
+import { UserProps } from './user/user.model';
 
 export interface BlockProps {
     id: number;
     userId: number;
     blockUserId: number;
+    blockUser: UserProps;
 }
 
 export const blocksStore = createStore(
@@ -24,25 +25,11 @@ export const blocksStore = createStore(
 
 @Injectable({ providedIn: 'root' })
 export class BlockService {
-    constructor(
-        private readonly http: HttpClient,
-        private readonly httpService: HttpClientService
-    ) {}
+    constructor(private readonly http: HttpClient) {}
 
-    getUsersAllRequest(): Observable<BlockProps[]> {
+    getBlocks(): Observable<BlockProps[]> {
         return this.http
             .get<BlockProps[]>(apiBlockUrl, httpHeaders)
             .pipe(tap((data) => blocksStore.update(setEntities(data))));
     }
 }
-
-// blocksStore.pipe(selectAllEntities()).subscribe((blocks) => {
-//     console.log(blocks);
-// });
-
-// blocksStore.update(
-//     setEntities([
-//         { id: 1, label: 'one ' },
-//         { id: 2, label: 'two' },
-//     ])
-// );

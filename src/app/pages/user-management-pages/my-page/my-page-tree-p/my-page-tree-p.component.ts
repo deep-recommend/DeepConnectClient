@@ -1,30 +1,8 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
-
-interface FoodNode {
-    name: string;
-    children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-    {
-        name: '非表示のユーザー',
-        children: [
-            { name: 'Apple' },
-            { name: 'Banana' },
-            { name: 'Fruit loops' },
-        ],
-    },
-    {
-        name: 'ブロックしたユーザー',
-        children: [
-            { name: 'Apple' },
-            { name: 'Banana' },
-            { name: 'Fruit loops' },
-        ],
-    },
-];
+import { BlockProps } from 'src/app/states/block';
+import { FilterProps } from 'src/app/states/filter';
 
 @Component({
     selector: 'app-my-page-tree-p',
@@ -32,29 +10,24 @@ const TREE_DATA: FoodNode[] = [
     styleUrls: ['./my-page-tree-p.component.scss'],
 })
 export class MyPageTreePComponent implements OnChanges {
-    treeControl = new NestedTreeControl<FoodNode>((node) => node.children);
-    dataSource = new MatTreeNestedDataSource<FoodNode>();
+    treeControl = new NestedTreeControl<any>((node) => node.children);
+    dataSource = new MatTreeNestedDataSource<any>();
 
-    // @Input() filterUsers: Filter[] = [];
-    // @Input() blockUsers: Block[] = [];
+    @Input() filters: FilterProps[] | null = [];
+    @Input() blocks: BlockProps[] | null = [];
 
-    constructor() {
-        this.dataSource.data = TREE_DATA;
-    }
+    constructor() {}
 
     ngOnChanges(): void {
-        // this.dataSource.data = [
-        //     {
-        //         name: '非表示のユーザー',
-        //         children: this.filterUsers,
-        //     },
-        //     {
-        //         name: 'ブロックしたユーザー',
-        //         children: this.blockUsers,
-        //     },
-        // ];
+        this.dataSource.data = [
+            {
+                name: '非表示のユーザー',
+                children: this.filters?.map((filter) => filter.filterUser),
+            },
+            {
+                name: 'ブロックしたユーザー',
+                children: this.blocks?.map((block) => block.blockUser),
+            },
+        ];
     }
-
-    hasChild = (_: number, node: FoodNode) =>
-        !!node.children && node.children.length > 0;
 }

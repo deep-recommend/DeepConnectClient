@@ -8,13 +8,14 @@ import {
 } from '@ngneat/elf-entities';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { HttpClientService } from '../general/services/http-client.service';
 import { apiFilterUrl, httpHeaders } from '../general/utilities/api';
+import { UserProps } from './user/user.model';
 
 export interface FilterProps {
     id: number;
     userId: number;
     filterUserId: number;
+    filterUser: UserProps;
 }
 
 export const filtersStore = createStore(
@@ -24,25 +25,11 @@ export const filtersStore = createStore(
 
 @Injectable({ providedIn: 'root' })
 export class FilterService {
-    constructor(
-        private readonly http: HttpClient,
-        private readonly httpService: HttpClientService
-    ) {}
+    constructor(private readonly http: HttpClient) {}
 
-    getUsersAllRequest(): Observable<FilterProps[]> {
+    getFilters(): Observable<FilterProps[]> {
         return this.http
             .get<FilterProps[]>(apiFilterUrl, httpHeaders)
             .pipe(tap((data) => filtersStore.update(setEntities(data))));
     }
 }
-
-// filtersStore.pipe(selectAllEntities()).subscribe((filters) => {
-//     console.log(filters);
-// });
-
-// filtersStore.update(
-//     setEntities([
-//         { id: 1, label: 'one ' },
-//         { id: 2, label: 'two' },
-//     ])
-// );
