@@ -16,6 +16,8 @@ export const apiEntryUrl: string = `${apiUrl}/entries`;
 export const apiLikeUrl: string = `${apiUrl}/likes`;
 export const apiCharacterUrl: string = `${apiUrl}/characters`;
 export const apiNotificationUrl: string = `${apiUrl}/notifications`;
+export const apiBlockUrl: string = `${apiUrl}/blocks`;
+export const apiFilterUrl: string = `${apiUrl}/filters`;
 
 export const httpHeaders = {
     headers: new HttpHeaders({

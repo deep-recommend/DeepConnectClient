@@ -6,6 +6,7 @@ import { MyPageCComponent } from './my-page-c/my-page-c.component';
 import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { MyPagePComponent } from './my-page-p/my-page-p.component';
 import { MyPageActionsPComponent } from './my-page-actions-p/my-page-actions-p.component';
+import { MyPageTreePComponent } from './my-page-tree-p/my-page-tree-p.component';
 import { MyPageResolverService } from './my-page.resolver';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { MyPageResolverService } from './my-page.resolver';
         MyPageCComponent,
         MyPagePComponent,
         MyPageActionsPComponent,
+        MyPageTreePComponent,
     ],
     imports: [DeepRecommendSharedModule, MyPageRoutingModule],
     providers: [MyPageResolverService],
