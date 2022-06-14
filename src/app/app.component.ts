@@ -24,7 +24,7 @@ export class AppComponent {
         window.onResumeApp = () => {
             if (localStorage.getItem(accessTokenKey)) {
                 this.ngZone.run(() => {
-                    this.router.navigate([localStorage.getItem(latestUrlKey)]);
+                    this._setLatestUrlInit();
                 });
             }
         };
