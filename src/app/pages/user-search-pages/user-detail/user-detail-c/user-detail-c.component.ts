@@ -23,12 +23,24 @@ export class UserDetailCComponent {
         {
             icon: 'person_off',
             description: '表示しない',
-            clickCallBack: () => {},
+            clickCallBack: () => {
+                this.socket.filter({
+                    userId: this.profile.id,
+                    filterUserId: Number(this.detailUser.id),
+                });
+                this.router.navigate(['/']);
+            },
         },
         {
             icon: 'block',
             description: 'ブロックする',
-            clickCallBack: () => {},
+            clickCallBack: () => {
+                this.socket.block({
+                    userId: this.profile.id,
+                    blockUserId: Number(this.detailUser.id),
+                });
+                this.router.navigate(['/']);
+            },
         },
     ];
 

@@ -12,6 +12,7 @@ import {
 } from 'src/app/states/message/message.model';
 import { MessageQuery } from 'src/app/states/message/message.query';
 import { RoomProps } from '../../../../states/room/room.model';
+import { Menu } from 'src/app/general/interfaces/menu.interface';
 
 @Component({
     selector: 'app-message-room-c',
@@ -19,6 +20,31 @@ import { RoomProps } from '../../../../states/room/room.model';
     styleUrls: ['./message-room-c.component.scss'],
 })
 export class MessageRoomCComponent {
+    menus: Menu[] = [
+        {
+            icon: 'person_off',
+            description: '表示しない',
+            clickCallBack: () => {
+                this.socket.filter({
+                    userId: this.profile.id,
+                    filterUserId: Number(this.userId),
+                });
+                this.router.navigate(['matching-users']);
+            },
+        },
+        {
+            icon: 'block',
+            description: 'ブロックする',
+            clickCallBack: () => {
+                this.socket.block({
+                    userId: this.profile.id,
+                    blockUserId: Number(this.userId),
+                });
+                this.router.navigate(['matching-users']);
+            },
+        },
+    ];
+
     profile$: Observable<UserProps> = this.userQuery.profile$;
     messages$: Observable<MessageProps[]> = this.messageQuery.messages$;
     currentRoom$: Observable<RoomProps> = this.roomQuery.currentRoom$;
@@ -27,6 +53,12 @@ export class MessageRoomCComponent {
     newMessage: string = '';
     currentRoom: RoomProps = this.roomQuery.currentRoom;
     profile: UserProps = this.userQuery.profileGetter;
+
+    get userId(): number {
+        return this.currentRoom.userA === this.profile?.id
+            ? this.currentRoom.userB
+            : this.currentRoom.userA;
+    }
 
     constructor(
         private readonly userQuery: UserQuery,
@@ -60,10 +92,7 @@ export class MessageRoomCComponent {
         // this.replaceMessage(message);
         const value: CreateMessageProps = {
             currentUserId: this.profile?.id,
-            userId:
-                this.currentRoom.userA === this.profile?.id
-                    ? this.currentRoom.userB
-                    : this.currentRoom.userA,
+            userId: this.userId,
             roomId: this.roomQuery.currentRoomId,
             message: message,
         };

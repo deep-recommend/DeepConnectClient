@@ -1,5 +1,8 @@
 <div class="container">
-    <app-back-to-pre-page [needsMenu]="true"></app-back-to-pre-page>
+    <app-back-to-pre-page
+        [needsMenu]="true"
+        [menus]="menus"
+    ></app-back-to-pre-page>
     <app-message-room-is-false-p
         *ngIf="!(currentRoomId$ | async)"
     ></app-message-room-is-false-p>

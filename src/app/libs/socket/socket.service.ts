@@ -30,10 +30,30 @@ export class SocketService {
         this.socketEmitter.emitNotificationDecrease(ids);
     }
 
+    block(block: { userId: number; blockUserId: number }): void {
+        this.socketEmitter.emitBlock(block);
+    }
+
+    unblock(id: number): void {
+        this.socketEmitter.emitUnblock(id);
+    }
+
+    filter(filter: { userId: number; filterUserId: number }): void {
+        this.socketEmitter.emitFilter(filter);
+    }
+
+    unfilter(id: number): void {
+        this.socketEmitter.emitUnfilter(id);
+    }
+
     private _connect(): void {
         this.socketReceiver.receiveMessage();
         this.socketReceiver.receiveLike();
         this.socketReceiver.receiveUnlike();
         this.socketReceiver.receiveNotificationDecrease();
+        this.socketReceiver.receiveBlock();
+        this.socketReceiver.receiveUnblock();
+        this.socketReceiver.receiveFilter();
+        this.socketReceiver.receiveUnfilter();
     }
 }
