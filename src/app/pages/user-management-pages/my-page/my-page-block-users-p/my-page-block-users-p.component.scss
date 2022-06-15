@@ -22,4 +22,11 @@
     .container {
         padding-bottom: 128px;
     }
+
+    .card {
+        padding: 16px 16px 0px;
+        &:hover {
+            background-color: #fafafa;
+        }
+    }
 }

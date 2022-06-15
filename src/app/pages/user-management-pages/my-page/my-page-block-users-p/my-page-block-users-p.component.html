@@ -1,0 +1,39 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>ブロックリスト</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let block of blocks">
+            <mat-card
+                fxLayout
+                fxLayoutAlign="space-between center"
+                class="card"
+            >
+                <div fxLayout fxLayoutAlign="space-between center">
+                    <div fxLayout>
+                        <app-profile-picture
+                            [profilePicture]="block.blockUser?.profilePicture"
+                        ></app-profile-picture>
+                        <mat-card-header>
+                            <mat-card-title>{{
+                                block.blockUser?.displayedName
+                            }}</mat-card-title>
+                            <mat-card-subtitle
+                                fxLayout
+                                fxLayoutAlign="start center"
+                                fxLayoutGap="12px"
+                                ><div>{{ block.blockUser?.birthPlace }}</div>
+                                <app-position
+                                    [position]="block.blockUser?.position"
+                                ></app-position
+                            ></mat-card-subtitle>
+                        </mat-card-header>
+                    </div>
+                    <button mat-button (click)="onClickBlock(block.id)">
+                        ブロック解除
+                    </button>
+                </div>
+            </mat-card>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
