@@ -11,6 +11,7 @@ export class MatchingUsersPComponent {
     private _rooms!: RoomProps[];
 
     @Input() set rooms(rooms: RoomProps[] | null) {
+        // TODO: 消せるか確認
         this._rooms = rooms?.filter((room: RoomProps) => {
             const duplicated = rooms.find(
                 (_room) =>

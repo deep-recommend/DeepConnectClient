@@ -4,7 +4,9 @@
 ></app-my-page-actions-p>
 <app-title-header></app-title-header>
 <app-my-page-p [profile]="profile$ | async"></app-my-page-p>
-<app-my-page-tree-p
-    [filters]="filters$ | async"
-    [blocks]="blocks$ | async"
-></app-my-page-tree-p>
+<div class="panel-container">
+    <app-my-page-tree-p
+        [filters]="filters"
+        [blocks]="blocks"
+    ></app-my-page-tree-p>
+</div>

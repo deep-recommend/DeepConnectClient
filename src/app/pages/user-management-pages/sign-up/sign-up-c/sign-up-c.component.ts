@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { first, mergeMap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SnackBarService } from 'src/app/general/services/snack-bar.service';
 import { UserQuery } from 'src/app/states/user/user.query';
@@ -31,11 +31,12 @@ export class SignUpCComponent {
             .postUserRequest(signUp)
             .pipe(first())
             .subscribe((data) => {
-                data
-                    ? this.snackBar.open(
-                          '入力されたEmailは既に使用されています'
-                      )
-                    : this.router.navigate(['/sign-in']);
+                if (data) {
+                    this.snackBar.open('入力されたEmailは既に使用されています');
+                } else {
+                    this.router.navigate(['/sign-in']);
+                    this.snackBar.open('登録しました');
+                }
             });
     }
 }

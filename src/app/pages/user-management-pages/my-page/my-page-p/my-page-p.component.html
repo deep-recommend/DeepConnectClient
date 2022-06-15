@@ -22,7 +22,7 @@
             <mat-card-title
                 ><div fxLayout fxLayoutAlign="start center" fxLayoutGap="12px">
                     <div class="stage-name">
-                        {{ profile?.stageName ? profile?.stageName : '未設定' }}
+                        {{ profile?.displayedName }}
                     </div>
                     <app-position
                         [position]="profile?.position"

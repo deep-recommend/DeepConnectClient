@@ -8,6 +8,7 @@ import { MyPagePComponent } from './my-page-p/my-page-p.component';
 import { MyPageActionsPComponent } from './my-page-actions-p/my-page-actions-p.component';
 import { MyPageTreePComponent } from './my-page-tree-p/my-page-tree-p.component';
 import { MyPageResolverService } from './my-page.resolver';
+import { MyPagePanelUserDetailPComponent } from './my-page-panel-user-detail-p/my-page-panel-user-detail-p.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { MyPageResolverService } from './my-page.resolver';
         MyPagePComponent,
         MyPageActionsPComponent,
         MyPageTreePComponent,
+        MyPagePanelUserDetailPComponent,
     ],
     imports: [DeepRecommendSharedModule, MyPageRoutingModule],
     providers: [MyPageResolverService],

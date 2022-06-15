@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createStore } from '@ngneat/elf';
-import {
-    selectAllEntities,
-    setEntities,
-    withEntities,
-} from '@ngneat/elf-entities';
+import { setEntities, withEntities } from '@ngneat/elf-entities';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { apiFilterUrl, httpHeaders } from '../general/utilities/api';
 import { UserProps } from './user/user.model';
+import { UserStore } from './user/user.store';
 
 export interface FilterProps {
     id: number;
@@ -25,11 +22,27 @@ export const filtersStore = createStore(
 
 @Injectable({ providedIn: 'root' })
 export class FilterService {
-    constructor(private readonly http: HttpClient) {}
+    constructor(
+        private readonly http: HttpClient,
+        private readonly userStore: UserStore
+    ) {}
 
     getFilters(): Observable<FilterProps[]> {
-        return this.http
-            .get<FilterProps[]>(apiFilterUrl, httpHeaders)
-            .pipe(tap((data) => filtersStore.update(setEntities(data))));
+        return this.http.get<FilterProps[]>(apiFilterUrl, httpHeaders).pipe(
+            tap((data) =>
+                filtersStore.update(
+                    setEntities(
+                        data.map((filter) => {
+                            return {
+                                ...filter,
+                                filterUser: this.userStore.mapper(
+                                    filter.filterUser
+                                ),
+                            };
+                        })
+                    )
+                )
+            )
+        );
     }
 }

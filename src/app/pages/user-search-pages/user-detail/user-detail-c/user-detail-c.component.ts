@@ -10,6 +10,7 @@ import { RoomProps } from '../../../../states/room/room.model';
 import { RoomQuery } from '../../../../states/room/room.query';
 import { RoomStore } from '../../../../states/room/room.store';
 import { Menu } from '../../../../general/interfaces/menu.interface';
+import { SnackBarService } from '../../../../general/services/snack-bar.service';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -29,6 +30,7 @@ export class UserDetailCComponent {
                     filterUserId: Number(this.detailUser.id),
                 });
                 this.router.navigate(['/']);
+                this.snackBar.open('非表示にしました');
             },
         },
         {
@@ -40,6 +42,7 @@ export class UserDetailCComponent {
                     blockUserId: Number(this.detailUser.id),
                 });
                 this.router.navigate(['/']);
+                this.snackBar.open('ブロックしました');
             },
         },
     ];
@@ -57,7 +60,8 @@ export class UserDetailCComponent {
         private readonly router: Router,
         private readonly roomQuery: RoomQuery,
         private readonly roomStore: RoomStore,
-        private readonly userStore: UserStore
+        private readonly userStore: UserStore,
+        private readonly snackBar: SnackBarService
     ) {}
 
     onReceivedClickLikeButton(): void {

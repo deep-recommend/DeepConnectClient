@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
-import { Observable, of } from 'rxjs';
 import { SignUpFormProps, SignUpProps } from '../interfaces/sign-up.interface';
 
 export class SignUpModel implements SignUpProps {

@@ -1,5 +1,9 @@
 <table>
     <tr>
+        <td class="py-2 pr-4">ニックネーム</td>
+        <td>{{ profile?.stageName ? profile?.stageName : '未設定' }}</td>
+    </tr>
+    <tr>
         <td class="py-2 pr-4">本名</td>
         <td>{{ profile?.realLastName }}{{ profile?.realFirstName }}</td>
     </tr>

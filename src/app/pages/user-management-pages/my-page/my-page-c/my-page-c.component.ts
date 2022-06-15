@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { accessTokenKey } from 'src/app/general/utilities/api';
@@ -13,17 +13,26 @@ import { FilterProps, filtersStore } from 'src/app/states/filter';
     templateUrl: './my-page-c.component.html',
     styleUrls: ['./my-page-c.component.scss'],
 })
-export class MyPageCComponent {
+export class MyPageCComponent implements OnInit {
     profile$: Observable<UserProps> = this.userQuery.profile$;
-    blocks$: Observable<BlockProps[]> = blocksStore.pipe(selectAllEntities());
-    filters$: Observable<FilterProps[]> = filtersStore.pipe(
-        selectAllEntities()
-    );
+    filters: FilterProps[] = [];
+    blocks: BlockProps[] = [];
 
     constructor(
         private readonly userQuery: UserQuery,
         private readonly router: Router
     ) {}
+
+    ngOnInit(): void {
+        filtersStore.pipe(selectAllEntities()).subscribe((filters) => {
+            console.log({ filters });
+            this.filters = filters;
+        });
+        blocksStore.pipe(selectAllEntities()).subscribe((blocks) => {
+            console.log({ blocks });
+            this.blocks = blocks;
+        });
+    }
 
     onReceivedClickToProfileSetting(): void {
         this.router.navigate(['my-page-setting']);

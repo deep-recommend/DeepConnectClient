@@ -1,11 +1,6 @@
-<ng-container>
-    <mat-card
-        fxLayout="row"
-        fxLayoutAlign="space-between"
-        class="card"
-        (click)="onClickToDetails()"
-    >
-        <div fxLayout="row">
+<mat-card fxLayout fxLayoutAlign="space-between center" class="card">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <div fxLayout>
             <app-profile-picture
                 [profilePicture]="user?.profilePicture"
             ></app-profile-picture>
@@ -20,5 +15,6 @@
                 ></mat-card-subtitle>
             </mat-card-header>
         </div>
-    </mat-card>
-</ng-container>
+        <button mat-button>表示</button>
+    </div>
+</mat-card>

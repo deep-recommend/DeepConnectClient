@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SignUpModel } from 'src/app/general/models/sign-up.model';
 
@@ -40,7 +40,12 @@ export class SignUpPComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickSignUp(): void {
-        this.onceSignUp = false;
+        if (this.onceSignUp) {
+            this.onceSignUp = false;
+        }
+
+        if (this.signUpForm.invalid) return;
+
         this.signUp.emit(this.signUpForm.value);
     }
 }

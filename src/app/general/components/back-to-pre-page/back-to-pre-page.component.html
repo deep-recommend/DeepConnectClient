@@ -12,7 +12,7 @@
 
 <mat-menu #menu="matMenu">
     <ng-container *ngFor="let menu of menus">
-        <button mat-menu-item (click)="(menu.clickCallBack)">
+        <button mat-menu-item (click)="menu.clickCallBack()">
             <mat-icon>{{ menu.icon }}</mat-icon>
             <span>{{ menu.description }}</span>
         </button>

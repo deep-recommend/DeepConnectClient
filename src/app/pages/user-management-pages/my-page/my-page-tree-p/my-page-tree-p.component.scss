@@ -1,24 +1,25 @@
 :host {
-    .my-page-tree-invisible {
-        display: none;
+    ::ng-deep .mat-expansion-panel-body {
+        padding: 0;
     }
 
-    .tree-container {
+    .mat-expansion-panel,
+    .mat-expansion-panel-header:hover {
+        background: #fafafa !important;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .mat-expansion-panel-header {
+        padding: 0;
+    }
+
+    .mat-expansion-panel-header.mat-expanded,
+    .mat-expansion-panel-header.mat-expanded:hover {
+        background: #fafafa;
+    }
+
+    .container {
         padding-bottom: 128px;
-    }
-
-    .my-page-tree ul,
-    .my-page-tree li {
-        margin-top: 0;
-        margin-bottom: 0;
-        list-style-type: none;
-    }
-
-    .my-page-tree .mat-nested-tree-node div[role='group'] {
-        padding-left: 40px;
-    }
-
-    .my-page-tree div[role='group'] > .mat-tree-node {
-        padding-left: 40px;
     }
 }
