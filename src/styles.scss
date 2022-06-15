@@ -161,6 +161,8 @@ select {
     color: #fafafa;
     box-shadow: none;
     opacity: 0.9 !important;
+    position: absolute;
+    bottom: 48px;
     .mat-simple-snackbar-action {
         color: map-get($mat-blue, 500) !important;
     }

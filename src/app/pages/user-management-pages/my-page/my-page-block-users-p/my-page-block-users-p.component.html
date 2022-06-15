@@ -3,6 +3,7 @@
         <mat-expansion-panel-header>
             <mat-panel-title>ブロックリスト</mat-panel-title>
         </mat-expansion-panel-header>
+        <div *ngIf="!blocks.length">ブロック中のユーザーはいません</div>
         <div *ngFor="let block of blocks">
             <mat-card
                 fxLayout

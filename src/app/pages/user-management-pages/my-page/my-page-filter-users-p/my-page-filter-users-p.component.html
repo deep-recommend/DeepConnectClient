@@ -3,6 +3,7 @@
         <mat-expansion-panel-header>
             <mat-panel-title>非表示リスト</mat-panel-title>
         </mat-expansion-panel-header>
+        <div *ngIf="!filters?.length">非表示のユーザーはいません</div>
         <div *ngFor="let filter of filters">
             <mat-card
                 fxLayout
@@ -29,7 +30,11 @@
                             ></mat-card-subtitle>
                         </mat-card-header>
                     </div>
-                    <button mat-button (click)="onClickFilter(filter.id)">
+                    <button
+                        mat-button
+                        (click)="onClickFilter(filter.id)"
+                        fxLayoutAlign="end center"
+                    >
                         表示
                     </button>
                 </div>
