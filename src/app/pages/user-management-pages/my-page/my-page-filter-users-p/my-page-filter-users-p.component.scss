@@ -24,9 +24,15 @@
     }
 
     .card {
-        padding: 16px 16px 0px;
+        padding: 8px 0;
         &:hover {
             background-color: #fafafa;
         }
+    }
+
+    .mat-card-actions,
+    .mat-card-subtitle,
+    .mat-card-content {
+        margin-bottom: 0 !important;
     }
 }

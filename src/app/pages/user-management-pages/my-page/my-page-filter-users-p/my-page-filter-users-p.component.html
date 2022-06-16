@@ -1,43 +1,35 @@
-<mat-accordion>
+<mat-accordion *ngIf="filters?.length">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>非表示リスト</mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="!filters?.length">非表示のユーザーはいません</div>
         <div *ngFor="let filter of filters">
             <mat-card
                 fxLayout
                 fxLayoutAlign="space-between center"
                 class="card"
             >
-                <div fxLayout fxLayoutAlign="space-between center">
-                    <div fxLayout>
-                        <app-profile-picture
-                            [profilePicture]="filter.filterUser?.profilePicture"
-                        ></app-profile-picture>
-                        <mat-card-header>
-                            <mat-card-title>{{
-                                filter.filterUser?.displayedName
-                            }}</mat-card-title>
-                            <mat-card-subtitle
-                                fxLayout
-                                fxLayoutAlign="start center"
-                                fxLayoutGap="12px"
-                                ><div>{{ filter.filterUser?.birthPlace }}</div>
-                                <app-position
-                                    [position]="filter.filterUser?.position"
-                                ></app-position
-                            ></mat-card-subtitle>
-                        </mat-card-header>
-                    </div>
-                    <button
-                        mat-button
-                        (click)="onClickFilter(filter.id)"
-                        fxLayoutAlign="end center"
-                    >
-                        表示
-                    </button>
+                <div fxLayout fxLayoutAlign="start center">
+                    <app-profile-picture
+                        [profilePicture]="filter.filterUser?.profilePicture"
+                    ></app-profile-picture>
+                    <mat-card-header fxLayout fxLayoutAlign="start center">
+                        <mat-card-title>{{
+                            filter.filterUser?.displayedName
+                        }}</mat-card-title>
+                        <mat-card-subtitle>
+                            {{ filter.filterUser?.birthPlace }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
                 </div>
+                <button
+                    mat-stroked-button
+                    color="primary"
+                    (click)="onClickFilter(filter.id)"
+                    fxLayoutAlign="end center"
+                >
+                    表示
+                </button>
             </mat-card>
         </div>
     </mat-expansion-panel>

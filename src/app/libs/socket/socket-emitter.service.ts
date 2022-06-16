@@ -7,6 +7,10 @@ import { CreateLikeProps } from 'src/app/states/like/like.model';
 export class SocketEmitterService {
     constructor(private readonly socket: Socket) {}
 
+    emitJoinRooms(currentUserId: number): void {
+        this.socket.emit('joinRooms', currentUserId);
+    }
+
     emitMessageSending(message: any): void {
         this.socket.emit('sendMessage', message);
     }

@@ -8,6 +8,8 @@ import {
     currentUserIdKey,
     otherUserIdKey,
 } from '../../general/utilities/local-strage';
+import { BlockService } from '../../states/block';
+import { FilterService } from '../../states/filter';
 import { UserQuery } from '../../states/user/user.query';
 
 @Injectable({
@@ -19,8 +21,14 @@ export class SocketReceiverService {
         private readonly messageService: MessageService,
         private readonly likeService: LikeService,
         private readonly notificationService: NotificationService,
-        private readonly userQuery: UserQuery
+        private readonly userQuery: UserQuery,
+        private readonly filterService: FilterService,
+        private readonly blockService: BlockService
     ) {}
+
+    receiveJoinRooms(): void {
+        this.socket.fromEvent('joinedRooms').subscribe(() => {});
+    }
 
     receiveMessage(): void {
         this.socket.fromEvent('message').subscribe(() => {
@@ -47,19 +55,27 @@ export class SocketReceiverService {
     }
 
     receiveBlock(): void {
-        this.socket.fromEvent('block').subscribe(() => {});
+        this.socket.fromEvent('blocked').subscribe(() => {
+            this._getBlocks();
+        });
     }
 
     receiveUnblock(): void {
-        this.socket.fromEvent('unblock').subscribe(() => {});
+        this.socket.fromEvent('unblocked').subscribe(() => {
+            this._getBlocks();
+        });
     }
 
     receiveFilter(): void {
-        this.socket.fromEvent('filter').subscribe(() => {});
+        this.socket.fromEvent('filtered').subscribe(() => {
+            this._getFilters();
+        });
     }
 
     receiveUnfilter(): void {
-        this.socket.fromEvent('unfilter').subscribe(() => {});
+        this.socket.fromEvent('unfiltered').subscribe(() => {
+            this._getFilters();
+        });
     }
 
     private _afterReceived(): void {
@@ -77,5 +93,13 @@ export class SocketReceiverService {
             this.likeService.alreadyLikedByOthers(currentUserId, userId),
             this.likeService.matched(currentUserId, userId)
         ).subscribe();
+    }
+
+    private _getBlocks(): void {
+        this.blockService.getBlocks().subscribe();
+    }
+
+    private _getFilters(): void {
+        this.filterService.getFilters().subscribe();
     }
 }

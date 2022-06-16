@@ -13,6 +13,8 @@ import {
 import { MessageQuery } from 'src/app/states/message/message.query';
 import { RoomProps } from '../../../../states/room/room.model';
 import { Menu } from 'src/app/general/interfaces/menu.interface';
+import { RoomService } from '../../../../states/room/room.service';
+import { SnackBarService } from '../../../../general/services/snack-bar.service';
 
 @Component({
     selector: 'app-message-room-c',
@@ -29,7 +31,10 @@ export class MessageRoomCComponent {
                     userId: this.profile.id,
                     filterUserId: Number(this.userId),
                 });
-                this.router.navigate(['matching-users']);
+                this.roomService.getRoomsRequest().subscribe(() => {
+                    this.router.navigate(['matching-users']);
+                    this.snackBar.open('非表示にしました');
+                });
             },
         },
         {
@@ -40,7 +45,10 @@ export class MessageRoomCComponent {
                     userId: this.profile.id,
                     blockUserId: Number(this.userId),
                 });
-                this.router.navigate(['matching-users']);
+                this.roomService.getRoomsRequest().subscribe(() => {
+                    this.router.navigate(['matching-users']);
+                    this.snackBar.open('ブロックしました');
+                });
             },
         },
     ];
@@ -66,7 +74,9 @@ export class MessageRoomCComponent {
         private readonly messageQuery: MessageQuery,
         private readonly router: Router,
         private readonly socket: SocketService,
-        private readonly userStore: UserStore
+        private readonly userStore: UserStore,
+        private readonly roomService: RoomService,
+        private readonly snackBar: SnackBarService
     ) {}
 
     onReceivedSendMessage(message: string): void {

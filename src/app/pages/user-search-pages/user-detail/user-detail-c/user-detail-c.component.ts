@@ -11,6 +11,7 @@ import { RoomQuery } from '../../../../states/room/room.query';
 import { RoomStore } from '../../../../states/room/room.store';
 import { Menu } from '../../../../general/interfaces/menu.interface';
 import { SnackBarService } from '../../../../general/services/snack-bar.service';
+import { UserService } from '../../../../states/user/user.service';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -29,8 +30,10 @@ export class UserDetailCComponent {
                     userId: this.profile.id,
                     filterUserId: Number(this.detailUser.id),
                 });
-                this.router.navigate(['/']);
-                this.snackBar.open('非表示にしました');
+                this.userService.getUsersRequest().subscribe(() => {
+                    this.router.navigate(['/']);
+                    this.snackBar.open('非表示にしました');
+                });
             },
         },
         {
@@ -41,8 +44,10 @@ export class UserDetailCComponent {
                     userId: this.profile.id,
                     blockUserId: Number(this.detailUser.id),
                 });
-                this.router.navigate(['/']);
-                this.snackBar.open('ブロックしました');
+                this.userService.getUsersRequest().subscribe(() => {
+                    this.router.navigate(['/']);
+                    this.snackBar.open('ブロックしました');
+                });
             },
         },
     ];
@@ -61,7 +66,8 @@ export class UserDetailCComponent {
         private readonly roomQuery: RoomQuery,
         private readonly roomStore: RoomStore,
         private readonly userStore: UserStore,
-        private readonly snackBar: SnackBarService
+        private readonly snackBar: SnackBarService,
+        private readonly userService: UserService
     ) {}
 
     onReceivedClickLikeButton(): void {

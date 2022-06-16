@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateLikeProps } from 'src/app/states/like/like.model';
+import { UserQuery } from '../../states/user/user.query';
 import { SocketEmitterService } from './socket-emitter.service';
 import { SocketReceiverService } from './socket-receiver.service';
 
@@ -9,9 +10,14 @@ import { SocketReceiverService } from './socket-receiver.service';
 export class SocketService {
     constructor(
         private readonly socketEmitter: SocketEmitterService,
-        private readonly socketReceiver: SocketReceiverService
+        private readonly socketReceiver: SocketReceiverService,
+        private readonly userQuery: UserQuery
     ) {
         this._connect();
+    }
+
+    joinRooms(currentUserId: number): void {
+        this.socketEmitter.emitJoinRooms(currentUserId);
     }
 
     sendMessage(data: any): void {
@@ -47,6 +53,7 @@ export class SocketService {
     }
 
     private _connect(): void {
+        this.socketReceiver.receiveJoinRooms();
         this.socketReceiver.receiveMessage();
         this.socketReceiver.receiveLike();
         this.socketReceiver.receiveUnlike();

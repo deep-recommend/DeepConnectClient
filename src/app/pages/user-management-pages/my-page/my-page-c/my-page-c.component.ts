@@ -6,15 +6,10 @@ import { BlockProps, blocksStore } from 'src/app/states/block';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserQuery } from 'src/app/states/user/user.query';
 import { selectAllEntities } from '@ngneat/elf-entities';
-import {
-    FilterProps,
-    FilterService,
-    filtersStore,
-} from 'src/app/states/filter';
+import { FilterProps, filtersStore } from 'src/app/states/filter';
 import { SocketService } from 'src/app/libs/socket/socket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UnblockDialogComponent } from '../../unblock-dialog/unblock-dialog.component';
-import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-my-page-c',
@@ -30,8 +25,7 @@ export class MyPageCComponent implements OnInit {
         private readonly userQuery: UserQuery,
         private readonly router: Router,
         private readonly socket: SocketService,
-        private readonly dialog: MatDialog,
-        private readonly filterService: FilterService
+        private readonly dialog: MatDialog
     ) {}
 
     ngOnInit(): void {
@@ -56,7 +50,6 @@ export class MyPageCComponent implements OnInit {
 
     onReceivedClickFilter(id: number): void {
         this.socket.unfilter(id);
-        this.filterService.getFilters().pipe(first()).subscribe();
     }
 
     onReceivedClickBlock(id: number): void {
