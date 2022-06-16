@@ -32,6 +32,9 @@
     .icon {
         font-size: 20px;
     }
+    .mat-card-header-text {
+        margin: 0;
+    }
     @media screen and (max-width: 700px) {
         .user-bg {
             height: 448px;
