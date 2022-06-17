@@ -8,6 +8,7 @@ import { SocketService } from './libs/socket/socket.service';
 
 interface Window {
     onResumeApp(): void;
+    onReturnApp(): void;
 }
 declare var window: Window;
 
@@ -31,6 +32,10 @@ export class AppComponent {
                     this._setLatestUrlInit();
                 });
             }
+        };
+
+        window.onReturnApp = () => {
+            this._setLatestUrlInit();
         };
 
         this.splash.init();
