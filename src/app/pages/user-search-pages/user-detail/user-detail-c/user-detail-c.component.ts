@@ -9,6 +9,9 @@ import { LikeQuery } from '../../../../states/like/like.query';
 import { RoomProps } from '../../../../states/room/room.model';
 import { RoomQuery } from '../../../../states/room/room.query';
 import { RoomStore } from '../../../../states/room/room.store';
+import { Menu } from '../../../../general/interfaces/menu.interface';
+import { SnackBarService } from '../../../../general/services/snack-bar.service';
+import { UserService } from '../../../../states/user/user.service';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -18,6 +21,36 @@ import { RoomStore } from '../../../../states/room/room.store';
 export class UserDetailCComponent {
     profile: UserProps = this.userQuery.profileGetter;
     detailUser: UserProps = this.userQuery.detailUserGetter;
+    menus: Menu[] = [
+        {
+            icon: 'person_off',
+            description: '表示しない',
+            clickCallBack: () => {
+                this.socket.filter({
+                    userId: this.profile.id,
+                    filterUserId: Number(this.detailUser.id),
+                });
+                this.userService.getUsersRequest().subscribe(() => {
+                    this.router.navigate(['/']);
+                    this.snackBar.open('非表示にしました');
+                });
+            },
+        },
+        {
+            icon: 'block',
+            description: 'ブロックする',
+            clickCallBack: () => {
+                this.socket.block({
+                    userId: this.profile.id,
+                    blockUserId: Number(this.detailUser.id),
+                });
+                this.userService.getUsersRequest().subscribe(() => {
+                    this.router.navigate(['/']);
+                    this.snackBar.open('ブロックしました');
+                });
+            },
+        },
+    ];
 
     detailUser$: Observable<UserProps> = this.userQuery.detailUser$;
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
@@ -32,7 +65,9 @@ export class UserDetailCComponent {
         private readonly router: Router,
         private readonly roomQuery: RoomQuery,
         private readonly roomStore: RoomStore,
-        private readonly userStore: UserStore
+        private readonly userStore: UserStore,
+        private readonly snackBar: SnackBarService,
+        private readonly userService: UserService
     ) {}
 
     onReceivedClickLikeButton(): void {

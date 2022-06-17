@@ -13,25 +13,7 @@ import { RoomProps } from 'src/app/states/room/room.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoMatchingUsersPComponent implements OnInit {
-    private _rooms!: RoomProps[];
-
-    @Input() set rooms(rooms: RoomProps[] | null) {
-        this._rooms = rooms?.filter((room: RoomProps) => {
-            const duplicated = rooms.find(
-                (_room) =>
-                    room.userA === _room.userB && room.userB === _room.userA
-            );
-            if (!duplicated?.id) return true;
-
-            if (duplicated?.id < room.id) return false;
-
-            return true;
-        }) as RoomProps[];
-    }
-
-    get rooms(): RoomProps[] | null {
-        return this._rooms;
-    }
+    @Input() rooms: RoomProps[] | null = [];
 
     constructor() {}
 

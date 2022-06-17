@@ -4,3 +4,13 @@
 ></app-my-page-actions-p>
 <app-title-header></app-title-header>
 <app-my-page-p [profile]="profile$ | async"></app-my-page-p>
+<div class="panel-container">
+    <app-my-page-filter-users-p
+        [filters]="filters"
+        (clickFilter)="onReceivedClickFilter($event)"
+    ></app-my-page-filter-users-p>
+    <app-my-page-block-users-p
+        [blocks]="blocks"
+        (clickBlock)="onReceivedClickBlock($event)"
+    ></app-my-page-block-users-p>
+</div>

@@ -60,7 +60,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
         ).pipe(
             mergeMap(async () => {
                 this.uiStore.displayPageName(
-                    String(this.userQuery.detailUserGetter?.stageName)
+                    String(this.userQuery.detailUserGetter?.displayedName)
                 );
             }),
             map((observer) => void observer)

@@ -28,9 +28,7 @@ export class DeepRecommendSplashScreenService {
         private _animationBuilder: AnimationBuilder,
         @Inject(DOCUMENT) private _document: any,
         private _router: Router
-    ) {
-        // Initialize
-    }
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
@@ -43,7 +41,6 @@ export class DeepRecommendSplashScreenService {
      */
     init(): void {
         // Get the splash screen element
-        console.log('INIT');
         this.splashScreenEl =
             this._document.body.querySelector('#dr-splash-screen');
 

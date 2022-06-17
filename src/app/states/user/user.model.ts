@@ -3,6 +3,7 @@ export interface UserProps {
     realLastName: string;
     realFirstName: string;
     stageName: string | null;
+    displayedName: string | null;
     position: string | null;
     gender: string;
     age: number;

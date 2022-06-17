@@ -1,0 +1,38 @@
+:host {
+    ::ng-deep .mat-expansion-panel-body {
+        padding: 0;
+    }
+
+    .mat-expansion-panel,
+    .mat-expansion-panel-header:hover {
+        background: #fafafa !important;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .mat-expansion-panel-header {
+        padding: 0;
+    }
+
+    .mat-expansion-panel-header.mat-expanded,
+    .mat-expansion-panel-header.mat-expanded:hover {
+        background: #fafafa;
+    }
+
+    .container {
+        padding-bottom: 128px;
+    }
+
+    .card {
+        padding: 8px 0;
+        &:hover {
+            background-color: #fafafa;
+        }
+    }
+
+    .mat-card-actions,
+    .mat-card-subtitle,
+    .mat-card-content {
+        margin-bottom: 0 !important;
+    }
+}

@@ -157,6 +157,20 @@ select {
     background-color: #fafafa;
 }
 
+.custom-snackbar {
+    color: #fafafa;
+    box-shadow: none;
+    opacity: 0.9 !important;
+
+    .mat-simple-snackbar-action {
+        color: map-get($mat-blue, 500) !important;
+    }
+}
+
+.mat-snack-bar-container {
+    border-radius: 0 !important;
+}
+
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {
@@ -184,5 +198,8 @@ select {
     }
     .mat-tab-label {
         min-width: 0;
+    }
+    .mat-snack-bar-container:not(.sign-up-container) {
+        margin-bottom: 56px !important;
     }
 }

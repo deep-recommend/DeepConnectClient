@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateLikeProps } from 'src/app/states/like/like.model';
+import { UserQuery } from '../../states/user/user.query';
 import { SocketEmitterService } from './socket-emitter.service';
 import { SocketReceiverService } from './socket-receiver.service';
 
@@ -9,9 +10,14 @@ import { SocketReceiverService } from './socket-receiver.service';
 export class SocketService {
     constructor(
         private readonly socketEmitter: SocketEmitterService,
-        private readonly socketReceiver: SocketReceiverService
+        private readonly socketReceiver: SocketReceiverService,
+        private readonly userQuery: UserQuery
     ) {
         this._connect();
+    }
+
+    joinRooms(currentUserId: number): void {
+        this.socketEmitter.emitJoinRooms(currentUserId);
     }
 
     sendMessage(data: any): void {
@@ -30,10 +36,31 @@ export class SocketService {
         this.socketEmitter.emitNotificationDecrease(ids);
     }
 
+    block(block: { userId: number; blockUserId: number }): void {
+        this.socketEmitter.emitBlock(block);
+    }
+
+    unblock(id: number): void {
+        this.socketEmitter.emitUnblock(id);
+    }
+
+    filter(filter: { userId: number; filterUserId: number }): void {
+        this.socketEmitter.emitFilter(filter);
+    }
+
+    unfilter(id: number): void {
+        this.socketEmitter.emitUnfilter(id);
+    }
+
     private _connect(): void {
+        this.socketReceiver.receiveJoinRooms();
         this.socketReceiver.receiveMessage();
         this.socketReceiver.receiveLike();
         this.socketReceiver.receiveUnlike();
         this.socketReceiver.receiveNotificationDecrease();
+        this.socketReceiver.receiveBlock();
+        this.socketReceiver.receiveUnblock();
+        this.socketReceiver.receiveFilter();
+        this.socketReceiver.receiveUnfilter();
     }
 }

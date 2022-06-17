@@ -9,6 +9,7 @@ import { NoNotificationsPComponent } from './no-notifications-p/no-notifications
 import { NotificationBulkDeletionButtonPComponent } from './notification-bulk-deletion-button-p/notification-bulk-deletion-button-p.component';
 import { NotificationResolverService } from './notification.resolver';
 import { NotificationBulkDeletionDialogComponent } from '../notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component';
+
 @NgModule({
     declarations: [
         NotificationComponent,

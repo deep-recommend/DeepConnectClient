@@ -105,7 +105,7 @@ export class UserStore extends EntityStore<UserState> {
     }
 
     setUsers(users: UserProps[]): void {
-        this.set(users);
+        this.set(users.map((user) => this.mapper(user)));
     }
 
     updateSearch(search: any): void {
@@ -121,21 +121,21 @@ export class UserStore extends EntityStore<UserState> {
         localStorage.setItem(currentUserIdKey, String(profile.id));
         this.update({
             ...this.getValue().profile,
-            profile,
+            profile: this.mapper(profile),
         });
     }
 
     updateCompanion(companion: UserProps): void {
         this.update({
             ...this.getValue().companion,
-            companion,
+            companion: this.mapper(companion),
         });
     }
 
     updateDetailUser(detailUser: UserProps): void {
         this.update({
             ...this.getValue().detailUser,
-            detailUser,
+            detailUser: this.mapper(detailUser),
         });
     }
 
@@ -172,5 +172,13 @@ export class UserStore extends EntityStore<UserState> {
                 isMarried: '',
             },
         }));
+    }
+
+    mapper(user: UserProps): UserProps {
+        return {
+            ...user,
+            displayedName:
+                user.stageName || user.realLastName + user.realFirstName,
+        };
     }
 }

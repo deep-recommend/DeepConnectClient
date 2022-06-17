@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UiQuery } from 'src/app/states/ui/ui.query';
+import { Menu } from '../../interfaces/menu.interface';
 
 @Component({
     selector: 'app-back-to-pre-page',
@@ -11,6 +12,9 @@ import { UiQuery } from 'src/app/states/ui/ui.query';
 })
 export class BackToPrePageComponent implements OnInit {
     pageName$: Observable<string> = this.uiQuery.pageName$;
+
+    @Input() needsMenu: boolean = false;
+    @Input() menus: Menu[] = [];
 
     constructor(
         private readonly uiQuery: UiQuery,

@@ -1,0 +1,12 @@
+<div class="box">
+    <div>
+        <strong>ブロック解除</strong
+        ><br />※選択したユーザーのブロックを解除しますか？
+    </div>
+    <div class="button">
+        <button mat-button [mat-dialog-close]="true">閉じる</button>
+        <button mat-button color="primary" (click)="unblock()" class="action">
+            解除
+        </button>
+    </div>
+</div>
