@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8"/>
+        <meta charset="utf-8" />
         <title>DeepConnect</title>
-        <base href="/"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <script src="https://kit.fontawesome.com/b1f1aa0de4.js" crossorigin="anonymous"></script>
-        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <base href="/" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <script
+            src="https://kit.fontawesome.com/b1f1aa0de4.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <style type="text/css">
             #dr-splash-screen {
                 display: block;
@@ -143,18 +155,22 @@
                     cubic-bezier(0.35, 0, 0.25, 1) infinite;
             }
         </style>
-      <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-</head>
+        <link rel="manifest" href="manifest.webmanifest" />
+        <meta name="theme-color" content="#1976d2" />
+    </head>
     <body class="mat-typography">
         <dr-splash-screen id="dr-splash-screen">
             <div class="center">
                 <div class="logo">
-                    <img width="128" src="/assets/images/png/logo.png"/>
+                    <img width="128" src="/assets/images/png/logo.png" />
                 </div>
             </div>
         </dr-splash-screen>
         <app-root></app-root>
-      <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+        <script>
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+        </script>
+    </body>
 </html>
