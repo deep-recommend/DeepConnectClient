@@ -1,13 +1,29 @@
 <div
     fxLayout="column"
     class="contents"
-    [ngClass]="{ messaging: (isMessaging$ | async) }"
+    [ngClass]="{
+        messaging: (isMessaging$ | async),
+        mobile: (isMobile$ | async)
+    }"
 >
+    <app-title-header *ngIf="isVisibleMobileHeader$ | async"></app-title-header>
     <app-header-c
         style="z-index: 2"
         *ngIf="isVisibleHeaders$ | async"
         class="header"
-        [ngClass]="{ visible: (isVisibleMobileHeader$ | async) }"
     ></app-header-c>
-    <app-content style="z-index: 0" class="content"></app-content>
+    <div
+        [ngClass]="{
+            'pc-like-routing-tab-content':
+                (isVisibleLikeRoutingTab$ | async) && !(isMobile$ | async)
+        }"
+    >
+        <app-like-routing-tabs
+            *ngIf="isVisibleLikeRoutingTab$ | async"
+        ></app-like-routing-tabs>
+        <app-content
+            style="z-index: 0; padding-top: 100px"
+            class="content"
+        ></app-content>
+    </div>
 </div>

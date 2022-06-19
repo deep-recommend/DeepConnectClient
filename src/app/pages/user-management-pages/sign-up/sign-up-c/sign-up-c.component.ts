@@ -32,10 +32,16 @@ export class SignUpCComponent {
             .pipe(first())
             .subscribe((data) => {
                 if (data) {
-                    this.snackBar.open('入力されたEmailは既に使用されています');
+                    this.snackBar.open(
+                        '入力されたEmailは既に使用されています',
+                        '✕',
+                        { panelClass: ['signup-snackbar'] }
+                    );
                 } else {
                     this.router.navigate(['/sign-in']);
-                    this.snackBar.open('登録しました');
+                    this.snackBar.open('登録しました', '✕', {
+                        panelClass: ['signup-snackbar'],
+                    });
                 }
             });
     }

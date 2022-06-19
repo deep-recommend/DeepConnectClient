@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { UiStore } from 'src/app/states/ui/ui.store';
+import { UiService } from 'src/app/states/ui/ui.service';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserStore } from 'src/app/states/user/user.store';
 import { ProgressSpinnerService } from '../components/progress-spinner/progress-spinner.service';
@@ -25,7 +25,7 @@ export class AuthenticationService {
 
     constructor(
         private readonly http: HttpClient,
-        private readonly uiStore: UiStore,
+        private readonly uiService: UiService,
         private readonly userStore: UserStore,
         private readonly spinner: ProgressSpinnerService
     ) {}
@@ -37,7 +37,7 @@ export class AuthenticationService {
             }),
             catchError((err) => {
                 if (err) {
-                    this.uiStore.displayErrMsg(
+                    this.uiService.displayErrMsg(
                         'Emailまたはパスワードが正しくありません'
                     );
                     this.spinner.close();

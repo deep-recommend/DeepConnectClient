@@ -9,12 +9,12 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/general/services/authentication.service';
 import { LikeService } from 'src/app/states/like/like.service';
 import { UserService } from 'src/app/states/user/user.service';
-import { UiStore } from '../../../states/ui/ui.store';
+import { UiService } from '../../../states/ui/ui.service';
 
 @Injectable()
 export class MatchedResolverService implements Resolve<Observable<void>> {
     constructor(
-        private readonly uiStore: UiStore,
+        private readonly uiService: UiService,
         private readonly userService: UserService,
         private readonly likeService: LikeService,
         private readonly authenticationService: AuthenticationService
@@ -24,8 +24,9 @@ export class MatchedResolverService implements Resolve<Observable<void>> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<void> {
-        this.uiStore.displayRoutingTab();
-        this.uiStore.hideMobileHeader();
+        this.uiService.displayRoutingTab();
+        this.uiService.hideMobileHeader();
+        this.uiService.displayLikeRoutingTab();
 
         return forkJoin(
             this.userService.getMatchedUsersRequest(),

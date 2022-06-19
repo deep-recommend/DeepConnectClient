@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RoomProps } from 'src/app/states/room/room.model';
-import { RoomQuery } from 'src/app/states/room/room.query';
-import { UserQuery } from 'src/app/states/user/user.query';
-import { RoomStore } from '../../../../states/room/room.store';
+import { AppQuery } from '../../../../states/app.query';
+import { AppStore } from '../../../../states/app.store';
 
 @Component({
     selector: 'app-matching-users-c',
@@ -13,20 +12,20 @@ import { RoomStore } from '../../../../states/room/room.store';
 })
 export class MatchingUsersCComponent {
     existsMatchingUsers$: Observable<boolean> =
-        this.userQuery.existsMatchingUsers$;
+        this.query.user.existsMatchingUsers$;
 
-    rooms$: Observable<RoomProps[]> = this.roomQuery.rooms$;
-    profileGetter = this.userQuery.profileGetter;
+    isMobile$: Observable<boolean> = this.query.ui.isMobile$;
+    rooms$: Observable<RoomProps[]> = this.query.room.rooms$;
+    profileGetter = this.query.user.profileGetter;
 
     constructor(
-        private readonly userQuery: UserQuery,
         private readonly router: Router,
-        private readonly roomQuery: RoomQuery,
-        private readonly roomStore: RoomStore
+        private readonly store: AppStore,
+        private readonly query: AppQuery
     ) {}
 
     onReceivedClickUserToMessage(room: RoomProps): void {
-        this.roomStore.updateCurrentRoom(room);
+        this.store.room.updateCurrentRoom(room);
         this.router.navigate([`/message-room/${room?.id}`]);
     }
 }

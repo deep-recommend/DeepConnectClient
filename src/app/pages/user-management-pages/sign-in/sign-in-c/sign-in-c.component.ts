@@ -5,7 +5,7 @@ import { SignInProps } from 'src/app/general/interfaces/sign-in.interface';
 import { mergeMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UiQuery } from 'src/app/states/ui/ui.query';
-import { UiStore } from 'src/app/states/ui/ui.store';
+import { UiService } from 'src/app/states/ui/ui.service';
 
 @Component({
     selector: 'app-sign-in-c',
@@ -19,7 +19,7 @@ export class SignInCComponent {
         private readonly authService: AuthenticationService,
         private readonly router: Router,
         private readonly uiQuery: UiQuery,
-        private readonly uiStore: UiStore
+        private readonly uiService: UiService
     ) {}
 
     onReceivedClickSignIn(signIn: SignInProps): void {
@@ -28,8 +28,8 @@ export class SignInCComponent {
             .pipe(
                 mergeMap(() => this.router.navigate(['/'])),
                 mergeMap(async () => {
-                    this.uiStore.displayRoutingTab();
-                    this.uiStore.displayMobileHeader();
+                    this.uiService.displayRoutingTab();
+                    this.uiService.displayMobileHeader();
                 })
             )
             .subscribe();

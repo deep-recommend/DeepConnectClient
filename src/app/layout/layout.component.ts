@@ -1,11 +1,4 @@
-import { UiStore } from './../states/ui/ui.store';
-import {
-    Component,
-    ElementRef,
-    OnDestroy,
-    OnInit,
-    ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { NotificationService } from '../states/notification/notification.service';
 import { UiQuery } from '../states/ui/ui.query';
@@ -15,12 +8,15 @@ import { UiQuery } from '../states/ui/ui.query';
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit {
     subscriptions: Subscription[] = [];
 
+    isMobile$: Observable<boolean> = this.uiQuery.isMobile$;
     isVisibleHeaders$: Observable<boolean> = this.uiQuery.isVisibleHeaders$;
     isVisibleMobileHeader$: Observable<boolean> =
         this.uiQuery.isVisibleMobileHeaders$;
+    isVisibleLikeRoutingTab$: Observable<boolean> =
+        this.uiQuery.isVisibleLikeRoutingTab$;
     isMessaging$: Observable<boolean> = this.uiQuery.isMessaging$;
 
     @ViewChild('scroll') scrollContainer!: ElementRef;
@@ -35,13 +31,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
             location.pathname !== 'sign-in' &&
             location.pathname !== 'sign-up'
         ) {
-            this.subscriptions.push(
-                this.notificationService.getNotifications().subscribe()
-            );
+            this.notificationService.getNotifications().subscribe();
         }
-    }
-
-    ngOnDestroy(): void {
-        this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
 }

@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UiStore } from 'src/app/states/ui/ui.store';
+import { UiService } from 'src/app/states/ui/ui.service';
 import { AuthenticationService } from '../../../general/services/authentication.service';
 import { currentRoomIdKey } from '../../../general/utilities/local-strage';
 import { MessageService } from '../../../states/message/message.service';
@@ -19,7 +19,7 @@ import { UserService } from '../../../states/user/user.service';
 @Injectable()
 export class MessageRoomResolverService implements Resolve<Observable<void>> {
     constructor(
-        private readonly uiStore: UiStore,
+        private readonly uiService: UiService,
         private readonly messageService: MessageService,
         private readonly authenticationService: AuthenticationService,
         private readonly roomService: RoomService,
@@ -32,10 +32,11 @@ export class MessageRoomResolverService implements Resolve<Observable<void>> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<void> {
-        this.uiStore.hideRoutingTab();
-        this.uiStore.hideMobileHeader();
-        this.uiStore.messaging();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiService.hideRoutingTab();
+        this.uiService.hideMobileHeader();
+        this.uiService.hideLikeRoutingTab();
+        this.uiService.messaging();
+        this.uiService.displayPageName(route.data.title);
 
         const currentRoomId = this.roomQuery.currentRoomId
             ? this.roomQuery.currentRoomId

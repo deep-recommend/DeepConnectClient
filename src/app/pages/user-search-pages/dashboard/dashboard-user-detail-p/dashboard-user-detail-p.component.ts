@@ -7,6 +7,7 @@ import { UserProps } from 'src/app/states/user/user.model';
     styleUrls: ['./dashboard-user-detail-p.component.scss'],
 })
 export class DashboardUserDetailPComponent implements OnInit {
+    @Input() isMobile: boolean | null = false;
     @Input() user?: UserProps;
     @Output() clickUsersToDetail: EventEmitter<number> =
         new EventEmitter<number>();

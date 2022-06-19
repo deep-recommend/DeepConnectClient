@@ -4,9 +4,9 @@ import { createStore } from '@ngneat/elf';
 import { setEntities, withEntities } from '@ngneat/elf-entities';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { apiBlockUrl, httpHeaders } from '../general/utilities/api';
-import { UserProps } from './user/user.model';
-import { UserStore } from './user/user.store';
+import { apiBlockUrl, httpHeaders } from '../../general/utilities/api';
+import { UserProps } from '../user/user.model';
+import { UserStore } from '../user/user.store';
 
 export interface BlockProps {
     id: number;

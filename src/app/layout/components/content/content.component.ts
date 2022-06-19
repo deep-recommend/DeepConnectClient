@@ -1,11 +1,42 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+    animate,
+    query,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
     selector: 'app-content',
     templateUrl: './content.component.html',
     styleUrls: ['./content.component.scss'],
-    encapsulation: ViewEncapsulation.None,
+    animations: [
+        trigger('fadeAnimation', [
+            transition('* => *', [
+                query(':enter', [style({ opacity: 0 })], { optional: true }),
+
+                query(
+                    ':leave',
+                    [
+                        style({ opacity: 1 }),
+                        animate('0.2s', style({ opacity: 0 })),
+                    ],
+                    { optional: true }
+                ),
+
+                query(
+                    ':enter',
+                    [
+                        style({ opacity: 0 }),
+                        animate('0.2s', style({ opacity: 1 })),
+                    ],
+                    { optional: true }
+                ),
+            ]),
+        ]),
+    ],
 })
 export class ContentComponent implements OnInit {
     constructor(private readonly router: Router) {
@@ -22,4 +53,8 @@ export class ContentComponent implements OnInit {
     }
 
     ngOnInit(): void {}
+
+    getRouterOutletState(outlet: any) {
+        return outlet.isActivated ? outlet.activatedRoute : '';
+    }
 }

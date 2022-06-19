@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NotificationProps } from 'src/app/states/notification/notification.model';
-import { NotificationQuery } from 'src/app/states/notification/notification.query';
 import { UserProps } from 'src/app/states/user/user.model';
-import { UserQuery } from 'src/app/states/user/user.query';
-import { UserStore } from 'src/app/states/user/user.store';
 import { SocketEmitterService } from '../../../../libs/socket/socket-emitter.service';
-import { RoomQuery } from '../../../../states/room/room.query';
+import { AppQuery } from '../../../../states/app.query';
+import { AppStore } from '../../../../states/app.store';
 
 @Component({
     selector: 'app-notification-c',
@@ -15,20 +13,19 @@ import { RoomQuery } from '../../../../states/room/room.query';
     styleUrls: ['./notification-c.component.scss'],
 })
 export class NotificationCComponent {
-    profile: UserProps = this.userQuery.profileGetter;
+    profile: UserProps = this.query.user.profileGetter;
 
+    isMobile$: Observable<boolean> = this.query.ui.isMobile$;
     existsNotifications$: Observable<boolean> =
-        this.notificationQuery.existsNotifications$;
+        this.query.notification.existsNotifications$;
     notifications$: Observable<NotificationProps[]> =
-        this.notificationQuery.notifications$;
+        this.query.notification.notifications$;
 
     constructor(
-        private readonly notificationQuery: NotificationQuery,
-        private readonly userQuery: UserQuery,
         private readonly router: Router,
-        private readonly userStore: UserStore,
+        private readonly store: AppStore,
         private readonly socketEmitter: SocketEmitterService,
-        private readonly roomQuery: RoomQuery
+        private readonly query: AppQuery
     ) {}
 
     onReceivedClickNotificationsToUserDetail(data: {
@@ -36,11 +33,11 @@ export class NotificationCComponent {
         notificationId: number;
         isMessage: boolean;
     }): void {
-        this.userStore.updateUserId(data.userId);
+        this.store.user.updateUserId(data.userId);
         this.socketEmitter.emitNotificationDecrease([data.notificationId]);
 
-        const room = this.roomQuery.getByUserId(
-            this.userQuery.profileGetter.id,
+        const room = this.query.room.getByUserId(
+            this.query.user.profileGetter.id,
             data.userId
         );
 

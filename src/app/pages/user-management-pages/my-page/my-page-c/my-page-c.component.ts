@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { accessTokenKey } from 'src/app/general/utilities/api';
-import { BlockProps, blocksStore } from 'src/app/states/block';
 import { UserProps } from 'src/app/states/user/user.model';
-import { UserQuery } from 'src/app/states/user/user.query';
 import { selectAllEntities } from '@ngneat/elf-entities';
-import { FilterProps, filtersStore } from 'src/app/states/filter';
 import { SocketService } from 'src/app/libs/socket/socket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UnblockDialogComponent } from '../../unblock-dialog/unblock-dialog.component';
+import { BlockProps, blocksStore } from '../../../../states/block';
+import { FilterProps, filtersStore } from '../../../../states/filter';
+import { AppQuery } from '../../../../states/app.query';
 
 @Component({
     selector: 'app-my-page-c',
@@ -17,15 +17,16 @@ import { UnblockDialogComponent } from '../../unblock-dialog/unblock-dialog.comp
     styleUrls: ['./my-page-c.component.scss'],
 })
 export class MyPageCComponent implements OnInit {
-    profile$: Observable<UserProps> = this.userQuery.profile$;
+    isMobile$: Observable<boolean> = this.appQuery.ui.isMobile$;
+    profile$: Observable<UserProps> = this.appQuery.user.profile$;
     filters: FilterProps[] = [];
     blocks: BlockProps[] = [];
 
     constructor(
-        private readonly userQuery: UserQuery,
         private readonly router: Router,
         private readonly socket: SocketService,
-        private readonly dialog: MatDialog
+        private readonly dialog: MatDialog,
+        private readonly appQuery: AppQuery
     ) {}
 
     ngOnInit(): void {

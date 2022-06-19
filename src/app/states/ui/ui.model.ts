@@ -10,8 +10,9 @@ export interface UiState {
     };
     header: {
         accountMenus: HeaderAccountMenu[];
-        isVisible: boolean;
-        isMobileVisible: boolean;
+        isVisibleHeaders: boolean;
+        isVisibleMobileHeaders: boolean;
+        isVisibleLikeRoutingTab: boolean;
     };
     sideNav: {
         menus: SideNavMenu[];

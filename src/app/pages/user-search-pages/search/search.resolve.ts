@@ -4,15 +4,15 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { UiStore } from 'src/app/states/ui/ui.store';
+import { UiService } from 'src/app/states/ui/ui.service';
 
 @Injectable()
 export class SearchResolverService implements Resolve<void> {
-    constructor(private readonly uiStore: UiStore) {}
+    constructor(private readonly uiService: UiService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void {
-        this.uiStore.displayRoutingTab();
-        this.uiStore.hideMobileHeader();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiService.displayRoutingTab();
+        this.uiService.hideMobileHeader();
+        this.uiService.displayPageName(route.data.title);
     }
 }

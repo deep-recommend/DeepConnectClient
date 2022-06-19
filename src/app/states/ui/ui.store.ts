@@ -16,8 +16,9 @@ export const initialState: () => UiState = () => ({
     },
     header: {
         accountMenus: headerAccountMenu,
-        isVisible: true,
-        isMobileVisible: true,
+        isVisibleHeaders: true,
+        isVisibleMobileHeaders: true,
+        isVisibleLikeRoutingTab: true,
     },
     sideNav: {
         menus: sideNavMenu,
@@ -37,55 +38,7 @@ export class UiStore extends Store<UiState> {
         super(initialState());
     }
 
-    displayErrMsg(errMsg: string): void {
-        this._configureErrMsg(errMsg);
-    }
-
-    displayPageName(pageName: string): void {
-        this._configurePageName(pageName);
-    }
-
-    openSideNavFullMenu(): void {
-        this._configureSideNavIsFullMenuVisible(true);
-    }
-
-    closeSideNavFullMenu(): void {
-        this._configureSideNavIsFullMenuVisible(false);
-    }
-
-    lockSideNav(): void {
-        this._configureSideNavLock(true);
-    }
-
-    unlockSideNav(): void {
-        this._configureSideNavLock(false);
-    }
-
-    displayRoutingTab(): void {
-        this._configRoutingTabDisplay(true);
-    }
-
-    hideRoutingTab(): void {
-        this._configRoutingTabDisplay(false);
-    }
-
-    displayMobileHeader(): void {
-        this._configMobileHeaderDisplay(true);
-    }
-
-    hideMobileHeader(): void {
-        this._configMobileHeaderDisplay(false);
-    }
-
-    messaging(): void {
-        this._configMessaging(true);
-    }
-
-    quitMessaging(): void {
-        this._configMessaging(false);
-    }
-
-    private _configureErrMsg(errMsg: string): void {
+    configureErrMsg(errMsg: string): void {
         this.update({
             ui: {
                 ...this.getValue().ui,
@@ -94,7 +47,7 @@ export class UiStore extends Store<UiState> {
         });
     }
 
-    private _configurePageName(pageName: string): void {
+    configurePageName(pageName: string): void {
         this.update({
             ui: {
                 ...this.getValue().ui,
@@ -103,7 +56,7 @@ export class UiStore extends Store<UiState> {
         });
     }
 
-    private _configMessaging(bool: boolean): void {
+    configMessaging(bool: boolean): void {
         this.update({
             ui: {
                 ...this.getValue().ui,
@@ -112,7 +65,7 @@ export class UiStore extends Store<UiState> {
         });
     }
 
-    private _configureSideNavIsFullMenuVisible(bool: boolean): void {
+    configureSideNavIsFullMenuVisible(bool: boolean): void {
         if (this.getValue().sideNav.isLocked) {
             return;
         }
@@ -125,7 +78,7 @@ export class UiStore extends Store<UiState> {
         });
     }
 
-    private _configureSideNavLock(bool: boolean): void {
+    configureSideNavLock(bool: boolean): void {
         this.update({
             sideNav: {
                 ...this.getValue().sideNav,
@@ -134,20 +87,29 @@ export class UiStore extends Store<UiState> {
         });
     }
 
-    private _configRoutingTabDisplay(bool: boolean): void {
+    configRoutingTabDisplay(bool: boolean): void {
         this.update({
             header: {
                 ...this.getValue().header,
-                isVisible: bool,
+                isVisibleHeaders: bool,
             },
         });
     }
 
-    private _configMobileHeaderDisplay(bool: boolean): void {
+    configMobileHeaderDisplay(bool: boolean): void {
         this.update({
             header: {
                 ...this.getValue().header,
-                isMobileVisible: bool,
+                isVisibleMobileHeaders: bool,
+            },
+        });
+    }
+
+    configLikeRoutingTabDisplay(bool: boolean): void {
+        this.update({
+            header: {
+                ...this.getValue().header,
+                isVisibleLikeRoutingTab: bool,
             },
         });
     }

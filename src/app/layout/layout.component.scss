@@ -12,24 +12,17 @@
         margin: 0 auto;
         background-color: #fafafa;
         scrollbar-color: #fafafa;
-        .content {
-            margin-top: 64px;
-        }
     }
     .contents::-webkit-scrollbar {
         display: none;
     }
-    @media screen and (max-width: 700px) {
-        .contents {
+    .pc-like-routing-tab-content {
+        padding-top: 64px;
+    }
+
+    .mobile {
+        &.contents {
             width: 100vw;
-            .header {
-                &.visible {
-                    padding: 44px 0;
-                }
-            }
-            .content {
-                margin-top: 0;
-            }
         }
     }
 }

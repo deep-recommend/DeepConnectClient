@@ -1,6 +1,7 @@
 <ng-container *ngFor="let user of users; let i = index">
     <app-dashboard-user-detail-p
         [user]="user"
+        [isMobile]="isMobile"
         (clickUsersToDetail)="onReceivedClickUsersToDetail($event)"
     ></app-dashboard-user-detail-p>
 </ng-container>

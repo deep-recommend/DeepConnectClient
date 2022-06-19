@@ -8,6 +8,7 @@ import { UserProps } from 'src/app/states/user/user.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyPagePComponent {
+    @Input() isMobile: boolean | null = false;
     @Input() profile!: UserProps | null;
 
     get age(): string {

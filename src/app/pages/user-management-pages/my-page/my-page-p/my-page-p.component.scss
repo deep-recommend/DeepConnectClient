@@ -35,7 +35,8 @@
     .mat-card-header-text {
         margin: 0;
     }
-    @media screen and (max-width: 700px) {
+
+    .mobile {
         .user-bg {
             height: 448px;
             .image {

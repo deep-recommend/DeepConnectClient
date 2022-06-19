@@ -1,6 +1,10 @@
-<app-title-header></app-title-header>
-<app-no-matching-users-p [rooms]="rooms$ | async"></app-no-matching-users-p>
-<app-matching-users-p
-    [rooms]="rooms$ | async"
-    (clickUserToMessage)="onReceivedClickUserToMessage($event)"
-></app-matching-users-p>
+<div class="container">
+    <app-no-matching-users-p
+        [isMobile]="isMobile$ | async"
+        [rooms]="rooms$ | async"
+    ></app-no-matching-users-p>
+    <app-matching-users-p
+        [rooms]="rooms$ | async"
+        (clickUserToMessage)="onReceivedClickUserToMessage($event)"
+    ></app-matching-users-p>
+</div>

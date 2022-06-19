@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LikeProps } from 'src/app/states/like/like.model';
-import { LikeQuery } from 'src/app/states/like/like.query';
 import { UserProps } from 'src/app/states/user/user.model';
-import { UserQuery } from 'src/app/states/user/user.query';
-import { UserService } from 'src/app/states/user/user.service';
-import { UserStore } from 'src/app/states/user/user.store';
+import { AppQuery } from '../../../../states/app.query';
+import { AppService } from '../../../../states/app.service';
+import { AppStore } from '../../../../states/app.store';
 
 @Component({
     selector: 'app-like-from-others-c',
@@ -14,22 +13,21 @@ import { UserStore } from 'src/app/states/user/user.store';
     styleUrls: ['./like-from-others-c.component.scss'],
 })
 export class LikeFromOthersCComponent {
-    currentUserId$: Observable<number> = this.userQuery.currentUserId$;
-    users$: Observable<UserProps[]> = this.userQuery.users$;
-    profile$: Observable<UserProps> = this.userQuery.profile$;
-    likes$: Observable<LikeProps[]> = this.likeQuery.likes$;
+    currentUserId$: Observable<number> = this.query.user.currentUserId$;
+    users$: Observable<UserProps[]> = this.query.user.users$;
+    profile$: Observable<UserProps> = this.query.user.profile$;
+    likes$: Observable<LikeProps[]> = this.query.like.likes$;
 
     constructor(
-        private readonly userService: UserService,
-        private readonly userQuery: UserQuery,
         private readonly router: Router,
-        private readonly likeQuery: LikeQuery,
-        private readonly userStore: UserStore
+        private readonly service: AppService,
+        private readonly query: AppQuery,
+        private readonly store: AppStore
     ) {}
 
     onReceivedClickUserToMessage(userId: number): void {
-        this.userService.getCompanionRequest(userId).subscribe(() => {
-            this.userStore.updateUserId(userId);
+        this.service.user.getCompanionRequest(userId).subscribe(() => {
+            this.store.user.updateUserId(userId);
             this.router.navigate([`/user-detail/${userId}`]);
         });
     }

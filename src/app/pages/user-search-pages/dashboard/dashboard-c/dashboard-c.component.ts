@@ -17,6 +17,7 @@ import { UserStore } from 'src/app/states/user/user.store';
 export class DashboardCComponent {
     profile: UserProps = this.userQuery.profileGetter;
 
+    isMobile$: Observable<boolean> = this.uiQuery.isMobile$;
     profile$: Observable<UserProps> = this.userQuery.profile$;
     currentUserId$: Observable<number> = this.userQuery.currentUserId$;
     users$: Observable<UserProps[]> = this.userQuery.users$;

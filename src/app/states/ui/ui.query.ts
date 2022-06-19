@@ -4,9 +4,18 @@ import { UiStore } from './ui.store';
 import { UiState } from './ui.model';
 import { LikeQuery } from '../like/like.query';
 import { includes, intersection } from 'lodash';
+import {
+    BreakpointObserver,
+    Breakpoints,
+    BreakpointState,
+} from '@angular/cdk/layout';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class UiQuery extends Query<UiState> {
+    isMobile$ = of(false);
+
     ui$ = this.select('ui');
     authErrMsg$ = this.select((state) => state.ui.authErrMsg);
     pageName$ = this.select((state) => state.ui.pageName);
@@ -14,9 +23,12 @@ export class UiQuery extends Query<UiState> {
 
     header$ = this.select('header');
     headerAccountMenus$ = this.select((state) => state.header.accountMenus);
-    isVisibleHeaders$ = this.select((state) => state.header.isVisible);
+    isVisibleHeaders$ = this.select((state) => state.header.isVisibleHeaders);
     isVisibleMobileHeaders$ = this.select(
-        (state) => state.header.isMobileVisible
+        (state) => state.header.isVisibleMobileHeaders
+    );
+    isVisibleLikeRoutingTab$ = this.select(
+        (state) => state.header.isVisibleLikeRoutingTab
     );
 
     sideNav$ = this.select('sideNav');
@@ -75,8 +87,13 @@ export class UiQuery extends Query<UiState> {
 
     constructor(
         protected readonly store: UiStore,
-        private readonly likeQuery: LikeQuery
+        private readonly likeQuery: LikeQuery,
+        private breakpointObserver: BreakpointObserver
     ) {
         super(store);
+
+        this.isMobile$ = this.breakpointObserver
+            .observe(Breakpoints.XSmall)
+            .pipe(map((state: BreakpointState) => state.matches));
     }
 }

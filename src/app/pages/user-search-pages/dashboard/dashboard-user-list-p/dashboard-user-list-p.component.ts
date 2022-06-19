@@ -16,6 +16,7 @@ import { UserProps } from 'src/app/states/user/user.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardUserListPComponent implements OnInit {
+    @Input() isMobile: boolean | null = false;
     @Input() profile!: UserProps | null;
     @Input() currentUserId!: number | null;
     @Input() users!: UserProps[] | null;

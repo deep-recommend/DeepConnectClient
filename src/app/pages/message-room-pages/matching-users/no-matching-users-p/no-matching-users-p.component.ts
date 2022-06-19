@@ -13,6 +13,7 @@ import { RoomProps } from 'src/app/states/room/room.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoMatchingUsersPComponent implements OnInit {
+    @Input() isMobile: boolean | null = false;
     @Input() rooms: RoomProps[] | null = [];
 
     constructor() {}

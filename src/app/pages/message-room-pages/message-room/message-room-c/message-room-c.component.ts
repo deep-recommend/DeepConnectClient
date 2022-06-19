@@ -2,19 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketService } from 'src/app/libs/socket/socket.service';
 import { Observable } from 'rxjs';
-import { RoomQuery } from 'src/app/states/room/room.query';
 import { UserProps } from 'src/app/states/user/user.model';
-import { UserQuery } from 'src/app/states/user/user.query';
-import { UserStore } from 'src/app/states/user/user.store';
 import {
     MessageProps,
     CreateMessageProps,
 } from 'src/app/states/message/message.model';
-import { MessageQuery } from 'src/app/states/message/message.query';
 import { RoomProps } from '../../../../states/room/room.model';
 import { Menu } from 'src/app/general/interfaces/menu.interface';
 import { RoomService } from '../../../../states/room/room.service';
 import { SnackBarService } from '../../../../general/services/snack-bar.service';
+import { AppQuery } from '../../../../states/app.query';
+import { AppStore } from '../../../../states/app.store';
 
 @Component({
     selector: 'app-message-room-c',
@@ -53,14 +51,14 @@ export class MessageRoomCComponent {
         },
     ];
 
-    profile$: Observable<UserProps> = this.userQuery.profile$;
-    messages$: Observable<MessageProps[]> = this.messageQuery.messages$;
-    currentRoom$: Observable<RoomProps> = this.roomQuery.currentRoom$;
-    currentRoomId$: Observable<number> = this.roomQuery.currentRoomId$;
+    profile$: Observable<UserProps> = this.query.user.profile$;
+    messages$: Observable<MessageProps[]> = this.query.message.messages$;
+    currentRoom$: Observable<RoomProps> = this.query.room.currentRoom$;
+    currentRoomId$: Observable<number> = this.query.room.currentRoomId$;
 
     newMessage: string = '';
-    currentRoom: RoomProps = this.roomQuery.currentRoom;
-    profile: UserProps = this.userQuery.profileGetter;
+    currentRoom: RoomProps = this.query.room.currentRoom;
+    profile: UserProps = this.query.user.profileGetter;
 
     get userId(): number {
         return this.currentRoom.userA === this.profile?.id
@@ -69,14 +67,12 @@ export class MessageRoomCComponent {
     }
 
     constructor(
-        private readonly userQuery: UserQuery,
-        private readonly roomQuery: RoomQuery,
-        private readonly messageQuery: MessageQuery,
         private readonly router: Router,
         private readonly socket: SocketService,
-        private readonly userStore: UserStore,
+        private readonly store: AppStore,
         private readonly roomService: RoomService,
-        private readonly snackBar: SnackBarService
+        private readonly snackBar: SnackBarService,
+        private readonly query: AppQuery
     ) {}
 
     onReceivedSendMessage(message: string): void {
@@ -84,7 +80,7 @@ export class MessageRoomCComponent {
     }
 
     onReceivedClickAccount(userId: number | undefined): void {
-        this.userStore.updateUserId(Number(userId));
+        this.store.user.updateUserId(Number(userId));
         this.router.navigate([`user-detail/${userId}`]);
     }
 
@@ -93,7 +89,7 @@ export class MessageRoomCComponent {
     }
 
     onReceivedClickCompanionProfilePicture(userId: number): void {
-        this.userStore.updateUserId(Number(userId));
+        this.store.user.updateUserId(Number(userId));
         this.router.navigate([`user-detail/${userId}`]);
     }
 
@@ -102,7 +98,7 @@ export class MessageRoomCComponent {
         const value: CreateMessageProps = {
             currentUserId: this.profile?.id,
             userId: this.userId,
-            roomId: this.roomQuery.currentRoomId,
+            roomId: this.query.room.currentRoomId,
             message: this.newMessage,
         };
         this.socket.sendMessage(value);

@@ -1,4 +1,4 @@
-<ng-container>
+<div [ngClass]="{ mobile: isMobile }">
     <div (click)="onClickUsersToDetail()" class="card">
         <div class="image-container">
             <img
@@ -23,4 +23,4 @@
             <mat-card-subtitle>{{ user?.description }}</mat-card-subtitle>
         </mat-card-content>
     </div>
-</ng-container>
+</div>

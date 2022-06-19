@@ -7,7 +7,7 @@ import {
 import { forkJoin, Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { LikeService } from 'src/app/states/like/like.service';
-import { UiStore } from 'src/app/states/ui/ui.store';
+import { UiService } from 'src/app/states/ui/ui.service';
 import { UserQuery } from 'src/app/states/user/user.query';
 import { UserService } from 'src/app/states/user/user.service';
 import { AuthenticationService } from '../../../general/services/authentication.service';
@@ -23,7 +23,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
     constructor(
         private readonly userService: UserService,
         private readonly likeService: LikeService,
-        private readonly uiStore: UiStore,
+        private readonly uiService: UiService,
         private readonly userQuery: UserQuery,
         private readonly authenticationService: AuthenticationService,
         private readonly roomService: RoomService
@@ -40,9 +40,10 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
             ? this.userQuery.userIdGetter
             : localStorage.getItem(otherUserIdKey);
 
-        this.uiStore.displayRoutingTab();
-        this.uiStore.hideMobileHeader();
-        this.uiStore.quitMessaging();
+        this.uiService.displayRoutingTab();
+        this.uiService.hideMobileHeader();
+        this.uiService.hideLikeRoutingTab();
+        this.uiService.quitMessaging();
         AOS.init({
             duration: 1000,
         });
@@ -59,7 +60,7 @@ export class UserDetailResolverService implements Resolve<Observable<void>> {
             this.roomService.getRoomsRequest()
         ).pipe(
             mergeMap(async () => {
-                this.uiStore.displayPageName(
+                this.uiService.displayPageName(
                     String(this.userQuery.detailUserGetter?.displayedName)
                 );
             }),

@@ -1,6 +1,6 @@
-<ng-container *ngIf="rooms?.length === 0">
-    <div class="no-matching-users">
+<div *ngIf="rooms?.length === 0">
+    <div class="no-matching-users" [ngClass]="{ mobile: isMobile }">
         <mat-icon>speaker_notes_off</mat-icon>
         <div>マッチングしたユーザーとのみメッセージのやりとりができます</div>
     </div>
-</ng-container>
+</div>

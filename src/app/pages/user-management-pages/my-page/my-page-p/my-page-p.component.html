@@ -1,4 +1,4 @@
-<ng-container>
+<div [ngClass]="{ mobile: isMobile }">
     <div class="user-bg" fxLayout="column" fxLayoutAlign="center center">
         <div
             *ngIf="
@@ -43,4 +43,4 @@
             </div>
         </mat-card-content>
     </div>
-</ng-container>
+</div>

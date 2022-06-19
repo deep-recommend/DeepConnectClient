@@ -1,16 +1,20 @@
-<app-my-page-actions-p
-    (clickToProfileSetting)="onReceivedClickToProfileSetting()"
-    (clickSignOut)="onReceivedClickSignOut()"
-></app-my-page-actions-p>
-<app-title-header></app-title-header>
-<app-my-page-p [profile]="profile$ | async"></app-my-page-p>
-<div class="panel-container">
-    <app-my-page-filter-users-p
-        [filters]="filters"
-        (clickFilter)="onReceivedClickFilter($event)"
-    ></app-my-page-filter-users-p>
-    <app-my-page-block-users-p
-        [blocks]="blocks"
-        (clickBlock)="onReceivedClickBlock($event)"
-    ></app-my-page-block-users-p>
+<div class="container">
+    <app-my-page-actions-p
+        (clickToProfileSetting)="onReceivedClickToProfileSetting()"
+        (clickSignOut)="onReceivedClickSignOut()"
+    ></app-my-page-actions-p>
+    <app-my-page-p
+        [isMobile]="isMobile$ | async"
+        [profile]="profile$ | async"
+    ></app-my-page-p>
+    <div class="panel-container">
+        <app-my-page-filter-users-p
+            [filters]="filters"
+            (clickFilter)="onReceivedClickFilter($event)"
+        ></app-my-page-filter-users-p>
+        <app-my-page-block-users-p
+            [blocks]="blocks"
+            (clickBlock)="onReceivedClickBlock($event)"
+        ></app-my-page-block-users-p>
+    </div>
 </div>

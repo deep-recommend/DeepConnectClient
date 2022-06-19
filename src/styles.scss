@@ -157,14 +157,21 @@ select {
     background-color: #fafafa;
 }
 
-.custom-snackbar {
+@mixin custom-snackbar {
     color: #fafafa;
     box-shadow: none;
     opacity: 0.9 !important;
-
     .mat-simple-snackbar-action {
         color: map-get($mat-blue, 500) !important;
     }
+}
+
+.custom-snackbar {
+    @include custom-snackbar();
+}
+
+.signup-snackbar {
+    @include custom-snackbar();
 }
 
 .mat-snack-bar-container {
@@ -199,7 +206,7 @@ select {
     .mat-tab-label {
         min-width: 0;
     }
-    .mat-snack-bar-container:not(.sign-up-container) {
+    .custom-snackbar {
         margin-bottom: 56px !important;
     }
 }

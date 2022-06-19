@@ -1,19 +1,24 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AppQuery } from '../../../states/app.query';
 
 @Component({
     selector: 'app-like-routing-tabs',
     templateUrl: './like-routing-tabs.component.html',
     styleUrls: ['./like-routing-tabs.component.scss'],
 })
-export class LikeRoutingTabsComponent implements OnInit {
+export class LikeRoutingTabsComponent {
     public routeLinks: any[];
     public activeLinkIndex = 1;
     private currentRoute = '';
 
+    isMobile$: Observable<boolean> = this.query.ui.isMobile$;
+
     constructor(
         private router: Router,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private readonly query: AppQuery
     ) {
         this.routeLinks = [
             { label: '自分から', link: '/like-from-me' },
@@ -31,6 +36,4 @@ export class LikeRoutingTabsComponent implements OnInit {
             }
         });
     }
-
-    ngOnInit(): void {}
 }
