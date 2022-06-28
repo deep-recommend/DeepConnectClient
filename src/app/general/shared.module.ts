@@ -45,6 +45,7 @@ import { ProgressSpinnerModule } from './components/progress-spinner/progress-sp
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { PositionComponent } from './components/position/position.component';
 import { ProfileTableComponent } from './components/profile-table/profile-table.component';
+import { DownloadOnComponent } from './components/download-on/download-on.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import { ProfileTableComponent } from './components/profile-table/profile-table.
         ProfilePictureComponent,
         PositionComponent,
         ProfileTableComponent,
+        DownloadOnComponent,
     ],
     imports: [
         CommonModule,
@@ -108,6 +110,7 @@ import { ProfileTableComponent } from './components/profile-table/profile-table.
         ProfilePictureComponent,
         PositionComponent,
         ProfileTableComponent,
+        DownloadOnComponent,
 
         CommonModule,
         FormsModule,

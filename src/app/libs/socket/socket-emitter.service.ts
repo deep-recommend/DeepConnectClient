@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { CreateLikeProps } from 'src/app/states/like/like.model';
+
 @Injectable({
     providedIn: 'root',
 })

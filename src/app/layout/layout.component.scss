@@ -1,8 +1,21 @@
 :host {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        .download-on {
+            position: fixed;
+            bottom: 24px;
+            right: 48px;
+        }
+    }
     .back-img {
         width: calc((100vw - 700px) / 2);
     }
     .contents {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
         width: 700px;
         height: 100vh;
         overflow-y: scroll;
