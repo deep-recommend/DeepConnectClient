@@ -2,9 +2,6 @@ import { DeepRecommendSplashScreenService } from './general/services/splash-scre
 import { Component, NgZone } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { latestUrlKey } from './general/utilities/local-strage';
-import { accessTokenKey } from './general/utilities/api';
-import { AuthenticationService } from './general/services/authentication.service';
-import { SocketService } from './libs/socket/socket.service';
 
 interface Window {
     onResumeApp(): void;
@@ -22,16 +19,12 @@ export class AppComponent {
     constructor(
         private readonly router: Router,
         private readonly splash: DeepRecommendSplashScreenService,
-        private readonly ngZone: NgZone,
-        private readonly authenticationService: AuthenticationService,
-        private readonly socket: SocketService
+        private readonly ngZone: NgZone
     ) {
         window.onResumeApp = () => {
-            if (localStorage.getItem(accessTokenKey)) {
-                this.ngZone.run(() => {
-                    this._setLatestUrlInit();
-                });
-            }
+            this.ngZone.run(() => {
+                location.reload();
+            });
         };
 
         window.onReturnApp = () => {
