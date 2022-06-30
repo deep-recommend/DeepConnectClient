@@ -22,9 +22,7 @@ export class AppComponent {
         private readonly ngZone: NgZone
     ) {
         window.onResumeApp = () => {
-            this.ngZone.run(() => {
-                location.reload();
-            });
+            location.reload();
         };
 
         window.onReturnApp = () => {
