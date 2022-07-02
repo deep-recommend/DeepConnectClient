@@ -22,11 +22,19 @@ export class AppComponent {
         private readonly ngZone: NgZone
     ) {
         window.onResumeApp = () => {
-            location.reload();
+            this.ngZone.run(() => {
+                setTimeout(() => {
+                    location.reload();
+                });
+            });
         };
 
         window.onReturnApp = () => {
-            this._setLatestUrlInit();
+            this.ngZone.run(() => {
+                setTimeout(() => {
+                    location.reload();
+                });
+            });
         };
 
         this.splash.init();
