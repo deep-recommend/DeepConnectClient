@@ -28,6 +28,10 @@
             animation-duration: 20s;
         }
     }
+    .explanation {
+        max-width: 80%;
+        text-align: center;
+    }
 
     .service {
         // position: absolute;
@@ -35,7 +39,7 @@
         // left: 0;
         // right: 0;
         // margin: 0 auto;
-        height: 185px;
+        height: 256px;
         .image {
             width: 45px;
             height: 45px;
