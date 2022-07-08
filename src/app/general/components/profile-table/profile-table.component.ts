@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LangService } from '../../services/lang.service';
 
 @Component({
     selector: 'app-profile-table',
@@ -10,11 +11,13 @@ export class ProfileTableComponent implements OnInit {
 
     get age(): string {
         return Number(this.profile?.age) > 100
-            ? '未設定'
+            ? this.lang.isEn
+                ? 'Unset'
+                : '未設定'
             : String(this.profile?.age);
     }
 
-    constructor() {}
+    constructor(private readonly lang: LangService) {}
 
     ngOnInit(): void {}
 }

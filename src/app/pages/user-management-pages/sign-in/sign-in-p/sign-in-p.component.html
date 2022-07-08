@@ -5,8 +5,9 @@
             <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required />
-                <mat-error *ngIf="signInForm.get('email')?.hasError('required')"
-                    >・必須項目です</mat-error
+                <mat-error
+                    *ngIf="signInForm.get('email')?.hasError('required')"
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
             <mat-form-field>
@@ -30,7 +31,7 @@
                 </button>
                 <mat-error
                     *ngIf="signInForm.get('password')?.hasError('required')"
-                    >・必須項目です</mat-error
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
         </mat-card-content>
@@ -39,8 +40,12 @@
             fxLayoutAlign="center center"
             fxLayoutGap="16px"
         >
-            <button mat-button color="primary">サインイン</button>
-            <p routerLink="/sign-up" class="router-link">新規登録はこちら</p>
+            <button mat-button color="primary">
+                {{ 'SignIn' | translate }}
+            </button>
+            <p routerLink="/sign-up" class="router-link">
+                {{ 'NewRegistration' | translate }}
+            </p>
         </mat-card-actions>
     </form>
 </div>

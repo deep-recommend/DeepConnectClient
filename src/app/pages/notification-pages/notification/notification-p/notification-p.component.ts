@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { NotificationProps } from 'src/app/states/notification/notification.model';
 import { UserQuery } from 'src/app/states/user/user.query';
+import { LangService } from '../../../../general/services/lang.service';
 
 @Component({
     selector: 'app-notification-p',
@@ -27,7 +28,10 @@ export class NotificationPComponent implements OnInit {
         isMessage: boolean;
     }>();
 
-    constructor(private readonly userQuery: UserQuery) {}
+    constructor(
+        private readonly userQuery: UserQuery,
+        private readonly lang: LangService
+    ) {}
 
     ngOnInit(): void {}
 
@@ -46,6 +50,21 @@ export class NotificationPComponent implements OnInit {
 
     getMessage(notification: NotificationProps): string {
         const user = this.userQuery.getById(notification.currentUserId);
+        if (this.lang.isEn) {
+            if (notification.message === 'さんから「メッセージ」が届きました') {
+                return (
+                    'Received "message" from ' +
+                    `${user?.realLastName}${user?.realFirstName}`
+                );
+            }
+            if (notification.message === 'さんから「組みたい」がきました') {
+                return (
+                    'Got "team up" from ' +
+                    `${user?.realLastName}${user?.realFirstName}`
+                );
+            }
+        }
+
         return (
             `${user?.realLastName}${user?.realFirstName}` + notification.message
         );

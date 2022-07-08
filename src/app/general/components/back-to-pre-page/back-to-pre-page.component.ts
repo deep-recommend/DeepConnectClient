@@ -25,7 +25,7 @@ export class BackToPrePageComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickBackToPrePage(): void {
-        if (location.pathname.slice(1, 12)) {
+        if (this.router.url.slice(1, 12) === 'user-detail') {
             this.router.navigate(['/']);
             return;
         }

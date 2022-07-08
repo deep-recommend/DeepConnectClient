@@ -5,15 +5,36 @@
 >
     <mat-card-content fxLayout="column">
         <mat-form-field>
-            <mat-label>性別</mat-label>
+            <mat-label>{{ 'Gender' | translate }}</mat-label>
             <mat-select formControlName="gender">
-                <mat-option *ngFor="let gender of genders" [value]="gender">
-                    {{ gender }}
+                <mat-option [value]="'Man' | translate">
+                    {{ 'Man' | translate }}
+                </mat-option>
+                <mat-option [value]="'Woman' | translate">
+                    {{ 'Woman' | translate }}
+                </mat-option>
+                <mat-option [value]="'Lesbian' | translate">
+                    {{ 'Lesbian' | translate }}
+                </mat-option>
+                <mat-option [value]="'Gay' | translate">
+                    {{ 'Gay' | translate }}
+                </mat-option>
+                <mat-option [value]="'Bisexual' | translate">
+                    {{ 'Bisexual' | translate }}
+                </mat-option>
+                <mat-option [value]="'Transgender' | translate">
+                    {{ 'Transgender' | translate }}
+                </mat-option>
+                <mat-option [value]="'Questioning' | translate">
+                    {{ 'Questioning' | translate }}
+                </mat-option>
+                <mat-option [value]="'Other' | translate">
+                    {{ 'Other' | translate }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>誕生年</mat-label>
+            <mat-label>{{ 'BirthYear' | translate }}</mat-label>
             <mat-select formControlName="birthYear">
                 <mat-option *ngFor="let year of years" [value]="year">
                     {{ year }}
@@ -21,93 +42,108 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>身長(cm)</mat-label>
+            <mat-label>{{ 'Height' | translate }}</mat-label>
             <input matInput formControlName="height" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>出身</mat-label>
-            <mat-select formControlName="birthPlace">
-                <mat-option
-                    *ngFor="let birthPlace of birthPlaces"
-                    [value]="birthPlace"
-                >
-                    {{ birthPlace }}
-                </mat-option>
-            </mat-select>
+            <mat-label>{{ 'BirthPlace' | translate }}</mat-label>
+            <input matInput formControlName="birthPlace" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>所属</mat-label>
+            <mat-label>{{ 'Agency' | translate }}</mat-label>
             <input matInput formControlName="agency" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>職業</mat-label>
+            <mat-label>{{ 'Work' | translate }}</mat-label>
             <input matInput formControlName="work" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>趣味</mat-label>
+            <mat-label>{{ 'Hobby' | translate }}</mat-label>
             <input matInput formControlName="hobby" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>兄弟姉妹</mat-label>
+            <mat-label>{{ 'BrothersAndSisters' | translate }}</mat-label>
             <mat-select formControlName="brothersAndSisters">
                 <mat-option
                     *ngFor="let brotherAndSister of brothersAndSisters"
                     [value]="brotherAndSister"
                 >
-                    {{ brotherAndSister }}
+                    <span *ngIf="brotherAndSister === 'only'">
+                        {{ 'Only' | translate }}
+                    </span>
+                    <span *ngIf="brotherAndSister === 'eldest'">{{
+                        'Eldest' | translate
+                    }}</span>
+                    <span *ngIf="brotherAndSister === 'second'">{{
+                        'Second' | translate
+                    }}</span>
+                    <span *ngIf="brotherAndSister === 'third'">{{
+                        'Third' | translate
+                    }}</span>
+                    <span *ngIf="brotherAndSister === 'other'">{{
+                        'Other' | translate
+                    }}</span>
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>学歴</mat-label>
+            <mat-label>{{ 'EducationalBackground' | translate }}</mat-label>
             <input matInput formControlName="educationalBackground" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>第二言語</mat-label>
+            <mat-label>{{ 'SecondLanguage' | translate }}</mat-label>
             <input matInput formControlName="secondLanguage" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>休日</mat-label>
+            <mat-label>{{ 'Holiday' | translate }}</mat-label>
             <mat-select formControlName="holiday">
                 <mat-option *ngFor="let day of holiday" [value]="day">
-                    {{ day }}
+                    <span *ngIf="day === 'weekend'">
+                        {{ 'Weekend' | translate }}
+                    </span>
+                    <span *ngIf="day === 'weekday'">
+                        {{ 'Weekday' | translate }}
+                    </span>
+                    <span *ngIf="day === 'irregular'">
+                        {{ 'Irregular' | translate }}
+                    </span>
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>楽器</mat-label>
+            <mat-label>{{ 'Instrument' | translate }}</mat-label>
             <input matInput formControlName="instrument" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>スポーツ</mat-label>
+            <mat-label>{{ 'Sport' | translate }}</mat-label>
             <input matInput formControlName="sport" />
         </mat-form-field>
         <mat-form-field>
-            <mat-label>酒</mat-label>
+            <mat-label>{{ 'Drinking' | translate }}</mat-label>
             <mat-select formControlName="isDrinking">
-                <mat-option [value]="true">飲む</mat-option>
-                <mat-option [value]="false">飲まない</mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>タバコ</mat-label>
+            <mat-label>{{ 'Smoking' | translate }}</mat-label>
             <mat-select formControlName="isSmoking">
-                <mat-option [value]="true">吸う</mat-option>
-                <mat-option [value]="false">吸わない</mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>ペット</mat-label>
+            <mat-label>{{ 'Pet' | translate }}</mat-label>
             <mat-select formControlName="hasPet">
-                <mat-option [value]="true">いる</mat-option>
-                <mat-option [value]="false">いない</mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>結婚</mat-label>
+            <mat-label>{{ 'Married' | translate }}</mat-label>
             <mat-select formControlName="isMarried">
-                <mat-option [value]="true">している</mat-option>
-                <mat-option [value]="false">していない</mat-option>
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
             </mat-select>
         </mat-form-field>
     </mat-card-content>
@@ -117,7 +153,7 @@
         fxLayoutGap="16px"
     >
         <button mat-button color="primary" class="search-button">
-            検索する
+            {{ 'Search' | translate }}
         </button>
     </mat-card-actions>
 </form>

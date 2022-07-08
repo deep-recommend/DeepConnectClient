@@ -15,6 +15,8 @@ import { RoomProps } from '../../../../states/room/room.model';
 import { Menu } from 'src/app/general/interfaces/menu.interface';
 import { RoomService } from '../../../../states/room/room.service';
 import { SnackBarService } from '../../../../general/services/snack-bar.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LangService } from '../../../../general/services/lang.service';
 
 @Component({
     selector: 'app-message-room-c',
@@ -25,7 +27,7 @@ export class MessageRoomCComponent {
     menus: Menu[] = [
         {
             icon: 'person_off',
-            description: '表示しない',
+            description: this.lang.isEn ? "Don't display" : '表示しない',
             clickCallBack: () => {
                 this.socket.filter({
                     userId: this.profile.id,
@@ -33,13 +35,15 @@ export class MessageRoomCComponent {
                 });
                 this.roomService.getRoomsRequest().subscribe(() => {
                     this.router.navigate(['matching-users']);
-                    this.snackBar.open('非表示にしました');
+                    this.snackBar.open(
+                        this.lang.isEn ? 'Hidden' : '非表示にしました'
+                    );
                 });
             },
         },
         {
             icon: 'block',
-            description: 'ブロックする',
+            description: this.lang.isEn ? 'Block' : 'ブロックする',
             clickCallBack: () => {
                 this.socket.block({
                     userId: this.profile.id,
@@ -47,7 +51,9 @@ export class MessageRoomCComponent {
                 });
                 this.roomService.getRoomsRequest().subscribe(() => {
                     this.router.navigate(['matching-users']);
-                    this.snackBar.open('ブロックしました');
+                    this.snackBar.open(
+                        this.lang.isEn ? 'Blocked' : 'ブロックしました'
+                    );
                 });
             },
         },
@@ -76,7 +82,8 @@ export class MessageRoomCComponent {
         private readonly socket: SocketService,
         private readonly userStore: UserStore,
         private readonly roomService: RoomService,
-        private readonly snackBar: SnackBarService
+        private readonly snackBar: SnackBarService,
+        private readonly lang: LangService
     ) {}
 
     onReceivedSendMessage(message: string): void {

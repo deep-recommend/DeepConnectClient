@@ -57,14 +57,12 @@ export class MessageRoomScreenPComponent
 
         this.maxScroll = this.scrollContainer.nativeElement.scrollTop;
         this.canScrollBottom =
-            this.scrollContainer.nativeElement.scrollTop <
-            this.maxScroll * 0.95;
+            this.scrollContainer.nativeElement.scrollTop < this.maxScroll * 0.9;
     }
 
     onScroll(event: any) {
         this.canScrollBottom =
-            this.scrollContainer.nativeElement.scrollTop <
-            this.maxScroll * 0.95;
+            this.scrollContainer.nativeElement.scrollTop < this.maxScroll * 0.9;
     }
 
     ngDoCheck(): void {}

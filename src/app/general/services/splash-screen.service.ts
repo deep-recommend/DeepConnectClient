@@ -30,23 +30,11 @@ export class DeepRecommendSplashScreenService {
         private _router: Router
     ) {}
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Initialize
-     *
-     * @private
-     */
     init(): void {
-        // Get the splash screen element
         this.splashScreenEl =
             this._document.body.querySelector('#dr-splash-screen');
 
-        // If the splash screen element exists...
         if (this.splashScreenEl) {
-            // Hide it on the first NavigationEnd event
             this._router.events
                 .pipe(
                     filter((event) => event instanceof NavigationEnd),
@@ -60,13 +48,6 @@ export class DeepRecommendSplashScreenService {
         }
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Show the splash screen
-     */
     show(): void {
         this.player = this._animationBuilder
             .build([
@@ -83,9 +64,6 @@ export class DeepRecommendSplashScreenService {
         }, 0);
     }
 
-    /**
-     * Hide the splash screen
-     */
     hide(): void {
         this.player = this._animationBuilder
             .build([

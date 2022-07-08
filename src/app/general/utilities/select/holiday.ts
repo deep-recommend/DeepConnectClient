@@ -1,1 +1,1 @@
-export const HOLIDAY = ['土日', '平日', '不定期'];
+export const HOLIDAY = ['weekend', 'weekday', 'irregular'];

@@ -14,7 +14,8 @@
         "build:ssr": "ng build && ng run comedian-matching-front:server",
         "prerender": "ng run comedian-matching-front:prerender",
         "pwa": "ng build --configuration production && npm run pwarun",
-        "pwarun": "http-server dist/%npm_package_name%"
+        "pwarun": "http-server dist/%npm_package_name%",
+        "i18n": "ng-xi18n"
     },
     "private": true,
     "akitaCli": {
@@ -47,6 +48,8 @@
         "@ngrx/store": "^13.0.2",
         "@ngtools/webpack": "^1.2.4",
         "@nguniversal/express-engine": "^11.2.1",
+        "@ngx-translate/core": "^14.0.0",
+        "@ngx-translate/http-loader": "^7.0.0",
         "@rx-angular/state": "^1.4.6",
         "@types/ramda": "^0.27.41",
         "@types/resize-observer-browser": "^0.1.7",
@@ -58,6 +61,7 @@
         "deepmerge": "^4.2.2",
         "http-server": "^14.1.1",
         "is-mobile": "^3.0.0",
+        "kuroshiro": "^1.2.0",
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
         "moment": "^2.29.1",

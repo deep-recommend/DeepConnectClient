@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LangService } from '../../services/lang.service';
 
 @Component({
     selector: 'app-position',
@@ -24,13 +25,15 @@ export class PositionComponent {
     get puttingInOtherWords(): string {
         switch (this.position) {
             case 'none':
-                return '未選択';
+                return this.lang.isEn ? 'Unselected' : '未選択';
             case 'visionary':
-                return 'ビジョナリー';
+                return this.lang.isEn ? 'Visionary' : 'ビジョナリー';
             case 'practitioner':
-                return 'ハッカー';
+                return this.lang.isEn ? 'Practitioner' : 'ハッカー';
             default:
-                return '未選択';
+                return this.lang.isEn ? 'Unselected' : '未選択';
         }
     }
+
+    constructor(private readonly lang: LangService) {}
 }

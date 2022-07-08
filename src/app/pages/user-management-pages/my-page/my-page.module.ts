@@ -10,6 +10,7 @@ import { MyPageFilterUsersPComponent } from './my-page-filter-users-p/my-page-fi
 import { MyPageBlockUsersPComponent } from './my-page-block-users-p/my-page-block-users-p.component';
 import { MyPageResolverService } from './my-page.resolver';
 import { UnblockDialogComponent } from '../unblock-dialog/unblock-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,7 @@ import { UnblockDialogComponent } from '../unblock-dialog/unblock-dialog.compone
         MyPageBlockUsersPComponent,
         UnblockDialogComponent,
     ],
-    imports: [DeepRecommendSharedModule, MyPageRoutingModule],
+    imports: [DeepRecommendSharedModule, MyPageRoutingModule, TranslateModule],
     providers: [MyPageResolverService],
 })
 export class MyPageModule {}

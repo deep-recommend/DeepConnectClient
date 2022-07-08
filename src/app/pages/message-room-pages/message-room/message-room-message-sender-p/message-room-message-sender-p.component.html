@@ -6,7 +6,7 @@
     <mat-form-field class="message-sender" (keydown)="onSendMessage($event)">
         <input
             matInput
-            placeholder="メッセージ入力"
+            placeholder="{{ 'InputMessage' | translate }}"
             [formControl]="message"
             class="input"
             autocomplete="off"

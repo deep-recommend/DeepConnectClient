@@ -7,6 +7,7 @@ import { UserDetailCComponent } from './user-detail-c/user-detail-c.component';
 import { UserDetailPComponent } from './user-detail-p/user-detail-p.component';
 import { UserDetailLikePComponent } from './user-detail-like-p/user-detail-like-p.component';
 import { UserDetailResolverService } from './user-detail.resolver';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,11 @@ import { UserDetailResolverService } from './user-detail.resolver';
         UserDetailPComponent,
         UserDetailLikePComponent,
     ],
-    imports: [DeepRecommendSharedModule, UserDetailRoutingModule],
+    imports: [
+        DeepRecommendSharedModule,
+        UserDetailRoutingModule,
+        TranslateModule,
+    ],
     providers: [UserDetailResolverService],
 })
 export class UserDetailModule {}

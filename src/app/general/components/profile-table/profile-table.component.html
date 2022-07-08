@@ -1,92 +1,159 @@
 <table>
     <tr>
-        <td class="py-2 pr-4">ニックネーム</td>
-        <td>{{ profile?.stageName ? profile?.stageName : '未設定' }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">本名</td>
-        <td>{{ profile?.realLastName }}{{ profile?.realFirstName }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">年齢</td>
-        <td>{{ age }}歳</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">身長</td>
-        <td>{{ profile?.height ? profile?.height : '未設定' }}cm</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">性別</td>
-        <td>{{ profile?.gender }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">出身</td>
-        <td>{{ profile?.birthPlace }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">所属</td>
-        <td>{{ profile?.agency ? profile?.agency : '未設定' }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">職業</td>
-        <td>{{ profile?.work ? profile?.work : '未設定' }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">趣味</td>
-        <td>{{ profile?.hobby ? profile?.hobby : '未設定' }}</td>
-    </tr>
-    <tr>
-        <td class="py-2 pr-4">兄弟姉妹</td>
+        <td class="py-2 pr-4">{{ 'Nickname' | translate }}</td>
         <td>
             {{
-                profile?.brothersAndSisters
-                    ? profile?.brothersAndSisters
-                    : '未設定'
+                profile?.stageName ? profile?.stageName : ('Unset' | translate)
             }}
         </td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">学歴</td>
+        <td class="py-2 pr-4">{{ 'Realname' | translate }}</td>
+        <td>{{ profile?.realLastName }}{{ profile?.realFirstName }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Age' | translate }}</td>
+        <td>{{ age }}{{ 'YearsOld' | translate }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Height' | translate }}</td>
+        <td>
+            {{ profile?.height ? profile?.height : ('Unset' | translate) }} cm
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Gender' | translate }}</td>
+        <td>
+            <span *ngIf="profile?.gender === 'man'">
+                {{ 'Man' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'woman'">
+                {{ 'Woman' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'lesbian'">
+                {{ 'Lesbian' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'gay'">
+                {{ 'Gay' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'bisexual'">
+                {{ 'Bisexual' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'transgender'">
+                {{ 'Transgender' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'questioning'">
+                {{ 'Questioning' | translate }}
+            </span>
+            <span *ngIf="profile?.gender === 'other'">
+                {{ 'Other' | translate }}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'BirthPlace' | translate }}</td>
+        <td>{{ profile?.birthPlace }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Agency' | translate }}</td>
+        <td>{{ profile?.agency ? profile?.agency : ('Unset' | translate) }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Work' | translate }}</td>
+        <td>{{ profile?.work ? profile?.work : ('Unset' | translate) }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'Hobby' | translate }}</td>
+        <td>{{ profile?.hobby ? profile?.hobby : ('Unset' | translate) }}</td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'BrothersAndSisters' | translate }}</td>
+        <td>
+            <span *ngIf="profile?.brothersAndSisters === 'only'">
+                {{ 'Only' | translate }}
+            </span>
+            <span *ngIf="profile?.brothersAndSisters === 'eldest'">{{
+                'Eldest' | translate
+            }}</span>
+            <span *ngIf="profile?.brothersAndSisters === 'second'">{{
+                'Second' | translate
+            }}</span>
+            <span *ngIf="profile?.brothersAndSisters === 'third'">{{
+                'Third' | translate
+            }}</span>
+            <span *ngIf="profile?.brothersAndSisters === 'other'">{{
+                'Other' | translate
+            }}</span>
+            <span *ngIf="!profile?.brothersAndSisters">
+                {{ 'Unset' | translate }}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="py-2 pr-4">{{ 'EducationalBackground' | translate }}</td>
         <td>
             {{
                 profile?.educationalBackground
                     ? profile?.educationalBackground
-                    : '未設定'
+                    : ('Unset' | translate)
             }}
         </td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">第二言語</td>
+        <td class="py-2 pr-4">{{ 'SecondLanguage' | translate }}</td>
         <td>
-            {{ profile?.secondLanguage ? profile?.secondLanguage : '未設定' }}
+            {{
+                profile?.secondLanguage
+                    ? profile?.secondLanguage
+                    : ('Unset' | translate)
+            }}
         </td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">休日</td>
-        <td>{{ profile?.holiday ? profile?.holiday : '未設定' }}</td>
+        <td class="py-2 pr-4">{{ 'Holiday' | translate }}</td>
+        <td>
+            <span *ngIf="profile?.holiday === 'weekend'">
+                {{ 'Weekend' | translate }}
+            </span>
+            <span *ngIf="profile?.holiday === 'weekday'">
+                {{ 'Weekday' | translate }}
+            </span>
+            <span *ngIf="profile?.holiday === 'irregular'">
+                {{ 'Irregular' | translate }}
+            </span>
+            <span *ngIf="!profile?.holiday">
+                {{ 'Unset' | translate }}
+            </span>
+        </td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">楽器</td>
-        <td>{{ profile?.instrument ? profile?.instrument : '未設定' }}</td>
+        <td class="py-2 pr-4">{{ 'Instrument' | translate }}</td>
+        <td>
+            {{
+                profile?.instrument
+                    ? profile?.instrument
+                    : ('Unset' | translate)
+            }}
+        </td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">スポーツ</td>
-        <td>{{ profile?.sport ? profile?.sport : '未設定' }}</td>
+        <td class="py-2 pr-4">{{ 'Sport' | translate }}</td>
+        <td>{{ profile?.sport ? profile?.sport : ('Unset' | translate) }}</td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">酒</td>
-        <td>{{ profile?.isDrinking ? '飲む' : '飲まない' }}</td>
+        <td class="py-2 pr-4">{{ 'Drinking' | translate }}</td>
+        <td>{{ profile?.isDrinking ? 'Yes' : 'No' }}</td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">タバコ</td>
-        <td>{{ profile?.isSmoking ? '吸う' : '吸わない' }}</td>
+        <td class="py-2 pr-4">{{ 'Smoking' | translate }}</td>
+        <td>{{ profile?.isSmoking ? 'Yes' : 'No' }}</td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">ペット</td>
-        <td>{{ profile?.hasPet ? 'いる' : 'いない' }}</td>
+        <td class="py-2 pr-4">{{ 'Pet' | translate }}</td>
+        <td>{{ profile?.hasPet ? 'Yes' : 'No' }}</td>
     </tr>
     <tr>
-        <td class="py-2 pr-4">結婚</td>
-        <td>{{ profile?.isMarried ? 'している' : 'していない' }}</td>
+        <td class="py-2 pr-4">{{ 'Married' | translate }}</td>
+        <td>{{ profile?.isMarried ? 'Yes' : 'No' }}</td>
     </tr>
 </table>

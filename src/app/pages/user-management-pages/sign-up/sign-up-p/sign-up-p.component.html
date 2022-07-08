@@ -7,17 +7,17 @@
                 fxLayoutAlign="center"
             >
                 <mat-form-field class="name-field">
-                    <mat-label>性</mat-label>
+                    <mat-label>{{ 'LastName' | translate }}</mat-label>
                     <input matInput formControlName="realLastName" required />
                     <mat-error
                         *ngIf="
                             signUpForm.get('realLastName')?.hasError('required')
                         "
-                        >・必須項目です</mat-error
+                        >{{ 'RequiredFields' | translate }}</mat-error
                     >
                 </mat-form-field>
                 <mat-form-field class="name-field">
-                    <mat-label>名</mat-label>
+                    <mat-label>{{ 'FirstName' | translate }}</mat-label>
                     <input matInput formControlName="realFirstName" required />
                     <mat-error
                         *ngIf="
@@ -25,31 +25,55 @@
                                 .get('realFirstName')
                                 ?.hasError('required')
                         "
-                        >・必須項目です</mat-error
+                        >{{ 'RequiredFields' | translate }}</mat-error
                     >
                 </mat-form-field>
             </div>
             <mat-form-field>
-                <mat-label>性別</mat-label>
+                <mat-label>{{ 'Gender' | translate }}</mat-label>
                 <mat-select formControlName="gender" required>
                     <mat-option *ngFor="let gender of genders" [value]="gender">
-                        {{ gender }}
+                        <span *ngIf="gender === 'man'">
+                            {{ 'Man' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'woman'">
+                            {{ 'Woman' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'lesbian'">
+                            {{ 'Lesbian' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'gay'">
+                            {{ 'Gay' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'bisexual'">
+                            {{ 'Bisexual' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'transgender'">
+                            {{ 'Transgender' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'questioning'">
+                            {{ 'Questioning' | translate }}
+                        </span>
+                        <span *ngIf="gender === 'other'">
+                            {{ 'Other' | translate }}
+                        </span>
                     </mat-option>
                 </mat-select>
                 <mat-error
                     *ngIf="signUpForm.get('gender')?.hasError('required')"
-                    >・必須項目です</mat-error
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required />
-                <mat-error *ngIf="signUpForm.get('email')?.hasError('required')"
-                    >・必須項目です</mat-error
+                <mat-error
+                    *ngIf="signUpForm.get('email')?.hasError('required')"
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
             <mat-form-field>
-                <mat-label>パスワード</mat-label>
+                <mat-label>{{ 'Passowrd' | translate }}</mat-label>
                 <input
                     matInput
                     [type]="hide ? 'password' : 'tel'"
@@ -69,11 +93,11 @@
                 </button>
                 <mat-error
                     *ngIf="signUpForm.get('password')?.hasError('required')"
-                    >・必須項目です</mat-error
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
             <mat-form-field>
-                <mat-label>確認用パスワード</mat-label>
+                <mat-label>{{ 'PasswordConfirmation' | translate }}</mat-label>
                 <input
                     matInput
                     [type]="hide2 ? 'password' : 'tel'"
@@ -97,7 +121,7 @@
                             .get('passwordConfirmation')
                             ?.hasError('required')
                     "
-                    >・必須項目です</mat-error
+                    >{{ 'RequiredFields' | translate }}</mat-error
                 >
             </mat-form-field>
             <div class="mb-4">
@@ -106,7 +130,7 @@
                     formControlName="checkedTerms"
                     fxLayout
                     fxLayoutAlign="center center"
-                    >利用規約に同意する</mat-checkbox
+                    >{{ 'AcceptTerms' | translate }}</mat-checkbox
                 >
                 <mat-error
                     fxLayout
@@ -117,7 +141,7 @@
                         signUpForm.get('checkedTerms')?.hasError('checkedTerms')
                     "
                 >
-                    ・利用規約に同意してください
+                    {{ 'AcceptTerms' | translate }}
                 </mat-error>
             </div>
         </mat-card-content>
@@ -126,13 +150,17 @@
             fxLayoutAlign="center center"
             fxLayoutGap="16px"
         >
-            <button mat-button color="primary">サインアップ</button>
+            <button mat-button color="primary">
+                {{ 'SignUp' | translate }}
+            </button>
             <p routerLink="/sign-in" class="router-link">
-                既にアカウントをお持ちの方
+                {{ 'AlreadyHaveAccount' | translate }}
             </p>
-            <p routerLink="/terms" class="router-link">利用規約</p>
+            <p routerLink="/terms" class="router-link">
+                {{ 'Terms' | translate }}
+            </p>
             <p routerLink="/privacy-policy" class="router-link">
-                プライバシーポリシー
+                {{ 'PrivacyPolicy' | translate }}
             </p>
         </mat-card-actions>
     </form>

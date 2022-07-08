@@ -1,7 +1,9 @@
 <div class="search-container" fxLayout="row" fxLayoutAlign="center center">
     <button mat-button class="search-form" (click)="onClickSearchField()">
         <div fxLayout="row" fxLayoutAlign="space-between">
-            <div class="input" fxLayoutAlign="center">検索条件を指定する</div>
+            <div class="input" fxLayoutAlign="center">
+                {{ 'SpecifySearchConditions' | translate }}
+            </div>
             <mat-icon class="icon" fxLayoutAlign="center">search</mat-icon>
         </div>
     </button>

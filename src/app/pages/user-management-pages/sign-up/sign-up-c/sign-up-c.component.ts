@@ -6,6 +6,7 @@ import { SignUpProps } from 'src/app/general/interfaces/sign-up.interface';
 import { SnackBarService } from 'src/app/general/services/snack-bar.service';
 import { UserQuery } from 'src/app/states/user/user.query';
 import { UserService } from 'src/app/states/user/user.service';
+import { LangService } from '../../../../general/services/lang.service';
 
 @Component({
     selector: 'app-sign-up-c',
@@ -23,7 +24,8 @@ export class SignUpCComponent {
         private readonly userService: UserService,
         private readonly router: Router,
         private readonly userQuery: UserQuery,
-        private readonly snackBar: SnackBarService
+        private readonly snackBar: SnackBarService,
+        private readonly lang: LangService
     ) {}
 
     onReceivedClickSignUp(signUp: SignUpProps): void {
@@ -32,10 +34,16 @@ export class SignUpCComponent {
             .pipe(first())
             .subscribe((data) => {
                 if (data) {
-                    this.snackBar.open('入力されたEmailは既に使用されています');
+                    this.snackBar.open(
+                        this.lang.isEn
+                            ? 'The Email you entered is already in use'
+                            : '入力されたEmailは既に使用されています'
+                    );
                 } else {
                     this.router.navigate(['/sign-in']);
-                    this.snackBar.open('登録しました');
+                    this.snackBar.open(
+                        this.lang.isEn ? 'Registered' : '登録しました'
+                    );
                 }
             });
     }

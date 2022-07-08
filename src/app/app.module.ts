@@ -5,7 +5,11 @@ import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { environment } from '../environments/environment';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+    HttpClient,
+    HttpClientModule,
+    HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +19,8 @@ import { SocketIoModule } from 'ngx-socket-io';
 import { apiHostPort } from './general/utilities/api';
 import { WINDOW_PROVIDERS } from './general/utilities/window-token';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from './general/translate-http-loader';
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,14 +36,21 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
         SocketIoModule.forRoot({ url: apiHostPort }),
 
-        LayoutModule,
-        BrowserModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
-            // Register the ServiceWorker as soon as the application is stable
-            // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000',
         }),
+
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient],
+            },
+            defaultLanguage: 'en',
+        }),
+
+        LayoutModule,
     ],
     providers: [
         WINDOW_PROVIDERS,

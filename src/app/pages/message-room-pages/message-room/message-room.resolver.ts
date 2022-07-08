@@ -8,6 +8,7 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UiStore } from 'src/app/states/ui/ui.store';
 import { AuthenticationService } from '../../../general/services/authentication.service';
+import { LangService } from '../../../general/services/lang.service';
 import { currentRoomIdKey } from '../../../general/utilities/local-strage';
 import { MessageService } from '../../../states/message/message.service';
 import { RoomProps } from '../../../states/room/room.model';
@@ -25,7 +26,8 @@ export class MessageRoomResolverService implements Resolve<Observable<void>> {
         private readonly roomService: RoomService,
         private readonly roomQuery: RoomQuery,
         private readonly roomStore: RoomStore,
-        private readonly userService: UserService
+        private readonly userService: UserService,
+        private readonly lang: LangService
     ) {}
 
     resolve(
@@ -35,7 +37,9 @@ export class MessageRoomResolverService implements Resolve<Observable<void>> {
         this.uiStore.hideRoutingTab();
         this.uiStore.hideMobileHeader();
         this.uiStore.messaging();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiStore.displayPageName(
+            this.lang.isEn ? 'Messaging' : 'メッセージ中'
+        );
 
         const currentRoomId = this.roomQuery.currentRoomId
             ? this.roomQuery.currentRoomId

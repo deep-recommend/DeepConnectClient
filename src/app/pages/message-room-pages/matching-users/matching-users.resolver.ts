@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { RoomService } from 'src/app/states/room/room.service';
 import { UiStore } from 'src/app/states/ui/ui.store';
 import { AuthenticationService } from '../../../general/services/authentication.service';
+import { LangService } from '../../../general/services/lang.service';
 import { LikeService } from '../../../states/like/like.service';
 import { UserService } from '../../../states/user/user.service';
 
@@ -19,7 +20,8 @@ export class MatchingUsersResolverService implements Resolve<Observable<void>> {
         private readonly roomService: RoomService,
         private readonly userService: UserService,
         private readonly likeService: LikeService,
-        private readonly authenticationService: AuthenticationService
+        private readonly authenticationService: AuthenticationService,
+        private readonly lang: LangService
     ) {}
 
     resolve(
@@ -29,7 +31,7 @@ export class MatchingUsersResolverService implements Resolve<Observable<void>> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayMobileHeader();
         this.uiStore.quitMessaging();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiStore.displayPageName(this.lang.isEn ? 'Message' : 'メッセージ');
 
         return forkJoin(
             this.userService.getUsersRequest(),

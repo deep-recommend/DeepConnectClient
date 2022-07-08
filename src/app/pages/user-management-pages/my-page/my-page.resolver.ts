@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/general/services/authentication.s
 import { BlockService } from 'src/app/states/block';
 import { FilterService } from 'src/app/states/filter';
 import { UserService } from 'src/app/states/user/user.service';
+import { LangService } from '../../../general/services/lang.service';
 import { UiStore } from '../../../states/ui/ui.store';
 
 @Injectable()
@@ -19,7 +20,8 @@ export class MyPageResolverService implements Resolve<Observable<void>> {
         private readonly userService: UserService,
         private readonly authenticationService: AuthenticationService,
         private readonly blockService: BlockService,
-        private readonly filterService: FilterService
+        private readonly filterService: FilterService,
+        private readonly lang: LangService
     ) {}
 
     resolve(
@@ -28,7 +30,7 @@ export class MyPageResolverService implements Resolve<Observable<void>> {
     ): Observable<void> {
         this.uiStore.displayRoutingTab();
         this.uiStore.displayMobileHeader();
-        this.uiStore.displayPageName(route.data.title);
+        this.uiStore.displayPageName(this.lang.isEn ? 'My Page' : 'マイページ');
 
         return forkJoin(
             this.userService.getUsersRequest(),

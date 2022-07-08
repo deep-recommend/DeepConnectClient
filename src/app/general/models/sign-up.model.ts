@@ -10,7 +10,7 @@ export class SignUpModel implements SignUpProps {
     birthYear: number = 0;
     birthMonth: number = 0;
     birthDay: number = 0;
-    birthPlace: string = '未設定';
+    birthPlace: string = '';
     agency?: string = '';
     description?: string = '';
     profilePicture?: string = '';

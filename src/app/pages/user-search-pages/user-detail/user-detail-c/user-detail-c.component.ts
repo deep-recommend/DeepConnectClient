@@ -12,6 +12,7 @@ import { RoomStore } from '../../../../states/room/room.store';
 import { Menu } from '../../../../general/interfaces/menu.interface';
 import { SnackBarService } from '../../../../general/services/snack-bar.service';
 import { UserService } from '../../../../states/user/user.service';
+import { LangService } from '../../../../general/services/lang.service';
 
 @Component({
     selector: 'app-user-detail-c',
@@ -24,7 +25,7 @@ export class UserDetailCComponent {
     menus: Menu[] = [
         {
             icon: 'person_off',
-            description: '表示しない',
+            description: this.lang.isEn ? "Don't display" : '表示しない',
             clickCallBack: () => {
                 this.socket.filter({
                     userId: this.profile.id,
@@ -32,13 +33,15 @@ export class UserDetailCComponent {
                 });
                 this.userService.getUsersRequest().subscribe(() => {
                     this.router.navigate(['/']);
-                    this.snackBar.open('非表示にしました');
+                    this.snackBar.open(
+                        this.lang.isEn ? 'Hidden' : '非表示にしました'
+                    );
                 });
             },
         },
         {
             icon: 'block',
-            description: 'ブロックする',
+            description: this.lang.isEn ? 'Block' : 'ブロックする',
             clickCallBack: () => {
                 this.socket.block({
                     userId: this.profile.id,
@@ -46,7 +49,9 @@ export class UserDetailCComponent {
                 });
                 this.userService.getUsersRequest().subscribe(() => {
                     this.router.navigate(['/']);
-                    this.snackBar.open('ブロックしました');
+                    this.snackBar.open(
+                        this.lang.isEn ? 'Blocked' : 'ブロックしました'
+                    );
                 });
             },
         },
@@ -67,7 +72,8 @@ export class UserDetailCComponent {
         private readonly roomStore: RoomStore,
         private readonly userStore: UserStore,
         private readonly snackBar: SnackBarService,
-        private readonly userService: UserService
+        private readonly userService: UserService,
+        private readonly lang: LangService
     ) {}
 
     onReceivedClickLikeButton(): void {

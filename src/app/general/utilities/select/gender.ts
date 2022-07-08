@@ -1,8 +1,10 @@
 export const GENDER = [
-    '男',
-    '女',
-    'レズビアン',
-    'ゲイ',
-    'バイセクシュアル',
-    'その他',
+    'man',
+    'woman',
+    'lesbian',
+    'gay',
+    'bisexual',
+    'transgender',
+    'questioning',
+    'other',
 ];

@@ -2,6 +2,7 @@ import { DeepRecommendSplashScreenService } from './general/services/splash-scre
 import { Component, NgZone } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { latestUrlKey } from './general/utilities/local-strage';
+import { LangService } from './general/services/lang.service';
 
 interface Window {
     onResumeApp(): void;
@@ -19,7 +20,8 @@ export class AppComponent {
     constructor(
         private readonly router: Router,
         private readonly splash: DeepRecommendSplashScreenService,
-        private readonly ngZone: NgZone
+        private readonly ngZone: NgZone,
+        private readonly lang: LangService
     ) {
         window.onResumeApp = () => {
             this.ngZone.run(() => {
@@ -37,8 +39,6 @@ export class AppComponent {
             });
         };
 
-        this.splash.init();
-
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.currentRoute = event.url;
@@ -46,8 +46,13 @@ export class AppComponent {
             }
         });
 
+        this.splash.init();
+
+        this.lang.init();
+
         this._setLatestUrlInit();
 
+        // TODO: Join Room with Socket
         // this.authenticationService.getProfile().subscribe((user) => {
         //     this.socket.joinRooms(user.id);
         // });

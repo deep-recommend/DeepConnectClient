@@ -29,16 +29,22 @@
                     ></app-position></div
             ></mat-card-title>
             <mat-card-subtitle
-                >{{ age }}歳&nbsp;&nbsp;{{ profile?.gender }}</mat-card-subtitle
+                >{{ age }}{{ 'YearsOld' | translate }}&nbsp;&nbsp;{{
+                    profile?.gender
+                }}</mat-card-subtitle
             >
         </mat-card-header>
         <mat-card-content>
             <div class="section">
-                <p><strong>自己紹介</strong></p>
+                <p>
+                    <strong>{{ 'SelfIntroduction' | translate }}</strong>
+                </p>
                 <p>{{ profile?.description }}</p>
             </div>
             <div fxLayout="column" fxLayoutAlign="center" class="section">
-                <p><strong>基本情報</strong></p>
+                <p>
+                    <strong>{{ 'BasicInformation' | translate }}</strong>
+                </p>
                 <app-profile-table [profile]="profile"></app-profile-table>
             </div>
         </mat-card-content>

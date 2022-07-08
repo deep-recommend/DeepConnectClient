@@ -7,6 +7,7 @@ import { SnackBarService } from 'src/app/general/services/snack-bar.service';
 import { UserProps } from 'src/app/states/user/user.model';
 import { UserQuery } from 'src/app/states/user/user.query';
 import { UserService } from 'src/app/states/user/user.service';
+import { LangService } from '../../../../general/services/lang.service';
 @Component({
     selector: 'app-my-page-setting-c',
     templateUrl: './my-page-setting-c.component.html',
@@ -31,11 +32,14 @@ export class MyPageSettingCComponent {
         private readonly userService: UserService,
         private readonly authenticationService: AuthenticationService,
         private readonly router: Router,
-        private readonly snackBar: SnackBarService
+        private readonly snackBar: SnackBarService,
+        private readonly lang: LangService
     ) {}
 
     onReceivedClickProfileUpdate(user: UpdateProfileProps): void {
-        this.snackBar.open('プロフィールを編集しました');
+        this.snackBar.open(
+            this.lang.isEn ? 'Edited profile' : 'プロフィールを編集しました'
+        );
 
         this.userService
             .updateUserRequest(this.currentUserId, user)

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { RouterLinkProps } from 'src/app/general/interfaces/router-link.interface';
 import { NotificationProps } from 'src/app/states/notification/notification.model';
 import { UserStore } from 'src/app/states/user/user.store';
+import { LangService } from '../../../../general/services/lang.service';
 
 @Component({
     selector: 'app-header-routing-tabs',
@@ -20,18 +21,39 @@ export class HeaderRoutingTabsComponent implements OnInit {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private userStore: UserStore
+        private userStore: UserStore,
+        private lang: LangService
     ) {
         this.router.routeReuseStrategy.shouldReuseRoute = () => {
             return false;
         };
 
         this.routeLinks = [
-            { icon: 'search', label: 'さがす', link: '/' },
-            { icon: 'thumb_up', label: '組みたい', link: '/like-from-me' },
-            { icon: 'message', label: 'メッセージ', link: '/matching-users' },
-            { icon: 'notifications', label: '通知', link: '/notification' },
-            { icon: 'account_circle', label: 'マイページ', link: '/my-page' },
+            {
+                icon: 'search',
+                label: this.lang.isEn ? 'Search ' : 'さがす',
+                link: '/',
+            },
+            {
+                icon: 'thumb_up',
+                label: this.lang.isEn ? 'Team up' : '組みたい',
+                link: '/like-from-me',
+            },
+            {
+                icon: 'message',
+                label: this.lang.isEn ? 'Message' : 'メッセージ',
+                link: '/matching-users',
+            },
+            {
+                icon: 'notifications',
+                label: this.lang.isEn ? 'Notification' : '通知',
+                link: '/notification',
+            },
+            {
+                icon: 'account_circle',
+                label: this.lang.isEn ? 'My Page' : 'マイページ',
+                link: '/my-page',
+            },
         ];
 
         router.events.subscribe((event) => {

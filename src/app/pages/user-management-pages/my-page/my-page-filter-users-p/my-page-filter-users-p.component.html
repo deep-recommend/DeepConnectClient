@@ -1,7 +1,7 @@
 <mat-accordion *ngIf="filters?.length">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            <mat-panel-title>非表示リスト</mat-panel-title>
+            <mat-panel-title>{{ 'HiddenList' | translate }}</mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngFor="let filter of filters">
             <mat-card
@@ -28,7 +28,7 @@
                     (click)="onClickFilter(filter.id)"
                     fxLayoutAlign="end center"
                 >
-                    表示
+                    {{ 'Display' | translate }}
                 </button>
             </mat-card>
         </div>

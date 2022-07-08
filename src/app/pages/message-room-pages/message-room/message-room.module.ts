@@ -10,6 +10,7 @@ import { MessageRoomMessageSenderPComponent } from './message-room-message-sende
 import { MessageRoomIsFalsePComponent } from './message-room-is-false-p/message-room-is-false-p.component';
 import { MessageRoomScrollToBottomButtonPComponent } from './message-room-scroll-to-bottom-button-p/message-room-scroll-to-bottom-button-p.component';
 import { MessageRoomResolverService } from './message-room.resolver';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,11 @@ import { MessageRoomResolverService } from './message-room.resolver';
         MessageRoomIsFalsePComponent,
         MessageRoomScrollToBottomButtonPComponent,
     ],
-    imports: [DeepRecommendSharedModule, MessageRoomRoutingModule],
+    imports: [
+        DeepRecommendSharedModule,
+        MessageRoomRoutingModule,
+        TranslateModule,
+    ],
     providers: [MessageRoomResolverService],
 })
 export class MessageRoomModule {}

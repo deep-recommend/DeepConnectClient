@@ -27,8 +27,8 @@
             }
         }
     }
-    .mat-card-header-text {
-        margin: 0;
+    ::ng-deep .mat-card-header-text {
+        margin: 0 !important;
     }
     @media screen and (max-width: 700px) {
         .user-bg {

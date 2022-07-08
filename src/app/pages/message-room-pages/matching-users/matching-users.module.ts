@@ -8,6 +8,7 @@ import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { NoMatchingUsersPComponent } from './no-matching-users-p/no-matching-users-p.component';
 import { MatchingUsersResolverService } from './matching-users.resolver';
 import { MatchingUsersDetailPComponent } from './matching-users-detail-p/matching-users-detail-p.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,11 @@ import { MatchingUsersDetailPComponent } from './matching-users-detail-p/matchin
         NoMatchingUsersPComponent,
         MatchingUsersDetailPComponent,
     ],
-    imports: [DeepRecommendSharedModule, MatchingUsersRoutingModule],
+    imports: [
+        DeepRecommendSharedModule,
+        MatchingUsersRoutingModule,
+        TranslateModule,
+    ],
     providers: [MatchingUsersResolverService],
 })
 export class MatchingUsersModule {}

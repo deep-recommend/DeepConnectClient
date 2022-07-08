@@ -46,6 +46,8 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
 import { PositionComponent } from './components/position/position.component';
 import { ProfileTableComponent } from './components/profile-table/profile-table.component';
 import { DownloadOnComponent } from './components/download-on/download-on.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SwitchLangComponent } from './components/switch-lang/switch-lang.component';
 
 @NgModule({
     declarations: [
@@ -58,6 +60,7 @@ import { DownloadOnComponent } from './components/download-on/download-on.compon
         PositionComponent,
         ProfileTableComponent,
         DownloadOnComponent,
+        SwitchLangComponent,
     ],
     imports: [
         CommonModule,
@@ -66,6 +69,7 @@ import { DownloadOnComponent } from './components/download-on/download-on.compon
         FlexLayoutModule,
         RouterModule,
         ProgressSpinnerModule,
+        TranslateModule,
 
         MatButtonModule,
         MatBadgeModule,
@@ -111,6 +115,7 @@ import { DownloadOnComponent } from './components/download-on/download-on.compon
         PositionComponent,
         ProfileTableComponent,
         DownloadOnComponent,
+        SwitchLangComponent,
 
         CommonModule,
         FormsModule,

@@ -8,6 +8,7 @@ import { DeepRecommendSharedModule } from 'src/app/general/shared.module';
 import { DashboardToSearchPageButtonPComponent } from './dashboard-to-search-page-button-p/dashboard-to-search-page-button-p.component';
 import { DashboardResolverService } from './dashboard.resolver';
 import { DashboardUserDetailPComponent } from './dashboard-user-detail-p/dashboard-user-detail-p.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,11 @@ import { DashboardUserDetailPComponent } from './dashboard-user-detail-p/dashboa
         DashboardToSearchPageButtonPComponent,
         DashboardUserDetailPComponent,
     ],
-    imports: [DeepRecommendSharedModule, DashboardRoutingModule],
+    imports: [
+        DeepRecommendSharedModule,
+        DashboardRoutingModule,
+        TranslateModule,
+    ],
     providers: [DashboardResolverService],
 })
 export class DashboardModule {}

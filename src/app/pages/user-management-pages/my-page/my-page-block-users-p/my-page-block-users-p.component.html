@@ -1,7 +1,7 @@
 <mat-accordion *ngIf="blocks.length">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            <mat-panel-title>ブロックリスト</mat-panel-title>
+            <mat-panel-title>{{ 'BlockList' | translate }}</mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngFor="let block of blocks">
             <mat-card
@@ -28,7 +28,7 @@
                     (click)="onClickBlock(block.id)"
                     fxLayoutAlign="end center"
                 >
-                    ブロック解除
+                    {{ 'Unblock' | translate }}
                 </button>
             </mat-card>
         </div>

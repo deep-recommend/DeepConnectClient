@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { trim } from 'lodash';
-import { io } from 'socket.io-client';
+
 @Component({
     selector: 'app-message-room-message-sender-p',
     templateUrl: './message-room-message-sender-p.component.html',

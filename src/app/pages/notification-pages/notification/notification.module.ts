@@ -9,6 +9,7 @@ import { NoNotificationsPComponent } from './no-notifications-p/no-notifications
 import { NotificationBulkDeletionButtonPComponent } from './notification-bulk-deletion-button-p/notification-bulk-deletion-button-p.component';
 import { NotificationResolverService } from './notification.resolver';
 import { NotificationBulkDeletionDialogComponent } from '../notification-bulk-deletion-dialog/notification-bulk-deletion-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,11 @@ import { NotificationBulkDeletionDialogComponent } from '../notification-bulk-de
         NotificationBulkDeletionButtonPComponent,
         NotificationBulkDeletionDialogComponent,
     ],
-    imports: [DeepRecommendSharedModule, NotificationRoutingModule],
+    imports: [
+        DeepRecommendSharedModule,
+        NotificationRoutingModule,
+        TranslateModule,
+    ],
     providers: [NotificationResolverService],
 })
 export class NotificationModule {}

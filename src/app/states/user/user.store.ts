@@ -10,6 +10,7 @@ import { GENDER } from 'src/app/general/utilities/select/gender';
 import { HOLIDAY } from 'src/app/general/utilities/select/holiday';
 import { POSITION } from 'src/app/general/utilities/select/position';
 import { PREFECTURE } from 'src/app/general/utilities/select/prefecture';
+import { LangService } from '../../general/services/lang.service';
 import { UserProps } from './user.model';
 
 export interface UserState extends EntityState<UserProps> {
@@ -100,7 +101,7 @@ const initialState = {
     name: 'user',
 })
 export class UserStore extends EntityStore<UserState> {
-    constructor() {
+    constructor(private readonly lang: LangService) {
         super(initialState);
     }
 
