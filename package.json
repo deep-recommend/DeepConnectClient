@@ -65,6 +65,7 @@
         "lodash": "^4.17.21",
         "lodash-es": "^4.17.21",
         "moment": "^2.29.1",
+        "ngx-infinite-scroll": "^14.0.0",
         "ngx-logger": "^4.2.2",
         "ngx-socket-io": "^3.4.0",
         "payjp": "^2.0.8",

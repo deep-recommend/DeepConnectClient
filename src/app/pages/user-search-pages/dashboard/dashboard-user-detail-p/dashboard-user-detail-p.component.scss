@@ -21,12 +21,19 @@
     }
     @media screen and (max-width: 700px) {
         .card {
+            width: 90%;
+            margin-bottom: 32px;
             .card-title {
                 font-size: 14px;
             }
+            .position {
+                position: absolute;
+                top: 8px;
+                left: 8px;
+            }
             .image {
-                width: 160px;
-                height: 160px;
+                width: 100%;
+                height: auto;
                 margin: 0 auto;
             }
         }

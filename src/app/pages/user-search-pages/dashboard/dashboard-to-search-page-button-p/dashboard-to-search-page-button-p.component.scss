@@ -1,6 +1,9 @@
 :host {
     .search-container {
         width: 100vw;
+        position: fixed;
+        top: 112px;
+        z-index: 1000;
         .search-form {
             width: 90%;
             background-color: #ececec;

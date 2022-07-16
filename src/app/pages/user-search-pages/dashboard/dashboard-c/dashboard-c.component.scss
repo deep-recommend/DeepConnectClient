@@ -3,15 +3,13 @@
         margin: 24px 0;
     }
     .user-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 64px;
         margin: 64px;
     }
     @media screen and (max-width: 700px) {
         .user-list {
-            gap: 24px;
-            margin: 24px 24px 48px;
+            position: absolute;
+            top: 160px;
+            margin: 24px 0 64px;
             padding-bottom: 24px;
         }
     }
