@@ -1,11 +1,9 @@
 :host {
     .search-container {
         width: 100vw;
-        position: fixed;
-        top: 112px;
         z-index: 1000;
         .search-form {
-            width: 90%;
+            width: 630px;
             background-color: #ececec;
             .input {
                 color: #00000061;
@@ -13,6 +11,15 @@
             .icon {
                 color: #00000061;
                 line-height: inherit;
+            }
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .search-container {
+            position: fixed;
+            top: 112px;
+            .search-form {
+                width: 90%;
             }
         }
     }
