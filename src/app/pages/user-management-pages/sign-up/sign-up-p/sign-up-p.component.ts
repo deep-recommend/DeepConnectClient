@@ -44,7 +44,8 @@ export class SignUpPComponent implements OnInit {
             this.onceSignUp = false;
         }
 
-        if (this.signUpForm.invalid) return;
+        console.log(this.signUpForm.value);
+        console.log(this.signUpForm.invalid);
 
         this.signUp.emit(this.signUpForm.value);
     }
